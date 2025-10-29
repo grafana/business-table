@@ -6,9 +6,8 @@ services:
     ports:
       - 3000:3000/tcp
     volumes:
-    volumes:
-      - ./dist:/var/lib/grafana/plugins/volkovlabs-table-panel
-      - ./provisioning:/etc/grafana/provisioning
+      - ../dist:/var/lib/grafana/plugins/volkovlabs-table-panel
+      - ../provisioning:/etc/grafana/provisioning
     environment:
       NODE_ENV: development
       GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
@@ -19,7 +18,7 @@ services:
       GF_LOG_LEVEL: debug
       GF_DATAPROXY_LOGGING: 1
       GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: volkovlabs-table-panel
-      GF_INSTALL_PLUGINS: marcusolsson-static-datasource,volkovlabs-rss-datasource,yesoreyeram-infinity-datasource
+      GF_INSTALL_PLUGINS: marcusolsson-static-datasource,volkovlabs-variable-panel,volkovlabs-form-panel,volkovlabs-image-panel,yesoreyeram-infinity-datasource
     healthcheck:
       test: ['CMD', 'wget', '--spider', '-q', 'http://localhost:3000/api/health']
       interval: 5s
