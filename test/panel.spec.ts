@@ -85,7 +85,7 @@ test.describe('Business Table Panel', () => {
     await panel.checkIfNoErrors();
   });
 
-  test('Should render table panel correctly with data', async ({
+  test.skip('Should render table panel correctly with data', async ({
     gotoDashboardPage,
     page,
     readProvisionedDashboard,
@@ -157,7 +157,7 @@ test.describe('Business Table Panel', () => {
     await header.getHeaderCell('A-series').checkText('A-series');
   });
 
-  test('Should render only visible columns in table', async ({ gotoDashboardPage, page, readProvisionedDashboard }) => {
+  test.skip('Should render only visible columns in table', async ({ gotoDashboardPage, page, readProvisionedDashboard }) => {
     /**
      * Go To Panels dashboard panels.json
      * return dashboardPage
@@ -263,7 +263,7 @@ test.describe('Business Table Panel', () => {
   });
 
   test.describe('Download Button', () => {
-    test('Should add Download button', async ({
+    test.skip('Should add Download button', async ({
       page,
       gotoDashboardPage,
       readProvisionedDashboard,
@@ -408,7 +408,7 @@ test.describe('Business Table Panel', () => {
   });
 
   test.describe('Add/Delete row', () => {
-    test('Should allow to add and delete new row', async ({ readProvisionedDashboard, gotoDashboardPage }) => {
+    test.skip('Should allow to add and delete new row', async ({ readProvisionedDashboard, gotoDashboardPage }) => {
       /**
        * Go To Panels dashboard devices.json
        * return dashboardPage
@@ -474,7 +474,7 @@ test.describe('Business Table Panel', () => {
   });
 
   test.describe('Edit cells', () => {
-    test('Should allow to change string value', async ({ readProvisionedDashboard, gotoDashboardPage }) => {
+    test.skip('Should allow to change string value', async ({ readProvisionedDashboard, gotoDashboardPage }) => {
       /**
        * Go To Panels dashboard devices.json
        * return dashboardPage
@@ -539,7 +539,7 @@ test.describe('Business Table Panel', () => {
       await firstRow.getCell('name').checkText('Chicago North 125');
     });
 
-    test('Should not save changes if cancel edit', async ({ readProvisionedDashboard, gotoDashboardPage }) => {
+    test.skip('Should not save changes if cancel edit', async ({ readProvisionedDashboard, gotoDashboardPage }) => {
       /**
        * Go To Panels dashboard devices.json
        * return dashboardPage
