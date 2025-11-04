@@ -1,8 +1,8 @@
 # Business Table Panel for Grafana
 
-[![CI](https://github.com/grafana/business-text/actions/workflows/push.yml/badge.svg)](https://github.com/grafana/business-text/actions/workflows/push.yml)
-[![CD](https://github.com/grafana/business-text/actions/workflows/publish.yml/badge.svg)](https://github.com/grafana/business-text/actions/workflows/publish.yml)
-[![License](https://img.shields.io/github/license/grafana/business-text)](https://github.com/grafana/business-text/blob/main/LICENSE)
+[![CI](https://github.com/grafana/business-table/actions/workflows/push.yml/badge.svg)](https://github.com/grafana/business-table/actions/workflows/push.yml)
+[![CD](https://github.com/grafana/business-table/actions/workflows/publish.yml/badge.svg)](https://github.com/grafana/business-table/actions/workflows/publish.yml)
+[![License](https://img.shields.io/github/license/grafana/business-table)](https://github.com/grafana/business-table/blob/main/LICENSE)
 
 > This project was originally contributed by [Volkov Labs](https://github.com/volkovlabs/business-table) - thanks for all your great work!
 >
