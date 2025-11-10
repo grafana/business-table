@@ -5,7 +5,7 @@ import { createSelector, getJestSelectors } from '@volkovlabs/jest-selectors';
 import React from 'react';
 
 import { TEST_IDS } from '@/constants';
-import { tablePanelContext, useDashboardRefresh } from '@/hooks';
+import { tablePanelContext } from '@/hooks';
 import { NestedObjectCardsDisplay, NestedObjectControlOptions, NestedObjectType } from '@/types';
 import { createNestedObjectEditorConfig, createNestedObjectOperationOptions, NestedObjectCardMapper } from '@/utils';
 
@@ -27,10 +27,15 @@ const inTestIds = {
   item: createSelector((id: unknown) => `data-testid item-${id}`),
 };
 
-jest.mock('@/hooks', () => ({
-  ...jest.requireActual('@/hooks'),
-  useDashboardRefresh: jest.fn(),
-}));
+const mockRefresh = jest.fn();
+
+jest.mock('@/hooks', () => {
+  const actual = jest.requireActual('@/hooks');
+  return {
+    ...actual,
+    useDashboardRefresh: () => mockRefresh,
+  };
+});
 
 /**
  * Mock NestedObjectCardsItem
@@ -107,16 +112,10 @@ describe('NestedObjectCardsControl', () => {
     fireEvent.click(selectors.buttonShowItems());
   };
 
-  /**
-   * Refresh Event
-   */
-  const refresh = jest.fn();
-
   beforeEach(() => {
     jest.mocked(NestedObjectCardsItem).mockImplementation(() => null);
     jest.mocked(NestedObjectCardsAdd).mockImplementation(() => null);
     jest.mocked(useDatasourceRequest).mockReturnValue(datasourceRequestMock);
-    jest.mocked(useDashboardRefresh).mockImplementation(() => refresh);
   });
 
   it('Should show loading state', () => {
@@ -350,7 +349,9 @@ describe('NestedObjectCardsControl', () => {
         })
       );
 
-      datasourceRequestMock.mockResolvedValue({});
+      datasourceRequestMock.mockResolvedValue({
+        state: LoadingState.Done,
+      });
 
       openDrawer();
 
@@ -373,7 +374,7 @@ describe('NestedObjectCardsControl', () => {
       /**
        * Should run refresh
        */
-      expect(refresh).toHaveBeenCalledTimes(1);
+      expect(mockRefresh).toHaveBeenCalledTimes(1);
     });
 
     it('Should show response error', async () => {
@@ -527,7 +528,9 @@ describe('NestedObjectCardsControl', () => {
         })
       );
 
-      datasourceRequestMock.mockResolvedValue({});
+      datasourceRequestMock.mockResolvedValue({
+        state: LoadingState.Done,
+      });
 
       openDrawer();
 
@@ -547,7 +550,7 @@ describe('NestedObjectCardsControl', () => {
       /**
        * Should run refresh
        */
-      expect(refresh).toHaveBeenCalledTimes(1);
+      expect(mockRefresh).toHaveBeenCalledTimes(1);
     });
 
     it('Should show response error', async () => {
@@ -806,7 +809,9 @@ describe('NestedObjectCardsControl', () => {
         })
       );
 
-      datasourceRequestMock.mockResolvedValue({});
+      datasourceRequestMock.mockResolvedValue({
+        state: LoadingState.Done,
+      });
 
       openDrawer();
 
@@ -826,7 +831,7 @@ describe('NestedObjectCardsControl', () => {
       /**
        * Should run refresh
        */
-      expect(refresh).toHaveBeenCalledTimes(1);
+      expect(mockRefresh).toHaveBeenCalledTimes(1);
     });
 
     it('Should show response error', async () => {
