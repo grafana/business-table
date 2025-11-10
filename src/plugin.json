@@ -7,25 +7,12 @@
   "id": "volkovlabs-table-panel",
   "info": {
     "author": {
-      "name": "Volkov Labs",
-      "url": "https://volkovlabs.io"
+      "name": "Grafana Labs",
+      "url": "https://grafana.com"
     },
     "description": "Simplifies data presentation with intuitive table layouts",
     "keywords": ["table"],
-    "links": [
-      {
-        "name": "Documentation",
-        "url": "https://volkovlabs.io/plugins/business-table/"
-      },
-      {
-        "name": "GitHub",
-        "url": "https://github.com/volkovlabs/business-table"
-      },
-      {
-        "name": "Sponsor",
-        "url": "https://volkovlabs.io/pricing/"
-      }
-    ],
+    "links": [],
     "logos": {
       "large": "img/logo.svg",
       "small": "img/logo.svg"

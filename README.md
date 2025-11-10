@@ -1,20 +1,16 @@
 # Business Table Panel for Grafana
 
-![Table Screenshot](https://github.com/VolkovLabs/business-table/raw/main/src/img/dashboard.png)
+[![CI](https://github.com/grafana/business-table/actions/workflows/push.yml/badge.svg)](https://github.com/grafana/business-table/actions/workflows/push.yml)
+[![CD](https://github.com/grafana/business-table/actions/workflows/publish.yml/badge.svg)](https://github.com/grafana/business-table/actions/workflows/publish.yml)
+[![License](https://img.shields.io/github/license/grafana/business-table)](https://github.com/grafana/business-table/blob/main/LICENSE)
 
-[![Grafana](https://img.shields.io/badge/Grafana-12.1-orange)](https://grafana.com/)
-[![CI](https://github.com/volkovlabs/business-table/workflows/CI/badge.svg)](https://github.com/volkovlabs/business-table/actions/workflows/ci.yml)
-[![E2E](https://github.com/volkovlabs/business-table/workflows/E2E/badge.svg)](https://github.com/volkovlabs/business-table/actions/workflows/e2e.yml)
-[![Codecov](https://codecov.io/gh/VolkovLabs/business-table/branch/main/graph/badge.svg)](https://codecov.io/gh/VolkovLabs/business-table)
-[![CodeQL](https://github.com/VolkovLabs/business-table/actions/workflows/codeql.yml/badge.svg)](https://github.com/VolkovLabs/business-table/actions/workflows/codeql-analysis.yml)
+> This project was originally contributed by [Volkov Labs](https://github.com/volkovlabs/business-table) - thanks for all your great work!
+>
+> We have republished under the same plugin ID, keeping the community signature. This means you can simply update your plugin version. A new ID would have required manual updates to your dashboards. For additional information on the changes, see the [Notices](https://github.com/grafana/business-table/blob/main/NOTICES.md).
 
 ## 📋 Introduction
 
 The **Business Table Panel** is a powerful and flexible Grafana plugin designed to elevate data visualization in table format. Tailored for business analytics and reporting dashboards, it offers advanced features like tree views, custom cell rendering, data editing, and export capabilities.
-
-📺 **Watch our overview video** to get started:
-
-[![Business Table Panel for Grafana | Overview and Tutorial for Beginners](https://raw.githubusercontent.com/volkovlabs/business-table/main/img/overview.png)](https://youtu.be/kOjt9Bl3VQo)
 
 ## 📋 Requirements
 
@@ -37,10 +33,6 @@ Run the following command in your terminal:
 grafana cli plugins install volkovlabs-table-panel
 ```
 
-📺 **Need help with installation?** Watch our guide:
-
-[![Install Business Suite Plugins in Cloud, OSS, Enterprise](https://raw.githubusercontent.com/volkovlabs/.github/main/started.png)](https://youtu.be/1qYzHfPXJF8)
-
 ## ✨ Key Features
 
 - **Tree View**: Display hierarchical data with expandable and collapsible rows.
@@ -52,12 +44,6 @@ grafana cli plugins install volkovlabs-table-panel
 - **Data Editing**: Enable permission-based editing with query integration.
 - **Export Options**: Download table data as CSV or Excel files.
 
-## 🛠️ Business Suite for Grafana
-
-The Business Table Panel is part of the **Business Suite**, a collection of open-source plugins by [Volkov Labs](https://volkovlabs.io/). These plugins address common business needs with user-friendly interfaces, comprehensive documentation, and supporting video tutorials.
-
-[![Business Suite for Grafana](https://raw.githubusercontent.com/VolkovLabs/.github/main/business.png)](https://volkovlabs.io/plugins/)
-
 ## 📜 License
 
-This project is licensed under the [Apache License 2.0](https://github.com/volkovlabs/business-table/blob/main/LICENSE).
+This project is licensed under the [Apache License 2.0](https://github.com/grafana/business-table/blob/main/LICENSE).
