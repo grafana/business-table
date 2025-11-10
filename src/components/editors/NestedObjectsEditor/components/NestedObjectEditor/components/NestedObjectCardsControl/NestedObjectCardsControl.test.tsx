@@ -1,11 +1,11 @@
 import { LoadingState } from '@grafana/data';
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import { useDashboardRefresh, useDatasourceRequest } from '@volkovlabs/components';
+import { useDatasourceRequest } from '@volkovlabs/components';
 import { createSelector, getJestSelectors } from '@volkovlabs/jest-selectors';
 import React from 'react';
 
 import { TEST_IDS } from '@/constants';
-import { tablePanelContext } from '@/hooks';
+import { tablePanelContext, useDashboardRefresh } from '@/hooks';
 import { NestedObjectCardsDisplay, NestedObjectControlOptions, NestedObjectType } from '@/types';
 import { createNestedObjectEditorConfig, createNestedObjectOperationOptions, NestedObjectCardMapper } from '@/utils';
 
@@ -26,6 +26,11 @@ const inTestIds = {
   buttonDeleteItem: createSelector((id: unknown) => `data-testid button-delete-item ${id}`),
   item: createSelector((id: unknown) => `data-testid item-${id}`),
 };
+
+jest.mock('@/hooks', () => ({
+  ...jest.requireActual('@/hooks'),
+  useDashboardRefresh: jest.fn(),
+}));
 
 /**
  * Mock NestedObjectCardsItem
