@@ -1,5 +1,6 @@
 ---
 title: Editable data/data flow
+menuTitle: Editable data
 description: Learn how to use the multifarious editing data functionality in the Business Table panel to provide extensive capabilities for working with table data.
 keywords:
   - business table

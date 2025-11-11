@@ -1,5 +1,5 @@
 ---
-title: External Export
+title: External export
 description: Learn how to export table data to external sources by sending HTTP requests with payload data in the Business Table panel.
 keywords:
   - business table
@@ -11,7 +11,7 @@ labels:
 ---
 import Image from "@theme/Image";
 
-# External Export
+# External export
 
 The Business Table panel now supports exporting table data to external sources by sending an HTTP request. The data is represented as a two-dimensional array (`[][]`) and is accessible via the `${payload}` variable, which is escaped as a string for inclusion in the request body.
 
@@ -27,7 +27,7 @@ This feature enables seamless integration with external services, allowing users
   src="/img/plugins/business-table/export/payload-in-body.png"
 />
 
-## Overview of External Export
+## Overview of external export
 
 External export allows you to:
 
@@ -49,7 +49,7 @@ Before exporting data, prepare the target spreadsheet to receive the data:
 2. Name the spreadsheet for easy identification (e.g., "Business Table Export").
 3. Identify the sheet and range where the data will be appended (e.g., `Sheet1!A1`).
 
-## Set Up Google Cloud Console
+## Set up Google Cloud Console
 
 To enable data export to Google Sheets, create a service account with the necessary permissions:
 
@@ -87,7 +87,7 @@ To enable data export to Google Sheets, create a service account with the necess
 
 9. Download JSON key file and use it to configure Infinity data source.
 
-## Update Google Spreadsheet Permissions
+## Update Google Spreadsheet permissions
 
 To grant access to your Google Spreadsheet for the created service account, follow these steps:
 
@@ -120,7 +120,7 @@ Set up the Infinity data source to authenticate with Google Sheets:
 
 8. Go to **URL, Headers & Params** > **URL Settings** and set `Allow Dangerous HTTP Methods` to `true`.
 
-## Configure Export Request in Business Table
+## Configure export request in Business Table
 
 Configure the Business Table panel to send data to Google Sheets:
 

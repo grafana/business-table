@@ -1,5 +1,5 @@
 ---
-title: Infinity Data Source
+title: Infinity data source
 description: Learn how to integrate external data sources like Google Sheets into the Business Table panel using the Infinity Data Source with JSON and CSV formats.
 keywords:
   - business table

@@ -1,5 +1,5 @@
 ---
-title: Download Button
+title: Download button
 description: Learn how to add and configure a download button in the Business Table visualization for seamless data export.
 keywords:
   - business table
@@ -11,7 +11,7 @@ labels:
 ---
 import Image from "@theme/Image";
 
-# Download Button
+# Download button
 
 Enhance your data visualization experience by adding a **Download Button** directly to the Business Table. This feature provides an intuitive way for users to export table data with a single click, improving usability and accessibility.
 
@@ -21,7 +21,7 @@ Enhance your data visualization experience by adding a **Download Button** direc
   alt="Screenshot of the download button in the Business Table visualization."
 />
 
-## Why Use a Download Button?
+## Why Use a download button?
 
 Adding a download button to your Business Table offers several benefits:
 

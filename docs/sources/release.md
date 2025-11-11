@@ -1,5 +1,5 @@
 ---
-title: Release Notes
+title: Release notes
 description: Learn about the latest updates, new features, enhancements, fixes, and breaking changes across all versions of the Business Table panel.
 keywords:
   - business table
@@ -17,7 +17,7 @@ import BlogPost from "@theme/BlogPost";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-# Release Notes
+# Release notes
 
 Discover the updates to the Business Table panel through these release notes, detailing new features, enhancements, fixes, and breaking changes across all versions.
 

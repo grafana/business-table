@@ -1,5 +1,5 @@
 ---
-title: Business Table Tutorials
+title: Tutorials
 description: Learn how to transform static tables into dynamic, actionable insights using detailed guides, feature overviews, and practical use cases for the Business Table panel.
 keywords:
   - business table
@@ -17,7 +17,7 @@ import Youtube from "@theme/Youtube";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-# Business Table Tutorials
+# Tutorials
 
 Welcome to the Business Table tutorials for Grafana! The Business Table panel enables you to interact with your data in innovative ways, transforming static tables into dynamic, actionable insights. In this section, you'll find detailed guides, key feature overviews, and practical use cases to help you unlock the full potential of the Business Table panel.
 
