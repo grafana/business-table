@@ -1,12 +1,13 @@
 ---
-tags:
-  - Business Table
-title: 'Permission'
-description: 'Learn about Permission in Grafana'
+title: Permission
+description: Learn about Permission in Grafana
+keywords:
+  - business table
 labels:
   products:
     - enterprise
     - oss
+    - cloud
 weight: 70
 ---
 import Image from "@theme/Image";

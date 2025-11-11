@@ -1,12 +1,13 @@
 ---
-tags:
-  - Business Table
-title: 'Layout'
-description: 'Learn about Layout in Grafana'
+title: Layout
+description: Learn about Layout in Grafana
+keywords:
+  - business table
 labels:
   products:
     - enterprise
     - oss
+    - cloud
 weight: 10
 ---
 import Image from "@theme/Image";

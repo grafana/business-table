@@ -1,12 +1,13 @@
 ---
-tags:
-  - Business Table
-title: 'Add data'
-description: 'Learn about Add data in Grafana'
+title: Add data
+description: Learn about Add data in Grafana
+keywords:
+  - business table
 labels:
   products:
     - enterprise
     - oss
+    - cloud
 weight: 20
 ---
 import Image from "@theme/Image";

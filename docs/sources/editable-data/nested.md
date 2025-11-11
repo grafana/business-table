@@ -1,12 +1,13 @@
 ---
-tags:
-  - Business Table
-title: 'Nested objects'
-description: 'Learn about Nested objects in Grafana'
+title: Nested objects
+description: Learn about Nested objects in Grafana
+keywords:
+  - business table
 labels:
   products:
     - enterprise
     - oss
+    - cloud
 weight: 60
 ---
 import Image from "@theme/Image";

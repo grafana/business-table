@@ -1,12 +1,13 @@
 ---
-description: "Learn how to add and configure a download button in the Business Table visualization for seamless data export."
-tags:
-  - Business Table
-title: 'Download Button'
+title: Download Button
+description: Learn how to add and configure a download button in the Business Table visualization for seamless data export.
+keywords:
+  - business table
 labels:
   products:
     - enterprise
     - oss
+    - cloud
 ---
 import Image from "@theme/Image";
 

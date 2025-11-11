@@ -1,12 +1,13 @@
 ---
-tags:
-  - Business Table
-title: 'Editable data/data flow'
-description: 'Learn about Editable data/data flow in Grafana'
+title: Editable data/data flow
+description: Learn about Editable data/data flow in Grafana
+keywords:
+  - business table
 labels:
   products:
     - enterprise
     - oss
+    - cloud
 weight: 20
 ---
 import Image from "@theme/Image";

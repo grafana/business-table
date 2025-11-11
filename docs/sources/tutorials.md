@@ -1,14 +1,15 @@
 ---
-tags:
-  - Business Table
-hide_table_of_contents: true
-title: 'Business Table Tutorials'
-description: 'Learn about Business Table Tutorials in Grafana'
+title: Business Table Tutorials
+description: Learn about Business Table Tutorials in Grafana
+keywords:
+  - business table
 labels:
   products:
     - enterprise
     - oss
+    - cloud
 weight: 40
+hide_table_of_contents: True
 ---
 import BlogPost from "@theme/BlogPost";
 import Tutorials from "../../_tutorials.mdx";

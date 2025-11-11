@@ -1,13 +1,14 @@
 ---
-tags:
-  - Business Table
-hide_table_of_contents: true
-title: 'Business Table'
-description: 'Learn about Business Table in Grafana'
+title: Business Table
+description: Learn about Business Table in Grafana
+keywords:
+  - business table
 labels:
   products:
     - enterprise
     - oss
+    - cloud
+hide_table_of_contents: True
 ---
 import Feedback from "../_feedback.mdx";
 import GettingStarted from "./_getting_started.mdx";

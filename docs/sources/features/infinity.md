@@ -1,12 +1,13 @@
 ---
-tags:
-  - Business Table
-title: 'Infinity Data Source'
-description: 'Learn about Infinity Data Source in Grafana'
+title: Infinity Data Source
+description: Learn about Infinity Data Source in Grafana
+keywords:
+  - business table
 labels:
   products:
     - enterprise
     - oss
+    - cloud
 ---
 import Image from "@theme/Image";
 

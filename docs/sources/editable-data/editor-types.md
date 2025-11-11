@@ -1,12 +1,13 @@
 ---
-tags:
-  - Business Table
-title: 'Editor types'
-description: 'Learn about Editor types in Grafana'
+title: Editor types
+description: Learn about Editor types in Grafana
+keywords:
+  - business table
 labels:
   products:
     - enterprise
     - oss
+    - cloud
 weight: 40
 ---
 import Image from "@theme/Image";

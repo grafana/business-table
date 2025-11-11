@@ -1,12 +1,13 @@
 ---
-tags:
-  - Business Table
-title: 'External Export'
-description: 'Learn about External Export in Grafana'
+title: External Export
+description: Learn about External Export in Grafana
+keywords:
+  - business table
 labels:
   products:
     - enterprise
     - oss
+    - cloud
 ---
 import Image from "@theme/Image";
 

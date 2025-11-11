@@ -1,16 +1,17 @@
 ---
-tags:
-  - Business Table
-  - Release Notes
-image: /img/suite.png
-hide_table_of_contents: true
-title: 'Release Notes'
-description: 'Learn about Release Notes in Grafana'
+title: Release Notes
+description: Learn about Release Notes in Grafana
+keywords:
+  - business table
+  - release notes
 labels:
   products:
     - enterprise
     - oss
+    - cloud
 weight: 50
+image: /img/suite.png
+hide_table_of_contents: True
 ---
 import BlogPost from "@theme/BlogPost";
 import Tabs from "@theme/Tabs";

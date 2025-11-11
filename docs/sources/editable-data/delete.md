@@ -1,12 +1,13 @@
 ---
-tags:
-  - Business Table
-title: 'Delete data'
-description: 'Learn about Delete data in Grafana'
+title: Delete data
+description: Learn about Delete data in Grafana
+keywords:
+  - business table
 labels:
   products:
     - enterprise
     - oss
+    - cloud
 weight: 50
 ---
 import Image from "@theme/Image";

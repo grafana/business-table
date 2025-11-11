@@ -1,11 +1,12 @@
 ---
-description: 'import Youtube from "@theme/Youtube";'
-weight: 2
-title: '_tutorial'
+title: _tutorial
+description: import Youtube from "@theme/Youtube";
 labels:
   products:
     - enterprise
     - oss
+    - cloud
+weight: 2
 ---
 import Youtube from "@theme/Youtube";
 
