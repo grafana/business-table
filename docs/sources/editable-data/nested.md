@@ -1,6 +1,6 @@
 ---
 title: Nested objects
-description: Learn about Nested objects in Grafana
+description: Learn how to work with nested objects in the Business Table panel to handle complex hierarchical data structures.
 keywords:
   - business table
 labels:

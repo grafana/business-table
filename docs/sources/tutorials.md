@@ -1,6 +1,6 @@
 ---
 title: Business Table Tutorials
-description: Learn about Business Table Tutorials in Grafana
+description: Learn how to transform static tables into dynamic, actionable insights using detailed guides, feature overviews, and practical use cases for the Business Table panel.
 keywords:
   - business table
 labels:

@@ -1,6 +1,6 @@
 ---
 title: Editable data/data flow
-description: Learn about Editable data/data flow in Grafana
+description: Learn how to use the multifarious editing data functionality in the Business Table panel to provide extensive capabilities for working with table data.
 keywords:
   - business table
 labels:

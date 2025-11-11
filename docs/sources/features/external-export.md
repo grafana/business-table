@@ -1,6 +1,6 @@
 ---
 title: External Export
-description: Learn about External Export in Grafana
+description: Learn how to export table data to external sources by sending HTTP requests with payload data in the Business Table panel.
 keywords:
   - business table
 labels:

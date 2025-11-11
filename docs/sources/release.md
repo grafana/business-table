@@ -1,6 +1,6 @@
 ---
 title: Release Notes
-description: Learn about Release Notes in Grafana
+description: Learn about the latest updates, new features, enhancements, fixes, and breaking changes across all versions of the Business Table panel.
 keywords:
   - business table
   - release notes

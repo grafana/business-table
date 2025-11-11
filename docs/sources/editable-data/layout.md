@@ -1,6 +1,6 @@
 ---
 title: Layout
-description: Learn about Layout in Grafana
+description: Learn how to configure the Layout parameter category to set up tabs, columns, and display types for each tab in the Business Table panel.
 keywords:
   - business table
 labels:

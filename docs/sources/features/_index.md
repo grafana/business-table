@@ -1,6 +1,6 @@
 ---
 title: Features
-description: Learn about Features in Grafana
+description: Learn about the powerful features available in the Business Table panel for enhanced data visualization and interaction.
 keywords:
   - business table
 labels:

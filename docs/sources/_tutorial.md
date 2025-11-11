@@ -1,6 +1,6 @@
 ---
 title: _tutorial
-description: import Youtube from "@theme/Youtube";
+description: Learn how to add, edit, and delete rows in the Business Table panel with advanced features like Grafana thresholds, image display, and panel connections.
 labels:
   products:
     - enterprise

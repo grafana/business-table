@@ -1,6 +1,6 @@
 ---
 title: Edit data
-description: Learn about Edit data in Grafana
+description: Learn how to configure data editing and permissions in the Business Table panel using the Edit Data category.
 keywords:
   - business table
 labels:

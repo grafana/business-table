@@ -1,6 +1,6 @@
 ---
 title: Editor types
-description: Learn about Editor types in Grafana
+description: Learn how to configure different UI editor types for columns when users add or edit data rows in the Business Table panel.
 keywords:
   - business table
 labels:

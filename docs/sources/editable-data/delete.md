@@ -1,6 +1,6 @@
 ---
 title: Delete data
-description: Learn about Delete data in Grafana
+description: Learn how to delete rows from your Business Table panel with proper configuration and safety measures.
 keywords:
   - business table
 labels:

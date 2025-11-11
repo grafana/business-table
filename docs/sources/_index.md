@@ -1,6 +1,6 @@
 ---
 title: Business Table
-description: Learn about Business Table in Grafana
+description: Learn how to use the Business Table Panel plugin to create powerful, flexible data visualizations with advanced features like tree views, data editing, custom cell rendering, and export capabilities.
 keywords:
   - business table
 labels:

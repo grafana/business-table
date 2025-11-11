@@ -1,6 +1,6 @@
 ---
 title: Permission
-description: Learn about Permission in Grafana
+description: Learn how to set permissions for every tab and every action in the Business Table panel.
 keywords:
   - business table
 labels:

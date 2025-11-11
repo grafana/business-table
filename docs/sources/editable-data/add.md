@@ -1,6 +1,6 @@
 ---
 title: Add data
-description: Learn about Add data in Grafana
+description: Learn how to add new rows to your Business Table panel with configurable data entry options.
 keywords:
   - business table
 labels:

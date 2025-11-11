@@ -1,6 +1,6 @@
 ---
 title: _getting_started
-description: import Youtube from "@theme/Youtube";
+description: Learn how to install the Business Table panel plugin in Grafana using the Grafana Catalog or command line tool
 labels:
   products:
     - enterprise
