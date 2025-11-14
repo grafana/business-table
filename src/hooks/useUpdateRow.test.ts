@@ -8,7 +8,6 @@ import { useUpdateRow } from './useUpdateRow';
 import { useDashboardRefresh } from './useDashboardRefresh';
 
 jest.mock('./useDashboardRefresh', () => ({
-  ...jest.requireActual('./useDashboardRefresh'),
   useDashboardRefresh: jest.fn(),
 }));
 
