@@ -26,7 +26,17 @@ The Business Table panel version requirements for Grafana are as follows:
 - **Business Table Panel 3.x** requires **Grafana 11** or **Grafana 12**.
 - **Business Table Panel 1.x, 2.x** requires **Grafana 10.3** or **Grafana 11**.
 
-<GettingStarted />
+## Getting Started
+
+The Business Table panel can be installed from the [Grafana Catalog](https://grafana.com/grafana/plugins/volkovlabs-table-panel/) or utilizing the Grafana command line tool.
+
+{{< youtube id="1qYzHfPXJF8" >}}
+
+For the latter, please use the following command.
+
+```sh
+grafana cli plugins install volkovlabs-table-panel
+```
 
 ## Highlights
 
@@ -44,7 +54,13 @@ The Business Table panel version requirements for Grafana are as follows:
   src="/img/plugins/business-table/groups.png"
 />
 
-<Tutorial />
+## Tutorial
+
+The Business Table 1.9.0 for Grafana brings an exciting functionality when a user can add, edit and delete rows from the Grafana dashboard. In addition, the Business Table 1.9.0 features useful functionality such as Grafana Thresholds, displaying images, easy connections with other Grafana panels and more!
+
+{{< youtube id="tNa14EULUQo" >}}
+
+We have many other tutorials that you can find helpful. You can review all related to this plugin tutorials [here](/plugins/business-table/tutorials).
 
 ## Documentation
 
