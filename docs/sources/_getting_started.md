@@ -14,10 +14,7 @@ import Youtube from "@theme/Youtube";
 
 The Business Table panel can be installed from the [Grafana Catalog](https://grafana.com/grafana/plugins/volkovlabs-table-panel/) or utilizing the Grafana command line tool.
 
-<Youtube
-  id="1qYzHfPXJF8"
-  title="Install Business Suite plugins in Cloud, OSS, Enterprise. Getting started with the Business Suite."
-/>
+{{< youtube id="1qYzHfPXJF8" >}}
 
 For the latter, please use the following command.
 

@@ -11,8 +11,6 @@ labels:
     - cloud
 weight: 20
 ---
-import Image from "@theme/Image";
-import Youtube from "@theme/Youtube";
 
 # Editable data/data flow
 
@@ -34,10 +32,7 @@ You can configure 7 data flows:
 6.  Nested objects->Edit Options
 7.  Nested objects->Delete Options
 
-<Youtube
-  id="tNa14EULUQo"
-  title="Add/Edit/Delete rows with Business Table 1.9.0 in Grafana. Work with nested objects."
-/>
+{{< youtube id="tNa14EULUQo" >}}
 
 ## Highlights
 

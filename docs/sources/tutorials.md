@@ -37,10 +37,7 @@ Explore the evolution of the Business Table panel through its major releases. Ea
 
 Business Table 1.9.0 brings robust row manipulation capabilities, allowing you to add, edit, and delete rows directly from your Grafana dashboard. This release also includes support for Grafana Thresholds, image display, integration with other panels, and more.
 
-<Youtube
-  id="tNa14EULUQo"
-  title="Add/Edit/Delete rows with Business Table 1.9.0 in Grafana. Work with nested objects."
-/>
+{{< youtube id="tNa14EULUQo" >}}
 
 :::info
 This release makes data management interactive and intuitive—ideal for real-time updates and dynamic dashboards!
@@ -50,10 +47,7 @@ This release makes data management interactive and intuitive—ideal for real-ti
 
 Dive into Business Table 1.5.0 with Daria’s step-by-step tutorial. This video covers core editing features and introduces an experimental feature for working with nested objects, enabling you to handle complex data structures with ease.
 
-<Youtube
-  id="wiy6bBJDdb0"
-  title="Business Table for Grafana release 1.5.0. Step-by-step tutorial. Introducing nested objects"
-/>
+{{< youtube id="wiy6bBJDdb0" >}}
 
 :::info
 Nested objects unlock new possibilities for managing intricate data hierarchies—experiment with this feature today!
@@ -63,10 +57,7 @@ Nested objects unlock new possibilities for managing intricate data hierarchies�
 
 Get a comprehensive overview of Business Table 1.3.0’s capabilities, including the highly requested feature to edit cell data directly within the panel. This tutorial is perfect for beginners looking to get started.
 
-<Youtube
-  id="kOjt9Bl3VQo"
-  title="Business Table panel for Grafana 1.3.0. Overview and tutorial for beginners."
-/>
+{{< youtube id="kOjt9Bl3VQo" >}}
 
 ## Conclusion
 
