@@ -54,10 +54,7 @@ The **Select** types gives users a drop-down populated from the **Value Field** 
 
 If allowed, a user can enter a custom value in the prepopulated drop-down list while adding or editing a row.
 
-<Image
-  title="If allowed, a user can enter a custom value in the prepopulated drop-down list while adding or editing a row."
-  src="/img/plugins/business-table/select-new-value.gif"
-/>
+{{< video-embed src="/media/docs/grafana/panels-visualizations/business-table/select-new-value.mp4" >}}
 
 To allow that, ensure to set **Allow custom value** to ON.
 

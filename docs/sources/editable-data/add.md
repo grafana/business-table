@@ -19,11 +19,7 @@ Add a row is supported starting from the Business Table 1.9.0
 
 This is one of the most requested features. An end user of your Business Table panel can add and [delete](/plugins/business-table/delete) rows from Grafana dashboard!
 
-<Image
-  title="Add and delete rows of the Business Table directly from the Grafana dashboard."
-  src="/img/blog/2024-12-04-business-table-1.9.0/table-add-delete-row.gif"
-  width="70%"
-/>
+{{< video-embed src="/media/docs/grafana/panels-visualizations/business-table/table-add-delete-row.mp4" >}}
 
 Data adding configuration itself and permissions for it are done in a the **Add Data** category. All columns you add in the **Layout** category, you can further configure there.
 

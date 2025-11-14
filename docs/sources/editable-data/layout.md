@@ -115,11 +115,7 @@ To add a column to an existing tab, use the **New Column** parameter.
 
 This feature allows you to combine unique field values into groups and collapse/expand using little arrows to create a layout similar to Tree View.
 
-<Image
-  title="Example: the Business Table panel configured as Tree View."
-  src="/img/plugins/business-table/table-treeview.gif"
-  width="60%"
-/>
+{{< video-embed src="/media/docs/grafana/panels-visualizations/business-table/table-treeview.mp4" >}}
 
 Below is the steps of how to configure Business Table panel Tree View.
 
@@ -183,10 +179,7 @@ Below is how you can configure the **Query** filtering method.
 
 In this example, two panels are working together (panel interconnectivity). A user selects a value on the Business Variable panel, changing the status displayed in the Business Table panel.
 
-<Image
-  title="Panel interconnectivity, the selected value on the Business Variable panel impacts the Business Table panel data."
-  src="/img/plugins/business-table/query-filtering-w-var.gif"
-/>
+{{< video-embed src="/media/docs/grafana/panels-visualizations/business-table/query-filtering-w-var.mp4" >}}
 
 ### Sorting
 
@@ -202,11 +195,7 @@ It is a helpful feature for the wide tables. You can pin any column to always st
 
 Below, the column **Country** is pinned to the left.
 
-<Image
-  title="The column Country is pinned to the left."
-  src="/img/blog/2024-09-26-business-table-1.3.0/pin.gif"
-  width="50%"
-/>
+{{< video-embed src="/media/docs/grafana/panels-visualizations/business-table/pin.mp4" >}}
 
 ### Show and hide columns
 
