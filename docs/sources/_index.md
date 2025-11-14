@@ -49,10 +49,7 @@ grafana cli plugins install volkovlabs-table-panel
 - **Data Editing**: Enable permission-based editing with query integration.
 - **Export Options**: Download table data as CSV or Excel files.
 
-<Image
-  title="Tabs and grouped columns in the Business Table panel."
-  src="/img/plugins/business-table/groups.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/groups.png" class="border" alt="Tabs and grouped columns in the Business Table panel." >}}
 
 ## Tutorial
 

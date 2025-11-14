@@ -45,10 +45,7 @@ Some highlights of data editing in the Business Table panel:
 - The permission can be Grafana user-based (Viewer, Editor, Admin, and None) or regulated from the backend.
 - The **Nested Objects** have their own get, add, edit, delete configuration.
 
-<Image
-  title="Data Flow Categories to configure editable data in the Business table panel."
-  src="/img/plugins/business-table/table-data-flow.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/table-data-flow.png" class="border" alt="Data Flow Categories to configure editable data in the Business table panel." >}}
 
 ## Categories
 

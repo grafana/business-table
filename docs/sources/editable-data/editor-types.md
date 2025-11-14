@@ -16,11 +16,7 @@ import Image from "@theme/Image";
 
 The **Editor types** are the UI type elements for the columns when a user adds/edits a data row.
 
-<Image
-  title="Types of the addible/editable columns."
-  src="/img/plugins/business-table/editor-types.png"
-  width="70%"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/editor-types.png" class="border" alt="Types of the addible/editable columns." >}}
 
 ## Date Time
 
@@ -28,10 +24,7 @@ The **Date Time** type allows users to enter a value in the DateTime format usin
 
 Optionally, you can specify a range of permitted date-times using **Set Min Date** and **Set Max Date** parameters.
 
-<Image
-  title="An example of the Date Time Editor type in the Business Table panel."
-  src="/img/plugins/business-table/datetime-editor-type.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/datetime-editor-type.png" class="border" alt="An example of the Date Time Editor type in the Business Table panel." >}}
 
 ## Switch
 
@@ -41,28 +34,19 @@ Optionally, you can specify a range of permitted date-times using **Set Min Date
 
 The **Switch** editor type makes the user's work with the Business Table panel more intuitive while transforming the boolean type data into a switch that can be turned on and off.
 
-<Image
-  title="An example of the Switch Editor type in the Business Table panel."
-  src="/img/plugins/business-table/switch-editor-type.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/switch-editor-type.png" class="border" alt="An example of the Switch Editor type in the Business Table panel." >}}
 
 ## Number
 
 The **Number** type allows a user to enter a numerical value. Optionally, you can specify the **Min** and **Max** for the allowed values.
 
-<Image
-  title="An example of the Number Editor type in the Business Table panel."
-  src="/img/plugins/business-table/number-editor-type.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/number-editor-type.png" class="border" alt="An example of the Number Editor type in the Business Table panel." >}}
 
 ## Select
 
 The **Select** types gives users a drop-down populated from the **Value Field** parameter. Optionally, you can specify **Label Field**. Both parameters, **Value field** and **Label Field**, come from the `dataframe:column` of your data source.
 
-<Image
-  title="An example of the Date Time Editor type in the Business Table panel."
-  src="/img/plugins/business-table/select-editor-type.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/select-editor-type.png" class="border" alt="An example of the Date Time Editor type in the Business Table panel." >}}
 
 :::info version
 **Allow custom value** feature is available starting from version 1.9.0.
@@ -77,19 +61,13 @@ If allowed, a user can enter a custom value in the prepopulated drop-down list w
 
 To allow that, ensure to set **Allow custom value** to ON.
 
-<Image
-  title="Allow custom values parameter in the Add data and Edit data for the select type column."
-  src="/img/plugins/business-table/allow-custom-values.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/allow-custom-values.png" class="border" alt="Allow custom values parameter in the Add data and Edit data for the select type column." >}}
 
 ## String
 
 The **String** type allows a user to enter any value.
 
-<Image
-  title="An example of the String Editor type in the Business Table panel."
-  src="/img/plugins/business-table/string-editor-type.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/string-editor-type.png" class="border" alt="An example of the String Editor type in the Business Table panel." >}}
 
 ## Text Area
 
@@ -99,7 +77,4 @@ The **String** type allows a user to enter any value.
 
 The **Text Area** editor type is designed to add and edit multi-row text values.
 
-<Image
-  title="An example of the Text Area Editor type in the Business Table panel."
-  src="/img/plugins/business-table/textarea-editor-type.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/textarea-editor-type.png" class="border" alt="An example of the Text Area Editor type in the Business Table panel." >}}

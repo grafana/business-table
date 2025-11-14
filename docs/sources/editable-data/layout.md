@@ -16,19 +16,13 @@ import Image from "@theme/Image";
 
 The **Layout** parameter category determines the set of tabs and then the set of columns and their display types for each tab.
 
-<Image
-  title="The layout category of the Business Table panel."
-  src="/img/plugins/business-table/layout.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/layout.png" class="border" alt="The layout category of the Business Table panel." >}}
 
 ## Column types to display data
 
 A column display type is specified in the **Layout**->**Format**->**Type** and determines what the data looks like when displaying for a user review. At this moment, there are 8 available types to choose from.
 
-<Image
-  title="The display data types of the Business Table panel."
-  src="/img/plugins/business-table/layout-types.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/layout-types.png" class="border" alt="The display data types of the Business Table panel." >}}
 
 ### Auto
 
@@ -38,10 +32,7 @@ Same as Colored text. Used by default.
 
 The **Boolean** type displays a checkmark in a circle for a `true` value and an empty circle for a `false` value.
 
-<Image
-  title="An example of the Boolean type in the Business Table panel."
-  src="/img/blog/2024-12-04-business-table-1.9.0/boolean-type.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/boolean-type.png" class="border" alt="An example of the Boolean type in the Business Table panel." >}}
 
 ### Colored Background
 
@@ -49,28 +40,19 @@ The **Colored background** types changes the cell background colors following th
 
 Using the **Apply to Row** parameter, you can color the whole row(not shown) or only one cell (as shown).
 
-<Image
-  title="Colored background type uses Grafana Thresholds feature."
-  src="/img/plugins/business-table/colored-background.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/colored-background.png" class="border" alt="Colored background type uses Grafana Thresholds feature." >}}
 
 ### Colored text
 
 The **Colored text** types changes the cell font colors following the Grafana **Thresholds** configuration.
 
-<Image
-  title="Colored text type uses Grafana Thresholds feature."
-  src="/img/plugins/business-table/colored-text.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/colored-text.png" class="border" alt="Colored text type uses Grafana Thresholds feature." >}}
 
 ### Image
 
 The **Image** type interprets the image links and base64 formats.
 
-<Image
-  title="An example of the Image type in the Business Table panel."
-  src="/img/blog/2024-12-04-business-table-1.9.0/image-type.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/image-type.png" class="border" alt="An example of the Image type in the Business Table panel." >}}
 
 ### Nested objects
 
@@ -83,19 +65,13 @@ The **Preformatted type**, which is similar to the `pre` HTML tag, is designed t
 If the **Preformatted style** switch is On, the text is displayed in the fixed-width font.
 If the **Preformatted style** switch is Off, the text is displayed in the font configured for the user's browser.
 
-<Image
-  title="An example of the Preformatted type in the Business Table panel."
-  src="/img/blog/2024-12-04-business-table-1.9.0/pre-type.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/pre-type.png" class="border" alt="An example of the Preformatted type in the Business Table panel." >}}
 
 ### Rich text
 
 The **Rich text** type interprets sanitized HTML and Markdown.
 
-<Image
-  title="An example of the Rich Text type in the Business Table panel."
-  src="/img/blog/2024-12-04-business-table-1.9.0/rich-type.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/rich-type.png" class="border" alt="An example of the Rich Text type in the Business Table panel." >}}
 
 HTML from the example above:
 
@@ -133,10 +109,7 @@ The Business Table panel allows you to have a multi-tabs view and configure the 
 To add a new tab, use the **New Table** parameter.
 To add a column to an existing tab, use the **New Column** parameter.
 
-<Image
-  title="The Business Table panel allows you have a multi tabs view."
-  src="/img/plugins/business-table/tabs.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/tabs.png" class="border" alt="The Business Table panel allows you have a multi tabs view." >}}
 
 ### Tree View/Row grouping
 
@@ -150,19 +123,13 @@ This feature allows you to combine unique field values into groups and collapse/
 
 Below is the steps of how to configure Business Table panel Tree View.
 
-<Image
-  title="The Business Table panel row grouping."
-  src="/img/plugins/business-table/row-grouping.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/row-grouping.png" class="border" alt="The Business Table panel row grouping." >}}
 
 ### Auto-width columns
 
 The column width can be determined automatically within a specified range or explicitly hardcoded by a user in pixels.
 
-<Image
-  title="Auto-width column property."
-  src="/img/plugins/business-table/auto-width.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/auto-width.png" class="border" alt="Auto-width column property." >}}
 
 ### Table footer
 
@@ -171,10 +138,7 @@ If at least one column has it set up, then a footer will be shown.
 
 You can select the aggregation function individually for each column to be applied toward the value displayed in the footer.
 
-<Image
-  title="The Business Table panel supports the Footer feature."
-  src="/img/plugins/business-table/footer.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/footer.png" class="border" alt="The Business Table panel supports the Footer feature." >}}
 
 ### Filtering
 
@@ -195,28 +159,19 @@ What those options are depends on the column data type:
   - **Search** (step 5 from the image below). It provides a form to type free text or enter a number value to use in the filtering.
   - **Options** (step 6 from the image below). It provides a multi-select list of all existing values in the column.
 
-<Image
-  title="The Client filtering feature of the Business Table panel for the String data type."
-  src="/img/plugins/business-table/filtering-client-string.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/filtering-client-string.png" class="border" alt="The Client filtering feature of the Business Table panel for the String data type." >}}
 
 - **Number**
 
 Select from a list of mathematical operations and specify a number to apply it towards.
 
-<Image
-  title="The Client filtering feature of the Business Table panel for the Number data type."
-  src="/img/plugins/business-table/filtering-client-number.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/filtering-client-number.png" class="border" alt="The Client filtering feature of the Business Table panel for the Number data type." >}}
 
 - **Time**
 
 Select a time range using a standard Grafana range picker.
 
-<Image
-  title="The Client filtering feature of the Business Table panel for the Time data type."
-  src="/img/plugins/business-table/filtering-client-time.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/filtering-client-time.png" class="border" alt="The Client filtering feature of the Business Table panel for the Time data type." >}}
 
 #### Query
 
@@ -224,10 +179,7 @@ This method of filtering allows panel interconnectivity or use in the data links
 
 Below is how you can configure the **Query** filtering method.
 
-<Image
-  title="The Query filtering feature of the Business Table panel."
-  src="/img/plugins/business-table/filtering-query.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/filtering-query.png" class="border" alt="The Query filtering feature of the Business Table panel." >}}
 
 In this example, two panels are working together (panel interconnectivity). A user selects a value on the Business Variable panel, changing the status displayed in the Business Table panel.
 
@@ -240,20 +192,13 @@ In this example, two panels are working together (panel interconnectivity). A us
 
 Every column of the Business Table panel has the **Sort** property. Set it to **Yes** and then specify the default sorting order - ascending or descending. The sorting icon appears next to the column header. The order changes to the opposite after the user clicks on the icon.
 
-<Image
-  title="The Business Table panel supports the Sorting feature."
-  src="/img/plugins/business-table/sorting.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/sorting.png" class="border" alt="The Business Table panel supports the Sorting feature." >}}
 
 ### Pin Columns
 
 It is a helpful feature for the wide tables. You can pin any column to always stay visible on the left or right.
 
-<Image
-  title="Column pin parameter."
-  src="/img/blog/2024-09-26-business-table-1.3.0/pin.png"
-  width="50%"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/pin.png" class="border" alt="Column pin parameter." >}}
 
 Below, the column **Country** is pinned to the left.
 
@@ -273,11 +218,7 @@ This feature allows you to hide/show any column in your Business Table visualiza
 
 Also, the column might be required for the underlying logic but not designed for the end user.
 
-<Image
-  title="Hide and show columns in the Business Table panel."
-  src="/img/blog/2024-10-04-business-table-1.5.0/hide-show.png"
-  width="60%"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/hide-show.png" class="border" alt="Hide and show columns in the Business Table panel." >}}
 
 ### Option to hide the table header
 
@@ -289,11 +230,7 @@ Option to hide the table header is supported starting from the Business table 1.
 
 You can hide the Business Table header from the dashboard by turning off the **Layout**->**Show header** switch.
 
-<Image
-  title="Show or hide the table header."
-  src="/img/blog/2024-12-04-business-table-1.9.0/show-hide.png"
-  width="70%"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/show-hide.png" class="border" alt="Show or hide the table header." >}}
 
 :::info Table header
 

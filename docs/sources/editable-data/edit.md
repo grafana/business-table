@@ -16,17 +16,11 @@ import Image from "@theme/Image";
 
 Editing and permissions for data editing are done in a the **Edit Data** category. All columns you added into the **Layout** category, you can further configure there.
 
-<Image
-  title="Editing and permission settings are done in a new Edit Data category."
-  src="/img/plugins/business-table/category.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/category.png" class="border" alt="Editing and permission settings are done in a new Edit Data category." >}}
 
 To allow the edit action on a column, turn the appropriate switch on. With that the tag **Editable** appears next to the column name in the **Layout** category.
 
-<Image
-  title="To allow the edit action on a column, turn the appropriate switch on."
-  src="/img/plugins/business-table/edit-tag.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/edit-tag.png" class="border" alt="To allow the edit action on a column, turn the appropriate switch on." >}}
 
 ## Update Request
 
@@ -37,7 +31,4 @@ First, select the data source where the updated values should go to. Then, choos
 - **Builder**. It uses the standard Grafana query builder.
 - **Code**. It allows you to specify an update request query in a language appropriate for your data source.
 
-<Image
-  title="Configure the Update Request."
-  src="/img/plugins/business-table/update-request.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/update-request.png" class="border" alt="Configure the Update Request." >}}

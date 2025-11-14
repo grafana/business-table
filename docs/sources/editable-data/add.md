@@ -43,10 +43,7 @@ Use **Add data** parameter category to specify:
 5.  **Add Request** consists of a data source and the query.
 6.  Ensure to set **Layout**->**Show header** to ON, so users have access to the add a row (icon plus) button.
 
-<Image
-  title="Steps to configure the Add a row functionality on the Business Table panel."
-  src="/img/plugins/business-table/add.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/add.png" class="border" alt="Steps to configure the Add a row functionality on the Business Table panel." >}}
 
 ## Add Request
 

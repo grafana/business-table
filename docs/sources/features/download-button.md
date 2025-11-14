@@ -15,11 +15,7 @@ import Image from "@theme/Image";
 
 Enhance your data visualization experience by adding a **Download Button** directly to the Business Table. This feature provides an intuitive way for users to export table data with a single click, improving usability and accessibility.
 
-<Image
-  title="The Download Button in Business Table."
-  src="/img/blog/2024-09-26-business-table-1.3.0/download-btn.png"
-  alt="Screenshot of the download button in the Business Table visualization."
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/download-btn.png" class="border" alt="The Download Button in Business Table." >}}
 
 ## Why Use a download button?
 

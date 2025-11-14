@@ -40,10 +40,7 @@ Use **Delete data** parameter category to specify:
 2.  [Permission](/plugins/business-table/permission) is a granular control of who is allowed to delete a row.
 3.  **Delete Request** consists of a data source and the query.
 
-<Image
-  title="Steps to configure the Delete a row functionality on the Business Table panel."
-  src="/img/plugins/business-table/delete-conf.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/delete-conf.png" class="border" alt="Steps to configure the Delete a row functionality on the Business Table panel." >}}
 
 ## Delete Request
 

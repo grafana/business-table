@@ -30,10 +30,7 @@ The Business Table panel has the following features.
 
 You have a choice of two pagination modes: **Client** and **Query**.
 
-<Image
-  title="The pagination feature modes."
-  src="/img/blog/2024-09-26-business-table-1.3.0/pagination.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/pagination.png" class="border" alt="The pagination feature modes." >}}
 
 ### Client
 
@@ -41,10 +38,7 @@ With the **Client** mode, all records are retrieved by the Business Table panel 
 
 The **Client** mode is the easiest and fastest to set up. However, users might experience performance issues since all data must be retrieved before being separated into pages.
 
-<Image
-  title="The Client pagination mode."
-  src="/img/blog/2024-09-26-business-table-1.3.0/client.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/client.png" class="border" alt="The Client pagination mode." >}}
 
 ### Query
 
@@ -61,15 +55,9 @@ The necessity of the first three metrics (**pageIndex**, **offset**, **pageSize*
 
 In the example below, we use the Timescale data source, consequently SQL, to retrieve the data. **pageIndex** and **offset** are enough metrics in that case.
 
-<Image
-  title="All dashboard variables that you ever might need to configure the Query pagination mode."
-  src="/img/blog/2024-09-26-business-table-1.3.0/vars.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/vars.png" class="border" alt="All dashboard variables that you ever might need to configure the Query pagination mode." >}}
 
-<Image
-  title="The Query pagination mode."
-  src="/img/blog/2024-09-26-business-table-1.3.0/query.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/query.png" class="border" alt="The Query pagination mode." >}}
 
 ### Default pagination size
 
@@ -79,10 +67,7 @@ Starting from version 1.9.0, the Business Table supports the **Default paginatio
 
 With the **default pagination size** parameter, you configure how many rows per page are availabe when the dashboard loads for the first time. If a user changes that, it gets saved into the browser cookies for the user's convinience.
 
-<Image
-  title="A default pagination size parameter."
-  src="/img/blog/2024-12-04-business-table-1.9.0/page-size.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/page-size.png" class="border" alt="A default pagination size parameter." >}}
 
 ## Data links
 
@@ -90,10 +75,7 @@ The Business Table visualization supports the **Data links** feature. In the exa
 
 You can use the Grafana **Overrides** feature to configure column links (not for the whole row).
 
-<Image
-  title="The Business Table panel supports the Data links feature."
-  src="/img/blog/2024-09-26-business-table-1.3.0/links.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/links.png" class="border" alt="The Business Table panel supports the Data links feature." >}}
 
 ### Update variables using data links
 
@@ -107,17 +89,11 @@ Configure the Data Links option
 
 where `__data.fields.device` uses the value from the `device` field in the current row when the cell is clicked. This is how the variable will be changed. In string `var-Test` the substring `Test` is the variable to be replaced.
 
-<Image
-  title="Configure the Data Links option to update dashboard variable."
-  src="/img/plugins/business-table/data-links-variable-config.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/data-links-variable-config.png" class="border" alt="Configure the Data Links option to update dashboard variable." >}}
 
 Clicking on a cell with the value `device10` will change the value of the Text variable.
 
-<Image
-  title="Click on cell to change variable."
-  src="/img/plugins/business-table/click-variable-change.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/click-variable-change.png" class="border" alt="Click on cell to change variable." >}}
 
 ## Support of the Standard options
 
@@ -127,10 +103,7 @@ The feature is supported starting from version 1.5.0
 
 The values displayed in the Business Table visualization can be formatted using the Grafana **Standard options**.
 
-<Image
-  title="Use Grafana's Standard options to format the displayed values."
-  src="/img/blog/2024-10-04-business-table-1.5.0/standard.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/standard.png" class="border" alt="Use Grafana's Standard options to format the displayed values." >}}
 
 ## Data sources as variables
 
@@ -147,11 +120,7 @@ Let's say a Grafana dashboard has the following dashboard variable:
 - **Name**: DS,
 - **Type**: PostgreSQL.
 
-<Image
-  title="Dashboard variable example."
-  src="/img/blog/2024-12-04-business-table-1.9.0/dashboard-variable-ds.png"
-  width="60%"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/dashboard-variable-ds.png" class="border" alt="Dashboard variable example." >}}
 
 You can use this variable in every data flow that affects:
 
@@ -172,10 +141,7 @@ Rows has three possible data flows:
   - if the delete a row functionality is allowed,
   - after a user clicks on a trash can icon to delete a row.
 
-<Image
-  title="Use a dashboard variable in the all three data flows for a single value column."
-  src="/img/plugins/business-table/single.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/single.png" class="border" alt="Use a dashboard variable in the all three data flows for a single value column." >}}
 
 ### Nested objects
 
@@ -193,7 +159,4 @@ Nested objects have four possible data flows:
   - if the **Delete Options** functionality is allowed,
   - after a user opens **Show All comments** drawer and clicks on the trash can button.
 
-<Image
-  title="Use a dashboard variable in the all four data flows for a nested objects column."
-  src="/img/blog/2024-12-04-business-table-1.9.0/nested.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/nested.png" class="border" alt="Use a dashboard variable in the all four data flows for a nested objects column." >}}

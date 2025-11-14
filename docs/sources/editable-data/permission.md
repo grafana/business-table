@@ -22,10 +22,7 @@ Add and delete a row is supported starting from the Business table 1.9.0
 
 :::
 
-<Image
-  title="Unique permissions for add, delete and edit."
-  src="/img/plugins/business-table/permissions-where.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/permissions-where.png" class="border" alt="Unique permissions for add, delete and edit." >}}
 
 In the **Permission** parameter of **Add Data**, **Edit Data**, or **Delete Data** set the **Check** parameter to one of the following:
 
@@ -33,8 +30,4 @@ In the **Permission** parameter of **Add Data**, **Edit Data**, or **Delete Data
 - **By Org User Role**. With that, you need to specify which roles have permission (**Editor**, **Viewer**, **Admin**, **None**).
 - **By Backend**. With that, you need to specify a data frame column with a boolean value. If the value is **true**, a user has permission. If the value is **false**, a user does NOT have permission.
 
-<Image
-  title="Permission options"
-  src="/img/blog/2024-09-26-business-table-1.3.0/permissions.png"
-  width="90%"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/permissions.png" class="border" alt="Permission options" >}}

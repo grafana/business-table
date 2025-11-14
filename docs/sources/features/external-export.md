@@ -15,17 +15,11 @@ import Image from "@theme/Image";
 
 The Business Table panel now supports exporting table data to external sources by sending an HTTP request. The data is represented as a two-dimensional array (`[][]`) and is accessible via the `${payload}` variable, which is escaped as a string for inclusion in the request body.
 
-<Image
-  title="The Export Button"
-  src="/img/plugins/business-table/export/export-button.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/export-button.png" class="border" alt="The Export Button" >}}
 
 This feature enables seamless integration with external services, allowing users to export table data to platforms like Google Sheets, databases, or other APIs. The export is triggered by a user action, such as clicking a button, and can be customized to work with various data sources.
 
-<Image
-  title="Export Body Configuration in Infinity Data Source"
-  src="/img/plugins/business-table/export/payload-in-body.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/payload-in-body.png" class="border" alt="Export Body Configuration in Infinity Data Source" >}}
 
 ## Overview of external export
 
@@ -56,34 +50,22 @@ To enable data export to Google Sheets, create a service account with the necess
 1. Navigate to [Google Cloud Console](https://console.cloud.google.com).
 2. Create a new project or select an existing one.
 
-   <Image
-     title="Select Project in Google Cloud"
-     src="/img/plugins/business-table/export/google-cloud.png"
-   />
+   {{< figure src="/media/docs/grafana/panels-visualizations/business-table/google-cloud.png" class="border" alt="Select Project in Google Cloud" >}}
 
 3. Go to **APIs & Services** > **Enable APIs and Services**.
 4. Search for `Google Sheets API` and enable it for your project.
 
-   <Image
-     title="Enabled API for Google Cloud Project"
-     src="/img/plugins/business-table/export/enabled-sheets-api.png"
-   />
+   {{< figure src="/media/docs/grafana/panels-visualizations/business-table/enabled-sheets-api.png" class="border" alt="Enabled API for Google Cloud Project" >}}
 
 5. Click **Manage this API** > **Credentials** > **Manage Service Accounts**.
 6. Click **Create Service Account**, provide a name, and set the role to `Editor`.
 
-   <Image
-     title="Select Role as Editor"
-     src="/img/plugins/business-table/export/permission-role.png"
-   />
+   {{< figure src="/media/docs/grafana/panels-visualizations/business-table/permission-role.png" class="border" alt="Select Role as Editor" >}}
 
 7. Go to the **Credentials** menu, edit the service account, and navigate to the **Keys** section.
 8. Click **Add Key**, select `JSON` as the key type, and save the file.
 
-   <Image
-     title="Select Key Type as JSON"
-     src="/img/plugins/business-table/export/key-type.png"
-   />
+   {{< figure src="/media/docs/grafana/panels-visualizations/business-table/key-type.png" class="border" alt="Select Key Type as JSON" >}}
 
 9. Download JSON key file and use it to configure Infinity data source.
 
@@ -113,10 +95,7 @@ Set up the Infinity data source to authenticate with Google Sheets:
 6. Add the following allowed hosts: `https://docs.google.com`, `https://sheets.googleapis.com`, `docs.google.com`, `sheets.googleapis.com`.
 7. Click **Save and Test** to verify the configuration.
 
-   <Image
-     title="Infinity Data Source Authentication Configuration"
-     src="/img/plugins/business-table/export/auth-config-infinity.png"
-   />
+   {{< figure src="/media/docs/grafana/panels-visualizations/business-table/auth-config-infinity.png" class="border" alt="Infinity Data Source Authentication Configuration" >}}
 
 8. Go to **URL, Headers & Params** > **URL Settings** and set `Allow Dangerous HTTP Methods` to `true`.
 
@@ -126,10 +105,7 @@ Configure the Business Table panel to send data to Google Sheets:
 
 1. Create or edit a Business Table panel with your data.
 
-   <Image
-     title="Configured Business Table Panel"
-     src="/img/plugins/business-table/export/configured-panel.png"
-   />
+   {{< figure src="/media/docs/grafana/panels-visualizations/business-table/configured-panel.png" class="border" alt="Configured Business Table Panel" >}}
 
 2. In the panel settings, go to **Advanced Options** > **External Export** and enable it.
 3. Select your configured Infinity data source.
@@ -167,10 +143,7 @@ Configure the Business Table panel to send data to Google Sheets:
    }
    ```
 
-   <Image
-     title="Request Configuration for Infinity Data Source"
-     src="/img/plugins/business-table/export/put-configuration.png"
-   />
+   {{< figure src="/media/docs/grafana/panels-visualizations/business-table/put-configuration.png" class="border" alt="Request Configuration for Infinity Data Source" >}}
 
 6. Save the dashboard and click the **Export** button to send data to Google Sheets.
 
@@ -178,10 +151,7 @@ Configure the Business Table panel to send data to Google Sheets:
 Infinity data source may return a "status OK" even if there is an error. Check the **Network** tab in your browser's developer tools if the export fails.
 :::
 
-<Image
-  title="Google Sheets Data After Successful Export"
-  src="/img/plugins/business-table/export/filled-table.png"
-/>
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/filled-table.png" class="border" alt="Google Sheets Data After Successful Export" >}}
 
 ## Troubleshooting
 
