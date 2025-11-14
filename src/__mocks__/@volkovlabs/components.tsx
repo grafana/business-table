@@ -55,15 +55,9 @@ beforeEach(() => {
  */
 const useDatasourceRequest = jest.fn();
 
-/**
- * Mock useDashboardRefresh hook
- */
-const useDashboardRefresh = jest.fn();
-
 module.exports = {
   ...actual,
   AutosizeCodeEditor,
   Slider,
   useDatasourceRequest,
-  useDashboardRefresh,
 };
