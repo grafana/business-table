@@ -16,9 +16,9 @@ weight: 20
 
 The Business Table provides multifarious editing data functionality to facilitate extensive capabilities for end-users to work with the table data.
 
-:::info version
+{{< admonition type="note" >}}
 Ensure to have at least version 1.9.0 of the Business Table and access to all the features described for the editable data.
-:::
+{{< /admonition >}}
 
 ## Data flows
 

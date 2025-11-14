@@ -28,9 +28,9 @@ Optionally, you can specify a range of permitted date-times using **Set Min Date
 
 ## Switch
 
-:::info version
+{{< admonition type="note" >}}
 **Switch** editor type is available starting from version 1.9.0.
-:::
+{{< /admonition >}}
 
 The **Switch** editor type makes the user's work with the Business Table panel more intuitive while transforming the boolean type data into a switch that can be turned on and off.
 
@@ -48,9 +48,9 @@ The **Select** types gives users a drop-down populated from the **Value Field** 
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/select-editor-type.png" class="border" alt="An example of the Date Time Editor type in the Business Table panel." >}}
 
-:::info version
+{{< admonition type="note" >}}
 **Allow custom value** feature is available starting from version 1.9.0.
-:::
+{{< /admonition >}}
 
 If allowed, a user can enter a custom value in the prepopulated drop-down list while adding or editing a row.
 
@@ -71,9 +71,9 @@ The **String** type allows a user to enter any value.
 
 ## Text Area
 
-:::info version
+{{< admonition type="note" >}}
 **Text Ares** editor type is available starting from version 1.9.0.
-:::
+{{< /admonition >}}
 
 The **Text Area** editor type is designed to add and edit multi-row text values.
 

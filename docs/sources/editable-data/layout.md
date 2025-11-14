@@ -210,9 +210,9 @@ Below, the column **Country** is pinned to the left.
 
 ### Show and hide columns
 
-:::info version
+{{< admonition type="note" >}}
 The feature is supported starting from version 1.5.0
-:::
+{{< /admonition >}}
 
 This feature allows you to hide/show any column in your Business Table visualization. It is helpful when you need to experiment with the table's visual aspects without removing the column (and all its configuration) to get an idea of what the visualization would look like without it.
 
@@ -222,18 +222,14 @@ Also, the column might be required for the underlying logic but not designed for
 
 ### Option to hide the table header
 
-:::info version
-
+{{< admonition type="note" >}}
 Option to hide the table header is supported starting from the Business table 1.9.0
-
-:::
+{{< /admonition >}}
 
 You can hide the Business Table header from the dashboard by turning off the **Layout**->**Show header** switch.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/show-hide.png" class="border" alt="Show or hide the table header." >}}
 
-:::info Table header
-
+{{< admonition type="note" >}}
 The plus icon (the button to add a row) is also hidden if you hide a table header. That means if you need a user to have the ability to add a row, keep the table header visible.
-
-:::
+{{< /admonition >}}

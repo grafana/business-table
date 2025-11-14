@@ -14,11 +14,9 @@ import Image from "@theme/Image";
 
 # Nested objects
 
-:::info version
-
+{{< admonition type="note" >}}
 Nested objects feature is supported starting from the Business table 1.5.0
-
-:::
+{{< /admonition >}}
 
 Simply put, this feature allows an end-user to add, edit, and delete rows associated with a table cell. Sometimes this feature can be called **Comments**.
 

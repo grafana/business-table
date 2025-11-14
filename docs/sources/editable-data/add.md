@@ -10,15 +10,12 @@ labels:
     - cloud
 weight: 20
 ---
-import Image from "@theme/Image";
 
 # Add data
 
-:::info version
-
+{{< admonition type="note" >}}
 Add a row is supported starting from the Business Table 1.9.0
-
-:::
+{{< /admonition >}}
 
 This is one of the most requested features. An end user of your Business Table panel can add and [delete](/plugins/business-table/delete) rows from Grafana dashboard!
 

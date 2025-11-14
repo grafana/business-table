@@ -14,11 +14,9 @@ import Image from "@theme/Image";
 
 # Delete data
 
-:::info version
-
+{{< admonition type="note" >}}
 Delete a row is supported starting from the Business Table 1.9.0
-
-:::
+{{< /admonition >}}
 
 This is one of the most requested features. An end user of your Business Table panel can [add](/plugins/business-table/add) and delete rows from Grafana dashboard!
 

@@ -16,11 +16,9 @@ import Image from "@theme/Image";
 
 Permission are set for every tab and every action (add/delete/edit).
 
-:::info version
-
+{{< admonition type="note" >}}
 Add and delete a row is supported starting from the Business table 1.9.0
-
-:::
+{{< /admonition >}}
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/permissions-where.png" class="border" alt="Unique permissions for add, delete and edit." >}}
 

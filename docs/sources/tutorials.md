@@ -39,9 +39,9 @@ Business Table 1.9.0 brings robust row manipulation capabilities, allowing you t
 
 {{< youtube id="tNa14EULUQo" >}}
 
-:::info
+{{< admonition type="note" >}}
 This release makes data management interactive and intuitive—ideal for real-time updates and dynamic dashboards!
-:::
+{{< /admonition >}}
 
 ### Version 1.5.0: Editable Tables and Nested Objects
 
@@ -49,9 +49,9 @@ Dive into Business Table 1.5.0 with Daria’s step-by-step tutorial. This video 
 
 {{< youtube id="wiy6bBJDdb0" >}}
 
-:::info
+{{< admonition type="note" >}}
 Nested objects unlock new possibilities for managing intricate data hierarchies—experiment with this feature today!
-:::
+{{< /admonition >}}
 
 ### Version 1.3.0: Feature Overview and Cell Editing
 

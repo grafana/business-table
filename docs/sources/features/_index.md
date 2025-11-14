@@ -61,9 +61,9 @@ In the example below, we use the Timescale data source, consequently SQL, to ret
 
 ### Default pagination size
 
-:::info version
+{{< admonition type="note" >}}
 Starting from version 1.9.0, the Business Table supports the **Default pagination size** parameter.
-:::
+{{< /admonition >}}
 
 With the **default pagination size** parameter, you configure how many rows per page are availabe when the dashboard loads for the first time. If a user changes that, it gets saved into the browser cookies for the user's convinience.
 
@@ -97,9 +97,9 @@ Clicking on a cell with the value `device10` will change the value of the Text v
 
 ## Support of the Standard options
 
-:::info version
+{{< admonition type="note" >}}
 The feature is supported starting from version 1.5.0
-:::
+{{< /admonition >}}
 
 The values displayed in the Business Table visualization can be formatted using the Grafana **Standard options**.
 
@@ -107,10 +107,9 @@ The values displayed in the Business Table visualization can be formatted using 
 
 ## Data sources as variables
 
-:::info version
-
+{{< admonition type="note" >}}
 The feature is supported starting from version 1.9.0
-:::
+{{< /admonition >}}
 
 All Business Table data flows are configurable separately, allowing unbeatable flexibility. Starting from this release, a data source in every flow can be specified as a variable.
 
