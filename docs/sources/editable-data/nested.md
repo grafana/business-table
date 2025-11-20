@@ -19,9 +19,7 @@ Nested objects feature is supported starting from the Business table 1.5.0
 
 Simply put, this feature allows an end-user to add, edit, and delete rows associated with a table cell. Sometimes this feature can be called **Comments**.
 
-Developed to meet the specific requirements of our sponsor, this feature, even in its current form, holds significant potential for the broader open-source community.
-
-In the case of good feedback, we might expand the nested objects/comments feature to make it more flexible and configurable. For now, you are welcome to experiment within the existing limits.
+Developed to meet the specific requirements of the sponsor, this feature, even in its current form, holds significant potential for the broader open-source community.
 
 ## Highlights
 
@@ -111,7 +109,7 @@ insert into order_status(order_status_id, order_id, date, title, description, us
 insert into order_status(order_status_id, order_id, date, title, description, user_name) values
                         (3, 1, '2024-10-06 15:01:00.00', 'packed', 'The order is moved to the next step', 'bob.r');
 insert into order_status(order_status_id, order_id, date, title, description, user_name) values
-                        (4, 1, '2024-10-06 21:11:00.00', 'shipped', 'The paymaent has been received.', 'bob.r');
+                        (4, 1, '2024-10-06 21:11:00.00', 'shipped', 'The payment has been received.', 'bob.r');
 insert into order_status(order_status_id, order_id, date, title, description, user_name) values
                         (5, 1, '2024-10-16 11:40:00.00', 'delivered', 'All good.', 'bob.r');
 insert into order_status(order_status_id, order_id, date, title, description, user_name) values
@@ -186,7 +184,7 @@ Configuring a comment card means identifying data frame column names for display
 
 ## Actions and permission
 
-There are three actions you can allow users to perform on the nested objects/comments. All three actions are availabe in the pop-up window after a user clicks on the **Show All** link.
+There are three actions you can allow users to perform on the nested objects/comments. All three actions are available in the pop-up window after a user clicks on the **Show All** link.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/actions.png" class="border" alt="Actions you can allow users to perform on the nested objects/comments." >}}
 
@@ -235,8 +233,8 @@ To work around this limitation, you may need to manually modify the JSON configu
 
 This is not considered a bug.
 
-When configuring nested data source options in the Business Table panel, we rely on Grafana’s built-in `getdata sourceSrv` from `@grafana/runtime` to resolve and interact with data sources. The same mechanism is used when editing or executing queries.
+When configuring nested data source options in the Business Table panel, it relies on Grafana’s built-in `getdata sourceSrv` from `@grafana/runtime` to resolve and interact with data sources. The same mechanism is used when editing or executing queries.
 
 In the case of data sources like PostgreSQL, parameters such as refId are automatically included by the data source plugin itself. However, for data sources like Trino, manual configuration may be necessary, as these plugins may not inject such values by default.
 
-We do not implement custom handling for each data source. Instead, we delegate the request to usedata sourceRequest, which consumes the full request configuration using the standard Grafana runtime.
+Custom handling isn't implemented for each data source. Instead, the request is delegated to `usedata sourceRequest`, which consumes the full request configuration using the standard Grafana runtime.

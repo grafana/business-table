@@ -17,7 +17,7 @@ weight: 50
 Delete a row is supported starting from the Business Table 1.9.0
 {{< /admonition >}}
 
-This is one of the most requested features. An end user of your Business Table panel can [add](/plugins/business-table/add) and delete rows from Grafana dashboard!
+This is one of the most requested features. An end user of your Business Table panel can [add](/plugins/business-table/add) and delete rows from Grafana dashboard.
 
 {{< video-embed src="/media/docs/grafana/panels-visualizations/business-table/table-add-delete-row.mp4" >}}
 

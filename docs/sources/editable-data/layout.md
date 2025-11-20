@@ -55,7 +55,7 @@ The **Image** type interprets the image links and base64 formats.
 
 ### Nested objects
 
-See the [Nested Ojects](/plugins/business-table/nested/) section of this documentation.
+See the [Nested Objects](/plugins/business-table/nested/) section of this documentation.
 
 ### Preformatted
 
@@ -146,7 +146,7 @@ The Business Table panel starts strong with the filtering feature offering two m
 
 Every column of the Business Table panel offers the **Filter** feature. If set to **Yes**, the funnel icon will appear next to the column header.
 
-With the **Filter Mode**->**Client**, when a user clicks on the funnel icon further filterimg options appear.
+With the **Filter Mode**->**Client**, when a user clicks on the funnel icon further filtering options appear.
 
 What those options are depends on the column data type:
 

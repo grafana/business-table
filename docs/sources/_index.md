@@ -48,11 +48,11 @@ grafana cli plugins install volkovlabs-table-panel
 
 ## Tutorial
 
-The Business Table 1.9.0 for Grafana brings an exciting functionality when a user can add, edit and delete rows from the Grafana dashboard. In addition, the Business Table 1.9.0 features useful functionality such as Grafana Thresholds, displaying images, easy connections with other Grafana panels and more!
+The Business Table 1.9.0 for Grafana brings an exciting functionality when a user can add, edit and delete rows from the Grafana dashboard. In addition, the Business Table 1.9.0 features useful functionality such as Grafana Thresholds, displaying images, easy connections with other Grafana panels and more.
 
 {{< youtube id="tNa14EULUQo" >}}
 
-We have many other tutorials that you can find helpful. You can review all related to this plugin tutorials [here](/plugins/business-table/tutorials).
+There are many other tutorials that you can find helpful. You can review [all tutorials related to this plugin](/plugins/business-table/tutorials).
 
 ## Documentation
 
@@ -66,4 +66,3 @@ We have many other tutorials that you can find helpful. You can review all relat
 ## License
 
 Apache License Version 2.0, see [LICENSE](https://github.com/volkovlabs/business-table/blob/main/LICENSE).
-

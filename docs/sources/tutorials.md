@@ -32,17 +32,17 @@ Business Table 1.9.0 brings robust row manipulation capabilities, allowing you t
 {{< youtube id="tNa14EULUQo" >}}
 
 {{< admonition type="note" >}}
-This release makes data management interactive and intuitive—ideal for real-time updates and dynamic dashboards!
+This release makes data management interactive and intuitive—ideal for real-time updates and dynamic dashboards.
 {{< /admonition >}}
 
 ### Version 1.5.0: Editable tables and nested objects
 
-Dive into Business Table 1.5.0 with Daria’s step-by-step tutorial. This video covers core editing features and introduces an experimental feature for working with nested objects, enabling you to handle complex data structures with ease.
+Dive into Business Table 1.5.0 with this step-by-step tutorial. This video covers core editing features and introduces an experimental feature for working with nested objects, enabling you to handle complex data structures with ease.
 
 {{< youtube id="wiy6bBJDdb0" >}}
 
 {{< admonition type="note" >}}
-Nested objects unlock new possibilities for managing intricate data hierarchies—experiment with this feature today!
+Nested objects unlock new possibilities for managing intricate data hierarchies—experiment with this feature today.
 {{< /admonition >}}
 
 ### Version 1.3.0: Feature overview and cell editing
@@ -55,4 +55,4 @@ Get a comprehensive overview of Business Table 1.3.0’s capabilities, including
 
 The Business Table panel for Grafana is a game-changer for anyone looking to elevate their data visualization and interaction capabilities. From editing cells and managing rows to handling nested objects, each version builds on the last to provide a seamless and powerful user experience.
 
-Whether you're a beginner or an advanced user, these tutorials and resources will guide you through maximizing the potential of Business Table in your dashboards. Start exploring today, and transform the way you work with data in Grafana!
+Whether you're a beginner or an advanced user, these tutorials and resources will guide you through maximizing the potential of Business Table in your dashboards. Start exploring today, and transform the way you work with data in Grafana.

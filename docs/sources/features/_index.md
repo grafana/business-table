@@ -48,7 +48,7 @@ The determination of what records to retrieve (what records need to be displayed
 - **pageIndex**. Page order number. Specify as a dashboard variable name.
 - **offset**. How many rows to skip starting from the first. Specify as a dashboard variable name.
 - **pageSize**. The number of rows per page. Specify as a dashboard variable name.
-- **Total Count Field**. Specify as a dataframe:column name. **Preffered** to set to display total number of pages.
+- **Total Count Field**. Specify as a data frame:column name. **Preferred** to set to display total number of pages.
 
 The necessity of the first three metrics (**pageIndex**, **offset**, **pageSize**) is contingent on the data source from which the data is sourced. Understanding this dependency will prepare you for efficient data retrieval.
 
@@ -64,7 +64,7 @@ In the example below, we use the Timescale data source, consequently SQL, to ret
 Starting from version 1.9.0, the Business Table supports the **Default pagination size** parameter.
 {{< /admonition >}}
 
-With the **default pagination size** parameter, you configure how many rows per page are availabe when the dashboard loads for the first time. If a user changes that, it gets saved into the browser cookies for the user's convinience.
+With the **default pagination size** parameter, you configure how many rows per page are available when the dashboard loads for the first time. If a user changes that, it gets saved into the browser cookies for the user's convenience.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/page-size.png" class="border" alt="A default pagination size parameter." >}}
 
