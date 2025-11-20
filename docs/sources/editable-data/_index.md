@@ -53,10 +53,10 @@ Some highlights of data editing in the Business Table panel:
 
 | Category                                          | Description                                                                                                            |
 | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| [Layout](/plugins/business-table/layout/)         | The **Layout** parameter category determines the set of tabs and then the set of columns and their types for each tab. |
-| [Add Data](/plugins/business-table/add/)          | The **Add Data** parameter category determines the tabs where a user can add data, then the columns that should be populated when a row is being added, **Editor Type** for every such column, **Data Source** with **Query**, and permission. |
-| [Edit Data](/plugins/business-table/edit/)        | The **Edit Data** parameter category determines the columns that should be populated when a row is being edited, **Editor Type** for every such column, **Data Source** with **Query**, and permission. |
-| [Delete Data](/plugins/business-table/delete/)    | The **Delete Data** parameter category determines the tabs where a user can delete a data row, **Data Source** with **Query**, and permission. |
-| [Nested Objects](/plugins/business-table/nested/) | The **Nested Objects** parameter category collects settings for the **Nested Objects** display along with add/edit/delete functionality. |
+| [Layout](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/editable-data/layout/)         | The **Layout** parameter category determines the set of tabs and then the set of columns and their types for each tab. |
+| [Add data](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/editable-data/add/)          | The **Add Data** parameter category determines the tabs where a user can add data, then the columns that should be populated when a row is being added, **Editor Type** for every such column, **Data Source** with **Query**, and permission. |
+| [Edit data](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/editable-data/edit/)        | The **Edit Data** parameter category determines the columns that should be populated when a row is being edited, **Editor Type** for every such column, **Data Source** with **Query**, and permission. |
+| [Delete data](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/editable-data/delete/)    | The **Delete Data** parameter category determines the tabs where a user can delete a data row, **Data Source** with **Query**, and permission. |
+| [Nested objects](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/editable-data/nested/) | The **Nested Objects** parameter category collects settings for the **Nested Objects** display along with add/edit/delete functionality. |
 
 <!-- prettier-ignore-end -->

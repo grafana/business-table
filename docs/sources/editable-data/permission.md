@@ -1,5 +1,5 @@
 ---
-title: Permissions
+title: Permission
 description: Learn how to set permissions for every tab and every action in the Business Table panel.
 keywords:
   - business table
@@ -11,7 +11,7 @@ labels:
 weight: 70
 ---
 
-# Permissions
+# Permission
 
 You set permissions for every tab and every action (add/delete/edit).
 

@@ -10,7 +10,6 @@ labels:
     - cloud
 weight: 40
 ---
-import Image from "@theme/Image";
 
 # Editor types
 

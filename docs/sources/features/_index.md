@@ -18,9 +18,9 @@ The Business Table panel has the following features.
 | Section                                                      | Description                                  |
 | ------------------------------------------------------------ | -------------------------------------------- |
 | [Pagination](#pagination)                                    | Explains pagination                          |
-| [Download Button](download-button/)                          | Demonstrates the Download button             |
-| [External Export](external-export/)                          | Demonstrates the Table export                |
-| [Infinity Data Source](infinity/)                            | Demonstrates how to use Infinity data source |
+| [Download button](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/features/download-button/) | Demonstrates the Download button |
+| [External export](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/features/external-export/) | Demonstrates the Table export |
+| [Infinity data source](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/features/infinity/) | Demonstrates how to use Infinity data source |
 | [Data links](#data-links)                                    | Demonstrates data links                      |
 | [Standard options support](#support-of-the-standard-options) | Explains the Standard options support        |
 | [Data sources as variables](#data-sources-as-variables)      | Explains Data sources as variables           |
@@ -123,7 +123,7 @@ Let's say a Grafana dashboard has the following dashboard variable:
 You can use this variable in every data flow that affects:
 
 - row,
-- [nested objects](/plugins/business-table/nested/) stored as a column value.
+- [nested objects](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/editable-data/nested/) stored as a column value.
 
 ### Row
 

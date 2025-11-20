@@ -17,7 +17,7 @@ weight: 20
 Adding rows is supported starting from Business Table 1.9.0.
 {{< /admonition >}}
 
-This is one of the most requested features. You can add and [delete](/plugins/business-table/delete) rows from your Grafana dashboard.
+This is one of the most requested features. You can add and [delete](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/editable-data/delete/) rows from your Grafana dashboard.
 
 {{< video-embed src="/media/docs/grafana/panels-visualizations/business-table/table-add-delete-row.mp4" >}}
 
@@ -29,8 +29,8 @@ To configure the add row feature, use the **Add data** parameter category to spe
 
 - Which tabs of your Business Table panel allow adding rows.
 - What columns you need to specify when adding a new row. Enable the switch next to a column name.
-- The [**Editor Type**](/plugins/business-table/editor-types), which is the UI element for entering a new value.
-- [Permission](/plugins/business-table/permission), which provides granular control over who can add a new row.
+- The [**Editor Type**](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/editable-data/editor-types), which is the UI element for entering a new value.
+- [Permission](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/editable-data/permission/), which provides granular control over who can add a new row.
 - **Add Request**, which consists of a data source and query.
 - **Layout > Show header** set to ON so that you have access to the add row (plus icon) button.
 

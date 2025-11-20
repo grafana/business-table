@@ -12,7 +12,12 @@
     },
     "description": "Simplifies data presentation with intuitive table layouts",
     "keywords": ["table"],
-    "links": [],
+    "links": [
+      {
+        "name": "Documentation",
+        "url": "https://grafana.com/docs/plugins/volkovlabs-table-panel/"
+      },
+    ],
     "logos": {
       "large": "img/logo.svg",
       "small": "img/logo.svg"

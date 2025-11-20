@@ -92,14 +92,14 @@ And this is the second line.
 | Section                                                       | Description                                         |
 | ------------------------------------------------------------- | --------------------------------------------------- |
 | [Multi tables as tabs](#multi-tables-as-tabs)                 | Demonstrates multi table as tabs                    |
-| [Tree View/Row Grouping](#tree-viewrow-grouping)              | Demonstrates tree view/row grouping                 |
+| [Tree View/Row grouping](#tree-viewrow-grouping)              | Demonstrates tree view/row grouping                 |
 | [Auto-width columns](#auto-width-columns)                     | Demonstrates auto-width columns                     |
 | [Table footer](#table-footer)                                 | Explains how the table footer works                 |
 | [Filtering in the **Client** and **Query** modes](#filtering) | Demonstrates the **Client** and **Query** filtering |
 | [Sorting](#sorting)                                           | Demonstrates column sorting                         |
-| [Pin Columns](#pin-columns)                                   | Demonstrates column pinning                         |
+| [Pin columns](#pin-columns)                                   | Demonstrates column pinning                         |
 | [Show and hide columns](#show-and-hide-columns)               | Demonstrates the show/hide column button            |
-| [Hide the table header](#hiding-the-table-header)             | Explains how to hide the table header               |
+| [Hide the table header](#hide-the-table-header)             | Explains how to hide the table header               |
 
 ### Multi tables as tabs
 
