@@ -1,5 +1,4 @@
 import { DataFrame, Field } from '@grafana/data';
-import { findField } from '@volkovlabs/components';
 
 import { FieldSource } from '@/types';
 
@@ -29,7 +28,7 @@ export const reorder = <T>(list: T[], startIndex: number, endIndex: number) => {
  * @param field
  * @param fieldSource
  */
-export const filterFieldBySource = (frame: DataFrame, field: Field, fieldSource: FieldSource): boolean => {
+export const filterFieldBySource = (field: Field, fieldSource: FieldSource): boolean => {
   return field.name === fieldSource.name;
 };
 
@@ -37,9 +36,14 @@ export const filterFieldBySource = (frame: DataFrame, field: Field, fieldSource:
  * Get field by source
  */
 export const getFieldBySource = (series: DataFrame[], fieldSource: FieldSource): Field | undefined => {
-  return findField(series, (field, frame) => {
-    return filterFieldBySource(frame as DataFrame, field as Field, fieldSource);
-  }) as Field | undefined;
+  for (let i = 0; i < series.length; i++) {
+    const frame = series[i];
+    const field = frame.fields.find((f) => filterFieldBySource(f, fieldSource));
+    if (field) {
+      return field;
+    }
+  }
+  return undefined;
 };
 
 /**

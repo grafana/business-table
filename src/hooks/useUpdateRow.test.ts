@@ -1,10 +1,15 @@
 import { LoadingState } from '@grafana/data';
 import { renderHook } from '@testing-library/react';
-import { useDashboardRefresh, useDatasourceRequest } from '@volkovlabs/components';
+import { useDatasourceRequest } from '@volkovlabs/components';
 
 import { createTableConfig, createTableOperationConfig, createTableRequestConfig } from '@/utils';
 
 import { useUpdateRow } from './useUpdateRow';
+import { useDashboardRefresh } from './useDashboardRefresh';
+
+jest.mock('./useDashboardRefresh', () => ({
+  useDashboardRefresh: jest.fn(),
+}));
 
 describe('useUpdateRow', () => {
   /**

@@ -1,6 +1,7 @@
 export * from './useAutoSave';
 export * from './useContentSizes';
 export * from './useCustomContext';
+export * from './useDashboardRefresh';
 export * from './useDatasources';
 export * from './useExportData';
 export * from './useExternalExport';

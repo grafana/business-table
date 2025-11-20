@@ -1,6 +1,7 @@
 import { PanelProps } from '@grafana/data';
 import { config } from '@grafana/runtime';
 import {
+  Alert,
   Button,
   ClickOutsideWrapper,
   Dropdown,
@@ -13,7 +14,6 @@ import {
   useStyles2,
 } from '@grafana/ui';
 import { Table as TableInstance } from '@tanstack/react-table';
-import { AlertWithDetails } from '@volkovlabs/components';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import semver from 'semver';
 
@@ -355,13 +355,13 @@ export const TablePanel: React.FC<Props> = ({
       <>
         {!!error && (
           <div ref={alertRef} {...TEST_IDS.panel.errorContainer.apply()}>
-            <AlertWithDetails
-              details={error}
-              variant="error"
+            <Alert
               title="Request error"
               onRemove={() => setError('')}
               {...TEST_IDS.panel.errorAlertElement.apply()}
-            />
+            >
+              {error}
+            </Alert>
           </div>
         )}
         {isToolbarVisible && (

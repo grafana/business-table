@@ -101,7 +101,7 @@ export const useTable = ({
     const items = columnsConfig
       .map((config) => ({
         config,
-        field: frame.fields.find((field) => filterFieldBySource(frame, field, config.field)),
+        field: frame.fields.find((field) => filterFieldBySource(field, config.field)),
       }))
       .filter((item) => !!item.field) as Array<{ config: ColumnConfig; field: Field }>;
 
