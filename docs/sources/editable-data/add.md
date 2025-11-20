@@ -32,7 +32,7 @@ To configure the add row feature, use the **Add data** parameter category to spe
 - The [**Editor Type**](/plugins/business-table/editor-types), which is the UI element for entering a new value.
 - [Permission](/plugins/business-table/permission), which provides granular control over who can add a new row.
 - **Add Request**, which consists of a data source and query.
-- **Layout**->**Show header** set to ON so that you have access to the add row (plus icon) button.
+- **Layout > Show header** set to ON so that you have access to the add row (plus icon) button.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/add.png" class="border" alt="Steps to configure the Add a row functionality on the Business Table panel." >}}
 

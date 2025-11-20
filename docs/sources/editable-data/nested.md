@@ -147,7 +147,7 @@ array_to_json(array(
 from orders oo order by oo.order_id;
 ```
 
-In the Business Table options -> **Layout**:
+In the Business Table **Layout** options:
 
 1. Add a column to display the nested objects/comments.
 1. Set its type to **Nested Objects**.
@@ -170,7 +170,7 @@ In the **Nested objects** category:
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/nested.png" class="border" alt="Configure a column in the Nested objects category." >}}
 
-SQL from the **Get Options->Query Editor** parameter:
+SQL from the **Get Options > Query Editor** parameter:
 
 ```sql
 SELECT * FROM order_status WHERE order_status_id IN (${payload.ids:csv});
@@ -190,7 +190,7 @@ You can allow three actions on nested objects/comments. All three actions are av
 
 To configure actions and access:
 
-1. In **Nested objects**->Column name->**Operations**, set the **Add Options**, **Update Options**, or **Delete Options** switch to ON.
+1. In **Nested objects** >Column name > **Operations**, set the **Add Options**, **Update Options**, or **Delete Options** switch to ON.
 1. Select the **Check** parameter. You have three options:
 
    - **By Org User Role**: Specify which roles have access to this action. This is a multi-select drop-down with the following values: **Admin**, **Editor**, **Viewer**, **None**.

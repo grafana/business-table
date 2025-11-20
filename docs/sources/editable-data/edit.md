@@ -23,7 +23,7 @@ To allow editing on a column, enable the switch. The **Editable** tag appears ne
 
 ## Update request
 
-The **Update Request** takes the values you enter and sends them to your data source, serving as a bridge between your input and the data source. Configure it in the **Edit Data** -> **Settings** section.
+The **Update Request** takes the values you enter and sends them to your data source, serving as a bridge between your input and the data source. Configure it in the **Edit Data > Settings** section.
 
 First, select the data source where you want to send the updated values. Then, choose the **Query Editor** mode if your data source supports it:
 

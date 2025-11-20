@@ -19,7 +19,7 @@ The **Layout** parameter category determines the set of tabs, then the columns, 
 
 ## Column types for displaying data
 
-You can specify a column display type in **Layout**->**Format**->**Type**. The display type determines how the data appears. There are currently 8 available types.
+You can specify a column display type in **Layout > Format > Type**. The display type determines how the data appears. There are currently 8 available types.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/layout-types.png" class="border" alt="The display data types of the Business Table panel." >}}
 
@@ -61,8 +61,8 @@ See the [Nested Objects](/plugins/business-table/nested/) section of this docume
 
 The **Preformatted** type, similar to the `pre` HTML tag, displays text with spaces and line breaks preserved. The text appears exactly as written, without any formatting changes.
 
-When the **Preformatted style** switch is On, the text displays in a fixed-width font.
-When the **Preformatted style** switch is Off, the text displays in the font configured for your browser.
+When the **Preformatted style** switch is ON, the text displays in a fixed-width font.
+When the **Preformatted style** switch is OFF, the text displays in the font configured for your browser.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/pre-type.png" class="border" alt="An example of the Preformatted type in the Business Table panel." >}}
 
@@ -146,7 +146,7 @@ The Business Table panel starts strong with the filtering feature offering two m
 
 Every column in the Business Table panel supports the **Filter** feature. When set to **Yes**, a funnel icon is displayed next to the column header.
 
-With **Filter Mode**->**Client**, when you click the funnel icon, additional filtering options are displayed.
+With **Filter Mode > Client**, when you click the funnel icon, additional filtering options are displayed.
 
 The available options depend on the column data type:
 
@@ -170,7 +170,7 @@ Select a time range using a standard Grafana range picker.
 
 #### Query
 
-This filtering method enables panel interconnectivity or use in data links. With **Filter Mode**->**Query**, the displayed data is filtered according to the selected dashboard variables.
+This filtering method enables panel interconnectivity or use in data links. With **Filter Mode > Query**, the displayed data is filtered according to the selected dashboard variables.
 
 The following image shows how to configure **Query** filtering method:
 
@@ -214,7 +214,7 @@ Also, a column might be required for the underlying logic but not intended for d
 Hiding the table header is supported starting from Business Table 1.9.0.
 {{< /admonition >}}
 
-You can hide the Business Table header from the dashboard by turning off the **Layout**->**Show header** switch.
+You can hide the Business Table header from the dashboard by turning off the **Layout > Show header** switch.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/show-hide.png" class="border" alt="Show or hide the table header." >}}
 

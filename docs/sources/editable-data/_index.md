@@ -27,10 +27,10 @@ You can configure 7 data flows:
 - Add data
 - Edit data
 - Delete data
-- Nested objects->Get Options
-- Nested objects->Add Options
-- Nested objects->Edit Options
-- Nested objects->Delete Options
+- Nested objects > Get Options
+- Nested objects > Add Options
+- Nested objects > Edit Options
+- Nested objects > Delete Options
 
 {{< youtube id="tNa14EULUQo" >}}
 
