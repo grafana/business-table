@@ -14,10 +14,10 @@ weight: 20
 
 # Editable data/data flow
 
-The Business Table provides multifarious editing data functionality to facilitate extensive capabilities for end-users to work with the table data.
+The Business Table provides comprehensive data editing functionality that gives you extensive capabilities for working with table data.
 
 {{< admonition type="note" >}}
-Ensure to have at least version 1.9.0 of the Business Table and access to all the features described for the editable data.
+Make sure you have at least version 1.9.0 of the Business Table to access all the features described for editable data.
 {{< /admonition >}}
 
 ## Data flows
@@ -40,10 +40,10 @@ Some highlights of data editing in the Business Table panel:
 
 - Every tab has separate add/delete and permission settings.
 - Every column has separate edit and permission settings.
-- User can enter a new value manually or select from the predefined listing coming from your data source.
-- The Add, Update, and Delete requests are configurable and allows custom logic.
-- The permission can be Grafana user-based (Viewer, Editor, Admin, and None) or regulated from the backend.
-- The **Nested Objects** have their own get, add, edit, delete configuration.
+- You can enter a new value manually or select from a predefined list from your data source.
+- The Add, Update, and Delete requests are configurable and allow custom logic.
+- Permissions can be Grafana user-based (Viewer, Editor, Admin, and None) or regulated from the backend.
+- **Nested Objects** have their own get, add, edit, and delete configuration.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/table-data-flow.png" class="border" alt="Data Flow Categories to configure editable data in the Business table panel." >}}
 

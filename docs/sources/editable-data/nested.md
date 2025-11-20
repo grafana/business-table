@@ -14,19 +14,19 @@ weight: 60
 # Nested objects
 
 {{< admonition type="note" >}}
-Nested objects feature is supported starting from the Business table 1.5.0
+The nested objects feature is supported starting from Business Table 1.5.0.
 {{< /admonition >}}
 
-Simply put, this feature allows an end-user to add, edit, and delete rows associated with a table cell. Sometimes this feature can be called **Comments**.
+This feature lets you add, edit, and delete rows associated with a table cell. This feature is sometimes called **Comments**.
 
-Developed to meet the specific requirements of the sponsor, this feature, even in its current form, holds significant potential for the broader open-source community.
+Developed to meet specific sponsor requirements, this feature holds significant potential for the broader open-source community, even in its current form.
 
 ## Highlights
 
-- The nested objects/comments can be stored in any data source, the same as a table or completely different.
-- An end user can add, edit, and delete nested objects/comments.
-- Access to each action is configured separately and can follow Grafana roles or backend configuration.
-- The card displaying nested objects/comments supports Markdown.
+- Nested objects/comments can be stored in any data source &mdash;the same as the table or a completely different one.
+- You can add, edit, and delete nested objects/comments.
+- You configure access to each action separately, and it can follow Grafana roles or backend configuration.
+- The card that displays nested objects/comments supports Markdown.
 
 ## Example requirements
 
@@ -36,30 +36,30 @@ Picture a table visualization used to display orders. Each order is associated w
 
 In this system, events follow a specific sequence: a status change from received to shipped to delivered, each accompanied by user notes, the event date, and the name of the user who recorded it.
 
-There are two types of users in the system:
+The system has two types of users:
 
-- Operators are only allowed to add new events.
-- Supervisors, in addition to the operator privileges, are allowed to modify and delete the events.
+- Operators can only add new events.
+- Supervisors can add, modify, and delete events.
 
-The image below shows the Business Table panel on the dashboard. It has two orders. The order from Nick R. went through five status changes and, therefore, has five records in the **order status** column.
-The order from Mary C. has two records in the **Order status** columns.
+The following image shows the Business Table panel on the dashboard with two orders. The order from Nick R. went through five status changes and has five records in the **order status** column.
+The order from Mary C. has two records in the **Order status** column.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/example-1.png" class="border" alt="The Business Table visualization with multiple entries associated with the same row." >}}
 
-To work with all statuses (all records associated with a specific row), a user clicks the **Show All Order Status** link (see the image above). That action opens a pop-up window. See the following illustration below.
+To work with all statuses (all records associated with a specific row), click the **Show All Order Status** link (see the preceding image). This opens a pop-up window, as shown in the following image.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/example-2.png" class="border" alt="A pop-up window to work with all associated records. The available actions are segmented by specified privileges." >}}
 
-Please note that the user can add/edit only two fields (title and description) in the current feature design.
+Note that you can add or edit only two fields (title and description) in the current feature design.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/edit.png" class="border" alt="The add/edit event window." >}}
 
 ## PostgreSQL database configuration
 
-Below are two tables:
+The following example uses two tables:
 
-- `orders`. It contains all placed orders.
-- `order_status`. It contains all statuses as they change over time. Following the terminology I established in the beginning of this article, this table contains the nested objects or comments.
+- `orders`: Contains all placed orders.
+- `order_status`: Contains all statuses as they change over time. Following the terminology established earlier, this table contains the nested objects or comments.
 
 SQL to create the `orders` table:
 
@@ -129,9 +129,9 @@ insert into order_status(order_status_id, order_id, date, title, description, us
 
 ## Grafana configuration
 
-Start with the data frame configuration. In my example, the query returns all orders and the column containing the list of unique order status identifiers.
+Start with the data frame configuration. In this example, the query returns all orders and the column containing the list of unique order status identifiers.
 
-I utilize Grafana's transformation, **Convert field type**, to ensure the array of status identifiers can be processed correctly.
+The example uses Grafana's **Convert field type** transformation to ensure the array of status identifiers can be processed correctly.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/query.png" class="border" alt="The data frame query with array of orders." >}}
 
@@ -147,10 +147,10 @@ array_to_json(array(
 from orders oo order by oo.order_id;
 ```
 
-In the Business Table options -> **Layout** ensure to:
+In the Business Table options -> **Layout**:
 
-1. Add a column to display the nested objects/comments,
-1. Set its type to **Nested Objects**,
+1. Add a column to display the nested objects/comments.
+1. Set its type to **Nested Objects**.
 1. Select the configured **Object** from the list.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/layout.png" class="border" alt="Add and configure the column with nested objects/comments in the Layout category." >}}
@@ -178,24 +178,24 @@ SELECT * FROM order_status WHERE order_status_id IN (${payload.ids:csv});
 
 ## Comment Card
 
-Configuring a comment card means identifying data frame column names for display. Starting from release 1.5.0, you can specify four column names. An end user can enter only top and bottom **title** and **description** when adding or editing objects. Fields in the middle can display dates, user login who did changes, etc.
+To configure a comment card, identify the data frame column names to display. Starting from release 1.5.0, you can specify four column names. You can enter only the top and bottom **title** and **description** when adding or editing objects. Fields in the middle can display information such as dates, and the user login of who made changes.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/card.png" class="border" alt="Configure fields to display on a comment card." >}}
 
-## Actions and permission
+## Actions and permissions
 
-There are three actions you can allow users to perform on the nested objects/comments. All three actions are available in the pop-up window after a user clicks on the **Show All** link.
+You can allow three actions on nested objects/comments. All three actions are available in the pop-up window after you click the **Show All** link.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/actions.png" class="border" alt="Actions you can allow users to perform on the nested objects/comments." >}}
 
-To configure actions and access to them, use the **Nested objects**->Column name->**Operations**:
+To configure actions and access:
 
-1. Set the **Add Options**, **Update Options**, **Delete Options** switch to ON.
-1. Select **Check** parameter, where you have three options:
+1. In **Nested objects**->Column name->**Operations**, set the **Add Options**, **Update Options**, or **Delete Options** switch to ON.
+1. Select the **Check** parameter. You have three options:
 
-   - **By Org User Role**. With that, specify roles that should have access to this action. It is a multi-select drop-down with the following values: **Admin**, **Editor**, **Viewer**, **None**.
-   - **Always Allowed**. Any user will have access to this action.
-   - **By Backend**. With that, specify a data frame column name with a boolean type. If the returned value is **true**, the access is given. If the returned value is **false**, the access is NOT given.
+   - **By Org User Role**: Specify which roles have access to this action. This is a multi-select drop-down with the following values: **Admin**, **Editor**, **Viewer**, **None**.
+   - **Always Allowed**: Any user has access to this action.
+   - **By Backend**: Specify a data frame column name with a boolean type. If the returned value is **true**, access is granted. If the returned value is **false**, access is denied.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/action-config.png" class="border" alt="Action configuration example." >}}
 
