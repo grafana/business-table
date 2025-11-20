@@ -225,18 +225,18 @@ DELETE FROM order_status
 WHERE order_status_id = ${payload.item.order_status_id};
 ```
 
-## Working with Non-Standard Datasources
+## Working with non-standard data sources
 
-In some cases, certain datasources may not fully align with the standard behavior described above. This is due to differences in how various datasources handle query execution and configuration.
+In some cases, certain data sources may not fully align with the standard behavior described above. This is due to differences in how various data sources handle query execution and configuration.
 
 For example, when using `Trino`, some internal parameters — such as `refId` — are not automatically passed in the payload. As a result, queries may not execute correctly or may fail altogether unless additional configuration is provided.
 
-To work around this limitation, you may need to manually modify the JSON configuration file and explicitly define missing parameters like `refId`. Alternatively, other custom integration strategies may be required depending on the datasource.
+To work around this limitation, you may need to manually modify the JSON configuration file and explicitly define missing parameters like `refId`. Alternatively, other custom integration strategies may be required depending on the data source.
 
 This is not considered a bug.
 
-When configuring nested datasource options in the Business Table panel, we rely on Grafana’s built-in `getDataSourceSrv` from `@grafana/runtime` to resolve and interact with datasources. The same mechanism is used when editing or executing queries.
+When configuring nested data source options in the Business Table panel, we rely on Grafana’s built-in `getdata sourceSrv` from `@grafana/runtime` to resolve and interact with data sources. The same mechanism is used when editing or executing queries.
 
-In the case of datasources like PostgreSQL, parameters such as refId are automatically included by the datasource plugin itself. However, for datasources like Trino, manual configuration may be necessary, as these plugins may not inject such values by default.
+In the case of data sources like PostgreSQL, parameters such as refId are automatically included by the data source plugin itself. However, for data sources like Trino, manual configuration may be necessary, as these plugins may not inject such values by default.
 
-We do not implement custom handling for each datasource. Instead, we delegate the request to useDatasourceRequest, which consumes the full request configuration using the standard Grafana runtime.
+We do not implement custom handling for each data source. Instead, we delegate the request to usedata sourceRequest, which consumes the full request configuration using the standard Grafana runtime.

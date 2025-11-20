@@ -38,7 +38,7 @@ Use **Add data** parameter category to specify:
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/add.png" class="border" alt="Steps to configure the Add a row functionality on the Business Table panel." >}}
 
-## Add Request
+## Add request
 
 Configure the **Add Request** (the request that takes user-entered values and transmits them into your data source, serving as a bridge between user input and data source) in the **Add Data** section.
 

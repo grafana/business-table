@@ -35,7 +35,7 @@ Use **Delete data** parameter category to specify:
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/delete-conf.png" class="border" alt="Steps to configure the Delete a row functionality on the Business Table panel." >}}
 
-## Delete Request
+## Delete request
 
 Configure the **Delete Request** in the **Delete Data** section.
 

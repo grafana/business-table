@@ -21,7 +21,7 @@ To allow the edit action on a column, turn the appropriate switch on. With that 
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/edit-tag.png" class="border" alt="To allow the edit action on a column, turn the appropriate switch on." >}}
 
-## Update Request
+## Update request
 
 Configure the **Update Request** (the request that takes user-entered values and transmits them into your data source, serving as a bridge between user input and data source) in the **Edit Data** -> **Settings** section.
 

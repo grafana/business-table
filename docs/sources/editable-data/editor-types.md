@@ -69,7 +69,7 @@ The **String** type allows a user to enter any value.
 ## Text Area
 
 {{< admonition type="note" >}}
-**Text Ares** editor type is available starting from version 1.9.0.
+**Text Area** editor type is available starting from version 1.9.0.
 {{< /admonition >}}
 
 The **Text Area** editor type is designed to add and edit multi-row text values.

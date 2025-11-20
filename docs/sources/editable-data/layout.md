@@ -33,7 +33,7 @@ The **Boolean** type displays a checkmark in a circle for a `true` value and an 
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/boolean-type.png" class="border" alt="An example of the Boolean type in the Business Table panel." >}}
 
-### Colored Background
+### Colored background
 
 The **Colored background** types changes the cell background colors following the Grafana **Thresholds** configuration.
 
@@ -87,7 +87,7 @@ This is the first line.\
 And this is the second line.
 ```
 
-## Other Layout parameters
+## Other layout parameters
 
 | Section                                                       | Description                                         |
 | ------------------------------------------------------------- | --------------------------------------------------- |

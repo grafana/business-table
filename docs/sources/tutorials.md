@@ -17,15 +17,15 @@ Welcome to the Business Table tutorials for Grafana! The Business Table panel en
 
 This page contains clear, step-by-step video tutorials that showcase new features and tackle the most common challenges users face. The goal is to make your experience with Business Suite as seamless and productive as possible.
 
-## Why Choose Business Table?
+## Why choose Business Table?
 
 Discover why the Business Table panel is Grafana’s hidden gem for turning raw data into meaningful, interactive dashboards. Learn how it can streamline workflows and enhance data-driven decision-making in this [blog post](https://volkovlabs.io/blog/business-table-advantage/).
 
-## Key Features and Tutorials by Version
+## Key features and tutorials by version
 
 Explore the evolution of the Business Table panel through its major releases. Each version introduces powerful features to enhance data interaction and visualization in Grafana.
 
-### Version 1.9.0: Add, Edit, and Delete Rows
+### Version 1.9.0: Add, edit, and delete rows
 
 Business Table 1.9.0 brings robust row manipulation capabilities, allowing you to add, edit, and delete rows directly from your Grafana dashboard. This release also includes support for Grafana Thresholds, image display, integration with other panels, and more.
 
@@ -35,7 +35,7 @@ Business Table 1.9.0 brings robust row manipulation capabilities, allowing you t
 This release makes data management interactive and intuitive—ideal for real-time updates and dynamic dashboards!
 {{< /admonition >}}
 
-### Version 1.5.0: Editable Tables and Nested Objects
+### Version 1.5.0: Editable tables and nested objects
 
 Dive into Business Table 1.5.0 with Daria’s step-by-step tutorial. This video covers core editing features and introduces an experimental feature for working with nested objects, enabling you to handle complex data structures with ease.
 
@@ -45,7 +45,7 @@ Dive into Business Table 1.5.0 with Daria’s step-by-step tutorial. This video 
 Nested objects unlock new possibilities for managing intricate data hierarchies—experiment with this feature today!
 {{< /admonition >}}
 
-### Version 1.3.0: Feature Overview and Cell Editing
+### Version 1.3.0: Feature overview and cell editing
 
 Get a comprehensive overview of Business Table 1.3.0’s capabilities, including the highly requested feature to edit cell data directly within the panel. This tutorial is perfect for beginners looking to get started.
 

@@ -94,7 +94,7 @@ Clicking on a cell with the value `device10` will change the value of the Text v
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/click-variable-change.png" class="border" alt="Click on cell to change variable." >}}
 
-## Support of the Standard options
+## Support of the standard options
 
 {{< admonition type="note" >}}
 The feature is supported starting from version 1.5.0

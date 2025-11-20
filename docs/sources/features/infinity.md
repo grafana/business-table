@@ -1,6 +1,6 @@
 ---
 title: Infinity data source
-description: Learn how to integrate external data sources like Google Sheets into the Business Table panel using the Infinity Data Source with JSON and CSV formats.
+description: Learn how to integrate external data sources like Google Sheets into the Business Table panel using the Infinity data source with JSON and CSV formats.
 keywords:
   - business table
 labels:
@@ -10,11 +10,11 @@ labels:
     - cloud
 ---
 
-# Infinity Data Source
+# Infinity data source
 
-The Infinity Data Source is a powerful tool that allows you to seamlessly integrate data from external sources, such as Google Sheets, into the Business Table panel. Whether you're working with JSON or CSV formats, this data source simplifies the process of fetching and displaying spreadsheet data in your dashboards.
+The Infinity data source is a powerful tool that allows you to seamlessly integrate data from external sources, such as Google Sheets, into the Business Table panel. Whether you're working with JSON or CSV formats, this data source simplifies the process of fetching and displaying spreadsheet data in your dashboards.
 
-This guide will walk you through the steps to configure the Infinity Data Source for both JSON and CSV imports.
+This guide will walk you through the steps to configure the Infinity data source for both JSON and CSV imports.
 
 ## Import as JSON
 
@@ -50,6 +50,6 @@ To retrieve spreadsheet data in CSV format from Google Sheets:
 
 ## Conclusion
 
-Integrating Google Sheets data into your Business Table panel using the Infinity Data Source is a straightforward process that opens up endless possibilities for data visualization and analysis. By following the steps outlined above, you can effortlessly import data in either JSON or CSV format and tailor your dashboards to meet your specific needs.
+Integrating Google Sheets data into your Business Table panel using the Infinity data source is a straightforward process that opens up endless possibilities for data visualization and analysis. By following the steps outlined above, you can effortlessly import data in either JSON or CSV format and tailor your dashboards to meet your specific needs.
 
 If you encounter any issues or have further questions, feel free to explore additional resources or reach out to the community for support.

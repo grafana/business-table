@@ -82,7 +82,7 @@ To grant access to your Google Spreadsheet for the created service account, foll
 Ensure that the service account email is correctly copied from your Google Cloud Console. If the email is incorrect or the service account lacks necessary permissions at the project level, access will be denied.
 {{< /admonition >}}
 
-## Configure Infinity Data Source
+## Configure Infinity data source
 
 Set up the Infinity data source to authenticate with Google Sheets:
 
