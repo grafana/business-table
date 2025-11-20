@@ -151,9 +151,9 @@ from orders oo order by oo.order_id;
 
 In the Business Table options -> **Layout** ensure to:
 
-- Add a column to display the nested objects/comments,
-- Set its type to **Nested Objects**,
-- Select the configured **Object** from the list.
+1. Add a column to display the nested objects/comments,
+1. Set its type to **Nested Objects**,
+1. Select the configured **Object** from the list.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/layout.png" class="border" alt="Add and configure the column with nested objects/comments in the Layout category." >}}
 
@@ -192,11 +192,12 @@ There are three actions you can allow users to perform on the nested objects/com
 
 To configure actions and access to them, use the **Nested objects**->Column name->**Operations**:
 
-- Set the **Add Options**, **Update Options**, **Delete Optiouns** switch to ON.
-- Select **Check** parameter, where you have three options:
-  - **By Org User Role**. With that, specify roles that should have access to this action. It is a multi-select drop-down with the following values: **Admin**, **Editor**, **Viewer**, **None**.
-  - **Always Allowed**. Any user will have access to this action.
-  - **By Backend**. With that, specify a data frame column name with a boolean type. If the returned value is **true**, the access is given. If the returned value is **false**, the access is NOT given.
+1. Set the **Add Options**, **Update Options**, **Delete Options** switch to ON.
+1. Select **Check** parameter, where you have three options:
+
+   - **By Org User Role**. With that, specify roles that should have access to this action. It is a multi-select drop-down with the following values: **Admin**, **Editor**, **Viewer**, **None**.
+   - **Always Allowed**. Any user will have access to this action.
+   - **By Backend**. With that, specify a data frame column name with a boolean type. If the returned value is **true**, the access is given. If the returned value is **false**, the access is NOT given.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/action-config.png" class="border" alt="Action configuration example." >}}
 

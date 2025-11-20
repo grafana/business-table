@@ -24,13 +24,13 @@ Ensure to have at least version 1.9.0 of the Business Table and access to all th
 
 You can configure 7 data flows:
 
-1. Add data
-1. Edit data
-1. Delete data
-1. Nested objects->Get Options
-1. Nested objects->Add Options
-1. Nested objects->Edit Options
-1. Nested objects->Delete Options
+- Add data
+- Edit data
+- Delete data
+- Nested objects->Get Options
+- Nested objects->Add Options
+- Nested objects->Edit Options
+- Nested objects->Delete Options
 
 {{< youtube id="tNa14EULUQo" >}}
 

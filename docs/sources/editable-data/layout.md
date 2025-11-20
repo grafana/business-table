@@ -114,7 +114,7 @@ To add a column to an existing tab, use the **New Column** parameter.
 
 This feature allows you to combine unique field values into groups and collapse/expand using little arrows to create a layout similar to Tree View.
 
-{{< video-embed src="/media/docs/grafana/panels-visualizations/business-table/table-treeview.mp4" >}}
+{{< video-embed src="/media/docs/grafana/panels-visualizations/business-table/table-treeview.mp4" class="border" >}}
 
 Below is the steps of how to configure Business Table panel Tree View.
 

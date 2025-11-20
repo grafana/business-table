@@ -29,12 +29,12 @@ Below are details on how you can configure the add a row feature.
 
 Use **Add data** parameter category to specify:
 
-1. Which tabs of your Business Table panel should allow to add a row.
-1. What columns should a user specify while adding a new row. It is done by turning on the switch next to a column name.
-1. The [**Editor Type**](/plugins/business-table/editor-types) is a UI element to enter a new value.
-1. [Permission](/plugins/business-table/permission) is a granular control of who is allowed to add a new row.
-1. **Add Request** consists of a data source and the query.
-1. Ensure to set **Layout**->**Show header** to ON, so users have access to the add a row (icon plus) button.
+- Which tabs of your Business Table panel should allow to add a row.
+- What columns should a user specify while adding a new row. It is done by turning on the switch next to a column name.
+- The [**Editor Type**](/plugins/business-table/editor-types) is a UI element to enter a new value.
+- [Permission](/plugins/business-table/permission) is a granular control of who is allowed to add a new row.
+- **Add Request** consists of a data source and the query.
+- Ensure to set **Layout**->**Show header** to ON, so users have access to the add a row (icon plus) button.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/add.png" class="border" alt="Steps to configure the Add a row functionality on the Business Table panel." >}}
 

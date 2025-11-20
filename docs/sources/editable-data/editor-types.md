@@ -16,7 +16,7 @@ import Image from "@theme/Image";
 
 The **Editor types** are the UI type elements for the columns when a user adds/edits a data row.
 
-{{< figure src="/media/docs/grafana/panels-visualizations/business-table/editor-types.png" class="border" alt="Types of the addible/editable columns." >}}
+{{< figure src="/media/docs/grafana/panels-visualizations/business-table/editor-types.png" max-width="350px" class="border" alt="Types of the addible/editable columns." >}}
 
 ## Date Time
 
