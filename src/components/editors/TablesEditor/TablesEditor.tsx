@@ -250,6 +250,7 @@ export const TablesEditor: React.FC<Props> = ({ context: { options, data }, onCh
                                   />
                                 </InlineField>
                                 <Button
+                                  tooltip="Cancel edit"
                                   variant="secondary"
                                   fill="text"
                                   className={styles.actionButton}
@@ -284,6 +285,7 @@ export const TablesEditor: React.FC<Props> = ({ context: { options, data }, onCh
                             <>
                               {editItem !== item.name && (
                                 <Button
+                                  aria-label="Rename"
                                   icon="edit"
                                   variant="secondary"
                                   fill="text"
@@ -300,6 +302,7 @@ export const TablesEditor: React.FC<Props> = ({ context: { options, data }, onCh
                                 />
                               )}
                               <Button
+                                aria-label="Remove"
                                 icon="trash-alt"
                                 variant="secondary"
                                 fill="text"
