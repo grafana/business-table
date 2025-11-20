@@ -24,13 +24,13 @@ Ensure to have at least version 1.9.0 of the Business Table and access to all th
 
 You can configure 7 data flows:
 
-1.  Add data
-2.  Edit data
-3.  Delete data
-4.  Nested objects->Get Options
-5.  Nested objects->Add Options
-6.  Nested objects->Edit Options
-7.  Nested objects->Delete Options
+1. Add data
+1. Edit data
+1. Delete data
+1. Nested objects->Get Options
+1. Nested objects->Add Options
+1. Nested objects->Edit Options
+1. Nested objects->Delete Options
 
 {{< youtube id="tNa14EULUQo" >}}
 
@@ -49,10 +49,14 @@ Some highlights of data editing in the Business Table panel:
 
 ## Categories
 
-| Category                                          | Description                                                                                                                                                                                                                                    |
-| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Layout](/plugins/business-table/layout/)         | The **Layout** parameter category determines the set of tabs and then the set of columns and their types for each tab.                                                                                                                         |
+<!-- prettier-ignore-start -->
+
+| Category                                          | Description                                                                                                            |
+| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| [Layout](/plugins/business-table/layout/)         | The **Layout** parameter category determines the set of tabs and then the set of columns and their types for each tab. |
 | [Add Data](/plugins/business-table/add/)          | The **Add Data** parameter category determines the tabs where a user can add data, then the columns that should be populated when a row is being added, **Editor Type** for every such column, **Data Source** with **Query**, and permission. |
-| [Edit Data](/plugins/business-table/edit/)        | The **Edit Data** parameter category determines the columns that should be populated when a row is being edited, **Editor Type** for every such column, **Data Source** with **Query**, and permission.                                        |
-| [Delete Data](/plugins/business-table/delete/)    | The **Delete Data** parameter category determines the tabs where a user can delete a data row, **Data Source** with **Query**, and permission.                                                                                                 |
-| [Nested Objects](/plugins/business-table/nested/) | The **Nested Objects** parameter category collects settings for the **Nested Objects** display along with add/edit/delete functionality.                                                                                                       |
+| [Edit Data](/plugins/business-table/edit/)        | The **Edit Data** parameter category determines the columns that should be populated when a row is being edited, **Editor Type** for every such column, **Data Source** with **Query**, and permission. |
+| [Delete Data](/plugins/business-table/delete/)    | The **Delete Data** parameter category determines the tabs where a user can delete a data row, **Data Source** with **Query**, and permission. |
+| [Nested Objects](/plugins/business-table/nested/) | The **Nested Objects** parameter category collects settings for the **Nested Objects** display along with add/edit/delete functionality. |
+
+<!-- prettier-ignore-end -->

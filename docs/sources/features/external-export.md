@@ -9,7 +9,6 @@ labels:
     - oss
     - cloud
 ---
-import Image from "@theme/Image";
 
 # External export
 
@@ -48,36 +47,36 @@ Before exporting data, prepare the target spreadsheet to receive the data:
 To enable data export to Google Sheets, create a service account with the necessary permissions:
 
 1. Navigate to [Google Cloud Console](https://console.cloud.google.com).
-2. Create a new project or select an existing one.
+1. Create a new project or select an existing one.
 
    {{< figure src="/media/docs/grafana/panels-visualizations/business-table/google-cloud.png" class="border" alt="Select Project in Google Cloud" >}}
 
-3. Go to **APIs & Services** > **Enable APIs and Services**.
-4. Search for `Google Sheets API` and enable it for your project.
+1. Go to **APIs & Services** > **Enable APIs and Services**.
+1. Search for `Google Sheets API` and enable it for your project.
 
    {{< figure src="/media/docs/grafana/panels-visualizations/business-table/enabled-sheets-api.png" class="border" alt="Enabled API for Google Cloud Project" >}}
 
-5. Click **Manage this API** > **Credentials** > **Manage Service Accounts**.
-6. Click **Create Service Account**, provide a name, and set the role to `Editor`.
+1. Click **Manage this API** > **Credentials** > **Manage Service Accounts**.
+1. Click **Create Service Account**, provide a name, and set the role to `Editor`.
 
    {{< figure src="/media/docs/grafana/panels-visualizations/business-table/permission-role.png" class="border" alt="Select Role as Editor" >}}
 
-7. Go to the **Credentials** menu, edit the service account, and navigate to the **Keys** section.
-8. Click **Add Key**, select `JSON` as the key type, and save the file.
+1. Go to the **Credentials** menu, edit the service account, and navigate to the **Keys** section.
+1. Click **Add Key**, select `JSON` as the key type, and save the file.
 
    {{< figure src="/media/docs/grafana/panels-visualizations/business-table/key-type.png" class="border" alt="Select Key Type as JSON" >}}
 
-9. Download JSON key file and use it to configure Infinity data source.
+1. Download JSON key file and use it to configure Infinity data source.
 
 ## Update Google Spreadsheet permissions
 
 To grant access to your Google Spreadsheet for the created service account, follow these steps:
 
 1. Open your Google Spreadsheet.
-2. Click the **Share** button in the top-right corner of the screen.
-3. In the "Share with people and groups" field, enter the service account email address (e.g., `test-account@test-spreadsheets.iam.gserviceaccount.com`).
-4. Set the permission level to **Editor** to allow the service account to modify the spreadsheet.
-5. Click **Send** or **Done** to save the changes.
+1. Click the **Share** button in the top-right corner of the screen.
+1. In the "Share with people and groups" field, enter the service account email address (e.g., `test-account@test-spreadsheets.iam.gserviceaccount.com`).
+1. Set the permission level to **Editor** to allow the service account to modify the spreadsheet.
+1. Click **Send** or **Done** to save the changes.
 
 {{< admonition type="note" >}}
 Ensure that the service account email is correctly copied from your Google Cloud Console. If the email is incorrect or the service account lacks necessary permissions at the project level, access will be denied.
@@ -88,12 +87,12 @@ Ensure that the service account email is correctly copied from your Google Cloud
 Set up the Infinity data source to authenticate with Google Sheets:
 
 1. In Grafana, create or open an Infinity data source.
-2. Go to the **Authentication** tab.
-3. Select **Other Authentication** > **Provider: Google JWT**.
-4. Upload the JSON key file downloaded from Google Cloud Console.
-5. Set the `Scopes` field to `https://www.googleapis.com/auth/spreadsheets`.
-6. Add the following allowed hosts: `https://docs.google.com`, `https://sheets.googleapis.com`, `docs.google.com`, `sheets.googleapis.com`.
-7. Click **Save and Test** to verify the configuration.
+1. Go to the **Authentication** tab.
+1. Select **Other Authentication** > **Provider: Google JWT**.
+1. Upload the JSON key file downloaded from Google Cloud Console.
+1. Set the `Scopes` field to `https://www.googleapis.com/auth/spreadsheets`.
+1. Add the following allowed hosts: `https://docs.google.com`, `https://sheets.googleapis.com`, `docs.google.com`, `sheets.googleapis.com`.
+1. Click **Save and Test** to verify the configuration.
 
    {{< figure src="/media/docs/grafana/panels-visualizations/business-table/auth-config-infinity.png" class="border" alt="Infinity Data Source Authentication Configuration" >}}
 
@@ -107,9 +106,9 @@ Configure the Business Table panel to send data to Google Sheets:
 
    {{< figure src="/media/docs/grafana/panels-visualizations/business-table/configured-panel.png" class="border" alt="Configured Business Table Panel" >}}
 
-2. In the panel settings, go to **Advanced Options** > **External Export** and enable it.
-3. Select your configured Infinity data source.
-4. Set the following options:
+1. In the panel settings, go to **Advanced Options** > **External Export** and enable it.
+1. Select your configured Infinity data source.
+1. Set the following options:
 
    - **Type**: `JSON`
    - **Parser**: `backend`
@@ -129,7 +128,7 @@ Configure the Business Table panel to send data to Google Sheets:
      }
      ```
 
-5. (Optional) Test with hardcoded data:
+1. (Optional) Test with hardcoded data:
 
    ```json
    {
@@ -145,11 +144,11 @@ Configure the Business Table panel to send data to Google Sheets:
 
    {{< figure src="/media/docs/grafana/panels-visualizations/business-table/put-configuration.png" class="border" alt="Request Configuration for Infinity Data Source" >}}
 
-6. Save the dashboard and click the **Export** button to send data to Google Sheets.
+1. Save the dashboard and click the **Export** button to send data to Google Sheets.
 
-:::warning
+{{< admonition type="warning" >}}
 Infinity data source may return a "status OK" even if there is an error. Check the **Network** tab in your browser's developer tools if the export fails.
-:::
+{{< /admonition >}}
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/filled-table.png" class="border" alt="Google Sheets Data After Successful Export" >}}
 

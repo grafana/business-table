@@ -29,9 +29,9 @@ Below are details on how you can configure the delete a row feature.
 
 Use **Delete data** parameter category to specify:
 
-1.  Which tabs of your Business Table panel should allow to delete a row.
-2.  [Permission](/plugins/business-table/permission) is a granular control of who is allowed to delete a row.
-3.  **Delete Request** consists of a data source and the query.
+1. Which tabs of your Business Table panel should allow to delete a row.
+1. [Permission](/plugins/business-table/permission) is a granular control of who is allowed to delete a row.
+1. **Delete Request** consists of a data source and the query.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/delete-conf.png" class="border" alt="Steps to configure the Delete a row functionality on the Business Table panel." >}}
 

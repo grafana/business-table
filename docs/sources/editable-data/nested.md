@@ -10,7 +10,6 @@ labels:
     - cloud
 weight: 60
 ---
-import Image from "@theme/Image";
 
 # Nested objects
 
@@ -160,16 +159,16 @@ In the Business Table options -> **Layout** ensure to:
 
 In the **Nested objects** category:
 
-1.  Add a column to display nested objects/comments.
-2.  Select a type. Only the **Card** type exists for now.
-3.  Configure the query to fetch the nested objects/comments initially in the **Get options**.
-4.  Specify a data source where your nested objects/comments are kept.
-5.  Create a query. In this example, I use the SQL query with predefined `${payload.ids:csv}` as a combined list of identifiers.
-6.  Ensure that **Id Field** is populated with the column name containing the unique comment identifier.
-7.  Configure the comment card. See below for more details.
-8.  Set the nested objects/comments sorting: **Show first**, **None**, **Show latest**.
-9.  Specify how many nested objects/comments to show at once.
-10. Configure the allowed actions and user privileges. See below for more details.
+1. Add a column to display nested objects/comments.
+1. Select a type. Only the **Card** type exists for now.
+1. Configure the query to fetch the nested objects/comments initially in the **Get options**.
+1. Specify a data source where your nested objects/comments are kept.
+1. Create a query. In this example, I use the SQL query with predefined `${payload.ids:csv}` as a combined list of identifiers.
+1. Ensure that **Id Field** is populated with the column name containing the unique comment identifier.
+1. Configure the comment card. See below for more details.
+1. Set the nested objects/comments sorting: **Show first**, **None**, **Show latest**.
+1. Specify how many nested objects/comments to show at once.
+1. Configure the allowed actions and user privileges. See below for more details.
 
 {{< figure src="/media/docs/grafana/panels-visualizations/business-table/nested.png" class="border" alt="Configure a column in the Nested objects category." >}}
 

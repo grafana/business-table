@@ -8,12 +8,7 @@ labels:
     - enterprise
     - oss
     - cloud
-hide_table_of_contents: True
 ---
-import Feedback from "../_feedback.mdx";
-import GettingStarted from "./_getting_started.mdx";
-import Image from "@theme/Image";
-import Tutorial from "./_tutorial.mdx";
 
 # Business Table
 
@@ -72,4 +67,3 @@ We have many other tutorials that you can find helpful. You can review all relat
 
 Apache License Version 2.0, see [LICENSE](https://github.com/volkovlabs/business-table/blob/main/LICENSE).
 
-<Feedback />

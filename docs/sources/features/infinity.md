@@ -9,7 +9,6 @@ labels:
     - oss
     - cloud
 ---
-import Image from "@theme/Image";
 
 # Infinity Data Source
 

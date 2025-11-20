@@ -10,7 +10,6 @@ labels:
     - cloud
 weight: 10
 ---
-import Image from "@theme/Image";
 
 # Layout
 

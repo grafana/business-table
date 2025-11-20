@@ -10,7 +10,6 @@ labels:
     - cloud
 weight: 70
 ---
-import Image from "@theme/Image";
 
 # Permission
 

@@ -10,8 +10,6 @@ labels:
     - oss
     - cloud
 weight: 50
-image: /img/suite.png
-hide_table_of_contents: True
 ---
 
 # Release notes
