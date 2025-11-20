@@ -96,7 +96,7 @@ Set up the Infinity data source to authenticate with Google Sheets:
 
    {{< figure src="/media/docs/grafana/panels-visualizations/business-table/auth-config-infinity.png" class="border" alt="Infinity Data Source Authentication Configuration" >}}
 
-8. Go to **URL, Headers & Params** > **URL Settings** and set `Allow Dangerous HTTP Methods` to `true`.
+1. Go to **URL, Headers & Params** > **URL Settings** and set `Allow Dangerous HTTP Methods` to `true`.
 
 ## Configure export request in Business Table
 
