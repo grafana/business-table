@@ -3,7 +3,7 @@ import { getTemplateSrv } from '@grafana/runtime';
 import { BarGaugeDisplayMode, BarGaugeValueMode } from '@grafana/schema';
 import { InlineField, InlineFieldRow, InlineSwitch, Input, RadioButtonGroup, Select, Slider, StatsPicker } from '@grafana/ui';
 import { NumberInput } from '@volkovlabs/components';
-import React, { useMemo, useState } from 'react';
+import React, { useId, useMemo, useState } from 'react';
 
 import { FieldsGroup } from '@/components';
 import { ColorEditor, FieldPicker } from '@/components/editors';
@@ -309,6 +309,8 @@ export const ColumnEditor: React.FC<Props> = ({ value, onChange, data, isAggrega
    */
   const [gaugeValueSize, setGaugeValueSize] = useState(value.gauge?.valueSize ?? GAUGE_DEFAULT_VALUE_SIZE);
   const [showingRows, setShowingRows] = useState(value.showingRows ?? DEFAULT_SHOWING_ROWS);
+  const numRowsId = useId();
+  const valueSizeId = useId();
 
   /**
    * Current field
@@ -399,6 +401,7 @@ export const ColumnEditor: React.FC<Props> = ({ value, onChange, data, isAggrega
                   showingRows: rows!,
                 });
               }}
+              inputId={numRowsId}
               {...TEST_IDS.columnEditor.fieldShowingRows.apply()}
             />
           </InlineField>
@@ -594,6 +597,7 @@ export const ColumnEditor: React.FC<Props> = ({ value, onChange, data, isAggrega
                       },
                     });
                   }}
+                  inputId={valueSizeId}
                   {...TEST_IDS.columnEditor.fieldGaugeValueTextSize.apply()}
                 />
               </InlineField>

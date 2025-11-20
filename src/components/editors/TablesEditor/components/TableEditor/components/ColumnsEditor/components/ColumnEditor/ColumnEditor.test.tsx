@@ -162,11 +162,11 @@ describe('ColumnEditor', () => {
       })
     );
 
-    expect(selectors.fieldShowingRows()).toBeInTheDocument();
-    expect(selectors.fieldShowingRows()).toHaveValue('10');
+    expect(screen.getByLabelText('Show rows')).toBeInTheDocument();
+    expect(screen.getByLabelText('Show rows')).toHaveValue('10');
 
-    fireEvent.change(selectors.fieldShowingRows(), { target: { value: 5 } });
-    fireEvent.blur(selectors.fieldShowingRows(), { target: { value: 5 } });
+    fireEvent.change(screen.getByLabelText('Show rows'), { target: { value: 5 } });
+    fireEvent.blur(screen.getByLabelText('Show rows'), { target: { value: 5 } });
 
     expect(onChange).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -185,12 +185,11 @@ describe('ColumnEditor', () => {
       })
     );
 
-    expect(selectors.fieldShowingRows()).toBeInTheDocument();
-    expect(selectors.fieldShowingRows()).toHaveValue('20');
+    expect(screen.getByLabelText('Show rows')).toBeInTheDocument();
+    expect(screen.getByLabelText('Show rows')).toHaveValue('20');
 
-    fireEvent.change(selectors.fieldShowingRows(), { target: { value: 5 } });
-    fireEvent.blur(selectors.fieldShowingRows(), { target: { value: 5 } });
-
+    fireEvent.change(screen.getByLabelText('Show rows'), { target: { value: 5 } });
+    fireEvent.blur(screen.getByLabelText('Show rows'), { target: { value: 5 } });
     expect(onChange).toHaveBeenCalledWith(
       expect.objectContaining({
         showingRows: 5,
@@ -1012,10 +1011,10 @@ describe('ColumnEditor', () => {
         })
       );
 
-      expect(selectors.fieldGaugeValueTextSize()).toBeInTheDocument();
+      expect(screen.getByLabelText('Value size')).toBeInTheDocument();
 
-      fireEvent.change(selectors.fieldGaugeValueTextSize(), { target: { value: 16 } });
-      fireEvent.blur(selectors.fieldGaugeValueTextSize(), { target: { value: 16 } });
+      fireEvent.change(screen.getByLabelText('Value size'), { target: { value: 16 } });
+      fireEvent.blur(screen.getByLabelText('Value size'), { target: { value: 16 } });
 
       expect(onChange).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -1038,12 +1037,11 @@ describe('ColumnEditor', () => {
         })
       );
 
-      expect(selectors.fieldGaugeValueTextSize()).toBeInTheDocument();
-      expect(selectors.fieldGaugeValueTextSize()).toHaveValue('14');
+      expect(screen.getByLabelText('Value size')).toBeInTheDocument();
+      expect(screen.getByLabelText('Value size')).toHaveValue('14');
 
-      fireEvent.change(selectors.fieldGaugeValueTextSize(), { target: { value: 16 } });
-      fireEvent.blur(selectors.fieldGaugeValueTextSize(), { target: { value: 16 } });
-
+      fireEvent.change(screen.getByLabelText('Value size'), { target: { value: 16 } });
+      fireEvent.blur(screen.getByLabelText('Value size'), { target: { value: 16 } });
       expect(onChange).toHaveBeenCalledWith(
         expect.objectContaining({
           gauge: expect.objectContaining({
