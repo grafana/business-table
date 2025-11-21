@@ -178,6 +178,7 @@ export const NestedObjectsEditor: React.FC<Props> = ({ context: { data }, value,
                         />
                       </InlineField>
                       <Button
+                        tooltip="Cancel edit"
                         variant="secondary"
                         fill="text"
                         className={styles.actionButton}
@@ -208,6 +209,7 @@ export const NestedObjectsEditor: React.FC<Props> = ({ context: { data }, value,
                   <>
                     {editItem !== item.name && (
                       <Button
+                        aria-label="Rename"
                         icon="edit"
                         variant="secondary"
                         fill="text"
@@ -224,6 +226,7 @@ export const NestedObjectsEditor: React.FC<Props> = ({ context: { data }, value,
                       />
                     )}
                     <Button
+                      aria-label="Remove"
                       icon="trash-alt"
                       variant="secondary"
                       fill="text"
