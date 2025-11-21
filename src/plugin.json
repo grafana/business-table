@@ -16,7 +16,7 @@
       {
         "name": "Documentation",
         "url": "https://grafana.com/docs/plugins/volkovlabs-table-panel/"
-      },
+      }
     ],
     "logos": {
       "large": "img/logo.svg",
