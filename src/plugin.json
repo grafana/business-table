@@ -14,6 +14,10 @@
     "keywords": ["table"],
     "links": [
       {
+        "name": "Repository",
+        "url": "https://github.com/grafana/business-table/"
+      },
+      {
         "name": "Documentation",
         "url": "https://grafana.com/docs/plugins/volkovlabs-table-panel/"
       }
