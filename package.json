@@ -27,7 +27,7 @@
   "description": "Simplify data visualization in table format",
   "devDependencies": {
     "@grafana/eslint-config": "^8.2.0",
-    "@grafana/plugin-e2e": "^2.1.8",
+    "@grafana/plugin-e2e": "^3.0.0",
     "@grafana/tsconfig": "^2.0.0",
     "@playwright/test": "^1.55.0",
     "@stylistic/eslint-plugin": "^5.6.1",
