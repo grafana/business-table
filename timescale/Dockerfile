@@ -1,4 +1,4 @@
-FROM node
+FROM node@sha256:9e69791906aaabda0fc123beb81861d53bcdf4e9611c15df0b916fff5c1ccc02
 
 ## Create app directory
 WORKDIR /app
