@@ -7,7 +7,7 @@ services:
       - 3000:3000/tcp
 
   grafana-dev:
-    image: ghcr.io/volkovlabs/app:latest
+    image: ghcr.io/volkovlabs/app:latest@sha256:7255f71881b7aa94198da4760a3c74fbbc5f6d16b592ec55f69c40c4e479b7be
     ports:
       - 3000:3000/tcp
     environment:
@@ -21,7 +21,7 @@ services:
       - dev
 
   grafana-main:
-    image: grafana/grafana:main
+    image: grafana/grafana:main@sha256:1b2cf66feab7f30b1718c5b65e66bc77abb4fe036036a1e705e22b087498a941
     ports:
       - 3000:3000/tcp
     environment:
@@ -35,7 +35,7 @@ services:
       - main
 
   grafana-dep:
-    image: grafana/grafana:11.0.0
+    image: grafana/grafana:11.0.0@sha256:0dc5a246ab16bb2c38a349fb588174e832b4c6c2db0981d0c3e6cd774ba66a54
     ports:
       - 3000:3000/tcp
     environment:
@@ -64,7 +64,7 @@ services:
       - e2e
 
   timescale:
-    image: timescale/timescaledb:latest-pg14
+    image: timescale/timescaledb:latest-pg14@sha256:0f5553d37abbe0f20bfe0a04dab5d1238955b5cda2711aba403090f95b6e51ff
     restart: always
     environment:
       POSTGRES_PASSWORD: postgres
