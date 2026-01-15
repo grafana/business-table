@@ -96,7 +96,19 @@ export const AddDataEditor: React.FC<Props> = ({ context: { data }, onChange, va
               </div>
             }
             isOpen={collapseState[item.name]}
-            onToggle={() => onToggleItemExpandedState(item.name)}
+            onToggle={(isOpen) => {
+              onToggleItemExpandedState(item.name)
+
+              if (isOpen) {
+                onChangeItem({
+                  ...item,
+                  addRow: {
+                    ...item.addRow,
+                    enabled: isOpen,
+                  },
+                });
+              }
+            }}
           >
             <div data-testid={testIds.itemContent.selector(item.name)}>
               <TableAddRowEditor value={item} onChange={onChangeItem} data={data} />

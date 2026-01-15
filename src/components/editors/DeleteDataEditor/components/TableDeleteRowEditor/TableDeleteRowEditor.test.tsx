@@ -76,9 +76,9 @@ describe('TableDeleteRowEditor', () => {
 
   describe('Request', () => {
     const openSection = () => {
-      expect(selectors.requestSectionHeader()).toBeInTheDocument();
+      expect(screen.getByText('Delete Request')).toBeInTheDocument();
 
-      fireEvent.click(selectors.requestSectionHeader());
+      fireEvent.click(screen.getByRole('button', { name: /Delete Request/ }));
 
       expect(selectors.requestSectionContent()).toBeInTheDocument();
     };

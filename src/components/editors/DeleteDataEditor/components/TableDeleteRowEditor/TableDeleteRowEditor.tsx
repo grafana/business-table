@@ -1,5 +1,5 @@
 import { DataFrame } from '@grafana/data';
-import { Collapse } from '@volkovlabs/components';
+import { Collapse } from '@grafana/ui';
 import React, { useState } from 'react';
 
 import { CustomMessagesEditor, FieldsGroup, PermissionEditor, RequestEditor } from '@/components';
@@ -81,7 +81,7 @@ export const TableDeleteRowEditor: React.FC<Props> = ({ value, onChange, data })
         />
       </FieldsGroup>
       <Collapse
-        title="Delete Request"
+        label="Delete Request"
         isOpen={expanded.request}
         onToggle={(isOpen) => {
           setExpanded({
@@ -89,22 +89,22 @@ export const TableDeleteRowEditor: React.FC<Props> = ({ value, onChange, data })
             request: isOpen,
           });
         }}
-        headerTestId={testIds.requestSectionHeader.selector()}
-        contentTestId={testIds.requestSectionContent.selector()}
       >
-        <RequestEditor
-          value={value.deleteRow.request}
-          onChange={(request) => {
-            onChange({
-              ...value,
-              deleteRow: {
-                ...value.deleteRow,
-                request,
-              },
-            });
-          }}
-          queryEditorDescription="Row to delete is placed in variable `${payload}`"
-        />
+        <div data-testid={testIds.requestSectionContent.selector()}>
+          <RequestEditor
+            value={value.deleteRow.request}
+            onChange={(request) => {
+              onChange({
+                ...value,
+                deleteRow: {
+                  ...value.deleteRow,
+                  request,
+                },
+              });
+            }}
+            queryEditorDescription="Row to delete is placed in variable `${payload}`"
+          />
+        </div>
       </Collapse>
     </>
   );
