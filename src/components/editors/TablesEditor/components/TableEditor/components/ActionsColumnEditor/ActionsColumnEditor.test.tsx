@@ -32,9 +32,9 @@ describe('ActionsColumnEditor', () => {
   const getComponent = (props: Partial<Props>) => <ActionsColumnEditor name="Default" data={[]} {...(props as any)} />;
 
   const openSection = () => {
-    expect(selectors.itemHeader()).toBeInTheDocument();
+    expect(screen.getByText(/\[actions\]\:/)).toBeInTheDocument();
 
-    fireEvent.click(selectors.itemHeader());
+    fireEvent.click(screen.getByRole('button', { name: /\[actions\]\:/ }));
   };
 
   const defaultValue = createActionsColumnConfig({
