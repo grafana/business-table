@@ -11,7 +11,7 @@ import {
   createTableRequestConfig,
 } from '@/utils';
 
-import { NestedObjectEditor } from './NestedObjectEditor';
+import { formatOperationLabel, NestedObjectEditor } from './NestedObjectEditor';
 
 /**
  * Props
@@ -158,8 +158,8 @@ describe('NestedObjectEditor', () => {
       })
     );
 
-    expect(selectors.getRequestSectionHeader()).toBeInTheDocument();
-    fireEvent.click(selectors.getRequestSectionHeader());
+    expect(screen.getByText('Get Options')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Get Options/ }));
 
     expect(selectors.getRequestSectionContent()).toBeInTheDocument();
     expect(selectors.requestEditor()).toBeInTheDocument();
@@ -188,7 +188,7 @@ describe('NestedObjectEditor', () => {
           })
         );
 
-        expect(selectors.operationSectionHeader(false, operation)).toBeInTheDocument();
+        expect(screen.getByText(`${formatOperationLabel(operation)} Options`)).toBeInTheDocument();
         expect(selectors.fieldOperationEnabled(false, operation)).toBeInTheDocument();
 
         fireEvent.click(selectors.fieldOperationEnabled(false, operation));
@@ -211,7 +211,7 @@ describe('NestedObjectEditor', () => {
           })
         );
 
-        expect(selectors.operationSectionHeader(false, operation)).toBeInTheDocument();
+        expect(screen.getByText(`${formatOperationLabel(operation)} Options`)).toBeInTheDocument();
         expect(selectors.fieldOperationEnabled(false, operation)).toBeInTheDocument();
 
         fireEvent.click(selectors.fieldOperationEnabled(false, operation));
@@ -236,9 +236,9 @@ describe('NestedObjectEditor', () => {
           })
         );
 
-        expect(selectors.operationSectionHeader(false, operation)).toBeInTheDocument();
+        expect(screen.getByText(`${formatOperationLabel(operation)} Options`)).toBeInTheDocument();
 
-        fireEvent.click(selectors.operationSectionHeader(false, operation));
+        fireEvent.click(screen.getByRole('button', { name: new RegExp(`${formatOperationLabel(operation)} Options`) }));
 
         expect(selectors.operationEditor()).toBeInTheDocument();
         fireEvent.change(selectors.operationEditor(), { target: { value: '123' } });

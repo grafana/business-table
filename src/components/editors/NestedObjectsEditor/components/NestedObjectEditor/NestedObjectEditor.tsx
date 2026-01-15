@@ -1,5 +1,5 @@
-import { Field, InlineField, InlineSwitch, Select, useStyles2 } from '@grafana/ui';
-import { AutosizeCodeEditor, Collapse } from '@volkovlabs/components';
+import { Collapse, Field, InlineField, InlineSwitch, Select, useStyles2 } from '@grafana/ui';
+import { AutosizeCodeEditor } from '@volkovlabs/components';
 import React, { useState } from 'react';
 
 import { CollapseTitle, FieldsGroup, RequestEditor } from '@/components';
@@ -57,7 +57,7 @@ const defaultOperationConfig: NestedObjectOperationConfig = {
 /**
  * Format Operation Label
  */
-const formatOperationLabel = (name: string): string => {
+export const formatOperationLabel = (name: string): string => {
   return name.charAt(0).toUpperCase() + name.slice(1);
 };
 
@@ -112,20 +112,19 @@ export const NestedObjectEditor: React.FC<Props> = ({ value, onChange }) => {
               get: isOpen,
             })
           }
-          title={<CollapseTitle>Get Options</CollapseTitle>}
-          fill="solid"
-          headerTestId={testIds.getRequestSectionHeader.selector()}
-          contentTestId={testIds.getRequestSectionContent.selector()}
+          label={<CollapseTitle>Get Options</CollapseTitle>}
         >
-          <RequestEditor
-            value={value.get}
-            onChange={(request) => {
-              onChange({
-                ...value,
-                get: request,
-              });
-            }}
-          />
+          <div data-testid={testIds.getRequestSectionContent.selector()}>
+            <RequestEditor
+              value={value.get}
+              onChange={(request) => {
+                onChange({
+                  ...value,
+                  get: request,
+                });
+              }}
+            />
+          </div>
         </Collapse>
       </div>
       {EditorConfig && (
@@ -147,54 +146,65 @@ export const NestedObjectEditor: React.FC<Props> = ({ value, onChange }) => {
             <div key={operation} className={styles.collapseItem}>
               <Collapse
                 isOpen={expandedState[operation]}
-                onToggle={(isOpen) =>
+                onToggle={(isOpen) => {
                   setExpandedState({
                     ...expandedState,
                     [operation]: isOpen,
                   })
-                }
-                title={
-                  <CollapseTitle>
-                    {`${formatOperationLabel(operation)} Options`}
-                    <InlineSwitch
-                      transparent={true}
-                      value={config?.enabled ?? false}
-                      onChange={(event) => {
-                        const isEnabled = event.currentTarget.checked;
 
+                  if (isOpen) {
+                    onChange({
+                      ...value,
+                      [operation]: {
+                        ...(config || defaultOperationConfig),
+                        enabled: isOpen,
+                      },
+                    });
+                  }
+                }}
+                label={
+                  // can't set onClick on Switch since it's passed to the inner input element
+                  <div onClick={(event) => event.stopPropagation()}>
+                    <CollapseTitle>
+                      {`${formatOperationLabel(operation)} Options`}
+                      <InlineSwitch
+                        transparent={true}
+                        value={config?.enabled ?? false}
+                        onChange={(event) => {
+                          const isEnabled = event.currentTarget.checked;
+
+                          onChange({
+                            ...value,
+                            [operation]: {
+                              ...(config || defaultOperationConfig),
+                              enabled: isEnabled,
+                            },
+                          });
+
+                          setExpandedState({
+                            ...expandedState,
+                            [operation]: isEnabled,
+                          });
+                        }}
+                        {...testIds.fieldOperationEnabled.apply(operation)}
+                      />
+                    </CollapseTitle>
+                  </div>
+                }
+              >
+                <div data-testid={testIds.operationSectionContent.selector(operation)}>
+                  {config && (
+                    <NestedObjectOperationEditor
+                      value={config}
+                      onChange={(updatedConfig) => {
                         onChange({
                           ...value,
-                          [operation]: {
-                            ...(config || defaultOperationConfig),
-                            enabled: isEnabled,
-                          },
-                        });
-
-                        setExpandedState({
-                          ...expandedState,
-                          [operation]: isEnabled,
+                          [operation]: updatedConfig,
                         });
                       }}
-                      {...testIds.fieldOperationEnabled.apply(operation)}
                     />
-                  </CollapseTitle>
-                }
-                fill="solid"
-                isExpandDisabled={!config?.enabled}
-                headerTestId={testIds.operationSectionHeader.selector(operation)}
-                contentTestId={testIds.operationSectionContent.selector(operation)}
-              >
-                {config && (
-                  <NestedObjectOperationEditor
-                    value={config}
-                    onChange={(updatedConfig) => {
-                      onChange({
-                        ...value,
-                        [operation]: updatedConfig,
-                      });
-                    }}
-                  />
-                )}
+                  )}
+                </div>
               </Collapse>
             </div>
           );
