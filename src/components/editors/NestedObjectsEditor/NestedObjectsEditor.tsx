@@ -1,7 +1,6 @@
 import { cx } from '@emotion/css';
 import { StandardEditorProps } from '@grafana/data';
-import { Alert, Button, InlineField, InlineFieldRow, Input, useTheme2 } from '@grafana/ui';
-import { Collapse } from '@volkovlabs/components';
+import { Alert, Button, Collapse, InlineField, InlineFieldRow, Input, Stack, useTheme2 } from '@grafana/ui';
 import React, { useCallback, useMemo, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -154,98 +153,100 @@ export const NestedObjectsEditor: React.FC<Props> = ({ context: { data }, value,
             <div key={item.name} className={styles.item}>
               <Collapse
                 key={item.name}
-                title={
-                  editItem === item.name ? (
-                    <div
-                      className={cx(styles.itemHeader, styles.itemHeaderForm)}
-                      onClick={(event) => event.stopPropagation()}
-                    >
-                      <InlineField className={styles.fieldName} invalid={!isUpdatedNameValid}>
-                        <Input
-                          autoFocus={true}
-                          value={editName}
-                          onChange={(event) => setEditName(event.currentTarget.value)}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter' && isUpdatedNameValid) {
-                              onSaveName();
-                            }
+                label={
+                  <Stack data-testid={testIds.itemHeader.selector(item.name)} flex={1} alignItems="center" justifyContent="space-between">
+                    {editItem === item.name ? (
+                      <div
+                        className={cx(styles.itemHeader, styles.itemHeaderForm)}
+                        onClick={(event) => event.stopPropagation()}
+                      >
+                        <InlineField className={styles.fieldName} invalid={!isUpdatedNameValid}>
+                          <Input
+                            autoFocus={true}
+                            value={editName}
+                            onChange={(event) => setEditName(event.currentTarget.value)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' && isUpdatedNameValid) {
+                                onSaveName();
+                              }
 
-                            if (e.key === 'Escape') {
-                              onCancelEdit();
-                            }
-                          }}
-                          {...testIds.fieldName.apply()}
+                              if (e.key === 'Escape') {
+                                onCancelEdit();
+                              }
+                            }}
+                            {...testIds.fieldName.apply()}
+                          />
+                        </InlineField>
+                        <Button
+                          tooltip="Cancel edit"
+                          variant="secondary"
+                          fill="text"
+                          className={styles.actionButton}
+                          icon="times"
+                          size="sm"
+                          onClick={onCancelEdit}
+                          {...testIds.buttonCancelRename.apply()}
                         />
-                      </InlineField>
-                      <Button
-                        tooltip="Cancel edit"
-                        variant="secondary"
-                        fill="text"
-                        className={styles.actionButton}
-                        icon="times"
-                        size="sm"
-                        onClick={onCancelEdit}
-                        {...testIds.buttonCancelRename.apply()}
-                      />
-                      <Button
-                        variant="secondary"
-                        fill="text"
-                        className={styles.actionButton}
-                        icon="save"
-                        size="sm"
-                        onClick={onSaveName}
-                        disabled={!isUpdatedNameValid}
-                        tooltip={isUpdatedNameValid ? '' : 'Name is empty or table with the same name already exists.'}
-                        {...testIds.buttonSaveRename.apply()}
-                      />
-                    </div>
-                  ) : (
-                    <div className={cx(styles.itemHeader, styles.itemHeaderText)}>{item.name}</div>
-                  )
-                }
-                headerTestId={testIds.itemHeader.selector(item.name)}
-                contentTestId={testIds.itemContent.selector(item.name)}
-                actions={
-                  <>
-                    {editItem !== item.name && (
-                      <Button
-                        aria-label="Rename"
-                        icon="edit"
-                        variant="secondary"
-                        fill="text"
-                        size="sm"
-                        className={styles.actionButton}
-                        onClick={() => {
-                          /**
-                           * Start Edit
-                           */
-                          setEditName(item.name);
-                          setEditItem(item.name);
-                        }}
-                        {...testIds.buttonStartRename.apply()}
-                      />
+                        <Button
+                          variant="secondary"
+                          fill="text"
+                          className={styles.actionButton}
+                          icon="save"
+                          size="sm"
+                          onClick={onSaveName}
+                          disabled={!isUpdatedNameValid}
+                          tooltip={isUpdatedNameValid ? '' : 'Name is empty or table with the same name already exists.'}
+                          {...testIds.buttonSaveRename.apply()}
+                        />
+                      </div>
+                    ) : (
+                      <div className={cx(styles.itemHeader, styles.itemHeaderText)}>{item.name}</div>
                     )}
-                    <Button
-                      aria-label="Remove"
-                      icon="trash-alt"
-                      variant="secondary"
-                      fill="text"
-                      size="sm"
-                      className={styles.actionButton}
-                      onClick={() => {
-                        /**
-                         * Remove Item
-                         */
-                        onChangeItems(value.filter((column) => column.name !== item.name));
-                      }}
-                      {...testIds.buttonRemove.apply()}
-                    />
-                  </>
+                    <Stack alignItems="center" gap={0.5}>
+                      {editItem !== item.name && (
+                        <Button
+                          aria-label="Rename"
+                          icon="edit"
+                          variant="secondary"
+                          fill="text"
+                          size="sm"
+                          className={styles.actionButton}
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            /**
+                             * Start Edit
+                             */
+                            setEditName(item.name);
+                            setEditItem(item.name);
+                          }}
+                          {...testIds.buttonStartRename.apply()}
+                        />
+                      )}
+                      <Button
+                        aria-label="Remove"
+                        icon="trash-alt"
+                        variant="secondary"
+                        fill="text"
+                        size="sm"
+                        className={styles.actionButton}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          /**
+                           * Remove Item
+                           */
+                          onChangeItems(value.filter((column) => column.name !== item.name));
+                        }}
+                        {...testIds.buttonRemove.apply()}
+                      />
+                    </Stack>
+                  </Stack>
                 }
                 isOpen={collapseState[item.name]}
                 onToggle={() => onToggleItemExpandedState(item.name)}
               >
-                <NestedObjectEditor value={item} onChange={onChangeItem} />
+                <div data-testid={testIds.itemContent.selector(item.name)}>
+                  <NestedObjectEditor value={item} onChange={onChangeItem} />
+                </div>
               </Collapse>
             </div>
           ))}
