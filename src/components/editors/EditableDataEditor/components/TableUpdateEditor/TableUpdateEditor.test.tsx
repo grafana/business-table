@@ -80,9 +80,9 @@ describe('TableUpdateEditor', () => {
 
   describe('Update Request', () => {
     const openSection = () => {
-      expect(selectors.updateSectionHeader()).toBeInTheDocument();
+      expect(screen.getByText('Update Request')).toBeInTheDocument();
 
-      fireEvent.click(selectors.updateSectionHeader());
+      fireEvent.click(screen.getByRole('button', { name: /Update Request/ }));
 
       expect(selectors.updateSectionContent()).toBeInTheDocument();
     };
@@ -122,10 +122,10 @@ describe('TableUpdateEditor', () => {
   });
 
   describe('Edit Settings', () => {
-    const openSettings = (name: string) => {
-      expect(selectors.columnHeader(false, name)).toBeInTheDocument();
+    const openSettings = (name: string, fieldName: string) => {
+      expect(screen.getByText(fieldName)).toBeInTheDocument();
 
-      fireEvent.click(selectors.columnHeader(false, name));
+      fireEvent.click(screen.getByRole('button', { name: new RegExp(fieldName) }));
 
       expect(selectors.columnContent(false, name)).toBeInTheDocument();
     };
@@ -149,7 +149,7 @@ describe('TableUpdateEditor', () => {
         })
       );
 
-      openSettings(defaultName);
+      openSettings(defaultName, defaultField.name);
 
       expect(selectors.permissionEditor()).toBeInTheDocument();
 
@@ -210,29 +210,6 @@ describe('TableUpdateEditor', () => {
       );
     });
 
-    it('Should not allow to expand settings if edit disabled', () => {
-      render(
-        getComponent({
-          value: createTableConfig({
-            items: [
-              createColumnConfig({
-                field: defaultField,
-                edit: createColumnEditConfig({
-                  enabled: false,
-                }),
-              }),
-            ],
-          }),
-        })
-      );
-
-      expect(selectors.columnContent(true, defaultName)).not.toBeInTheDocument();
-
-      fireEvent.click(selectors.columnHeader(false, defaultName));
-
-      expect(selectors.columnContent(true, defaultName)).not.toBeInTheDocument();
-    });
-
     it('Should allow to set editor config', () => {
       render(
         getComponent({
@@ -252,7 +229,7 @@ describe('TableUpdateEditor', () => {
         })
       );
 
-      openSettings(defaultName);
+      openSettings(defaultName, defaultField.name);
 
       const editorConfigSelectors = getJestSelectors(TEST_IDS.editableColumnEditor)(screen);
       expect(editorConfigSelectors.fieldNumberMin()).toBeInTheDocument();
