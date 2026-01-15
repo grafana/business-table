@@ -70,28 +70,30 @@ export const AddDataEditor: React.FC<Props> = ({ context: { data }, onChange, va
         <div key={item.name} className={styles.item}>
           <Collapse
             label={
-              <CollapseTitle>
-                {item.name}
-                <InlineSwitch
-                  transparent={true}
-                  value={item.addRow.enabled}
-                  onChange={(event) => {
-                    onChangeItem({
-                      ...item,
-                      addRow: {
-                        ...item.addRow,
-                        enabled: event.currentTarget.checked,
-                      },
-                    });
-                    setCollapseState({
-                      ...collapseState,
-                      [item.name]: event.currentTarget.checked,
-                    });
-                  }}
-                  onClick={event => event.stopPropagation()}
-                  {...testIds.fieldItemEnabled.apply(item.name)}
-                />
-              </CollapseTitle>
+              // can't set onClick on Switch since it's passed to the inner input element
+              <div onClick={(event) => event.stopPropagation()}>
+                <CollapseTitle>
+                  {item.name}
+                  <InlineSwitch
+                    transparent={true}
+                    value={item.addRow.enabled}
+                    onChange={(event) => {
+                      onChangeItem({
+                        ...item,
+                        addRow: {
+                          ...item.addRow,
+                          enabled: event.currentTarget.checked,
+                        },
+                      });
+                      setCollapseState({
+                        ...collapseState,
+                        [item.name]: event.currentTarget.checked,
+                      });
+                    }}
+                    {...testIds.fieldItemEnabled.apply(item.name)}
+                  />
+                </CollapseTitle>
+              </div>
             }
             isOpen={collapseState[item.name]}
             onToggle={() => onToggleItemExpandedState(item.name)}
