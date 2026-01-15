@@ -1,6 +1,5 @@
 import { StandardEditorProps } from '@grafana/data';
-import { InlineSwitch, useStyles2 } from '@grafana/ui';
-import { Collapse } from '@volkovlabs/components';
+import { Collapse, InlineSwitch, useStyles2 } from '@grafana/ui';
 import React, { useCallback, useState } from 'react';
 
 import { CollapseTitle } from '@/components';
@@ -70,46 +69,60 @@ export const HighlightDataEditor: React.FC<Props> = ({ onChange, value }) => {
       {value.map((item) => (
         <div key={item.name} className={styles.item}>
           <Collapse
-            title={
-              <CollapseTitle>
-                {item.name}
-                <InlineSwitch
-                  transparent={true}
-                  value={item.rowHighlight.enabled}
-                  onChange={(event) => {
-                    onChangeItem({
-                      ...item,
-                      rowHighlight: {
-                        ...item.rowHighlight,
-                        enabled: event.currentTarget.checked,
-                      },
-                    });
-                    setCollapseState({
-                      ...collapseState,
-                      [item.name]: event.currentTarget.checked,
-                    });
-                  }}
-                  {...testIds.fieldItemEnabled.apply(item.name)}
-                />
-              </CollapseTitle>
+            label={
+              // can't set onClick on Switch since it's passed to the inner input element
+              <div onClick={(event) => event.stopPropagation()}>
+                <CollapseTitle>
+                  {item.name}
+                  <InlineSwitch
+                    transparent={true}
+                    value={item.rowHighlight.enabled}
+                    onChange={(event) => {
+                      onChangeItem({
+                        ...item,
+                        rowHighlight: {
+                          ...item.rowHighlight,
+                          enabled: event.currentTarget.checked,
+                        },
+                      });
+                      setCollapseState({
+                        ...collapseState,
+                        [item.name]: event.currentTarget.checked,
+                      });
+                    }}
+                    {...testIds.fieldItemEnabled.apply(item.name)}
+                  />
+                </CollapseTitle>
+              </div>
             }
-            headerTestId={testIds.itemHeader.selector(item.name)}
-            contentTestId={testIds.itemContent.selector(item.name)}
             isOpen={collapseState[item.name]}
-            onToggle={() => onToggleItemExpandedState(item.name)}
-            isExpandDisabled={!item.rowHighlight.enabled}
-          >
-            <RowHighlightEditor
-              value={item.rowHighlight}
-              onChange={(rowHighlight) => {
+            onToggle={(isOpen) => {
+              onToggleItemExpandedState(item.name)
+
+              if (isOpen) {
                 onChangeItem({
                   ...item,
-                  rowHighlight,
+                  rowHighlight: {
+                    ...item.rowHighlight,
+                    enabled: isOpen,
+                  },
                 });
-              }}
-              columns={item.items}
-              isDeleteEnable={item.deleteRow?.enabled}
-            />
+              }
+            }}
+          >
+            <div data-testid={testIds.itemContent.selector(item.name)}>
+              <RowHighlightEditor
+                value={item.rowHighlight}
+                onChange={(rowHighlight) => {
+                  onChangeItem({
+                    ...item,
+                    rowHighlight,
+                  });
+                }}
+                columns={item.items}
+                isDeleteEnable={item.deleteRow?.enabled}
+              />
+            </div>
           </Collapse>
         </div>
       ))}

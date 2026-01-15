@@ -137,7 +137,6 @@ export const TableUpdateEditor: React.FC<Props> = ({ value, onChange, data }) =>
                     });
                   }
                 }}
-                // headerTestId={testIds.columnHeader.selector(getFieldKey(item.field))}
               >
                 <div data-testid={testIds.columnContent.selector(getFieldKey(item.field))}>
                   {item.edit.enabled && (
