@@ -1,6 +1,5 @@
 import { StandardEditorProps } from '@grafana/data';
-import { InlineSwitch, useStyles2 } from '@grafana/ui';
-import { Collapse } from '@volkovlabs/components';
+import { Collapse, InlineSwitch, useStyles2 } from '@grafana/ui';
 import React, { useCallback, useState } from 'react';
 
 import { CollapseTitle } from '@/components';
@@ -70,7 +69,7 @@ export const AddDataEditor: React.FC<Props> = ({ context: { data }, onChange, va
       {value.map((item) => (
         <div key={item.name} className={styles.item}>
           <Collapse
-            title={
+            label={
               <CollapseTitle>
                 {item.name}
                 <InlineSwitch
@@ -89,17 +88,17 @@ export const AddDataEditor: React.FC<Props> = ({ context: { data }, onChange, va
                       [item.name]: event.currentTarget.checked,
                     });
                   }}
+                  onClick={event => event.stopPropagation()}
                   {...testIds.fieldItemEnabled.apply(item.name)}
                 />
               </CollapseTitle>
             }
-            headerTestId={testIds.itemHeader.selector(item.name)}
-            contentTestId={testIds.itemContent.selector(item.name)}
             isOpen={collapseState[item.name]}
             onToggle={() => onToggleItemExpandedState(item.name)}
-            isExpandDisabled={!item.addRow.enabled}
           >
-            <TableAddRowEditor value={item} onChange={onChangeItem} data={data} />
+            <div data-testid={testIds.itemContent.selector(item.name)}>
+              <TableAddRowEditor value={item} onChange={onChangeItem} data={data} />
+            </div>
           </Collapse>
         </div>
       ))}
