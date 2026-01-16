@@ -1,6 +1,5 @@
 import { StandardEditorProps } from '@grafana/data';
-import { useStyles2 } from '@grafana/ui';
-import { Collapse } from '@volkovlabs/components';
+import { Collapse, useStyles2 } from '@grafana/ui';
 import React, { useCallback, useState } from 'react';
 
 import { CollapseTitle } from '@/components';
@@ -70,13 +69,13 @@ export const EditableDataEditor: React.FC<Props> = ({ context: { data }, onChang
       {value.map((item) => (
         <div key={item.name} className={styles.item}>
           <Collapse
-            title={<CollapseTitle>{item.name}</CollapseTitle>}
-            headerTestId={testIds.itemHeader.selector(item.name)}
-            contentTestId={testIds.itemContent.selector(item.name)}
+            label={<CollapseTitle>{item.name}</CollapseTitle>}
             isOpen={collapseState[item.name]}
             onToggle={() => onToggleItemExpandedState(item.name)}
           >
-            <TableUpdateEditor value={item} onChange={onChangeItem} data={data} />
+            <div data-testid={testIds.itemContent.selector(item.name)}>
+              <TableUpdateEditor value={item} onChange={onChangeItem} data={data} />
+            </div>
           </Collapse>
         </div>
       ))}

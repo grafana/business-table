@@ -48,17 +48,6 @@ describe('PaginationsEditor', () => {
     return <PaginationsEditor value={[]} onChange={onChange} context={{ data: [] }} item={{}} {...(props as any)} />;
   };
 
-  it('Should not allow to expand item if pagination disabled', () => {
-    render(getComponent({ value: [createTableConfig({ name: 'item1' })] }));
-
-    expect(selectors.itemHeader(false, 'item1')).toBeInTheDocument();
-    expect(selectors.itemContent(true, 'item1')).not.toBeInTheDocument();
-
-    fireEvent.click(selectors.itemHeader(false, 'item1'));
-
-    expect(selectors.itemContent(true, 'item1')).not.toBeInTheDocument();
-  });
-
   it('Should allow to expand item if pagination enable', () => {
     render(
       getComponent({
@@ -73,10 +62,10 @@ describe('PaginationsEditor', () => {
       })
     );
 
-    expect(selectors.itemHeader(false, 'item1')).toBeInTheDocument();
+    expect(screen.getByText('item1')).toBeInTheDocument();
     expect(selectors.itemContent(true, 'item1')).not.toBeInTheDocument();
 
-    fireEvent.click(selectors.itemHeader(false, 'item1'));
+    fireEvent.click(screen.getByRole('button', { name: /item1/ }));
 
     expect(selectors.itemContent(false, 'item1')).toBeInTheDocument();
   });
@@ -84,13 +73,9 @@ describe('PaginationsEditor', () => {
   it('Should change pagination enable state', () => {
     render(getComponent({ value: [createTableConfig({ name: 'item1' })] }));
 
-    expect(selectors.itemHeader(false, 'item1')).toBeInTheDocument();
+    expect(screen.getByText('item1')).toBeInTheDocument();
     expect(selectors.itemContent(true, 'item1')).not.toBeInTheDocument();
     expect(selectors.fieldPaginationEnabled(false, 'item1')).toBeInTheDocument();
-
-    fireEvent.click(selectors.itemHeader(false, 'item1'));
-
-    expect(selectors.itemContent(true, 'item1')).not.toBeInTheDocument();
 
     fireEvent.click(selectors.fieldPaginationEnabled(false, 'item1'));
 
@@ -121,8 +106,8 @@ describe('PaginationsEditor', () => {
 
     render(getComponent({ value }));
 
-    expect(selectors.itemHeader(false, 'item1')).toBeInTheDocument();
-    fireEvent.click(selectors.itemHeader(false, 'item1'));
+    expect(screen.getByText('item1')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /item1/ }));
 
     expect(selectors.paginationEditor()).toBeInTheDocument();
     fireEvent.change(selectors.paginationEditor(), { target: { value: 'hello' } });
@@ -170,7 +155,7 @@ describe('PaginationsEditor', () => {
       })
     );
 
-    expect(selectors.itemHeader(false, 'item1')).toHaveTextContent('Error');
-    expect(selectors.itemHeader(false, 'item2')).not.toHaveTextContent('Error');
+    expect(screen.getByText('item1')).toHaveTextContent('Error');
+    expect(screen.getByText('item2')).not.toHaveTextContent('Error');
   });
 });

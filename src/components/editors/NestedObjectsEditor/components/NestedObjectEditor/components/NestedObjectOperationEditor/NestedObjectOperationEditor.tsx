@@ -1,4 +1,4 @@
-import { Collapse } from '@volkovlabs/components';
+import { Collapse } from '@grafana/ui';
 import React, { useState } from 'react';
 
 import { FieldsGroup, PermissionEditor, RequestEditor } from '@/components';
@@ -54,20 +54,20 @@ export const NestedObjectOperationEditor: React.FC<Props> = ({ value, onChange }
             request: isOpen,
           });
         }}
-        title="Request"
-        headerTestId={testIds.requestSectionHeader.selector()}
-        contentTestId={testIds.requestSectionContent.selector()}
+        label="Request"
       >
-        <RequestEditor
-          value={value.request}
-          onChange={(request) => {
-            onChange({
-              ...value,
-              request,
-            });
-          }}
-          queryEditorDescription="Use `${payload.row}` and `${payload.item}` variables to get access to the current item or row."
-        />
+        <div data-testid={testIds.requestSectionContent.selector()}>
+          <RequestEditor
+            value={value.request}
+            onChange={(request) => {
+              onChange({
+                ...value,
+                request,
+              });
+            }}
+            queryEditorDescription="Use `${payload.row}` and `${payload.item}` variables to get access to the current item or row."
+          />
+        </div>
       </Collapse>
     </>
   );

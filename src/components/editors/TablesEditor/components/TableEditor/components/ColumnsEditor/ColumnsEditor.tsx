@@ -1,8 +1,7 @@
 import { DataFrame } from '@grafana/data';
 import { BarGaugeDisplayMode, BarGaugeValueMode } from '@grafana/schema';
-import { Button, Icon, IconButton, InlineField, InlineFieldRow, Tag, useTheme2 } from '@grafana/ui';
+import { Button, Collapse, Icon, IconButton, InlineField, InlineFieldRow, Stack, Tag, useTheme2 } from '@grafana/ui';
 import { DragDropContext, Draggable, DraggingStyle, Droppable, DropResult, NotDraggingStyle } from '@hello-pangea/dnd';
-import { Collapse } from '@volkovlabs/components';
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { CollapseTitle, FieldPicker } from '@/components';
@@ -193,59 +192,58 @@ export const ColumnsEditor: React.FC<Props> = ({ value: items, name, onChange, d
                       className={styles.item}
                     >
                       <Collapse
-                        headerTestId={testIds.itemHeader.selector(getFieldKey(item.field))}
-                        contentTestId={testIds.itemContent.selector(getFieldKey(item.field))}
-                        fill="solid"
-                        title={
-                          <CollapseTitle>
-                            {item.field.name}
-                            {item.group && <Tag name="Group" />}
-                            {item.edit.enabled && <Tag name="Editable" />}
-                            {item.pin === ColumnPinDirection.LEFT && <Tag name="Pinned: Left" />}
-                            {item.pin === ColumnPinDirection.RIGHT && <Tag name="Pinned: Right" />}
-                            {item.filter.enabled && <Tag name="Filterable" />}
-                            {item.sort.enabled && <Tag name="Sortable" />}
-                          </CollapseTitle>
-                        }
-                        actions={
-                          <>
-                            <IconButton
-                              name={item.enabled ? 'eye' : 'eye-slash'}
-                              aria-label={item.enabled ? 'Hide' : 'Show'}
-                              onClick={() => {
-                                onChangeItems(
-                                  items.map((column) =>
-                                    getFieldKey(column.field) === getFieldKey(item.field)
-                                      ? {
-                                          ...item,
-                                          enabled: !item.enabled,
-                                        }
-                                      : column
-                                  )
-                                );
-                              }}
-                              tooltip={item.enabled ? 'Hide' : 'Show'}
-                              {...testIds.buttonToggleVisibility.apply()}
-                            />
-                            <IconButton
-                              name="trash-alt"
-                              onClick={() =>
-                                onChangeItems(
-                                  items.filter((column) => getFieldKey(column.field) !== getFieldKey(item.field))
-                                )
-                              }
-                              aria-label="Remove"
-                              {...testIds.buttonRemove.apply()}
-                            />
-                            <div className={styles.dragHandle} {...provided.dragHandleProps}>
-                              <Icon
-                                title="Drag and drop to reorder"
-                                name="draggabledots"
-                                size="lg"
-                                className={styles.dragIcon}
+                        label={
+                          <Stack data-testid={testIds.itemHeader.selector(getFieldKey(item.field))} flex={1} alignItems="center" justifyContent="space-between">
+                            <CollapseTitle>
+                              {item.field.name}
+                              {item.group && <Tag name="Group" />}
+                              {item.edit.enabled && <Tag name="Editable" />}
+                              {item.pin === ColumnPinDirection.LEFT && <Tag name="Pinned: Left" />}
+                              {item.pin === ColumnPinDirection.RIGHT && <Tag name="Pinned: Right" />}
+                              {item.filter.enabled && <Tag name="Filterable" />}
+                              {item.sort.enabled && <Tag name="Sortable" />}
+                            </CollapseTitle>
+                            <Stack alignItems="center" gap={0.5}>
+                              <IconButton
+                                name={item.enabled ? 'eye' : 'eye-slash'}
+                                aria-label={item.enabled ? 'Hide' : 'Show'}
+                                onClick={(event) => {
+                                  event.stopPropagation();
+                                  onChangeItems(
+                                    items.map((column) =>
+                                      getFieldKey(column.field) === getFieldKey(item.field)
+                                        ? {
+                                            ...item,
+                                            enabled: !item.enabled,
+                                          }
+                                        : column
+                                    )
+                                  );
+                                }}
+                                tooltip={item.enabled ? 'Hide' : 'Show'}
+                                {...testIds.buttonToggleVisibility.apply()}
                               />
-                            </div>
-                          </>
+                              <IconButton
+                                name="trash-alt"
+                                onClick={(event) => {
+                                  event.stopPropagation();
+                                  onChangeItems(
+                                    items.filter((column) => getFieldKey(column.field) !== getFieldKey(item.field))
+                                  )
+                                }}
+                                aria-label="Remove"
+                                {...testIds.buttonRemove.apply()}
+                              />
+                              <div onClick={(event) => event.stopPropagation()} className={styles.dragHandle} {...provided.dragHandleProps}>
+                                <Icon
+                                  title="Drag and drop to reorder"
+                                  name="draggabledots"
+                                  size="lg"
+                                  className={styles.dragIcon}
+                                />
+                              </div>
+                            </Stack>
+                          </Stack>
                         }
                         isOpen={expanded[getFieldKey(item.field)]}
                         onToggle={(isOpen) =>
@@ -255,19 +253,21 @@ export const ColumnsEditor: React.FC<Props> = ({ value: items, name, onChange, d
                           })
                         }
                       >
-                        <ColumnEditor
-                          showTableHeader={showTableHeader}
-                          value={item}
-                          onChange={(item) => {
-                            onChangeItems(
-                              items.map((column) =>
-                                getFieldKey(column.field) === getFieldKey(item.field) ? item : column
-                              )
-                            );
-                          }}
-                          data={data}
-                          isAggregationAvailable={isAggregationAvailable}
-                        />
+                        <div data-testid={testIds.itemContent.selector(getFieldKey(item.field))}>
+                          <ColumnEditor
+                            showTableHeader={showTableHeader}
+                            value={item}
+                            onChange={(item) => {
+                              onChangeItems(
+                                items.map((column) =>
+                                  getFieldKey(column.field) === getFieldKey(item.field) ? item : column
+                                )
+                              );
+                            }}
+                            data={data}
+                            isAggregationAvailable={isAggregationAvailable}
+                          />
+                        </div>
                       </Collapse>
                     </div>
                   )}

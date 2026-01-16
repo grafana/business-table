@@ -1,6 +1,5 @@
 import { DataFrame } from '@grafana/data';
-import { Alert, InlineSwitch, Label, Tag, useStyles2 } from '@grafana/ui';
-import { Collapse } from '@volkovlabs/components';
+import { Alert, Collapse, InlineSwitch, Label, Tag, useStyles2 } from '@grafana/ui';
 import React, { useCallback, useState } from 'react';
 
 import { CollapseTitle, EditableColumnEditor, FieldsGroup, PermissionEditor, RequestEditor } from '@/components';
@@ -86,49 +85,59 @@ export const TableAddRowEditor: React.FC<Props> = ({ value, onChange, data }) =>
           value.items.map((item) => (
             <div key={getFieldKey(item.field)} className={styles.column}>
               <Collapse
-                fill="solid"
-                title={
-                  <CollapseTitle>
-                    {item.field.name}
-                    <InlineSwitch
-                      value={item.newRowEdit.enabled}
-                      label="Editable"
-                      transparent={true}
-                      onChange={(event) => {
-                        onChangeItem({
-                          ...item,
-                          newRowEdit: {
-                            ...item.newRowEdit,
-                            enabled: event.currentTarget.checked,
-                          },
-                        });
+                label={
+                  // can't set onClick on Switch since it's passed to the inner input element
+                  <div onClick={(event) => event.stopPropagation()}>
+                    <CollapseTitle>
+                      {item.field.name}
+                      <InlineSwitch
+                        value={item.newRowEdit.enabled}
+                        label="Editable"
+                        transparent={true}
+                        onChange={(event) => {
+                          event.stopPropagation();
+                          onChangeItem({
+                            ...item,
+                            newRowEdit: {
+                              ...item.newRowEdit,
+                              enabled: event.currentTarget.checked,
+                            },
+                          });
 
-                        /**
-                         * Toggle Expanded State
-                         */
-                        setExpanded({
-                          ...expanded,
-                          [getFieldKey(item.field)]: event.currentTarget.checked,
-                        });
-                      }}
-                      disabled={item.type === CellType.NESTED_OBJECTS}
-                      {...testIds.fieldEditQuickEnabled.apply(getFieldKey(item.field))}
-                    />
-                    {item.newRowEdit.enabled && <Tag name={item.newRowEdit.editor.type} />}
-                  </CollapseTitle>
+                          /**
+                           * Toggle Expanded State
+                           */
+                          setExpanded({
+                            ...expanded,
+                            [getFieldKey(item.field)]: event.currentTarget.checked,
+                          });
+                        }}
+                        disabled={item.type === CellType.NESTED_OBJECTS}
+                        {...testIds.fieldEditQuickEnabled.apply(getFieldKey(item.field))}
+                      />
+                      {item.newRowEdit.enabled && <Tag name={item.newRowEdit.editor.type} />}
+                    </CollapseTitle>
+                  </div>
                 }
                 isOpen={expanded[getFieldKey(item.field)]}
-                onToggle={(isOpen) =>
+                onToggle={(isOpen) => {
                   setExpanded({
                     ...expanded,
                     [getFieldKey(item.field)]: isOpen,
                   })
-                }
-                headerTestId={testIds.columnHeader.selector(getFieldKey(item.field))}
-                contentTestId={testIds.columnContent.selector(getFieldKey(item.field))}
-                isExpandDisabled={!item.newRowEdit.enabled}
+
+                  if (isOpen) {
+                    onChangeItem({
+                      ...item,
+                      newRowEdit: {
+                        ...item.newRowEdit,
+                        enabled: isOpen
+                      },
+                    });
+                  }
+                }}
               >
-                <>
+                <div data-testid={testIds.columnContent.selector(getFieldKey(item.field))}>
                   {item.newRowEdit.enabled && (
                     <FieldsGroup label="Editor">
                       <EditableColumnEditor
@@ -146,7 +155,7 @@ export const TableAddRowEditor: React.FC<Props> = ({ value, onChange, data }) =>
                       />
                     </FieldsGroup>
                   )}
-                </>
+                </div>
               </Collapse>
             </div>
           ))
@@ -172,7 +181,7 @@ export const TableAddRowEditor: React.FC<Props> = ({ value, onChange, data }) =>
         />
       </FieldsGroup>
       <Collapse
-        title="Add Request"
+        label="Add Request"
         isOpen={expanded.request}
         onToggle={(isOpen) => {
           setExpanded({
@@ -180,22 +189,22 @@ export const TableAddRowEditor: React.FC<Props> = ({ value, onChange, data }) =>
             request: isOpen,
           });
         }}
-        headerTestId={testIds.requestSectionHeader.selector()}
-        contentTestId={testIds.requestSectionContent.selector()}
       >
-        <RequestEditor
-          value={value.addRow.request}
-          onChange={(request) => {
-            onChange({
-              ...value,
-              addRow: {
-                ...value.addRow,
-                request,
-              },
-            });
-          }}
-          queryEditorDescription="New row is placed in variable `${payload}`"
-        />
+        <div data-testid={testIds.requestSectionContent.selector()}>
+          <RequestEditor
+            value={value.addRow.request}
+            onChange={(request) => {
+              onChange({
+                ...value,
+                addRow: {
+                  ...value.addRow,
+                  request,
+                },
+              });
+            }}
+            queryEditorDescription="New row is placed in variable `${payload}`"
+          />
+        </div>
       </Collapse>
     </>
   );

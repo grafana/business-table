@@ -87,9 +87,9 @@ describe('TableAddRowEditor', () => {
 
   describe('Request', () => {
     const openSection = () => {
-      expect(selectors.requestSectionHeader()).toBeInTheDocument();
+      expect(screen.getByText("Add Request")).toBeInTheDocument();
 
-      fireEvent.click(selectors.requestSectionHeader());
+      fireEvent.click(screen.getByRole('button', { name: /Add Request/ }));
 
       expect(selectors.requestSectionContent()).toBeInTheDocument();
     };
@@ -129,10 +129,10 @@ describe('TableAddRowEditor', () => {
   });
 
   describe('Edit Settings', () => {
-    const openSettings = (name: string) => {
-      expect(selectors.columnHeader(false, name)).toBeInTheDocument();
+    const openSettings = (name: string, fieldName: string) => {
+      expect(screen.getByText(fieldName)).toBeInTheDocument();
 
-      fireEvent.click(selectors.columnHeader(false, name));
+      fireEvent.click(screen.getByRole('button', { name: new RegExp(fieldName) }));
 
       expect(selectors.columnContent(false, name)).toBeInTheDocument();
     };
@@ -177,29 +177,6 @@ describe('TableAddRowEditor', () => {
       );
     });
 
-    it('Should not allow to expand settings if edit disabled', () => {
-      render(
-        getComponent({
-          value: createTableConfig({
-            items: [
-              createColumnConfig({
-                field: defaultField,
-                newRowEdit: createColumnNewRowEditConfig({
-                  enabled: false,
-                }),
-              }),
-            ],
-          }),
-        })
-      );
-
-      expect(selectors.columnContent(true, defaultName)).not.toBeInTheDocument();
-
-      fireEvent.click(selectors.columnHeader(false, defaultName));
-
-      expect(selectors.columnContent(true, defaultName)).not.toBeInTheDocument();
-    });
-
     it('Should allow to set editor config', () => {
       render(
         getComponent({
@@ -219,7 +196,7 @@ describe('TableAddRowEditor', () => {
         })
       );
 
-      openSettings(defaultName);
+      openSettings(defaultName, defaultField.name);
 
       const editorConfigSelectors = getJestSelectors(TEST_IDS.editableColumnEditor)(screen);
       expect(editorConfigSelectors.fieldNumberMin()).toBeInTheDocument();

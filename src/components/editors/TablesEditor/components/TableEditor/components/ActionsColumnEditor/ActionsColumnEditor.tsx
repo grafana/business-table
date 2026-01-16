@@ -1,5 +1,5 @@
-import { InlineField, InlineFieldRow, InlineSwitch, Input, RadioButtonGroup, useTheme2 } from '@grafana/ui';
-import { Collapse, NumberInput } from '@volkovlabs/components';
+import { Collapse, InlineField, InlineFieldRow, InlineSwitch, Input, RadioButtonGroup, useTheme2 } from '@grafana/ui';
+import { NumberInput } from '@volkovlabs/components';
 import React, { useState } from 'react';
 
 import { CollapseTitle, FieldsGroup } from '@/components/ui';
@@ -33,10 +33,7 @@ export const ActionsColumnEditor: React.FC<Props> = ({ value, onChange }) => {
   return (
     <div className={styles.item} {...TEST_IDS.actionColumnsEditor.root.apply()}>
       <Collapse
-        headerTestId={testIds.itemHeader.selector()}
-        contentTestId={testIds.itemContent.selector()}
-        fill="solid"
-        title={
+        label={
           <CollapseTitle>
             {`[actions]: `}
             {`${value.label}`}
@@ -45,7 +42,7 @@ export const ActionsColumnEditor: React.FC<Props> = ({ value, onChange }) => {
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       >
-        <>
+        <div data-testid={testIds.itemContent.selector()}>
           <FieldsGroup label="Header">
             <InlineField label="Label" grow={true}>
               <Input
@@ -200,7 +197,7 @@ export const ActionsColumnEditor: React.FC<Props> = ({ value, onChange }) => {
               ]}
             />
           </InlineField>
-        </>
+        </div>
       </Collapse>
     </div>
   );

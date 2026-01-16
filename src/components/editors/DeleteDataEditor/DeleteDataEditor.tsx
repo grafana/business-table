@@ -1,6 +1,5 @@
 import { StandardEditorProps } from '@grafana/data';
-import { InlineSwitch, useStyles2 } from '@grafana/ui';
-import { Collapse } from '@volkovlabs/components';
+import { Collapse, InlineSwitch, useStyles2 } from '@grafana/ui';
 import React, { useCallback, useState } from 'react';
 
 import { CollapseTitle } from '@/components';
@@ -70,36 +69,50 @@ export const DeleteDataEditor: React.FC<Props> = ({ context: { data }, onChange,
       {value.map((item) => (
         <div key={item.name} className={styles.item}>
           <Collapse
-            title={
-              <CollapseTitle>
-                {item.name}
-                <InlineSwitch
-                  transparent={true}
-                  value={item.deleteRow.enabled}
-                  onChange={(event) => {
-                    onChangeItem({
-                      ...item,
-                      deleteRow: {
-                        ...item.deleteRow,
-                        enabled: event.currentTarget.checked,
-                      },
-                    });
-                    setCollapseState({
-                      ...collapseState,
-                      [item.name]: event.currentTarget.checked,
-                    });
-                  }}
-                  {...testIds.fieldItemEnabled.apply(item.name)}
-                />
-              </CollapseTitle>
+            label={
+              // can't set onClick on Switch since it's passed to the inner input element
+              <div onClick={(event) => event.stopPropagation()}>
+                <CollapseTitle>
+                  {item.name}
+                  <InlineSwitch
+                    transparent={true}
+                    value={item.deleteRow.enabled}
+                    onChange={(event) => {
+                      onChangeItem({
+                        ...item,
+                        deleteRow: {
+                          ...item.deleteRow,
+                          enabled: event.currentTarget.checked,
+                        },
+                      });
+                      setCollapseState({
+                        ...collapseState,
+                        [item.name]: event.currentTarget.checked,
+                      });
+                    }}
+                    {...testIds.fieldItemEnabled.apply(item.name)}
+                  />
+                </CollapseTitle>
+              </div>
             }
-            headerTestId={testIds.itemHeader.selector(item.name)}
-            contentTestId={testIds.itemContent.selector(item.name)}
             isOpen={collapseState[item.name]}
-            onToggle={() => onToggleItemExpandedState(item.name)}
-            isExpandDisabled={!item.deleteRow.enabled}
+            onToggle={(isOpen) => {
+              onToggleItemExpandedState(item.name)
+
+              if (isOpen) {
+                onChangeItem({
+                  ...item,
+                  deleteRow: {
+                    ...item.deleteRow,
+                    enabled: isOpen
+                  },
+                });
+              }
+            }}
           >
-            <TableDeleteRowEditor value={item} onChange={onChangeItem} data={data} />
+            <div data-testid={testIds.itemContent.selector(item.name)}>
+              <TableDeleteRowEditor value={item} onChange={onChangeItem} data={data} />
+            </div>
           </Collapse>
         </div>
       ))}

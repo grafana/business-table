@@ -69,8 +69,8 @@ describe('NestedObjectOperationEditor', () => {
       })
     );
 
-    expect(selectors.requestSectionHeader()).toBeInTheDocument();
-    fireEvent.click(selectors.requestSectionHeader());
+    expect(screen.getByText('Request')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Request/ }));
 
     expect(selectors.requestSectionContent()).toBeInTheDocument();
     expect(selectors.requestEditor()).toBeInTheDocument();

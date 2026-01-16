@@ -50,10 +50,10 @@ describe('EditableDataEditor', () => {
   it('Should allow to expand item', () => {
     render(getComponent({ value: [createTableConfig({ name: 'item1' })] }));
 
-    expect(selectors.itemHeader(false, 'item1')).toBeInTheDocument();
+    expect(screen.getByText('item1')).toBeInTheDocument();
     expect(selectors.itemContent(true, 'item1')).not.toBeInTheDocument();
 
-    fireEvent.click(selectors.itemHeader(false, 'item1'));
+    fireEvent.click(screen.getByRole('button', { name: /item1/ }));
 
     expect(selectors.itemContent(false, 'item1')).toBeInTheDocument();
   });
@@ -63,8 +63,8 @@ describe('EditableDataEditor', () => {
 
     render(getComponent({ value }));
 
-    expect(selectors.itemHeader(false, 'item1')).toBeInTheDocument();
-    fireEvent.click(selectors.itemHeader(false, 'item1'));
+    expect(screen.getByText('item1')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /item1/ }));
 
     expect(selectors.tableUpdateEditor()).toBeInTheDocument();
     fireEvent.change(selectors.tableUpdateEditor(), { target: { value: 'hello' } });
