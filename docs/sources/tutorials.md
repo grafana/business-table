@@ -17,10 +17,6 @@ Welcome to the Business Table tutorials for Grafana! The Business Table panel en
 
 This page contains clear, step-by-step video tutorials that showcase new features and tackle the most common challenges users face. The goal is to make your experience with Business Suite as seamless and productive as possible.
 
-## Why choose Business Table?
-
-Discover why the Business Table panel is Grafana’s hidden gem for turning raw data into meaningful, interactive dashboards. Learn how it can streamline workflows and enhance data-driven decision-making in this [blog post](https://volkovlabs.io/blog/business-table-advantage/).
-
 ## Key features and tutorials by version
 
 Explore the evolution of the Business Table panel through its major releases. Each version introduces powerful features to enhance data interaction and visualization in Grafana.
