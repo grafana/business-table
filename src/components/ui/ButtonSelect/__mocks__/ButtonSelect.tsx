@@ -1,30 +1,37 @@
 import { SelectableValue } from '@grafana/data';
 import React from 'react';
 
-export const ButtonSelect = ({ onChange, options, value, ...restProps }: any) => {
+type OptionValue = SelectableValue<unknown>;
+
+interface MockProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'onChange' | 'value'> {
+  onChange: (item: OptionValue | undefined) => void;
+  options: OptionValue[];
+  value?: OptionValue | string | number;
+}
+
+const flattenOptions = (options: OptionValue[]) =>
+  options.reduce<OptionValue[]>(
+    (acc, option) => acc.concat(Array.isArray(option.options) ? option.options : option),
+    []
+  );
+
+export const ButtonSelect = ({ onChange, options, value, ...restProps }: MockProps) => {
+  const selectedValue = typeof value === 'object' && value !== null ? value.value : value;
+
   return (
     <select
       onChange={(event) => {
-        const plainOptions = options.reduce(
-          (acc: SelectableValue[], option: SelectableValue) => acc.concat(option.options ? option.options : option),
-          []
-        );
-        // eslint-disable-next-line eqeqeq
-        const option = plainOptions.find((option: any) => option.value == event.target.value);
+        const plainOptions = flattenOptions(options);
+        const option = plainOptions.find((item) => String(item.value) === event.target.value);
 
         onChange(option);
       }}
-      value={value?.value || value}
+      value={selectedValue !== undefined ? String(selectedValue) : undefined}
       {...restProps}
     >
-      {options
-        .reduce(
-          (acc: SelectableValue[], option: SelectableValue) => acc.concat(option.options ? option.options : option),
-          []
-        )
-        .map(({ label, value }: any, index: number) => (
-          <option key={index} value={value}>
-            {label}
+      {flattenOptions(options).map((option, index) => (
+          <option key={index} value={String(option.value)}>
+            {option.label ?? String(option.value)}
           </option>
         ))}
     </select>
