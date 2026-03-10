@@ -22,6 +22,8 @@ import { getCPConfigVersion, getEntries, getPackageJson, getPluginJson, hasReadm
 import { externals } from '../bundler/externals.ts';
 import { copyFilePatterns } from '../bundler/copyFiles.ts';
 
+import { externals } from '../bundler/externals.ts';
+
 const pluginJson = getPluginJson();
 const cpVersion = getCPConfigVersion();
 const pluginVersion = getPackageJson().version;
@@ -59,11 +61,6 @@ const config = async (env: Env): Promise<Configuration> => {
     entry: await getEntries(),
 
     externals,
-
-    // Support WebAssembly according to latest spec - makes WebAssembly module async
-    experiments: {
-      asyncWebAssembly: true,
-    },
 
     mode: env.production ? 'production' : 'development',
 
