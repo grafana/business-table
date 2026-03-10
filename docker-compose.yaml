@@ -12,6 +12,11 @@ services:
     volumes:
       - ./dist:/var/lib/grafana/plugins/volkovlabs-table-panel
       - ./provisioning:/etc/grafana/provisioning
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/login"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
 
   playwright:
     build:
