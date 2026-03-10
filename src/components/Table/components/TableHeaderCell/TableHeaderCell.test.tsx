@@ -567,7 +567,7 @@ describe('TableHeaderCell', () => {
     expect(setDrawerOpen).toHaveBeenCalled();
   });
 
-  it('Should update preferences correct if saveUserPreference is true for filter and preferences doesn`t have tables', () => {
+  it('Should update preferences correct if saveUserPreference is true for filter and preferences does not have tables', () => {
     const setDrawerOpen = jest.fn();
     const getToggleSortingHandler = jest.fn();
     const updateTablesPreferences = jest.fn();

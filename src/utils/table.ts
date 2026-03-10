@@ -831,7 +831,7 @@ export const prepareColumnsWithSorting = (
   }
 
   /**
-   * Selected column doesn't equal prev sort state
+   * Selected column does not equal prev sort state
    */
   if (columnId !== sorting[0].id) {
     return drawerColumns?.map((column) => {
