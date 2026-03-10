@@ -1,7 +1,7 @@
 import { DataFrame } from '@grafana/data';
 import { getTemplateSrv } from '@grafana/runtime';
 import { BarGaugeDisplayMode, BarGaugeValueMode } from '@grafana/schema';
-import { InlineField, InlineFieldRow, InlineSwitch, Input, RadioButtonGroup, Select, Slider, StatsPicker } from '@grafana/ui';
+import { Combobox, InlineField, InlineFieldRow, InlineSwitch, Input, RadioButtonGroup, Slider, StatsPicker } from '@grafana/ui';
 import { NumberInput } from '@volkovlabs/components';
 import React, { useId, useMemo, useState } from 'react';
 
@@ -364,7 +364,7 @@ export const ColumnEditor: React.FC<Props> = ({ value, onChange, data, isAggrega
     <>
       <FieldsGroup label="Format">
         <InlineField label="Type" grow={true}>
-          <Select
+          <Combobox
             options={cellTypeOptions}
             value={value.type}
             onChange={(event) => {
@@ -425,7 +425,7 @@ export const ColumnEditor: React.FC<Props> = ({ value, onChange, data, isAggrega
               />
             </InlineField>
             <InlineField label="Button Size" grow={true}>
-              <Select
+              <Combobox
                 onChange={(event) => {
                   onChange({
                     ...value,
@@ -441,7 +441,7 @@ export const ColumnEditor: React.FC<Props> = ({ value, onChange, data, isAggrega
               />
             </InlineField>
             <InlineField label="Button variant" grow={true}>
-              <Select
+              <Combobox
                 onChange={(event) => {
                   onChange({
                     ...value,
@@ -606,7 +606,7 @@ export const ColumnEditor: React.FC<Props> = ({ value, onChange, data, isAggrega
         )}
         {value.type === CellType.NESTED_OBJECTS && (
           <InlineField label="Object" grow={true}>
-            <Select
+            <Combobox
               onChange={(event) => {
                 onChange({
                   ...value,
@@ -616,7 +616,6 @@ export const ColumnEditor: React.FC<Props> = ({ value, onChange, data, isAggrega
               value={value.objectId}
               options={nestedObjectOptions}
               isClearable={true}
-              isSearchable={true}
               {...TEST_IDS.columnEditor.fieldObjectId.apply()}
             />
           </InlineField>
@@ -637,7 +636,7 @@ export const ColumnEditor: React.FC<Props> = ({ value, onChange, data, isAggrega
         )}
         {value.type === CellType.IMAGE && (
           <InlineField label="Scale Algorithm" grow={true}>
-            <Select
+            <Combobox
               options={imageScaleOptions}
               value={value.scale}
               onChange={(event) => {
@@ -971,7 +970,7 @@ export const ColumnEditor: React.FC<Props> = ({ value, onChange, data, isAggrega
 
         {isAggregationAvailable && (
           <InlineField label="Aggregation" grow={true}>
-            <Select
+            <Combobox
               value={value.aggregation}
               options={value.group ? aggregationOptionsForGroup : aggregationOptions}
               onChange={(event) => {
@@ -1010,7 +1009,7 @@ export const ColumnEditor: React.FC<Props> = ({ value, onChange, data, isAggrega
         <FieldsGroup label="Filter">
           <InlineFieldRow>
             <InlineField label="Mode">
-              <Select
+              <Combobox
                 width={20}
                 value={value.filter.mode}
                 onChange={(event) => {
@@ -1028,7 +1027,7 @@ export const ColumnEditor: React.FC<Props> = ({ value, onChange, data, isAggrega
             </InlineField>
             {value.filter.mode === ColumnFilterMode.QUERY && (
               <InlineField label="Variable" grow={true}>
-                <Select
+                <Combobox
                   value={value.filter.variable}
                   options={variableOptions}
                   onChange={(event) => {
@@ -1036,7 +1035,7 @@ export const ColumnEditor: React.FC<Props> = ({ value, onChange, data, isAggrega
                       ...value,
                       filter: {
                         ...value.filter,
-                        variable: event.value!,
+                        variable: event?.value ?? '',
                       },
                     });
                   }}

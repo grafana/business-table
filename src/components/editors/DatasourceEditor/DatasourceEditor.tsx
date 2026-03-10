@@ -1,4 +1,4 @@
-import { Select } from '@grafana/ui';
+import { Combobox } from '@grafana/ui';
 import React, { useMemo } from 'react';
 
 import { TEST_IDS } from '@/constants';
@@ -33,7 +33,7 @@ export const DatasourceEditor: React.FC<Props> = ({ value, onChange }) => {
    * Return
    */
   return (
-    <Select
+    <Combobox
       onChange={(item) => {
         onChange(item.value!);
       }}
