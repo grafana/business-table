@@ -221,7 +221,7 @@ describe('downloadFile', () => {
 
     it('Should fallback to generic base64 if no match found in symbol map', () => {
       /**
-       * Starts with x -> no medai types
+       * Starts with x -> no media types
        */
       const media = 'xABCDEF...';
 
