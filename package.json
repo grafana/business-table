@@ -100,6 +100,18 @@
   "overrides": {
     "@volkovlabs/components": {
       "@grafana/scenes": "^6.57.2"
+    },
+    "@jest/reporters@30.3.0": {
+      "glob": "^11.1.0"
+    },
+    "jest-config@30.3.0": {
+      "glob": "^11.1.0"
+    },
+    "jest-runtime@30.3.0": {
+      "glob": "^11.1.0"
+    },
+    "rimraf@5.0.10": {
+      "glob": "^11.1.0"
     }
   }
 }
