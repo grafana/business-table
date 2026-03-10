@@ -1,5 +1,5 @@
-import { DataFrame, FieldType } from '@grafana/data';
-import { Combobox, type ComboboxOption, SelectBaseProps } from '@grafana/ui';
+import { DataFrame, FieldType, SelectableValue } from '@grafana/data';
+import { Select, SelectBaseProps } from '@grafana/ui';
 import React, { useMemo } from 'react';
 
 import { TEST_IDS } from '@/constants';
@@ -11,7 +11,7 @@ import { getFieldOption } from './utils';
 /**
  * Properties
  */
-interface Props extends Omit<SelectBaseProps<string>, 'value' | 'onChange' | 'options' | 'width'> {
+interface Props extends Omit<SelectBaseProps<string>, 'value' | 'onChange' | 'options'> {
   /**
    * Value
    *
@@ -46,14 +46,6 @@ interface Props extends Omit<SelectBaseProps<string>, 'value' | 'onChange' | 'op
   includeTypes?: FieldType[];
 }
 
-interface FieldOption {
-  label?: string;
-  icon?: string;
-  value: string;
-  source: string | number;
-  fieldName: string;
-}
-
 /**
  * Field Picker
  */
@@ -63,17 +55,7 @@ export const FieldPicker: React.FC<Props> = ({
   onChange,
   alreadySelectedFields,
   includeTypes,
-  inputId,
-  id,
-  placeholder,
-  autoFocus,
-  disabled,
-  isLoading,
-  invalid,
-  onBlur,
-  isClearable = false,
-  'aria-label': ariaLabel,
-  'data-testid': dataTestid,
+  ...restProps
 }) => {
   /**
    * Available Field Options
@@ -98,11 +80,11 @@ export const FieldPicker: React.FC<Props> = ({
             .filter((field) => (includeTypes ? includeTypes.includes(field.type) : true))
             .map((field) => getFieldOption(field, source))
             .filter((option) => !alreadySelectedFields.some((item) => item.name === option.fieldName)) || []
-        ) as FieldOption[];
+        );
       }
     }
 
-    return data.reduce((acc: FieldOption[], dataFrame, index) => {
+    return data.reduce((acc: SelectableValue[], dataFrame, index) => {
       return acc.concat(
         dataFrame.fields
           .filter((field) => (includeTypes ? includeTypes.includes(field.type) : true))
@@ -112,7 +94,7 @@ export const FieldPicker: React.FC<Props> = ({
             return getFieldOption(field, source);
           })
       );
-    }, [] as FieldOption[]);
+    }, []);
   }, [alreadySelectedFields, data, includeTypes]);
 
   /**
@@ -126,55 +108,23 @@ export const FieldPicker: React.FC<Props> = ({
     return null;
   }, [value]);
 
-  const onChangeCombobox = (event: ComboboxOption<string> | null) => {
-    const selectedOption = availableFieldOptions.find((option) => option.value === event?.value);
-
-    onChange(
-      selectedOption
-        ? {
-            source: selectedOption.source,
-            name: selectedOption.fieldName,
-          }
-        : undefined
-    );
-  };
-
-  if (isClearable) {
-    return (
-      <Combobox
-        id={id ?? inputId ?? 'config-new-column'}
-        placeholder={placeholder}
-        autoFocus={autoFocus}
-        disabled={disabled}
-        loading={isLoading}
-        invalid={invalid}
-        onBlur={onBlur}
-        isClearable={true}
-        aria-label={ariaLabel}
-        data-testid={dataTestid}
-        options={availableFieldOptions}
-        value={selectValue}
-        onChange={onChangeCombobox}
-        {...TEST_IDS.fieldPicker.root.apply()}
-      />
-    );
-  }
-
   return (
-    <Combobox
-      id={id ?? inputId ?? 'config-new-column'}
-      placeholder={placeholder}
-      autoFocus={autoFocus}
-      disabled={disabled}
-      loading={isLoading}
-      invalid={invalid}
-      onBlur={onBlur}
-      aria-label={ariaLabel}
-      data-testid={dataTestid}
+    <Select
+      inputId="config-new-column"
       options={availableFieldOptions}
       value={selectValue}
-      onChange={onChangeCombobox}
+      onChange={(event) => {
+        onChange(
+          event
+            ? {
+                source: event.source,
+                name: event.fieldName,
+              }
+            : undefined
+        );
+      }}
       {...TEST_IDS.fieldPicker.root.apply()}
+      {...restProps}
     />
   );
 };

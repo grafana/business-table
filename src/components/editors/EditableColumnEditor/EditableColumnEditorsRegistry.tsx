@@ -1,13 +1,12 @@
 import { dateTime, dateTimeFormat } from '@grafana/data';
 import {
-  Combobox,
-  type ComboboxOption,
   DateTimePicker,
   FileDropzone,
   InlineField,
   InlineFieldRow,
   InlineSwitch,
   Input,
+  Select,
   TextArea,
 } from '@grafana/ui';
 import { NumberInput } from '@volkovlabs/components';
@@ -25,22 +24,6 @@ import {
 } from '@/utils';
 
 import { DateEditor, QueryOptionsEditor } from './components';
-
-const getComboboxOptions = (
-  options: Array<{ value?: unknown; label?: string; description?: string }>
-): Array<ComboboxOption<string | number>> => {
-  return options.reduce<Array<ComboboxOption<string | number>>>((acc, option) => {
-    if (typeof option.value === 'string' || typeof option.value === 'number') {
-      acc.push({
-        value: option.value,
-        label: option.label,
-        description: option.description,
-      });
-    }
-
-    return acc;
-  }, []);
-};
 
 /**
  * Editable Column Editors Registry
@@ -252,14 +235,12 @@ export const editableColumnEditorsRegistry = createEditableColumnEditorsRegistry
       </>
     ),
     control: ({ value, onChange, config }) => {
-      const safeValue = typeof value === 'string' || typeof value === 'number' ? value : null;
-
       return (
-        <Combobox
-          value={safeValue}
+        <Select
+          value={value}
           onChange={(event) => onChange(event.value)}
-          options={getComboboxOptions(config.options)}
-          createCustomValue={config.customValues}
+          options={config.options}
+          allowCustomValue={config.customValues}
           {...TEST_IDS.editableCell.fieldSelect.apply()}
         />
       );

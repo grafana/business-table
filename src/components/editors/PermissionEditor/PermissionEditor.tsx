@@ -1,5 +1,5 @@
 import { DataFrame, FieldType, OrgRole } from '@grafana/data';
-import { Combobox, InlineField, MultiCombobox } from '@grafana/ui';
+import { InlineField, Select } from '@grafana/ui';
 import React from 'react';
 
 import { FieldPicker } from '@/components';
@@ -57,7 +57,7 @@ export const PermissionEditor: React.FC<Props> = ({ value, onChange, data }) => 
   return (
     <>
       <InlineField label="Check" grow={true}>
-        <Combobox
+        <Select
           value={value.mode}
           onChange={(event) => {
             onChange({
@@ -71,15 +71,18 @@ export const PermissionEditor: React.FC<Props> = ({ value, onChange, data }) => 
       </InlineField>
       {value.mode === PermissionMode.USER_ROLE && (
         <InlineField label="User Role" grow={true}>
-          <MultiCombobox
+          <Select
             value={value.userRole}
             onChange={(event) => {
+              const values = Array.isArray(event) ? event : [event];
+
               onChange({
                 ...value,
-                userRole: event.map((item) => item.value),
+                userRole: values.map((item) => item.value),
               });
             }}
             options={userOrgRoleOptions}
+            isMulti={true}
             isClearable={true}
             placeholder="Allowed Org User Role"
             {...testIds.fieldOrgRole.apply()}

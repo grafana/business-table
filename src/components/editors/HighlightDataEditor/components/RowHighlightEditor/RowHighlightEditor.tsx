@@ -1,5 +1,6 @@
+import { SelectableValue } from '@grafana/data';
 import { getTemplateSrv } from '@grafana/runtime';
-import { Combobox, ComboboxOption, InlineField, InlineFieldRow, InlineSwitch } from '@grafana/ui';
+import { InlineField, InlineFieldRow, InlineSwitch, Select } from '@grafana/ui';
 import React, { useMemo } from 'react';
 
 import { FieldsGroup } from '@/components';
@@ -35,7 +36,7 @@ export const testIds = TEST_IDS.rowHighlightEditor;
 /**
  * Scroll To Options
  */
-const scrollToOptions: Array<ComboboxOption<ScrollToRowPosition>> = [
+const scrollToOptions: Array<SelectableValue<ScrollToRowPosition>> = [
   {
     label: 'Off',
     value: ScrollToRowPosition.NONE,
@@ -84,7 +85,7 @@ export const RowHighlightEditor: React.FC<Props> = ({ value, onChange, columns, 
       <FieldsGroup label="State">
         <InlineFieldRow>
           <InlineField label="Column">
-            <Combobox
+            <Select
               onChange={(event) => {
                 onChange({
                   ...value,
@@ -98,7 +99,7 @@ export const RowHighlightEditor: React.FC<Props> = ({ value, onChange, columns, 
             />
           </InlineField>
           <InlineField label="Variable">
-            <Combobox
+            <Select
               onChange={(event) => {
                 onChange({
                   ...value,
@@ -128,11 +129,11 @@ export const RowHighlightEditor: React.FC<Props> = ({ value, onChange, columns, 
       </FieldsGroup>
       <FieldsGroup label="Appearance">
         <InlineField label="Auto scroll to">
-          <Combobox<ScrollToRowPosition>
+          <Select
             onChange={(event) => {
               onChange({
                 ...value,
-                scrollTo: event.value,
+                scrollTo: event.value!,
               });
             }}
             value={value.scrollTo}

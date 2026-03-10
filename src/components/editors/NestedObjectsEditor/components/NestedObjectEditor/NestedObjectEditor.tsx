@@ -1,4 +1,4 @@
-import { Collapse, Combobox, Field, InlineField, InlineSwitch, useStyles2 } from '@grafana/ui';
+import { Collapse, Field, InlineField, InlineSwitch, Select, useStyles2 } from '@grafana/ui';
 import { AutosizeCodeEditor } from '@volkovlabs/components';
 import React, { useState } from 'react';
 
@@ -88,7 +88,7 @@ export const NestedObjectEditor: React.FC<Props> = ({ value, onChange }) => {
   return (
     <>
       <InlineField label="Type" grow={true}>
-        <Combobox
+        <Select
           value={value.type}
           onChange={(event) => {
             const newType = event.value!;

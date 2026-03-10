@@ -1,5 +1,5 @@
 import { DataFrame } from '@grafana/data';
-import { Combobox, InlineField } from '@grafana/ui';
+import { InlineField, Select } from '@grafana/ui';
 import React from 'react';
 
 import { TEST_IDS } from '@/constants';
@@ -43,7 +43,7 @@ export const EditableColumnEditor: React.FC<Props> = ({ value, onChange, data })
   return (
     <>
       <InlineField label="Editor Type" grow={true}>
-        <Combobox
+        <Select
           value={value.type}
           onChange={(event) => {
             onChange(getColumnEditorConfig(event.value!));

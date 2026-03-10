@@ -89,8 +89,6 @@ const SelectMock = ({
 );
 
 const Select = jest.fn(SelectMock);
-const Combobox = jest.fn(SelectMock);
-const MultiCombobox = jest.fn(SelectMock);
 
 /**
  * Mock Button Select
@@ -407,8 +405,6 @@ const Icon = jest.fn(IconMock);
 beforeEach(() => {
   Button.mockImplementation(ButtonMock);
   Select.mockImplementation(SelectMock);
-  Combobox.mockImplementation(SelectMock);
-  MultiCombobox.mockImplementation(SelectMock);
   Drawer.mockImplementation(DrawerMock);
   ButtonSelect.mockImplementation(SelectMock);
   ToolbarButtonRow.mockImplementation(ToolbarButtonRowMock);
@@ -432,8 +428,6 @@ beforeEach(() => {
 module.exports = {
   ...actual,
   Select,
-  Combobox,
-  MultiCombobox,
   Button,
   BarGauge,
   ToolbarButtonRow,

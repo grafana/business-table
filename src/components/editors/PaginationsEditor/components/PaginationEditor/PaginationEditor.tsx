@@ -1,6 +1,6 @@
 import { DataFrame } from '@grafana/data';
 import { getTemplateSrv } from '@grafana/runtime';
-import { Combobox, Field } from '@grafana/ui';
+import { Field, Select } from '@grafana/ui';
 import React, { useMemo } from 'react';
 
 import { FieldPicker } from '@/components';
@@ -69,13 +69,9 @@ export const PaginationEditor: React.FC<Props> = ({ value, onChange, data }) => 
           invalid={hasTablePaginationError(value)}
           error="Query pagination is not supported with client filtering"
         >
-          <Combobox
+          <Select
             value={value.pagination.mode}
             onChange={(event) => {
-              if (event.value === PaginationMode.QUERY && hasTablePaginationQueryDisabled(value)) {
-                return;
-              }
-
               onChange({
                 ...value,
                 pagination: {
@@ -103,7 +99,7 @@ export const PaginationEditor: React.FC<Props> = ({ value, onChange, data }) => 
       )}
       {value.pagination.enabled && (
         <Field label="Default page size">
-          <Combobox
+          <Select
             value={value.pagination.defaultPageSize}
             onChange={(event) => {
               onChange({
@@ -122,7 +118,7 @@ export const PaginationEditor: React.FC<Props> = ({ value, onChange, data }) => 
       {value.pagination.enabled && value.pagination.mode === PaginationMode.QUERY && (
         <>
           <Field label="Page Index Variable">
-            <Combobox
+            <Select
               value={value.pagination.query?.pageIndexVariable}
               onChange={(event) => {
                 onChange({
@@ -142,7 +138,7 @@ export const PaginationEditor: React.FC<Props> = ({ value, onChange, data }) => 
             />
           </Field>
           <Field label="Offset Variable">
-            <Combobox
+            <Select
               value={value.pagination.query?.offsetVariable}
               onChange={(event) => {
                 onChange({
@@ -162,7 +158,7 @@ export const PaginationEditor: React.FC<Props> = ({ value, onChange, data }) => 
             />
           </Field>
           <Field label="Page Size Variable">
-            <Combobox
+            <Select
               value={value.pagination.query?.pageSizeVariable}
               onChange={(event) => {
                 onChange({
