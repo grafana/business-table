@@ -1,7 +1,7 @@
 services:
   grafana:
     user: root
-    container_name: 'volkovlabs-table-panel'
+    container_name: 'grafana-business-table-panel'
 
     build:
       context: .
@@ -13,9 +13,9 @@ services:
     ports:
       - 3000:3000/tcp
     volumes:
-      - ../dist:/var/lib/grafana/plugins/volkovlabs-table-panel
+      - ../dist:/var/lib/grafana/plugins/grafana-business-table-panel
       - ../provisioning:/etc/grafana/provisioning
-      - ..:/root/volkovlabs-table-panel
+      - ..:/root/grafana-business-table-panel
 
     environment:
       NODE_ENV: development
