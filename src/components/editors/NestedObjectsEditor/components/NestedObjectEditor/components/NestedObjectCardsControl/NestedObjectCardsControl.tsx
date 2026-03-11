@@ -1,6 +1,6 @@
 import { AlertPayload, AppEvents, LoadingState, ScopedVars } from '@grafana/data';
 import { getAppEvents } from '@grafana/runtime';
-import { Button, Drawer, EmptySearchResult, Icon, useStyles2 } from '@grafana/ui';
+import { Button, Drawer, EmptyState, Icon, useStyles2 } from '@grafana/ui';
 import { useDatasourceRequest } from '@volkovlabs/components';
 import React, { useCallback, useMemo, useState } from 'react';
 
@@ -310,7 +310,7 @@ export const NestedObjectCardsControl: React.FC<Props> = ({
             })
           ) : (
             <div {...testIds.noItemsMessage.apply()}>
-              <EmptySearchResult>{`No ${header}`}</EmptySearchResult>
+              <EmptyState variant="not-found" message={`No ${header}`} />
             </div>
           )}
           {operations.add.enabled && (
