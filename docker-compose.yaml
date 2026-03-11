@@ -34,7 +34,7 @@ services:
       - playwright
 
   timescale:
-    image: timescale/timescaledb:latest-pg14
+    image: timescale/timescaledb:latest-pg14@sha256:0f5553d37abbe0f20bfe0a04dab5d1238955b5cda2711aba403090f95b6e51ff
     restart: always
     environment:
       POSTGRES_PASSWORD: postgres
