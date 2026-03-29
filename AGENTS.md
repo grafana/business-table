@@ -209,6 +209,11 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
   `explore` or `general` agents rather than running
   many search/read commands directly. Launch multiple
   agents in parallel when tasks are independent.
+- **Check `test/Dockerfile`** uses the latest
+  versioned `noble` Playwright image from
+  `mcr.microsoft.com/playwright`. Query the
+  registry tag list and compare against the
+  `FROM` image in the Dockerfile.
 - Code owners: `@grafana/dataviz-squad`.
 
 ## Branching Policy
