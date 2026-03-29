@@ -2,6 +2,16 @@
 
 All notable changes to the **Business Table Panel** plugin for Grafana are documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### 🔧 Chores
+
+- Added `AGENTS.md` with coding agent guidance and `.markdownlint.yaml` configuration.
+- Updated dependencies to latest patch/minor versions: `@grafana/data`,
+  `@grafana/runtime`, `@grafana/ui`, `@grafana/plugin-e2e`, `@swc/core`,
+  `@swc/helpers`, `@tanstack/react-virtual`, `handlebars`, `sass`.
+- Updated CI/CD workflows from `plugin-ci-workflows` v6.1.1 to v7.0.0.
+
 ## [3.6.0] - 2025-10-28
 
 ### Project Updates
