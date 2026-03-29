@@ -219,6 +219,7 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
   changes.
 - **Always create pull requests as drafts**
   (`gh pr create --draft`).
+- **Wrap PR summary lines at 120 characters.**
 
 ## Changelog Policy
 
