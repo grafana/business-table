@@ -17,11 +17,11 @@ jobs:
       id-token: write
     with:
       plugin-version-suffix: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || '' }}
-      run-playwright-with-grafana-dependency: '>=12.1 <=13.0'
+      run-playwright-with-grafana-dependency: '>=12.3 <=13.0'
       run-playwright: false
       run-playwright-docker: true
       playwright-docker-compose-file: docker-compose.yaml
       upload-playwright-artifacts: true
-      run-playwright-with-skip-grafana-dev-image: true
+      run-playwright-with-skip-grafana-dev-image: false
+      run-playwright-with-skip-grafana-react-19-preview-image: false
       signature-type: community
-      # playwright-config: e2e/playwright.config.ts
