@@ -16,6 +16,7 @@ All notable changes to the **Business Table Panel** plugin for Grafana are docum
 - Updated CI Playwright Grafana dependency range to `>=12.3 <=13.0` and
   enabled dev and React 19 preview image testing.
 - Disabled `react-hooks/incompatible-library` ESLint rule for React Compiler.
+- Bumped `@grafana/scenes` from v6 to v7 for React 19 compatibility.
 
 ## [3.6.0] - 2025-10-28
 
