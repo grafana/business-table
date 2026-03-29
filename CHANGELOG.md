@@ -15,6 +15,7 @@ All notable changes to the **Business Table Panel** plugin for Grafana are docum
 - Enabled cspell checking for `CHANGELOG.md` and `README.md`.
 - Updated CI Playwright Grafana dependency range to `>=12.3 <=13.0` and
   enabled dev and React 19 preview image testing.
+- Disabled `react-hooks/incompatible-library` ESLint rule for React Compiler.
 
 ## [3.6.0] - 2025-10-28
 
