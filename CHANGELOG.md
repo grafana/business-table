@@ -17,6 +17,8 @@ All notable changes to the **Business Table Panel** plugin for Grafana are docum
   enabled dev and React 19 preview image testing.
 - Disabled `react-hooks/incompatible-library` ESLint rule for React Compiler.
 - Bumped `@grafana/scenes` from v6 to v7 for React 19 compatibility.
+- React 19: `react-resizable` flag from `@grafana/react-detect` is a false
+  positive — plugin is working with both React 18 and React 19.
 
 ## [3.6.0] - 2025-10-28
 
