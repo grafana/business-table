@@ -11,6 +11,8 @@ All notable changes to the **Business Table Panel** plugin for Grafana are docum
   `@grafana/runtime`, `@grafana/ui`, `@grafana/plugin-e2e`, `@swc/core`,
   `@swc/helpers`, `@tanstack/react-virtual`, `handlebars`, `sass`.
 - Updated CI/CD workflows from `plugin-ci-workflows` v6.1.1 to v7.0.0.
+- Updated Playwright Docker image from v1.54.1-noble to v1.58.2-noble.
+- Enabled cspell checking for `CHANGELOG.md` and `README.md`.
 
 ## [3.6.0] - 2025-10-28
 
