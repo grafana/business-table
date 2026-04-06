@@ -1,7 +1,7 @@
 # AGENTS.md — Business Table (Grafana Panel Plugin)
 
 Frontend-only Grafana panel plugin (`volkovlabs-table-panel`).
-Node >= 24, npm, webpack (via `.config/`), TypeScript 5.9+, React 18.
+Node >= 24, npm, webpack (via `.config/`), TypeScript 5.9+, React 18 + React 19.
 
 ## Build & Dev Commands
 
