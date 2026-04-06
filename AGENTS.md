@@ -176,6 +176,10 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
 
 ## Critical Rules
 
+- **Do not use `volkovlabs.io` URLs** anywhere in the
+  codebase. This project was forked from Volkov Labs
+  and all references should point to Grafana equivalents
+  (e.g., `grafana.com`).
 - **Never modify anything inside `.config/`** —
   managed by Grafana plugin tooling.
 - **Never change `id` or `type`** in `src/plugin.json`.
@@ -193,6 +197,8 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
   file you create or modify (including `AGENTS.md`,
   `README.md`, `CHANGELOG.md`) and fix all reported
   issues before committing.
+- **Always run `npm run typecheck`** when `src/` files
+  are changed and fix any type errors before committing.
 - **Always run cspell** after making changes:
   `npx cspell@6.13.3 -c cspell.config.json
   "**/*.{ts,tsx,js,go,md,mdx,yml,yaml,json,scss,css}"`
@@ -204,6 +210,8 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
   Do not commit as part of completing a task.
 - **NEVER push unless the user explicitly asks.**
   Do not push as part of completing a task.
+  Never chain `git commit && git push` in one command.
+  Always wait for the user to explicitly ask to push.
 - **Never add `Co-Authored-By` trailers** to commit messages.
 - **Prefer subagents** for research, code exploration,
   and multi-step work. Use the Task tool with
@@ -223,9 +231,19 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
 - Use descriptive branch names (e.g., `feat/add-feature`, `fix/bug-description`).
 - When pushing new commits to a PR, always update the PR summary to reflect all
   changes.
+- **After pushing, always update the PR summary** if a
+  PR exists for the current branch. Treat push and PR
+  update as an atomic pair — never stop between them.
+  Use `gh pr edit` to update the title and body with
+  well-formatted text that reflects all changes across
+  the entire branch. **Wrap PR summary lines at 120
+  characters** — use the full width, do not wrap
+  shorter than necessary.
 - **Always create pull requests as drafts**
   (`gh pr create --draft`).
-- **Wrap PR summary lines at 120 characters.**
+- When checking out a branch or `main`, always
+  `git fetch` and `git pull` to ensure you have the
+  latest changes.
 
 ## Changelog Policy
 
