@@ -11,11 +11,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added `AGENTS.md` with coding agent guidance and `.markdownlint.yaml` configuration.
 - Clarified React 18 + React 19 dual compatibility in `AGENTS.md`.
 - Added no `Co-Authored-By` commit trailer rule to `AGENTS.md`.
+- Fixed markdownlint line-length violations in `CHANGELOG.md` and `README.md`.
 - Updated dependencies to latest patch/minor versions: `@grafana/data`,
   `@grafana/runtime`, `@grafana/ui`, `@grafana/plugin-e2e`, `@swc/core`,
   `@swc/helpers`, `@tanstack/react-virtual`, `handlebars`, `sass`.
 - Updated CI/CD workflows from `plugin-ci-workflows` v6.1.1 to v7.0.0.
-- Updated Playwright Docker image from v1.54.1-noble to v1.58.2-noble.
+- Updated Playwright Docker image from v1.54.1-noble to v1.59.1-noble.
 - Enabled cspell checking for `CHANGELOG.md` and `README.md`.
 - Updated CI Playwright Grafana dependency range to `>=12.3 <=13.0` and
   enabled dev and React 19 preview image testing.
