@@ -204,6 +204,7 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
   Do not commit as part of completing a task.
 - **NEVER push unless the user explicitly asks.**
   Do not push as part of completing a task.
+- **Never add `Co-Authored-By` trailers** to commit messages.
 - **Prefer subagents** for research, code exploration,
   and multi-step work. Use the Task tool with
   `explore` or `general` agents rather than running
