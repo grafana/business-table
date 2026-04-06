@@ -7,6 +7,8 @@ All notable changes to the **Business Table Panel** plugin for Grafana are docum
 ### 🔧 Chores
 
 - Added `AGENTS.md` with coding agent guidance and `.markdownlint.yaml` configuration.
+- Clarified React 18 + React 19 dual compatibility in `AGENTS.md`.
+- Added no `Co-Authored-By` commit trailer rule to `AGENTS.md`.
 - Updated dependencies to latest patch/minor versions: `@grafana/data`,
   `@grafana/runtime`, `@grafana/ui`, `@grafana/plugin-e2e`, `@swc/core`,
   `@swc/helpers`, `@tanstack/react-virtual`, `handlebars`, `sass`.
