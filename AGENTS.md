@@ -204,8 +204,6 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
   "**/*.{ts,tsx,js,go,md,mdx,yml,yaml,json,scss,css}"`
   and fix any issues before committing. Add new words
   to `cspell.config.json` if they are legitimate.
-- **Always update `CHANGELOG.md`** when committing any
-  change. Include the changelog update in the same commit.
 - **NEVER commit unless the user explicitly asks.**
   Do not commit as part of completing a task.
 - **NEVER push unless the user explicitly asks.**
@@ -229,8 +227,6 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
 
 - **Never commit directly to `main`**. Always create a new branch for changes.
 - Use descriptive branch names (e.g., `feat/add-feature`, `fix/bug-description`).
-- When pushing new commits to a PR, always update the PR summary to reflect all
-  changes.
 - **After pushing, always update the PR summary** if a
   PR exists for the current branch. Treat push and PR
   update as an atomic pair — never stop between them.
