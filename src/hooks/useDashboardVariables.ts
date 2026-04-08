@@ -24,6 +24,8 @@ export const useDashboardVariables = <TVariable = TypedVariableModel, TState = T
   toState: (variables: TypedVariableModel[]) => TState;
 }) => {
   const callbacksRef = useRef({ getOne, toState });
+  // eslint-disable-next-line react-hooks/refs -- keeps ref in sync with latest callbacks
+  callbacksRef.current = { getOne, toState };
   const [variables, setVariables] = useState<TState>(initial);
   const [variable, setVariable] = useState<TVariable>();
 

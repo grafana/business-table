@@ -7,13 +7,15 @@ import { lastValueFrom } from 'rxjs';
 /**
  * Datasource Response Error
  */
-export class DatasourceResponseError {
+export class DatasourceResponseError extends Error {
   readonly error: unknown;
-  readonly message: string;
+  readonly query: string;
 
-  constructor(error: unknown, target: string) {
+  constructor(error: unknown, query: string) {
+    super(error instanceof Error ? error.message : String(error));
+    this.name = 'DatasourceResponseError';
     this.error = error;
-    this.message = target;
+    this.query = query;
   }
 }
 

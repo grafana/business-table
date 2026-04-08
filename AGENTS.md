@@ -89,6 +89,14 @@ import { getStyles } from './TablePanel.styles';
 | Constants        | SCREAMING_SNAKE_CASE             | `TEST_IDS`, `AUTO_SAVE_TIMEOUT`                  |
 | Styles files     | `Component.styles.ts`            | `TablePanel.styles.ts`                           |
 
+### JSDoc Comments
+
+This codebase uses **pervasive JSDoc comments**. Add `/** ... */` blocks above:
+
+- Every interface and each of its properties (include `@type` tags on properties)
+- Every function and constant declaration
+- Logical sections within function bodies (state, theme, callbacks, return)
+
 ### TypeScript Patterns
 
 - **Enums over string unions** for configuration values.
@@ -113,6 +121,24 @@ import { getStyles } from './TablePanel.styles';
 - **Barrel exports** via `index.ts` in every directory using `export *`.
 - **`Props` type** defined at component scope or derived via
   `React.ComponentProps<typeof X>`.
+
+### React Components
+
+- **Functional components only** using `React.FC<Props>` with arrow functions.
+- Props destructured in the function signature, not inside the body.
+- Styles via `@emotion/css` + Grafana's `useStyles2(getStyles)` pattern.
+- Style functions: `(theme: GrafanaTheme2) => ({ className: css\`...\` })`.
+- Wrap callbacks in `useCallback` with explicit dependency arrays.
+- All testable elements must use `data-testid={TEST_IDS.section.element}`.
+- Centralized test IDs live in `src/constants/tests.ts`.
+
+### Error Handling
+
+- Use **try/catch** in async effects; store errors in state with `setError(e)`.
+- Display errors with Grafana's `<Alert severity="error">` component.
+- Format: `error instanceof Error ? error.message : \`${error}\``.
+- Wrap `new Function(...)` calls in try/catch; return a no-op on failure and log with `console.error`.
+- Effects that subscribe must return cleanup functions calling `unsubscribe()`.
 
 ### Styles
 

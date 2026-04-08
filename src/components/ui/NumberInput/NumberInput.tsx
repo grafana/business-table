@@ -91,6 +91,10 @@ export const NumberInput: React.FC<Props> = ({ value, onChange, min, max, step, 
    * Handle Blur
    */
   const handleBlur = useCallback(() => {
+    if (!isDirty.current) {
+      return;
+    }
+
     let num = Number(localValue);
 
     if (Number.isNaN(num)) {
@@ -115,11 +119,9 @@ export const NumberInput: React.FC<Props> = ({ value, onChange, min, max, step, 
       num = snapToStep(num, steps);
     }
 
-    if (isDirty.current) {
-      onChange?.(num);
-      setLocalValue(num.toString());
-      isDirty.current = false;
-    }
+    onChange?.(num);
+    setLocalValue(num.toString());
+    isDirty.current = false;
   }, [localValue, max, min, onChange, step, steps]);
 
   /**

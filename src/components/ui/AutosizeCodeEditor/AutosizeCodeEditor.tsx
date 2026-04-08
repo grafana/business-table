@@ -117,9 +117,8 @@ export const AutosizeCodeEditor: React.FC<Props> = ({
     (code: string) => {
       const result = isEscaping ? code.replaceAll('\n', '\\n') : code;
       onChange?.(result);
-      setComputedHeight(calculateHeight(code, minHeight, maxHeight));
     },
-    [maxHeight, minHeight, onChange, isEscaping]
+    [onChange, isEscaping]
   );
 
   /**
