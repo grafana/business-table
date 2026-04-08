@@ -33,6 +33,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added `markdownlint-cli2` and `cspell` to devDependencies.
 - Added CI/CD coverage report and PR file changes workflows.
 - Added CI/CD, PR summary, and lint rules to `AGENTS.md`.
+- Added `@volkovlabs/*` package prohibition to `AGENTS.md` critical rules.
+- Added `.eslintcache` to `.gitignore`.
+- Fixed React Compiler lint errors: replaced `useRef` with callback ref in
+  `TableHeaderCellFilter`, inlined `useSortState` `useCallback`, and added
+  targeted `eslint-disable` for intentional state-sync patterns.
+- Added `test-exclude` glob override to fix Jest coverage with glob v13.
 
 ## [3.6.0] - 2025-10-28
 
