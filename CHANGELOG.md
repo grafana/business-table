@@ -35,6 +35,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   variable interpolation.
 - Replaced fragile inline window type cast in `useDashboardVariables` with
   existing global declaration.
+- Fixed conditional React hook call in `useDashboardVariables` by replacing
+  `SceneObject.useState()` with manual `subscribeToState` subscription.
 
 ### Project Updates
 
