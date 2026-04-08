@@ -28,22 +28,47 @@ export const useDashboardVariables = <TVariable = TypedVariableModel, TState = T
   const [variable, setVariable] = useState<TVariable>();
 
   /**
-   * Scene context support
+   * Scene context support — subscribe manually to avoid conditional hook call
    */
-  const sceneContext = window.__grafanaSceneContext?.useState();
+  const [sceneVarsState, setSceneVarsState] = useState<
+    Array<{ state: { loading: boolean } }> | undefined
+  >();
   const [checkCount, incrementCheckCount] = useReducer((count: number) => count + 1, 0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  /**
+   * Subscribe to scene context state changes
+   */
+  useEffect(() => {
+    const sceneContext = window.__grafanaSceneContext;
+    if (!sceneContext) {
+      return;
+    }
+
+    const getSceneVars = (state: Record<string, unknown>) =>
+      (state.$variables as { state: { variables: Array<{ state: { loading: boolean } }> } } | undefined)?.state
+        .variables;
+
+    setSceneVarsState(getSceneVars(sceneContext.state as Record<string, unknown>));
+
+    const subscription = sceneContext.subscribeToState((newState) => {
+      setSceneVarsState(getSceneVars(newState as Record<string, unknown>));
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
 
   /**
    * Watch scene variables loading state
    */
   useEffect(() => {
-    if (!sceneContext?.$variables?.state.variables || checkCount >= refreshCheckCount) {
+    if (!sceneVarsState || checkCount >= refreshCheckCount) {
       return;
     }
 
-    const sceneVars = sceneContext.$variables.state.variables;
-    const isLoading = sceneVars.some((v) => v?.state.loading);
+    const isLoading = sceneVarsState.some((v) => v?.state.loading);
 
     const clearTimer = () => {
       if (timeoutRef.current) {
@@ -62,7 +87,7 @@ export const useDashboardVariables = <TVariable = TypedVariableModel, TState = T
     }
 
     return clearTimer;
-  }, [sceneContext?.$variables?.state.variables, checkCount, refreshCheckCount, refreshCheckInterval]);
+  }, [sceneVarsState, checkCount, refreshCheckCount, refreshCheckInterval]);
 
   /**
    * Sync variables on refresh events
