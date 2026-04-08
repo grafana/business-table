@@ -1,5 +1,5 @@
 import { selectors } from '@grafana/e2e-selectors';
-import { createSelector } from '@/utils/test-selectors';
+import { createSelector } from './utils/test-selectors';
 
 import {
   CellAggregation,
