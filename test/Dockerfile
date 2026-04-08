@@ -8,9 +8,11 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 
-# Copy test files, config, and provisioning
+# Copy test files, source (test helpers import from src/), config, and provisioning
 COPY test/ test/
+COPY src/ src/
 COPY playwright.config.ts .
+COPY tsconfig.json .
 COPY provisioning/ provisioning/
 
 # Run tests
