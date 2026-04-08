@@ -76,21 +76,15 @@ export const getJestSelectors = <TSelectors extends Record<keyof TSelectors, TSe
 /**
  * Create Selector
  */
-export function createSelector<TSelector extends string>(
+/* eslint-disable no-redeclare -- TypeScript function overloads */
+export function createSelector<TSelector extends string | SelectorFn>(
   selector: TSelector,
   propName?: string
-): {
-  selector: () => string;
-  apply: () => Record<string, string>;
-};
-export function createSelector<TSelector extends SelectorFn>(
-  selector: TSelector,
-  propName?: string
-): {
-  selector: typeof selector;
-  apply: (...args: Parameters<TSelector>) => Record<string, string>;
-};
+): TSelector extends string
+  ? { selector: () => string; apply: () => Record<string, string> }
+  : { selector: TSelector; apply: (...args: Parameters<TSelector & SelectorFn>) => Record<string, string> };
 export function createSelector(selector: string | SelectorFn, propName?: string) {
+  /* eslint-enable no-redeclare */
   const selectorFn = typeof selector === 'string' ? () => selector : selector;
   let attrName = 'aria-label';
   if (propName) {

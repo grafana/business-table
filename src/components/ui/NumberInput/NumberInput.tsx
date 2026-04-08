@@ -131,13 +131,14 @@ export const NumberInput: React.FC<Props> = ({ value, onChange, min, max, step, 
         inputRef.current?.blur();
       }
     },
-    [handleBlur]
+    []
   );
 
   /**
    * Sync external value
    */
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- syncs external controlled value to local state
     setLocalValue(value?.toString() || '0');
   }, [value]);
 

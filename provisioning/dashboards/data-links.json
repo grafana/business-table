@@ -728,7 +728,7 @@
             {
               "targetBlank": false,
               "title": "volkovlabs (open in current tab)",
-              "url": "https://volkovlabs.io/plugins/business-table/"
+              "url": "https://grafana.com/docs/plugins/volkovlabs-table-panel/"
             }
           ],
           "mappings": [],
@@ -1171,9 +1171,9 @@
                 "name": "url",
                 "type": "string",
                 "values": [
-                  "https://volkovlabs.io/plugins/business-table/",
+                  "https://grafana.com/docs/plugins/volkovlabs-table-panel/",
                   "",
-                  "https://volkovlabs.io/plugins/business-table/",
+                  "https://grafana.com/docs/plugins/volkovlabs-table-panel/",
                   ""
                 ]
               }
@@ -1705,7 +1705,7 @@
             {
               "targetBlank": true,
               "title": "${Test}",
-              "url": "https://volkovlabs.io/plugins/business-table/"
+              "url": "https://grafana.com/docs/plugins/volkovlabs-table-panel/"
             },
             {
               "targetBlank": true,
