@@ -31,6 +31,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Fixed lint errors in inlined modules: `no-redeclare` on `createSelector`
   overloads, unnecessary dep in `NumberInput` `useCallback`.
 - Removed `volkovlabs.io` URLs from provisioning dashboards.
+- Fixed `useDatasourceRequest` to catch `JSON.parse` errors from malformed
+  variable interpolation.
+- Replaced fragile inline window type cast in `useDashboardVariables` with
+  existing global declaration.
 
 ### Project Updates
 
