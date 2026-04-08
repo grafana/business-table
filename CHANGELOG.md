@@ -28,6 +28,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   targeted `eslint-disable` for intentional state-sync patterns.
 - Fixed markdownlint line-length violations in `CHANGELOG.md` and `README.md`.
 - Added `test-exclude` glob override to fix Jest coverage with glob v13.
+- Fixed lint errors in inlined modules: `no-redeclare` on `createSelector`
+  overloads, unnecessary dep in `NumberInput` `useCallback`.
+- Removed `volkovlabs.io` URLs from provisioning dashboards.
 
 ### Project Updates
 
