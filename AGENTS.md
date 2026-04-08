@@ -158,8 +158,7 @@ const styles = useStyles2(getStyles);
 
 ### Formatting (Prettier)
 
-Print width: 120, single quotes, trailing commas (es5), semicolons,
-2-space indent, no tabs.
+See `.prettierrc.js`. Print width 120, single quotes, 2-space indent.
 
 ## Testing Conventions
 
@@ -201,61 +200,40 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
 
 ## Critical Rules
 
-- **Do not use `volkovlabs.io` URLs** anywhere in the
-  codebase. This project was forked from Volkov Labs
-  and all references should point to Grafana equivalents
-  (e.g., `grafana.com`).
-- **Do not add `@volkovlabs/*` packages** as dependencies.
-  All Volkov Labs packages (`@volkovlabs/components`,
-  `@volkovlabs/jest-selectors`, `@volkovlabs/eslint-config`)
-  have been replaced with local implementations.
-- **Never modify anything inside `.config/`** —
-  managed by Grafana plugin tooling.
+- **No Volkov Labs references.** Do not use `volkovlabs.io`
+  URLs or add `@volkovlabs/*` packages. All have been
+  replaced with local implementations. Use `grafana.com`
+  equivalents.
+- **Never modify `.config/`** — managed by Grafana plugin tooling.
 - **Never change `id` or `type`** in `src/plugin.json`.
-- Changes to `plugin.json` require a
-  **Grafana server restart**.
-- Use webpack from `.config/` for builds;
-  do not add a custom bundler.
-- Use `secureJsonData` for secrets; `jsonData` for non-sensitive config.
+  Changes to `plugin.json` require a Grafana server restart.
 - Grafana API docs:
   <https://grafana.com/developers/plugin-tools/llms.txt>
 - `@grafana/ui` component reference:
   <https://developers.grafana.com/ui/latest/index.html>
-- **Always run `npx markdownlint-cli2`** on any `.md`
-  file you create or modify (including `AGENTS.md`,
-  `README.md`, `CHANGELOG.md`) and fix all reported
-  issues before committing.
-- **Always run `npm run typecheck`** when `src/` files
-  are changed and fix any type errors before committing.
-- **Always run `npm run lint`** before committing changes
-  to `src/`. Fix errors with `npm run lint:fix` and verify
-  no errors remain.
-- **Always run cspell** after making changes:
-  `npx cspell -c cspell.config.json
-"**/*.{ts,tsx,js,go,md,mdx,yml,yaml,json,scss,css}"`
-  and fix any issues before committing. Add new words
-  to `cspell.config.json` if they are legitimate.
-- **NEVER commit unless the user explicitly asks.**
-  Do not commit as part of completing a task.
-- **NEVER push unless the user explicitly asks.**
-  Do not push as part of completing a task.
-  Never chain `git commit && git push` in one command.
-  Always wait for the user to explicitly ask to push.
-- **Never add `Co-Authored-By` trailers** to commit messages.
-- **Never add "Generated with Claude" or similar
-  attribution lines** to PR summaries, commit messages,
-  or any other output.
-- **Prefer subagents** for research, code exploration,
-  and multi-step work. Use the Task tool with
-  `explore` or `general` agents rather than running
-  many search/read commands directly. Launch multiple
-  agents in parallel when tasks are independent.
-- **Check `test/Dockerfile`** uses the latest
-  versioned `noble` Playwright image from
-  `mcr.microsoft.com/playwright`. Query the
-  registry tag list and compare against the
-  `FROM` image in the Dockerfile.
+- **Check `test/Dockerfile`** uses the latest versioned
+  `noble` Playwright image from `mcr.microsoft.com/playwright`.
 - Code owners: `@grafana/dataviz-squad`.
+
+### Pre-commit Checklist
+
+Run all of these before committing and fix any issues:
+
+1. `npm run typecheck` (when `src/` files changed)
+2. `npm run lint` (fix with `npm run lint:fix`)
+3. `npx cspell -c cspell.config.json "**/*.{ts,tsx,js,go,md,mdx,yml,yaml,json,scss,css}"`
+4. `npx markdownlint-cli2` on any changed `.md` files
+
+### Commit and Push Rules
+
+- **NEVER commit unless the user explicitly asks.**
+- **NEVER push unless the user explicitly asks.**
+  Never chain `git commit && git push` in one command.
+- **Never add `Co-Authored-By` trailers** or "Generated
+  with Claude" attribution to commits, PRs, or output.
+- **Prefer subagents** for research, code exploration,
+  and multi-step work. Launch multiple agents in parallel
+  when tasks are independent.
 
 ## Branching Policy
 
@@ -319,12 +297,5 @@ the changelog update.
 
 ## ESLint
 
-Flat config (ESLint 9) extending `@grafana/eslint-config/flat.js`
-and `eslint-config-prettier`. Custom rule:
-`@typescript-eslint/no-empty-object-type: off`. Test files, mocks, config
-files, and server dirs are excluded from linting.
-
-- `no-console` and `no-debugger` are errors.
-- `@typescript-eslint/no-deprecated` is a warning — avoid
-  using deprecated APIs.
-- Unused variables are errors (except rest siblings).
+See `eslint.config.mjs`. Key rules: `no-console` and `no-debugger`
+are errors, `@typescript-eslint/no-deprecated` is a warning.
