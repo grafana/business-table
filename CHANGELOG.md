@@ -37,6 +37,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   existing global declaration.
 - Fixed conditional React hook call in `useDashboardVariables` by replacing
   `SceneObject.useState()` with manual `subscribeToState` subscription.
+- Fixed stale callback ref in `useDashboardVariables`, duplicate height
+  calculation in `AutosizeCodeEditor`, unnecessary blur computation in
+  `NumberInput`, and `DatasourceResponseError` now extends `Error`.
 
 ### Project Updates
 
