@@ -265,7 +265,10 @@ before pushing.
 Categorize under `### Added`, `### Changed`, `### Removed`, `### Fixed`,
 or `### Project Updates` as appropriate. Group related items together
 rather than listing one entry per commit — keep the changelog concise
-and scannable for reviewers.
+and scannable for reviewers. After each commit, update the changelog
+as needed, then run `npx markdownlint-cli2 CHANGELOG.md` and
+`npx cspell -c cspell.config.json CHANGELOG.md` before committing
+the changelog update.
 
 ## CI/CD
 
