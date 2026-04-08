@@ -1,6 +1,10 @@
 import { LoadingState } from '@grafana/data';
 import { renderHook } from '@testing-library/react';
-import { useDatasourceRequest } from '@volkovlabs/components';
+import { useDatasourceRequest } from '@/hooks/useDatasourceRequest';
+
+jest.mock('@/hooks/useDatasourceRequest', () => ({
+  useDatasourceRequest: jest.fn(),
+}));
 
 import { createTableConfig, createTableOperationConfig, createTableRequestConfig } from '@/utils';
 

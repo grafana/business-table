@@ -24,6 +24,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bumped `@grafana/scenes` from v6 to v7 for React 19 compatibility.
 - React 19: `react-resizable` flag from `@grafana/react-detect` is a false
   positive — plugin is working with both React 18 and React 19.
+- Replaced `@volkovlabs/components` with local implementations of
+  `useDatasourceRequest`, `useDashboardVariables`, `NumberInput`, and
+  `AutosizeCodeEditor`. Bundle size reduced from 2.05 MiB to 1.04 MiB.
+- Replaced `@volkovlabs/jest-selectors` with local `test-selectors` utility.
+- Replaced `@volkovlabs/eslint-config` with direct `@grafana/eslint-config`
+  usage and simplified `eslint.config.mjs`.
+- Added `markdownlint-cli2` and `cspell` to devDependencies.
+- Added CI/CD coverage report and PR file changes workflows.
+- Added CI/CD, PR summary, and lint rules to `AGENTS.md`.
 
 ## [3.6.0] - 2025-10-28
 

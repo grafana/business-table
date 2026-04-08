@@ -11,7 +11,7 @@ import {
   Slider,
   StatsPicker,
 } from '@grafana/ui';
-import { NumberInput } from '@volkovlabs/components';
+import { NumberInput } from '@/components/ui/NumberInput';
 import React, { useId, useMemo, useState } from 'react';
 
 import { FieldsGroup } from '@/components';

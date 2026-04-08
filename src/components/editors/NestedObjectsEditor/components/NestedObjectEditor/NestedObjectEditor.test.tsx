@@ -14,6 +14,20 @@ import {
 import { formatOperationLabel, NestedObjectEditor } from './NestedObjectEditor';
 
 /**
+ * Mock AutosizeCodeEditor
+ */
+jest.mock('@/components/ui/AutosizeCodeEditor', () => ({
+  AutosizeCodeEditor: ({ value, onChange, ...restProps }: any) => (
+    <input
+      aria-label={restProps['aria-label']}
+      data-testid={restProps['data-testid']}
+      value={value}
+      onChange={(event: any) => onChange(event.currentTarget.value)}
+    />
+  ),
+}));
+
+/**
  * Props
  */
 type Props = React.ComponentProps<typeof NestedObjectEditor>;

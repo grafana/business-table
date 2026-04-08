@@ -8,7 +8,7 @@ import {
   getSortedRowModel,
   Table,
 } from '@tanstack/react-table';
-import { useDatasourceRequest } from '@volkovlabs/components';
+import { useDatasourceRequest } from '@/hooks/useDatasourceRequest';
 import { useCallback } from 'react';
 
 import { ACTIONS_COLUMN_ID } from '@/constants';

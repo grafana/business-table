@@ -1,7 +1,11 @@
 import { toDataFrame } from '@grafana/data';
 import { getAppEvents } from '@grafana/runtime';
 import { act, renderHook } from '@testing-library/react';
-import { useDatasourceRequest } from '@volkovlabs/components';
+import { useDatasourceRequest } from '@/hooks/useDatasourceRequest';
+
+jest.mock('@/hooks/useDatasourceRequest', () => ({
+  useDatasourceRequest: jest.fn(),
+}));
 
 import { CellType } from '@/types';
 import { createColumnConfig, createNestedObjectConfig, createNestedObjectEditorConfig } from '@/utils';
