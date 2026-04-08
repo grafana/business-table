@@ -14,6 +14,7 @@ RUN npx playwright install --with-deps chromium
 # Copy test files, source (test helpers import from src/), config, and provisioning
 COPY test/ test/
 COPY src/ src/
+COPY .config/tsconfig.json .config/tsconfig.json
 COPY playwright.config.ts .
 COPY tsconfig.json .
 COPY provisioning/ provisioning/
