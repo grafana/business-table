@@ -50,8 +50,10 @@ export const useContentSizes = ({
         bottomOffset += paginationRef.current.clientHeight;
       }
 
+      /* eslint-disable react-hooks/set-state-in-effect -- DOM measurement requires refs in effect */
       setTableTopOffset(topOffset);
       setTableBottomOffset(bottomOffset);
+      /* eslint-enable react-hooks/set-state-in-effect */
 
       /**
        * Need for scroll position end

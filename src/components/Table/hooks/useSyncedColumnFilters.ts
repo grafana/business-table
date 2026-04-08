@@ -46,6 +46,7 @@ export const useSyncedColumnFilters = <TData>({
    */
   useEffect(() => {
     if (userFilterPreference && !!userFilterPreference.length) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional sync with external preferences
       setColumnFilters(userFilterPreference);
     }
   }, [userFilterPreference]);
@@ -55,8 +56,10 @@ export const useSyncedColumnFilters = <TData>({
    */
   useEffect(() => {
     if (JSON.stringify(initialDefaultFiltersState) !== JSON.stringify(defaultFilters)) {
+      /* eslint-disable react-hooks/set-state-in-effect -- intentional sync with external default filters */
       setInitialDefaultFiltersState(defaultFilters);
       setColumnFilters(defaultFilters);
+      /* eslint-enable react-hooks/set-state-in-effect */
     }
   }, [defaultFilters, initialDefaultFiltersState]);
 
@@ -64,6 +67,7 @@ export const useSyncedColumnFilters = <TData>({
    * Set initial filters from variables and update on variable change
    */
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- syncs with variable changes via event bus
     setColumnFilters((current) => mergeColumnFilters(current, getVariableColumnFilters(columns)));
 
     const subscription = eventBus.getStream(RefreshEvent).subscribe(() => {

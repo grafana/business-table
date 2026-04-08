@@ -109,7 +109,6 @@ Configure the Business Table panel to send data to Google Sheets:
 1. In the panel settings, go to **Advanced Options** > **External Export** and enable it.
 1. Select your configured Infinity data source.
 1. Set the following options:
-
    - **Type**: `JSON`
    - **Parser**: `backend`
    - **Source**: `URL`

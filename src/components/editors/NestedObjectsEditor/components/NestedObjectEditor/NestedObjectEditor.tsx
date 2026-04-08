@@ -150,7 +150,7 @@ export const NestedObjectEditor: React.FC<Props> = ({ value, onChange }) => {
                   setExpandedState({
                     ...expandedState,
                     [operation]: isOpen,
-                  })
+                  });
 
                   if (isOpen) {
                     onChange({

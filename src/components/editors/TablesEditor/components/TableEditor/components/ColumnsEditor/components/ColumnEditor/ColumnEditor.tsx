@@ -1,7 +1,16 @@
 import { DataFrame } from '@grafana/data';
 import { getTemplateSrv } from '@grafana/runtime';
 import { BarGaugeDisplayMode, BarGaugeValueMode } from '@grafana/schema';
-import { InlineField, InlineFieldRow, InlineSwitch, Input, RadioButtonGroup, Select, Slider, StatsPicker } from '@grafana/ui';
+import {
+  InlineField,
+  InlineFieldRow,
+  InlineSwitch,
+  Input,
+  RadioButtonGroup,
+  Select,
+  Slider,
+  StatsPicker,
+} from '@grafana/ui';
 import { NumberInput } from '@volkovlabs/components';
 import React, { useId, useMemo, useState } from 'react';
 

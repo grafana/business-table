@@ -32,7 +32,7 @@ interface Props {
   /**
    * Data Test id
    */
-  // eslint-disable-next-line @typescript-eslint/naming-convention
+
   'data-testid': string;
 }
 

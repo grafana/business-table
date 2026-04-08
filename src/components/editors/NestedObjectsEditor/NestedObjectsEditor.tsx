@@ -64,6 +64,7 @@ export const NestedObjectsEditor: React.FC<Props> = ({ context: { data }, value,
   /**
    * Add New Item
    */
+  // eslint-disable-next-line react-hooks/preserve-manual-memoization
   const onAddNewItem = useCallback(() => {
     setNewItemName('');
     onChangeItems(
@@ -154,7 +155,12 @@ export const NestedObjectsEditor: React.FC<Props> = ({ context: { data }, value,
               <Collapse
                 key={item.name}
                 label={
-                  <Stack data-testid={testIds.itemHeader.selector(item.name)} flex={1} alignItems="center" justifyContent="space-between">
+                  <Stack
+                    data-testid={testIds.itemHeader.selector(item.name)}
+                    flex={1}
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
                     {editItem === item.name ? (
                       <div
                         className={cx(styles.itemHeader, styles.itemHeaderForm)}
@@ -195,7 +201,9 @@ export const NestedObjectsEditor: React.FC<Props> = ({ context: { data }, value,
                           size="sm"
                           onClick={onSaveName}
                           disabled={!isUpdatedNameValid}
-                          tooltip={isUpdatedNameValid ? '' : 'Name is empty or table with the same name already exists.'}
+                          tooltip={
+                            isUpdatedNameValid ? '' : 'Name is empty or table with the same name already exists.'
+                          }
                           {...testIds.buttonSaveRename.apply()}
                         />
                       </div>

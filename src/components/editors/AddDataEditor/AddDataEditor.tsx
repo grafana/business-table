@@ -97,7 +97,7 @@ export const AddDataEditor: React.FC<Props> = ({ context: { data }, onChange, va
             }
             isOpen={collapseState[item.name]}
             onToggle={(isOpen) => {
-              onToggleItemExpandedState(item.name)
+              onToggleItemExpandedState(item.name);
 
               if (isOpen) {
                 onChangeItem({

@@ -47,7 +47,6 @@ export const useDeleteData = <TData>({ onDeleteRow }: { onDeleteRow: (row: TData
 
       setIsSaving(false);
       onCancel();
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
       setIsSaving(false);
     }

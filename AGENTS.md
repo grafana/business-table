@@ -205,7 +205,7 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
   no errors remain.
 - **Always run cspell** after making changes:
   `npx cspell -c cspell.config.json
-  "**/*.{ts,tsx,js,go,md,mdx,yml,yaml,json,scss,css}"`
+"**/*.{ts,tsx,js,go,md,mdx,yml,yaml,json,scss,css}"`
   and fix any issues before committing. Add new words
   to `cspell.config.json` if they are legitimate.
 - **NEVER commit unless the user explicitly asks.**
@@ -287,8 +287,8 @@ or `### Project Updates` as appropriate.
 
 ## ESLint
 
-Flat config (ESLint 9) extending `@grafana/eslint-config/flat.js`,
-`@volkovlabs/eslint-config`, and `eslint-config-prettier`. Custom rule:
+Flat config (ESLint 9) extending `@grafana/eslint-config/flat.js`
+and `eslint-config-prettier`. Custom rule:
 `@typescript-eslint/no-empty-object-type: off`. Test files, mocks, config
 files, and server dirs are excluded from linting.
 

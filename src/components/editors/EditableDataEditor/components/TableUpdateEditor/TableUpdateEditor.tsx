@@ -125,7 +125,7 @@ export const TableUpdateEditor: React.FC<Props> = ({ value, onChange, data }) =>
                   setExpanded({
                     ...expanded,
                     [getFieldKey(item.field)]: isOpen,
-                  })
+                  });
 
                   if (isOpen) {
                     onChangeItem({

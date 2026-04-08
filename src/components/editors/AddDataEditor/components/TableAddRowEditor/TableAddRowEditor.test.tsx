@@ -87,7 +87,7 @@ describe('TableAddRowEditor', () => {
 
   describe('Request', () => {
     const openSection = () => {
-      expect(screen.getByText("Add Request")).toBeInTheDocument();
+      expect(screen.getByText('Add Request')).toBeInTheDocument();
 
       fireEvent.click(screen.getByRole('button', { name: /Add Request/ }));
 

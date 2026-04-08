@@ -15,15 +15,15 @@ weight: 30
 
 The Business Table panel has the following features.
 
-| Section                                                      | Description                                  |
-| ------------------------------------------------------------ | -------------------------------------------- |
-| [Pagination](#pagination)                                    | Explains pagination                          |
-| [Download button](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/features/download-button/) | Demonstrates the Download button |
-| [External export](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/features/external-export/) | Demonstrates the Table export |
-| [Infinity data source](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/features/infinity/) | Demonstrates how to use Infinity data source |
-| [Data links](#data-links)                                    | Demonstrates data links                      |
-| [Standard options support](#support-of-the-standard-options) | Explains the Standard options support        |
-| [Data sources as variables](#data-sources-as-variables)      | Explains Data sources as variables           |
+| Section                                                                                                                | Description                                  |
+| ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [Pagination](#pagination)                                                                                              | Explains pagination                          |
+| [Download button](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/features/download-button/) | Demonstrates the Download button             |
+| [External export](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/features/external-export/) | Demonstrates the Table export                |
+| [Infinity data source](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/features/infinity/)   | Demonstrates how to use Infinity data source |
+| [Data links](#data-links)                                                                                              | Demonstrates data links                      |
+| [Standard options support](#support-of-the-standard-options)                                                           | Explains the Standard options support        |
+| [Data sources as variables](#data-sources-as-variables)                                                                | Explains Data sources as variables           |
 
 ## Pagination
 

@@ -124,14 +124,14 @@ export const TableAddRowEditor: React.FC<Props> = ({ value, onChange, data }) =>
                   setExpanded({
                     ...expanded,
                     [getFieldKey(item.field)]: isOpen,
-                  })
+                  });
 
                   if (isOpen) {
                     onChangeItem({
                       ...item,
                       newRowEdit: {
                         ...item.newRowEdit,
-                        enabled: isOpen
+                        enabled: isOpen,
                       },
                     });
                   }

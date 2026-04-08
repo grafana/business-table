@@ -37,6 +37,7 @@ export const usePagination = ({
    * Set initial value from variables
    */
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- syncs pagination state with dashboard variables
     setValue((pagination) => {
       if (paginationConfig?.mode === PaginationMode.CLIENT) {
         return pagination;
@@ -70,6 +71,7 @@ export const usePagination = ({
   /**
    * Total Count
    */
+  // eslint-disable-next-line react-hooks/preserve-manual-memoization
   const totalCount = useMemo(() => {
     if (paginationConfig?.enabled && paginationConfig?.mode === PaginationMode.QUERY) {
       if (paginationConfig.query?.totalCountField) {

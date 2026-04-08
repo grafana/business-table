@@ -97,14 +97,14 @@ export const DeleteDataEditor: React.FC<Props> = ({ context: { data }, onChange,
             }
             isOpen={collapseState[item.name]}
             onToggle={(isOpen) => {
-              onToggleItemExpandedState(item.name)
+              onToggleItemExpandedState(item.name);
 
               if (isOpen) {
                 onChangeItem({
                   ...item,
                   deleteRow: {
                     ...item.deleteRow,
-                    enabled: isOpen
+                    enabled: isOpen,
                   },
                 });
               }
