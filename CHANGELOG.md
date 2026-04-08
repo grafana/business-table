@@ -45,6 +45,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   for `@/` path alias resolution.
 - Replaced deprecated `React.FormEvent` with `React.ChangeEvent` in
   `NumberInput`.
+- Coverage workflow: handle base branch coverage failure gracefully
+  with fallback to PR-only report.
 
 ### Project Updates
 
