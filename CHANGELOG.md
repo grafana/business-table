@@ -41,7 +41,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   calculation in `AutosizeCodeEditor`, unnecessary blur computation in
   `NumberInput`, and `DatasourceResponseError` now extends `Error`.
 - Fixed E2E test resolution: use relative import for `test-selectors` in
-  `constants.ts` since Playwright's ts-node doesn't support `@/` alias.
+  `constants.ts` and copy `.config/tsconfig.json` into test Dockerfile
+  for `@/` path alias resolution.
+- Replaced deprecated `React.FormEvent` with `React.ChangeEvent` in
+  `NumberInput`.
 
 ### Project Updates
 
