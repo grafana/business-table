@@ -47,6 +47,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `NumberInput`.
 - Coverage workflow: handle base branch coverage failure gracefully
   with fallback to PR-only report.
+- Replaced O(n) step-snapping loop with constant-time `Math.ceil` in `NumberInput`.
+- Fixed potential timer leak in `useDashboardVariables` by clearing pending timeout
+  before setting a new one.
+- Separated `JSON.parse` into its own try/catch in `useDatasourceRequest` for clearer
+  error messages on invalid variable interpolation.
+- Replaced `useState` with `useRef` for default filter comparison in
+  `useSyncedColumnFilters` to avoid redundant serialization and re-renders.
+- Replaced brittle runtime type narrowing in `AutosizeCodeEditor` with proper
+  `MonacoEditor` and `Monaco` types from `@grafana/ui`.
 
 ### Project Updates
 
@@ -61,6 +70,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Updated dependencies to latest patch/minor versions: `@grafana/data`,
   `@grafana/runtime`, `@grafana/ui`, `@grafana/plugin-e2e`, `@swc/core`,
   `@swc/helpers`, `@tanstack/react-virtual`, `handlebars`, `sass`.
+- Updated `@typescript-eslint/eslint-plugin` from 8.57.0 to 8.58.1.
 
 ## [3.6.0] - 2025-10-28
 
