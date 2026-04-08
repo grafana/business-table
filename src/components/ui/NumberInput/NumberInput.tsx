@@ -82,7 +82,7 @@ export const NumberInput: React.FC<Props> = ({ value, onChange, min, max, step, 
   /**
    * Handle Change
    */
-  const handleChange = useCallback((event: React.FormEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setLocalValue(event.currentTarget.value);
     isDirty.current = true;
   }, []);
