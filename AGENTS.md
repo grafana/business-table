@@ -14,6 +14,8 @@ npm run lint:fix       # ESLint with auto-fix
 npm run test           # Jest in watch mode (changed files only)
 npm run test:ci        # Jest full run (CI, 4 workers)
 npm run test:e2e       # Playwright E2E tests
+npm run test:e2e:dev   # Playwright interactive UI mode
+npm run test:e2e:docker # Full Docker Compose (Grafana + tests)
 npm run start          # Docker compose: Grafana + plugin (dev profile)
 npm run stop           # Docker compose down
 ```
@@ -188,19 +190,21 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
 - Use webpack from `.config/` for builds;
   do not add a custom bundler.
 - Use `secureJsonData` for secrets; `jsonData` for non-sensitive config.
-- Use `@grafana/plugin-e2e` for E2E tests.
 - Grafana API docs:
   <https://grafana.com/developers/plugin-tools/llms.txt>
 - `@grafana/ui` component reference:
   <https://developers.grafana.com/ui/latest/index.html>
-- **Always run `npx markdownlint-cli`** on any `.md`
+- **Always run `npx markdownlint-cli2`** on any `.md`
   file you create or modify (including `AGENTS.md`,
   `README.md`, `CHANGELOG.md`) and fix all reported
   issues before committing.
 - **Always run `npm run typecheck`** when `src/` files
   are changed and fix any type errors before committing.
+- **Always run `npm run lint`** before committing changes
+  to `src/`. Fix errors with `npm run lint:fix` and verify
+  no errors remain.
 - **Always run cspell** after making changes:
-  `npx cspell@6.13.3 -c cspell.config.json
+  `npx cspell -c cspell.config.json
   "**/*.{ts,tsx,js,go,md,mdx,yml,yaml,json,scss,css}"`
   and fix any issues before committing. Add new words
   to `cspell.config.json` if they are legitimate.
@@ -211,6 +215,9 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
   Never chain `git commit && git push` in one command.
   Always wait for the user to explicitly ask to push.
 - **Never add `Co-Authored-By` trailers** to commit messages.
+- **Never add "Generated with Claude" or similar
+  attribution lines** to PR summaries, commit messages,
+  or any other output.
 - **Prefer subagents** for research, code exploration,
   and multi-step work. Use the Task tool with
   `explore` or `general` agents rather than running
@@ -232,14 +239,16 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
   update as an atomic pair — never stop between them.
   Use `gh pr edit` to update the title and body with
   well-formatted text that reflects all changes across
-  the entire branch. **Wrap PR summary lines at 120
-  characters** — use the full width, do not wrap
-  shorter than necessary.
+  the entire branch.
 - **Always create pull requests as drafts**
   (`gh pr create --draft`).
 - When checking out a branch or `main`, always
   `git fetch` and `git pull` to ensure you have the
   latest changes.
+- **Always run `git status`** before constructing
+  `git add` commands. Only add files that are unstaged
+  or untracked — do not add files that are already
+  staged or deleted.
 
 ## Changelog Policy
 
@@ -249,16 +258,41 @@ corresponding entry in the changelog under the current unreleased version
 section. Add entries as part of the same commit or as a follow-up commit
 before pushing.
 
-### Additional Rules
+Categorize under `### Added`, `### Changed`, `### Removed`, `### Fixed`,
+or `### Project Updates` as appropriate.
 
-- `no-console` and `no-debugger` are errors.
-- `@typescript-eslint/no-deprecated` is a warning — avoid
-  using deprecated APIs.
-- Unused variables are errors (except rest siblings).
+## CI/CD
 
-### ESLint
+- **CI** (`.github/workflows/push.yml`): Runs on push to `main` and all PRs.
+  Uses `grafana/plugin-ci-workflows`. E2E tests run via Docker Compose against
+  Grafana `>=12.3 <=13.0`. The dev image is skipped but the React 19 preview
+  image is included (`run-playwright-with-skip-grafana-react-19-preview-image: false`).
+- **CD** (`.github/workflows/publish.yml`): Manual dispatch to dev/ops/prod environments.
+- **Do NOT pin `grafana/plugin-ci-workflows` to a commit SHA.** Grafana's CI
+  enforces tagged releases only (e.g., `@ci-cd-workflows/v7`). SHA pinning
+  will fail the "Check for release channel" job. All other GitHub Actions
+  should be pinned to SHAs.
+
+## PR Summary Policy
+
+- **Wrap PR summary lines at 120 characters** — use the
+  full width, do not wrap shorter than necessary.
+- **Use categories in PR summaries** to organize changes.
+  Group bullet points under headings like `### Added`,
+  `### Fixed`, `### Changed`, `### Removed`,
+  `### Dependencies`, `### CI/CD`, `### Documentation`,
+  `### AGENTS.md`, `### Tooling`, etc.
+- Always include a `## Test plan` section with a
+  checklist of manual or automated verification steps.
+
+## ESLint
 
 Flat config (ESLint 9) extending `@grafana/eslint-config/flat.js`,
 `@volkovlabs/eslint-config`, and `eslint-config-prettier`. Custom rule:
 `@typescript-eslint/no-empty-object-type: off`. Test files, mocks, config
 files, and server dirs are excluded from linting.
+
+- `no-console` and `no-debugger` are errors.
+- `@typescript-eslint/no-deprecated` is a warning — avoid
+  using deprecated APIs.
+- Unused variables are errors (except rest siblings).
