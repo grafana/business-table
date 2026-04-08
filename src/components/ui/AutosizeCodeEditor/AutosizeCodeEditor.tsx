@@ -1,4 +1,4 @@
-import { CodeEditor, useStyles2 } from '@grafana/ui';
+import { CodeEditor, type Monaco, type MonacoEditor, useStyles2 } from '@grafana/ui';
 import { GrafanaTheme2 } from '@grafana/data';
 import { css } from '@emotion/css';
 
@@ -90,22 +90,14 @@ export const AutosizeCodeEditor: React.FC<Props> = ({
    * Handle Editor Mount
    */
   const handleEditorDidMount = useCallback(
-    (editor: unknown, monaco: unknown) => {
-      if (isEscaping && editor && typeof editor === 'object' && 'getModel' in editor) {
-        const model = (editor as { getModel: () => { setEOL: (eol: number) => void } | null }).getModel();
-        if (
-          model &&
-          monaco &&
-          typeof monaco === 'object' &&
-          'editor' in monaco &&
-          typeof (monaco as { editor: { EndOfLineSequence: { LF: number } } }).editor === 'object'
-        ) {
-          model.setEOL(
-            (monaco as { editor: { EndOfLineSequence: { LF: number } } }).editor.EndOfLineSequence.LF
-          );
+    (editor: MonacoEditor, monaco: Monaco) => {
+      if (isEscaping) {
+        const model = editor.getModel();
+        if (model) {
+          model.setEOL(monaco.editor.EndOfLineSequence.LF);
         }
       }
-      onEditorDidMount?.(editor as Parameters<NonNullable<typeof onEditorDidMount>>[0], monaco as Parameters<NonNullable<typeof onEditorDidMount>>[1]);
+      onEditorDidMount?.(editor, monaco);
     },
     [isEscaping, onEditorDidMount]
   );

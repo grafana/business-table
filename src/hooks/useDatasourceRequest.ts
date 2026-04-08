@@ -38,8 +38,14 @@ export const useDatasourceRequest = () => {
       const ds = await getDataSourceSrv().get(datasource);
       const replaced = replaceVariables(JSON.stringify(query, null, 2), { payload: { value: payload } });
 
+      let parsed: unknown;
       try {
-        const parsed = JSON.parse(replaced);
+        parsed = JSON.parse(replaced);
+      } catch {
+        throw new DatasourceResponseError(new SyntaxError(`Invalid JSON after variable interpolation`), replaced);
+      }
+
+      try {
         const result = (ds as unknown as { query: (opts: { targets: unknown[] }) => unknown }).query({
           targets: [parsed],
         });

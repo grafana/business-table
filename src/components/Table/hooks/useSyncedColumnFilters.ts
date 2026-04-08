@@ -1,7 +1,7 @@
 import { EventBus } from '@grafana/data';
 import { RefreshEvent } from '@grafana/runtime';
 import { ColumnDef, ColumnFiltersState } from '@tanstack/react-table';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { getVariableColumnFilters, mergeColumnFilters } from '@/utils';
 
@@ -34,7 +34,7 @@ export const useSyncedColumnFilters = <TData>({
   /**
    * Initial Default filters
    */
-  const [initialDefaultFiltersState, setInitialDefaultFiltersState] = useState<ColumnFiltersState>(defaultFilters);
+  const prevDefaultFiltersRef = useRef<string>(JSON.stringify(defaultFilters));
 
   /**
    * Filtering
@@ -55,13 +55,13 @@ export const useSyncedColumnFilters = <TData>({
    * Use defaultFilters if the default filters are changed
    */
   useEffect(() => {
-    if (JSON.stringify(initialDefaultFiltersState) !== JSON.stringify(defaultFilters)) {
-      /* eslint-disable react-hooks/set-state-in-effect -- intentional sync with external default filters */
-      setInitialDefaultFiltersState(defaultFilters);
+    const serialized = JSON.stringify(defaultFilters);
+    if (prevDefaultFiltersRef.current !== serialized) {
+      prevDefaultFiltersRef.current = serialized;
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional sync with external default filters
       setColumnFilters(defaultFilters);
-      /* eslint-enable react-hooks/set-state-in-effect */
     }
-  }, [defaultFilters, initialDefaultFiltersState]);
+  }, [defaultFilters]);
 
   /**
    * Set initial filters from variables and update on variable change

@@ -80,6 +80,7 @@ export const useDashboardVariables = <TVariable = TypedVariableModel, TState = T
     };
 
     if (isLoading) {
+      clearTimer();
       timeoutRef.current = setTimeout(() => {
         incrementCheckCount();
       }, refreshCheckInterval);

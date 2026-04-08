@@ -102,11 +102,8 @@ export const NumberInput: React.FC<Props> = ({ value, onChange, min, max, step, 
     }
 
     if (step !== undefined) {
-      let stepped = min !== undefined ? 1000 * min : 1000 * step;
-      while (stepped < 1000 * num) {
-        stepped += 1000 * step;
-      }
-      num = stepped / 1000;
+      const base = min ?? 0;
+      num = base + Math.ceil((num - base) / step) * step;
     }
 
     if (max !== undefined && num > max) {
