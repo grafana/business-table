@@ -31,6 +31,7 @@ export const useSortState = <TData>({
        * Change if new column
        */
       if (firstSortableColumn.id !== column?.id) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- syncs sort state with column config
         setSorting([{ id: firstSortableColumn.id!, desc: firstSortableColumn.sortDescFirst! }]);
         setColumnId(firstSortableColumn);
       }
@@ -58,6 +59,7 @@ export const useSortState = <TData>({
    */
   useEffect(() => {
     if (userSortingPreference && !!userSortingPreference.length) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- syncs sort state with user preferences
       setSorting(userSortingPreference);
 
       /**
@@ -71,7 +73,12 @@ export const useSortState = <TData>({
   /**
    * Change state via table handler
    */
-  const onChangeSort = useCallback(setSorting, [setSorting]);
+  const onChangeSort = useCallback(
+    (value: SortingState | ((prev: SortingState) => SortingState)) => {
+      setSorting(value);
+    },
+    [setSorting]
+  );
 
   return useMemo(
     () => ({

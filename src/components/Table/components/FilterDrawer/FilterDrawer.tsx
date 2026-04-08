@@ -73,7 +73,7 @@ export const FilterDrawer = <TData,>({ header, updatePreferencesWithFilters }: P
         );
       }
     },
-    [filterMode, header?.column]
+    [filterMode, header.column]
   );
 
   /**

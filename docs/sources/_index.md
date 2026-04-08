@@ -56,12 +56,12 @@ There are many other tutorials that you can find helpful. You can review [all tu
 
 ## Documentation
 
-| Section                                            | Description                                           |
-| -------------------------------------------------- | ----------------------------------------------------- |
-| [Editable data](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/editable-data/) | Explains 7 configurable data flows. |
-| [Features](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/features/) | Explains the plugin features. |
-| [Tutorials](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/tutorials/) | Tutorials for the Business Table panel. |
-| [Release notes](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/release/) | Stay up to date with the latest features and updates. |
+| Section                                                                                                   | Description                                           |
+| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| [Editable data](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/editable-data/) | Explains 7 configurable data flows.                   |
+| [Features](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/features/)           | Explains the plugin features.                         |
+| [Tutorials](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/tutorials/)         | Tutorials for the Business Table panel.               |
+| [Release notes](https://grafana.com/docs/plugins/volkovlabs-table-panel/<PLUGINS_VERSION>/release/)       | Stay up to date with the latest features and updates. |
 
 ## License
 

@@ -157,7 +157,11 @@ test.describe('Business Table Panel', () => {
     await header.getHeaderCell('A-series').checkText('A-series');
   });
 
-  test.skip('Should render only visible columns in table', async ({ gotoDashboardPage, page, readProvisionedDashboard }) => {
+  test.skip('Should render only visible columns in table', async ({
+    gotoDashboardPage,
+    page,
+    readProvisionedDashboard,
+  }) => {
     /**
      * Go To Panels dashboard panels.json
      * return dashboardPage

@@ -30,10 +30,10 @@ export const ButtonSelect = ({ onChange, options, value, ...restProps }: MockPro
       {...restProps}
     >
       {flattenOptions(options).map((option, index) => (
-          <option key={index} value={String(option.value)}>
-            {option.label ?? String(option.value)}
-          </option>
-        ))}
+        <option key={index} value={String(option.value)}>
+          {option.label ?? String(option.value)}
+        </option>
+      ))}
     </select>
   );
 };

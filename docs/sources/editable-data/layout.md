@@ -99,7 +99,7 @@ And this is the second line.
 | [Sorting](#sorting)                                           | Demonstrates column sorting                         |
 | [Pin columns](#pin-columns)                                   | Demonstrates column pinning                         |
 | [Show and hide columns](#show-and-hide-columns)               | Demonstrates the show/hide column button            |
-| [Hide the table header](#hide-the-table-header)             | Explains how to hide the table header               |
+| [Hide the table header](#hide-the-table-header)               | Explains how to hide the table header               |
 
 ### Multi tables as tabs
 

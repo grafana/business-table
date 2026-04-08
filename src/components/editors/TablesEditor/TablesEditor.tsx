@@ -226,7 +226,12 @@ export const TablesEditor: React.FC<Props> = ({ context: { options, data }, onCh
                         <Collapse
                           key={item.name}
                           label={
-                            <Stack data-testid={testIds.itemHeader.selector(item.name)} flex={1} alignItems="center" justifyContent="space-between">
+                            <Stack
+                              data-testid={testIds.itemHeader.selector(item.name)}
+                              flex={1}
+                              alignItems="center"
+                              justifyContent="space-between"
+                            >
                               {editItem === item.name ? (
                                 <div
                                   className={cx(styles.itemHeader, styles.itemHeaderForm)}
@@ -314,7 +319,11 @@ export const TablesEditor: React.FC<Props> = ({ context: { options, data }, onCh
                                   }}
                                   {...testIds.buttonRemove.apply()}
                                 />
-                                <div onClick={(event) => event.stopPropagation()} className={styles.dragHandle} {...provided.dragHandleProps}>
+                                <div
+                                  onClick={(event) => event.stopPropagation()}
+                                  className={styles.dragHandle}
+                                  {...provided.dragHandleProps}
+                                >
                                   <Icon name="draggabledots" className={styles.dragIcon} />
                                 </div>
                               </Stack>

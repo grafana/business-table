@@ -192,7 +192,6 @@ To configure actions and access:
 
 1. In **Nested objects** >Column name > **Operations**, set the **Add Options**, **Update Options**, or **Delete Options** switch to ON.
 1. Select the **Check** parameter. You have three options:
-
    - **By Org User Role**: Specify which roles have access to this action. This is a multi-select drop-down with the following values: **Admin**, **Editor**, **Viewer**, **None**.
    - **Always Allowed**: Any user has access to this action.
    - **By Backend**: Specify a data frame column name with a boolean type. If the returned value is **true**, access is granted. If the returned value is **false**, access is denied.

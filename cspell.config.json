@@ -1,8 +1,6 @@
 {
   "language": "en",
   "ignorePaths": [
-    "CHANGELOG.md",
-    "README.md",
     "package.json",
     ".config/**",
     "docker-compose.yml",
@@ -52,6 +50,10 @@
     "Volkov",
     "Trino",
     "PXJF",
-    "EULU"
+    "EULU",
+    "typecheck",
+    "dataviz",
+    "autosize",
+    "Dockerfiles"
   ]
 }

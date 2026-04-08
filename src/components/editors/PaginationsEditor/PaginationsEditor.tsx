@@ -104,7 +104,7 @@ export const PaginationsEditor: React.FC<Props> = ({ context: { data }, onChange
             }
             isOpen={collapseState[item.name]}
             onToggle={(isOpen) => {
-              onToggleItemExpandedState(item.name)
+              onToggleItemExpandedState(item.name);
 
               if (isOpen) {
                 onChangeItem({

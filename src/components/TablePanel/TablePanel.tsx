@@ -321,6 +321,7 @@ export const TablePanel: React.FC<Props> = ({
     setError: showError,
   });
 
+  // eslint-disable-next-line react-hooks/preserve-manual-memoization
   const exportFormatsMenu = useMemo(() => {
     return (
       <Menu>
@@ -355,11 +356,7 @@ export const TablePanel: React.FC<Props> = ({
       <>
         {!!error && (
           <div ref={alertRef} {...TEST_IDS.panel.errorContainer.apply()}>
-            <Alert
-              title="Request error"
-              onRemove={() => setError('')}
-              {...TEST_IDS.panel.errorAlertElement.apply()}
-            >
+            <Alert title="Request error" onRemove={() => setError('')} {...TEST_IDS.panel.errorAlertElement.apply()}>
               {error}
             </Alert>
           </div>

@@ -32,6 +32,7 @@ export const useExportData = <TData>({
   nestedObjects: NestedObjectConfig[];
 }) => {
   return useCallback(
+    // eslint-disable-next-line react-hooks/preserve-manual-memoization
     ({ table, exportFormat }: { table: Table<TData> | null; exportFormat: ExportFormatType }) => {
       if (!table) {
         return;

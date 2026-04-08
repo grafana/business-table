@@ -1,6 +1,76 @@
 # Changelog
 
-All notable changes to the **Business Table Panel** plugin for Grafana are documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+All notable changes to the **Business Table Panel** plugin for Grafana are documented in this file.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
+adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Changed
+
+- Replaced all `@volkovlabs/*` packages with local implementations:
+  - `@volkovlabs/components` — inlined `useDatasourceRequest`,
+    `useDashboardVariables`, `NumberInput`, and `AutosizeCodeEditor`.
+    Bundle size reduced from 2.05 MiB to 1.04 MiB.
+  - `@volkovlabs/jest-selectors` — inlined as `src/utils/test-selectors.ts`.
+  - `@volkovlabs/eslint-config` — replaced with direct `@grafana/eslint-config`
+    usage and simplified `eslint.config.mjs`.
+- Bumped `@grafana/scenes` from v6 to v7 for React 19 compatibility.
+- Updated CI/CD workflows from `plugin-ci-workflows` v6.1.1 to v7.0.0.
+- Updated Playwright Docker image from v1.54.1-noble to v1.59.1-noble.
+- Updated CI Playwright Grafana dependency range to `>=12.3 <=13.0` and
+  enabled dev and React 19 preview image testing.
+
+### Fixed
+
+- Fixed React Compiler lint errors: replaced `useRef` with callback ref in
+  `TableHeaderCellFilter`, inlined `useSortState` `useCallback`, and added
+  targeted `eslint-disable` for intentional state-sync patterns.
+- Fixed markdownlint line-length violations in `CHANGELOG.md` and `README.md`.
+- Added `test-exclude` glob override to fix Jest coverage with glob v13.
+- Fixed lint errors in inlined modules: `no-redeclare` on `createSelector`
+  overloads, unnecessary dep in `NumberInput` `useCallback`.
+- Removed `volkovlabs.io` URLs from provisioning dashboards.
+- Fixed `useDatasourceRequest` to catch `JSON.parse` errors from malformed
+  variable interpolation.
+- Replaced fragile inline window type cast in `useDashboardVariables` with
+  existing global declaration.
+- Fixed conditional React hook call in `useDashboardVariables` by replacing
+  `SceneObject.useState()` with manual `subscribeToState` subscription.
+- Fixed stale callback ref in `useDashboardVariables`, duplicate height
+  calculation in `AutosizeCodeEditor`, unnecessary blur computation in
+  `NumberInput`, and `DatasourceResponseError` now extends `Error`.
+- Fixed E2E test resolution: use relative import for `test-selectors` in
+  `constants.ts` and copy `.config/tsconfig.json` into test Dockerfile
+  for `@/` path alias resolution.
+- Replaced deprecated `React.FormEvent` with `React.ChangeEvent` in
+  `NumberInput`.
+- Coverage workflow: handle base branch coverage failure gracefully
+  with fallback to PR-only report.
+- Replaced O(n) step-snapping loop with constant-time `Math.ceil` in `NumberInput`.
+- Fixed potential timer leak in `useDashboardVariables` by clearing pending timeout
+  before setting a new one.
+- Separated `JSON.parse` into its own try/catch in `useDatasourceRequest` for clearer
+  error messages on invalid variable interpolation.
+- Replaced `useState` with `useRef` for default filter comparison in
+  `useSyncedColumnFilters` to avoid redundant serialization and re-renders.
+- Replaced brittle runtime type narrowing in `AutosizeCodeEditor` with proper
+  `MonacoEditor` and `Monaco` types from `@grafana/ui`.
+
+### Project Updates
+
+- Added `AGENTS.md` with coding agent guidance, CI/CD, PR summary, lint
+  rules, and `@volkovlabs/*` package prohibition.
+- Added CI/CD coverage report and PR file changes workflows.
+- Added `markdownlint-cli2` and `cspell` to devDependencies.
+- Added `.eslintcache` to `.gitignore`.
+- Optimized Dockerfiles: removed redundant playwright install in test
+  Dockerfile; use `node:24-slim` and pin `pg@8` in timescale. Added
+  `src/` and `tsconfig.json` to test Dockerfile for E2E helper imports.
+- Updated dependencies to latest patch/minor versions: `@grafana/data`,
+  `@grafana/runtime`, `@grafana/ui`, `@grafana/plugin-e2e`, `@swc/core`,
+  `@swc/helpers`, `@tanstack/react-virtual`, `handlebars`, `sass`.
+- Updated `@typescript-eslint/eslint-plugin` from 8.57.0 to 8.58.1.
 
 ## [3.6.0] - 2025-10-28
 
@@ -19,11 +89,15 @@ All notable changes to the **Business Table Panel** plugin for Grafana are docum
 
 ### ✨ Added
 
-- **Handlebars Support**: Introduced Handlebars templating for exporting nested objects, enhancing data rendering capabilities. ([#382](https://github.com/VolkovLabs/business-table/pull/382))
+- **Handlebars Support**: Introduced Handlebars templating for exporting nested objects,
+  enhancing data rendering capabilities.
+  ([#382](https://github.com/VolkovLabs/business-table/pull/382))
 
 ### 🔄 Changed
 
-- **Grafana 12.1 Compatibility**: Updated the plugin to fully support Grafana 12.1 with modernized dependencies for better performance and compatibility. ([#384](https://github.com/VolkovLabs/business-table/pull/384))
+- **Grafana 12.1 Compatibility**: Updated the plugin to fully support Grafana 12.1 with
+  modernized dependencies for better performance and compatibility.
+  ([#384](https://github.com/VolkovLabs/business-table/pull/384))
 
 ## [3.3.0] - 2025-08-18
 
@@ -34,30 +108,50 @@ All notable changes to the **Business Table Panel** plugin for Grafana are docum
 
 ## [3.2.0] - 2025-08-07
 
-We're excited to announce the release of version 3.2.0 of the Business Table plugin. This update introduces new features to enhance user experience and functionality, along with important fixes and improvements to existing features.
+We're excited to announce the release of version 3.2.0 of the Business Table plugin. This
+update introduces new features to enhance user experience and functionality, along with
+important fixes and improvements to existing features.
 
 ### ✨ Added
 
-- **Row Highlight on Hover**: Added an option to highlight table rows when hovering over them for improved visibility. ([#365](https://github.com/VolkovLabs/business-table/pull/365))
-- **Integer Boolean Cell Type**: Introduced support for integer-based Boolean cell values (0-1) to accommodate diverse data formats. ([#366](https://github.com/VolkovLabs/business-table/pull/366))
-- **Nested Objects in Export**: Enhanced table export functionality to include nested objects for more comprehensive data handling. ([#374](https://github.com/VolkovLabs/business-table/pull/374))
+- **Row Highlight on Hover**: Added an option to highlight table rows when hovering over them
+  for improved visibility.
+  ([#365](https://github.com/VolkovLabs/business-table/pull/365))
+- **Integer Boolean Cell Type**: Introduced support for integer-based Boolean cell values (0-1)
+  to accommodate diverse data formats.
+  ([#366](https://github.com/VolkovLabs/business-table/pull/366))
+- **Nested Objects in Export**: Enhanced table export functionality to include nested objects
+  for more comprehensive data handling.
+  ([#374](https://github.com/VolkovLabs/business-table/pull/374))
 
 ### 🔄 Changed
 
-- **Pinned Header Background**: Corrected the background color issue for pinned headers to ensure consistent styling. ([#363](https://github.com/VolkovLabs/business-table/pull/363))
-- **ESLint Configuration**: Updated ESLint settings to align with the latest coding standards and improve code quality. ([#367](https://github.com/VolkovLabs/business-table/pull/367))
-- **Filter and Sorting Icons**: Combined Filter and Sorting icons into a unified display when the Manager is active for a cleaner UI. ([#375](https://github.com/VolkovLabs/business-table/pull/375))
+- **Pinned Header Background**: Corrected the background color issue for pinned headers to
+  ensure consistent styling.
+  ([#363](https://github.com/VolkovLabs/business-table/pull/363))
+- **ESLint Configuration**: Updated ESLint settings to align with the latest coding standards
+  and improve code quality.
+  ([#367](https://github.com/VolkovLabs/business-table/pull/367))
+- **Filter and Sorting Icons**: Combined Filter and Sorting icons into a unified display when
+  the Manager is active for a cleaner UI.
+  ([#375](https://github.com/VolkovLabs/business-table/pull/375))
 
 ## [3.1.0] - 2025-07-11
 
 ### ✨ Added
 
-- **Filter Mode Options Description**: Introduced detailed descriptions for filter mode options to help users better understand and utilize filtering capabilities. ([#353](https://github.com/VolkovLabs/business-table/pull/353))
-- **Custom Icon Selection for Column Manager**: Added the ability to choose between native and custom icons in the column manager, providing greater flexibility in table customization. ([#360](https://github.com/VolkovLabs/business-table/pull/360))
+- **Filter Mode Options Description**: Introduced detailed descriptions for filter mode options
+  to help users better understand and utilize filtering capabilities.
+  ([#353](https://github.com/VolkovLabs/business-table/pull/353))
+- **Custom Icon Selection for Column Manager**: Added the ability to choose between native and
+  custom icons in the column manager, providing greater flexibility in table customization.
+  ([#360](https://github.com/VolkovLabs/business-table/pull/360))
 
 ### 🔄 Changed
 
-- **Enhanced Export Functionality**: Updated the export feature to streamline the process, making it more intuitive and user-friendly for exporting table data. ([#358](https://github.com/VolkovLabs/business-table/pull/358))
+- **Enhanced Export Functionality**: Updated the export feature to streamline the process,
+  making it more intuitive and user-friendly for exporting table data.
+  ([#358](https://github.com/VolkovLabs/business-table/pull/358))
 
 ## [3.0.0] - 2025-06-30
 
@@ -65,7 +159,8 @@ This release introduces new features, important compatibility updates, and sever
 
 ### ⚠️ Breaking Changes
 
-- **Grafana Compatibility**: This version requires Grafana 11 or Grafana 12. Please ensure your Grafana instance is updated to a compatible version before upgrading.
+- **Grafana Compatibility**: This version requires Grafana 11 or Grafana 12. Please ensure
+  your Grafana instance is updated to a compatible version before upgrading.
 
 ### ✨ Added
 
@@ -75,9 +170,15 @@ This release introduces new features, important compatibility updates, and sever
 
 ### 🔄 Changed
 
-- **Grafana 12.0 Support**: Upgraded the plugin to support Grafana 12.0 with updated dependencies for improved performance and compatibility. ([#344](https://github.com/VolkovLabs/business-table/pull/344))
-- **Live Filter Fix**: Resolved an issue with the cleanup action in the 'live' filter for smoother filtering operations. ([#346](https://github.com/VolkovLabs/business-table/pull/346))
-- **User Preferences Update**: Updated the `userPreferences` key to include Panel and Dashboard IDs for more precise user settings management. ([#351](https://github.com/VolkovLabs/business-table/pull/351))
+- **Grafana 12.0 Support**: Upgraded the plugin to support Grafana 12.0 with updated
+  dependencies for improved performance and compatibility.
+  ([#344](https://github.com/VolkovLabs/business-table/pull/344))
+- **Live Filter Fix**: Resolved an issue with the cleanup action in the 'live' filter for
+  smoother filtering operations.
+  ([#346](https://github.com/VolkovLabs/business-table/pull/346))
+- **User Preferences Update**: Updated the `userPreferences` key to include Panel and Dashboard
+  IDs for more precise user settings management.
+  ([#351](https://github.com/VolkovLabs/business-table/pull/351))
 
 ## [2.7.0] - 2025-06-24
 
@@ -90,7 +191,9 @@ This release introduces new features, important compatibility updates, and sever
 ### Changed
 
 - **Testing Dependencies**: Updated dependencies for end-to-end (E2E) testing to ensure reliability. ([#308](https://github.com/VolkovLabs/business-table/pull/308))
-- **Sorting Behavior**: Enhanced sorting functionality in the UI manager and table header cells for a smoother experience. ([#314](https://github.com/VolkovLabs/business-table/pull/314))
+- **Sorting Behavior**: Enhanced sorting functionality in the UI manager and table header cells
+  for a smoother experience.
+  ([#314](https://github.com/VolkovLabs/business-table/pull/314))
 - **User Preferences**: Allowed saving of user preferences without requiring the UI manager. ([#340](https://github.com/VolkovLabs/business-table/pull/340))
 - **Background Row Fix**: Applied a fix to improve rendering of background rows. ([#343](https://github.com/VolkovLabs/business-table/pull/343))
 
@@ -231,7 +334,9 @@ This release introduces new features, important compatibility updates, and sever
 
 ### Added
 
-- Variable replacement in file names ([#131](https://github.com/VolkovLabs/business-table/issues/131)) and column headers ([#134](https://github.com/VolkovLabs/business-table/issues/134))
+- Variable replacement in file names
+  ([#131](https://github.com/VolkovLabs/business-table/issues/131)) and column headers
+  ([#134](https://github.com/VolkovLabs/business-table/issues/134))
 - Textarea column editor type for multi-line input ([#133](https://github.com/VolkovLabs/business-table/issues/133))
 - Colored text and background for aggregated rows ([#136](https://github.com/VolkovLabs/business-table/issues/136))
 - Column header customization for personalized views ([#141](https://github.com/VolkovLabs/business-table/issues/141))
@@ -287,7 +392,9 @@ This release introduces new features, important compatibility updates, and sever
 
 ### Added
 
-- Permission-based data editing for secure access control ([#40](https://github.com/VolkovLabs/business-table/issues/40), [#76](https://github.com/VolkovLabs/business-table/issues/76))
+- Permission-based data editing for secure access control
+  ([#40](https://github.com/VolkovLabs/business-table/issues/40),
+  [#76](https://github.com/VolkovLabs/business-table/issues/76))
 - Query-based edit permissions for granular control ([#47](https://github.com/VolkovLabs/business-table/issues/47))
 - Client-side and query-based pagination for flexible data handling ([#50](https://github.com/VolkovLabs/business-table/issues/50))
 - Column pinning for improved data visibility ([#53](https://github.com/VolkovLabs/business-table/issues/53), [#65](https://github.com/VolkovLabs/business-table/issues/65))
