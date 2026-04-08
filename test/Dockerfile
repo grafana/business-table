@@ -8,6 +8,9 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 
+# Install browsers (they are pre-installed in the base image but may be outdated)
+RUN npx playwright install --with-deps chromium
+
 # Copy test files, source (test helpers import from src/), config, and provisioning
 COPY test/ test/
 COPY src/ src/
