@@ -6,39 +6,39 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-### 🔧 Chores
+### Changed
 
-- Added `AGENTS.md` with coding agent guidance and `.markdownlint.yaml` configuration.
-- Clarified React 18 + React 19 dual compatibility in `AGENTS.md`.
-- Added no `Co-Authored-By` commit trailer rule to `AGENTS.md`.
-- Fixed markdownlint line-length violations in `CHANGELOG.md` and `README.md`.
-- Updated dependencies to latest patch/minor versions: `@grafana/data`,
-  `@grafana/runtime`, `@grafana/ui`, `@grafana/plugin-e2e`, `@swc/core`,
-  `@swc/helpers`, `@tanstack/react-virtual`, `handlebars`, `sass`.
+- Replaced all `@volkovlabs/*` packages with local implementations:
+  - `@volkovlabs/components` — inlined `useDatasourceRequest`,
+    `useDashboardVariables`, `NumberInput`, and `AutosizeCodeEditor`.
+    Bundle size reduced from 2.05 MiB to 1.04 MiB.
+  - `@volkovlabs/jest-selectors` — inlined as `src/utils/test-selectors.ts`.
+  - `@volkovlabs/eslint-config` — replaced with direct `@grafana/eslint-config`
+    usage and simplified `eslint.config.mjs`.
+- Bumped `@grafana/scenes` from v6 to v7 for React 19 compatibility.
 - Updated CI/CD workflows from `plugin-ci-workflows` v6.1.1 to v7.0.0.
 - Updated Playwright Docker image from v1.54.1-noble to v1.59.1-noble.
-- Enabled cspell checking for `CHANGELOG.md` and `README.md`.
 - Updated CI Playwright Grafana dependency range to `>=12.3 <=13.0` and
   enabled dev and React 19 preview image testing.
-- Disabled `react-hooks/incompatible-library` ESLint rule for React Compiler.
-- Bumped `@grafana/scenes` from v6 to v7 for React 19 compatibility.
-- React 19: `react-resizable` flag from `@grafana/react-detect` is a false
-  positive — plugin is working with both React 18 and React 19.
-- Replaced `@volkovlabs/components` with local implementations of
-  `useDatasourceRequest`, `useDashboardVariables`, `NumberInput`, and
-  `AutosizeCodeEditor`. Bundle size reduced from 2.05 MiB to 1.04 MiB.
-- Replaced `@volkovlabs/jest-selectors` with local `test-selectors` utility.
-- Replaced `@volkovlabs/eslint-config` with direct `@grafana/eslint-config`
-  usage and simplified `eslint.config.mjs`.
-- Added `markdownlint-cli2` and `cspell` to devDependencies.
-- Added CI/CD coverage report and PR file changes workflows.
-- Added CI/CD, PR summary, and lint rules to `AGENTS.md`.
-- Added `@volkovlabs/*` package prohibition to `AGENTS.md` critical rules.
-- Added `.eslintcache` to `.gitignore`.
+
+### Fixed
+
 - Fixed React Compiler lint errors: replaced `useRef` with callback ref in
   `TableHeaderCellFilter`, inlined `useSortState` `useCallback`, and added
   targeted `eslint-disable` for intentional state-sync patterns.
+- Fixed markdownlint line-length violations in `CHANGELOG.md` and `README.md`.
 - Added `test-exclude` glob override to fix Jest coverage with glob v13.
+
+### Project Updates
+
+- Added `AGENTS.md` with coding agent guidance, CI/CD, PR summary, lint
+  rules, and `@volkovlabs/*` package prohibition.
+- Added CI/CD coverage report and PR file changes workflows.
+- Added `markdownlint-cli2` and `cspell` to devDependencies.
+- Added `.eslintcache` to `.gitignore`.
+- Updated dependencies to latest patch/minor versions: `@grafana/data`,
+  `@grafana/runtime`, `@grafana/ui`, `@grafana/plugin-e2e`, `@swc/core`,
+  `@swc/helpers`, `@tanstack/react-virtual`, `handlebars`, `sass`.
 
 ## [3.6.0] - 2025-10-28
 

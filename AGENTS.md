@@ -263,7 +263,9 @@ section. Add entries as part of the same commit or as a follow-up commit
 before pushing.
 
 Categorize under `### Added`, `### Changed`, `### Removed`, `### Fixed`,
-or `### Project Updates` as appropriate.
+or `### Project Updates` as appropriate. Group related items together
+rather than listing one entry per commit — keep the changelog concise
+and scannable for reviewers.
 
 ## CI/CD
 
