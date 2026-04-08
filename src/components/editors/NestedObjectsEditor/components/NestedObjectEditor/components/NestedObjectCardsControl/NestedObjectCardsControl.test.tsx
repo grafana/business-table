@@ -1,7 +1,7 @@
 import { LoadingState } from '@grafana/data';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { useDatasourceRequest } from '@volkovlabs/components';
-import { createSelector, getJestSelectors } from '@volkovlabs/jest-selectors';
+import { createSelector, getJestSelectors } from '@/utils/test-selectors';
 import React from 'react';
 
 import { TEST_IDS } from '@/constants';

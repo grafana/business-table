@@ -7,4 +7,5 @@ export * from './nested-object';
 export * from './permission';
 export * from './table';
 export * from './test';
+export * from './test-selectors';
 export * from './variable';

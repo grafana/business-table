@@ -1,6 +1,6 @@
 import { TimeRange } from '@grafana/data';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { getJestSelectors } from '@volkovlabs/jest-selectors';
+import { getJestSelectors } from '@/utils/test-selectors';
 import React from 'react';
 
 import { TEST_IDS } from '@/constants';

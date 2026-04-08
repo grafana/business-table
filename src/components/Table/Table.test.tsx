@@ -1,7 +1,7 @@
 import { createTheme, EventBusSrv } from '@grafana/data';
 import { createRow, Table as TableInstance } from '@tanstack/react-table';
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
-import { getJestSelectors } from '@volkovlabs/jest-selectors';
+import { getJestSelectors } from '@/utils/test-selectors';
 import React, { useRef } from 'react';
 
 import { ACTIONS_COLUMN_ID, ROW_HIGHLIGHT_STATE_KEY } from '@/constants';

@@ -3,7 +3,7 @@ import { getTemplateSrv } from '@grafana/runtime';
 import { BarGaugeDisplayMode, BarGaugeValueMode } from '@grafana/schema';
 import { Select, StatsPicker } from '@grafana/ui';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { createSelector, getJestSelectors } from '@volkovlabs/jest-selectors';
+import { createSelector, getJestSelectors } from '@/utils/test-selectors';
 import React from 'react';
 
 import { TEST_IDS } from '@/constants';

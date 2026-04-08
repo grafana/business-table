@@ -1,7 +1,7 @@
 import { toDataFrame } from '@grafana/data';
 import { getTemplateSrv } from '@grafana/runtime';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { getJestSelectors } from '@volkovlabs/jest-selectors';
+import { getJestSelectors } from '@/utils/test-selectors';
 import React from 'react';
 
 import { PAGE_SIZES, TEST_IDS } from '@/constants';

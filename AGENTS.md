@@ -152,7 +152,7 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
   };
   ```
 
-- **Selectors** via `@volkovlabs/jest-selectors`:
+- **Selectors** via `@/utils/test-selectors`:
 
   ```typescript
   const selectors = getJestSelectors(TEST_IDS.someComponent)(screen);
