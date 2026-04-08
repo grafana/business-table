@@ -24,6 +24,9 @@ work/
 ci/
 e2e-results/
 
+# ESLint
+.eslintcache
+
 # Editor
 .idea
 .DS_Store
