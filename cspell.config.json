@@ -53,6 +53,7 @@
     "EULU",
     "typecheck",
     "dataviz",
-    "autosize"
+    "autosize",
+    "Dockerfiles"
   ]
 }
