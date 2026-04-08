@@ -35,9 +35,9 @@ export const useDatasourceRequest = () => {
     }): Promise<DataQueryResponse> => {
       const ds = await getDataSourceSrv().get(datasource);
       const replaced = replaceVariables(JSON.stringify(query, null, 2), { payload: { value: payload } });
-      const parsed = JSON.parse(replaced);
 
       try {
+        const parsed = JSON.parse(replaced);
         const result = (ds as unknown as { query: (opts: { targets: unknown[] }) => unknown }).query({
           targets: [parsed],
         });

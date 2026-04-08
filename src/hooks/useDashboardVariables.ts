@@ -30,7 +30,7 @@ export const useDashboardVariables = <TVariable = TypedVariableModel, TState = T
   /**
    * Scene context support
    */
-  const sceneContext = (window as { __grafanaSceneContext?: { useState: () => { $variables?: { state: { variables: Array<{ state: { loading: boolean } }> } } } } }).__grafanaSceneContext?.useState();
+  const sceneContext = window.__grafanaSceneContext?.useState();
   const [checkCount, incrementCheckCount] = useReducer((count: number) => count + 1, 0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
