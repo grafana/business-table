@@ -97,26 +97,23 @@ This codebase uses **pervasive JSDoc comments**. Add `/** ... */` blocks above:
 - Every function and constant declaration
 - Logical sections within function bodies (state, theme, callbacks, return)
 
+```typescript
+/**
+ * Query Options Mapper
+ */
+export interface QueryOptionsMapper {
+  /**
+   * Source
+   *
+   * @type {number}
+   */
+  source: string | number;
+}
+```
+
 ### TypeScript Patterns
 
 - **Enums over string unions** for configuration values.
-- **JSDoc comments** on every exported interface, type, and their
-  fields with `@type` annotations:
-
-  ```typescript
-  /**
-   * Query Options Mapper
-   */
-  export interface QueryOptionsMapper {
-    /**
-     * Source
-     *
-     * @type {number}
-     */
-    source: string | number;
-  }
-  ```
-
 - **Named exports only** — no default exports in source files.
 - **Barrel exports** via `index.ts` in every directory using `export *`.
 - **`Props` type** defined at component scope or derived via
