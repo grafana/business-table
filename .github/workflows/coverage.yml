@@ -43,9 +43,12 @@ jobs:
         run: npm ci
 
       - name: Run tests with coverage (base)
+        id: base-coverage
+        continue-on-error: true
         run: npx jest --ci --coverage --coverageReporters=json-summary --coverageReporters=json --maxWorkers=4
 
       - name: Save base coverage
+        if: steps.base-coverage.outcome == 'success'
         run: |
           mkdir -p /tmp/base-coverage
           cp coverage/coverage-summary.json /tmp/base-coverage/coverage-summary.json
@@ -54,8 +57,15 @@ jobs:
         run: |
           cp /tmp/pr-coverage/coverage-summary.json coverage/coverage-summary.json
 
-      - name: Coverage report
+      - name: Coverage report (with comparison)
+        if: steps.base-coverage.outcome == 'success'
         uses: davelosert/vitest-coverage-report-action@3c50566c523e04813df28de8f7c48dd97d663f1c # v2.11.2
         with:
           json-summary-compare-path: /tmp/base-coverage/coverage-summary.json
+          file-coverage-mode: all
+
+      - name: Coverage report (PR only)
+        if: steps.base-coverage.outcome != 'success'
+        uses: davelosert/vitest-coverage-report-action@3c50566c523e04813df28de8f7c48dd97d663f1c # v2.11.2
+        with:
           file-coverage-mode: all
