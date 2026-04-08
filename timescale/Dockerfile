@@ -1,17 +1,15 @@
-FROM node
+FROM node:24-slim
 
-## Create app directory
 WORKDIR /app
 
-## Copy Server
-COPY server.ts .
+# Install pg dependency
+RUN npm install pg@8
 
-## Add Postgres package
-RUN yarn add pg
-
-## Add the wait script to the image
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.9.0/wait /wait
+# Add docker-compose-wait for service readiness
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.12.1/wait /wait
 RUN chmod +x /wait
+
+COPY server.ts .
 
 EXPOSE 3001
 
