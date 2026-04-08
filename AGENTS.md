@@ -182,6 +182,10 @@ Print width: 120, single quotes, trailing commas (es5), semicolons,
   codebase. This project was forked from Volkov Labs
   and all references should point to Grafana equivalents
   (e.g., `grafana.com`).
+- **Do not add `@volkovlabs/*` packages** as dependencies.
+  All Volkov Labs packages (`@volkovlabs/components`,
+  `@volkovlabs/jest-selectors`, `@volkovlabs/eslint-config`)
+  have been replaced with local implementations.
 - **Never modify anything inside `.config/`** —
   managed by Grafana plugin tooling.
 - **Never change `id` or `type`** in `src/plugin.json`.
