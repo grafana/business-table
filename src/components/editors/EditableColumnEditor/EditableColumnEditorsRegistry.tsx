@@ -9,7 +9,7 @@ import {
   Select,
   TextArea,
 } from '@grafana/ui';
-import { NumberInput } from '@volkovlabs/components';
+import { NumberInput } from '@/components/ui/NumberInput';
 import React, { ChangeEvent } from 'react';
 
 import { TEST_IDS } from '@/constants';

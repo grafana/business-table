@@ -1,7 +1,7 @@
 import { EventBusSrv, toDataFrame } from '@grafana/data';
 import { config } from '@grafana/runtime';
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import { getJestSelectors } from '@volkovlabs/jest-selectors';
+import { getJestSelectors } from '@/utils/test-selectors';
 import React, { useMemo, useState } from 'react';
 
 import { TEST_IDS } from '@/constants';

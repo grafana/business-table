@@ -9,7 +9,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { getJestSelectors } from '@volkovlabs/jest-selectors';
+import { getJestSelectors } from '@/utils/test-selectors';
 import React, { act } from 'react';
 
 import { nestedObjectEditorsRegistry } from '@/components';

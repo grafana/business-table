@@ -1,5 +1,5 @@
 import { EventBus, TypedVariableModel } from '@grafana/data';
-import { useDashboardVariables } from '@volkovlabs/components';
+import { useDashboardVariables } from '@/hooks/useDashboardVariables';
 
 import { getVariablesMap } from '@/utils';
 

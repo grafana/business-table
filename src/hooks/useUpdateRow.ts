@@ -1,6 +1,6 @@
 import { AlertPayload, AppEvents, InterpolateFunction, LoadingState } from '@grafana/data';
 import { getAppEvents } from '@grafana/runtime';
-import { useDatasourceRequest } from '@volkovlabs/components';
+import { useDatasourceRequest } from '@/hooks/useDatasourceRequest';
 import { useCallback } from 'react';
 
 import { TableConfig } from '@/types';
