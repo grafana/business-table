@@ -62,24 +62,20 @@ test.describe('Business Table Panel', () => {
     await table.getRow(2).getCell('comment.info.name').checkText('');
   });
 
-  test('Should add an empty Business Table', async ({ gotoDashboardPage, readProvisionedDashboard }) => {
+  test('Should add an empty Business Table', async ({ gotoPanelEditPage, readProvisionedDashboard }) => {
     /**
-     * Go To Panels dashboard panels.json
-     * return dashboardPage
+     * Jump straight into the edit page for a pre-provisioned placeholder panel
+     * to avoid the Edit/Add-button flow, which is unstable on Grafana 13+.
      */
-    const dashboard = await readProvisionedDashboard({ fileName: 'panels.json' });
-    const dashboardPage = await gotoDashboardPage({ uid: dashboard.uid });
+    const dashboard = await readProvisionedDashboard({ fileName: 'empty-add.json' });
+    const editPage = await gotoPanelEditPage({ dashboard: { uid: dashboard.uid }, id: '1' });
 
-    /**
-     * Add new visualization
-     */
-    const editPage = await dashboardPage.addPanel();
     await editPage.setVisualization('Business Table');
     await editPage.setPanelTitle('Business Table Test');
-    await editPage.backToDashboard();
+    const dashboardPage = await editPage.backToDashboard();
 
     /**
-     * Should add empty visualization without errors
+     * Should render empty visualization without errors
      */
     const panel = new PanelHelper(dashboardPage, 'Business Table Test');
     await panel.checkIfNoErrors();
