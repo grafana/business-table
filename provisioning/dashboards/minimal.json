@@ -206,7 +206,7 @@
               }
             ],
             "meta": {},
-            "name": "Empty Add"
+            "name": "Minimal"
           },
           "refId": "A"
         }
@@ -225,8 +225,8 @@
     "to": "now"
   },
   "timezone": "",
-  "title": "Empty Add",
-  "uid": "empty-add-test",
+  "title": "Minimal",
+  "uid": "minimal-test",
   "version": 1,
   "weekStart": ""
 }

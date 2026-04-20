@@ -78,17 +78,17 @@ test.describe('Business Table Panel', () => {
     await panel.checkIfNoErrors();
   });
 
-  test('Should render an empty Business Table without errors', async ({
+  test('Should render a provisioned Business Table without errors', async ({
     gotoDashboardPage,
     readProvisionedDashboard,
   }) => {
     /**
-     * Load a dashboard whose only panel is a pre-provisioned Business
-     * Table. Complementary coverage to the add-panel test: this one
-     * verifies the plugin's initial render path directly from provisioned
-     * JSON, with no editor interaction.
+     * Load a minimal pre-provisioned Business Table dashboard.
+     * Complementary coverage to the add-panel test: this one verifies
+     * the plugin's initial render path directly from provisioned JSON,
+     * with no editor interaction.
      */
-    const dashboard = await readProvisionedDashboard({ fileName: 'empty-add.json' });
+    const dashboard = await readProvisionedDashboard({ fileName: 'minimal.json' });
     const dashboardPage = await gotoDashboardPage({ uid: dashboard.uid });
 
     const panel = new PanelHelper(dashboardPage, 'Business Table Test');
