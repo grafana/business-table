@@ -76,15 +76,41 @@ test.describe('Business Table Panel', () => {
     await table.getRow(2).getCell('comment.info.name').checkText('');
   });
 
+  test('Should add a Business Table via the panel editor', async ({
+    gotoPanelEditPage,
+    readProvisionedDashboard,
+  }) => {
+    /**
+     * Navigate straight to the Grafana panel editor for a placeholder
+     * stat panel, switch its visualization to Business Table, and verify
+     * it renders back on the dashboard without errors.
+     *
+     * The dashboard-edit entry flow (dashboardPage.addPanel()) can't be
+     * used on Grafana 13+ because upstream @grafana/plugin-e2e still
+     * clicks the legacy `data-testid Add button` which Grafana 13
+     * renamed to `CanvasGridAddActions add-panel`. Using the edit-panel
+     * URL bypasses the rename without pinning us to a plugin-e2e version.
+     */
+    const dashboard = await readProvisionedDashboard({ fileName: 'placeholder.json' });
+    const editPage = await gotoPanelEditPage({ dashboard: { uid: dashboard.uid }, id: '1' });
+
+    await editPage.setVisualization('Business Table');
+    await editPage.setPanelTitle('Business Table Added');
+    const dashboardPage = await editPage.backToDashboard();
+
+    const panel = new PanelHelper(dashboardPage, 'Business Table Added');
+    await panel.checkIfNoErrors();
+  });
+
   test('Should render an empty Business Table without errors', async ({
     gotoDashboardPage,
     readProvisionedDashboard,
   }) => {
     /**
-     * Load a dashboard whose only panel is an empty Business Table
-     * (no tables configured). The in-UI "add panel" flow is skipped
-     * because Grafana 13+ makes the toolbar buttons fail Playwright's
-     * actionability check.
+     * Load a dashboard whose only panel is a pre-provisioned Business
+     * Table. Complementary coverage to the add-panel test: this one
+     * verifies the plugin's initial render path directly from provisioned
+     * JSON, with no editor interaction.
      */
     const dashboard = await readProvisionedDashboard({ fileName: 'empty-add.json' });
     const dashboardPage = await gotoDashboardPage({ uid: dashboard.uid });
