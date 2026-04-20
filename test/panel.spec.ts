@@ -3,6 +3,20 @@ import { test, expect } from '@grafana/plugin-e2e';
 import { PanelHelper } from './utils';
 
 test.describe('Business Table Panel', () => {
+  /**
+   * Grafana 13 ships a "What's new in Grafana" splash modal that is
+   * rendered via a portal overlay and intercepts pointer events on panel
+   * content. Playwright's locator handler auto-dismisses it whenever an
+   * action is blocked by its presence.
+   * https://playwright.dev/docs/api/class-page#page-add-locator-handler
+   */
+  test.beforeEach(async ({ page }) => {
+    const splash = page.getByRole('dialog', { name: "What's new in Grafana" });
+    await page.addLocatorHandler(splash, async () => {
+      await splash.getByRole('button', { name: 'Close' }).click();
+    });
+  });
+
   test('Check grafana version', async ({ grafanaVersion }) => {
     console.log('Grafana version: ', grafanaVersion);
     expect(grafanaVersion).toEqual(grafanaVersion);
