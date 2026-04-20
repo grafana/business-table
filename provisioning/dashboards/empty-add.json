@@ -36,9 +36,11 @@
         "y": 0
       },
       "id": 1,
-      "options": {},
-      "title": "Placeholder",
-      "type": "stat"
+      "options": {
+        "tables": []
+      },
+      "title": "Business Table Test",
+      "type": "volkovlabs-table-panel"
     }
   ],
   "schemaVersion": 39,
