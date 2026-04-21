@@ -6,21 +6,6 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-### Changed
-
-- Replaced all `@volkovlabs/*` packages with local implementations:
-  - `@volkovlabs/components` — inlined `useDatasourceRequest`,
-    `useDashboardVariables`, `NumberInput`, and `AutosizeCodeEditor`.
-    Bundle size reduced from 2.05 MiB to 1.04 MiB.
-  - `@volkovlabs/jest-selectors` — inlined as `src/utils/test-selectors.ts`.
-  - `@volkovlabs/eslint-config` — replaced with direct `@grafana/eslint-config`
-    usage and simplified `eslint.config.mjs`.
-- Bumped `@grafana/scenes` from v6 to v7 for React 19 compatibility.
-- Updated CI/CD workflows from `plugin-ci-workflows` v6.1.1 to v7.0.0.
-- Updated Playwright Docker image from v1.54.1-noble to v1.59.1-noble.
-- Updated CI Playwright Grafana dependency range to `>=12.3 <=13.0` and
-  enabled dev and React 19 preview image testing.
-
 ### Fixed
 
 - Fixed React Compiler lint errors: replaced `useRef` with callback ref in
@@ -28,6 +13,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   targeted `eslint-disable` for intentional state-sync patterns.
 - Fixed markdownlint line-length violations in `CHANGELOG.md` and `README.md`.
 - Added `test-exclude` glob override to fix Jest coverage with glob v13.
+- Filter test is stable on Grafana 13 via a direct click dispatch in
+  `TableFilterHelper` until the header cell overlap is fixed upstream.
 - Fixed lint errors in inlined modules: `no-redeclare` on `createSelector`
   overloads, unnecessary dep in `NumberInput` `useCallback`.
 - Removed `volkovlabs.io` URLs from provisioning dashboards.
@@ -57,6 +44,21 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Replaced brittle runtime type narrowing in `AutosizeCodeEditor` with proper
   `MonacoEditor` and `Monaco` types from `@grafana/ui`.
 
+### Changed
+
+- Replaced all `@volkovlabs/*` packages with local implementations:
+  - `@volkovlabs/components` — inlined `useDatasourceRequest`,
+    `useDashboardVariables`, `NumberInput`, and `AutosizeCodeEditor`.
+    Bundle size reduced from 2.05 MiB to 1.04 MiB.
+  - `@volkovlabs/jest-selectors` — inlined as `src/utils/test-selectors.ts`.
+  - `@volkovlabs/eslint-config` — replaced with direct `@grafana/eslint-config`
+    usage and simplified `eslint.config.mjs`.
+- Bumped `@grafana/scenes` from v6 to v7 for React 19 compatibility.
+- Updated CI/CD workflows from `plugin-ci-workflows` v6.1.1 to v7.0.0.
+- Updated Playwright Docker image from v1.54.1-noble to v1.59.1-noble.
+- Updated CI Playwright Grafana dependency range to `>=12.3 <=13.0` and
+  enabled dev and React 19 preview image testing.
+
 ### Project Updates
 
 - Added `AGENTS.md` with coding agent guidance, CI/CD, PR summary, lint
@@ -71,6 +73,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `@grafana/runtime`, `@grafana/ui`, `@grafana/plugin-e2e`, `@swc/core`,
   `@swc/helpers`, `@tanstack/react-virtual`, `handlebars`, `sass`.
 - Updated `@typescript-eslint/eslint-plugin` from 8.57.0 to 8.58.1.
+- E2E Docker build reuses layers and npm tarballs across CI runs via
+  BuildKit's GitHub Actions cache backend.
 
 ## [3.6.0] - 2025-10-28
 
