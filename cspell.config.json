@@ -54,6 +54,7 @@
     "typecheck",
     "dataviz",
     "autosize",
-    "Dockerfiles"
+    "Dockerfiles",
+    "buildx"
   ]
 }
