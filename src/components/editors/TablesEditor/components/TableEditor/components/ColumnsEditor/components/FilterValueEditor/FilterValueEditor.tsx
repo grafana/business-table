@@ -119,7 +119,6 @@ export const FilterValueEditor: React.FC<Props> = ({ value, onChange, data }) =>
    */
   useEffect(() => {
     if (defaultFilterValue.type === 'none' && availableTypeOptions.length > 0) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- preselects first available type
       setDefaultFilterValue(getFilterWithNewType(availableTypeOptions[0].value));
     }
   }, [availableTypeOptions, defaultFilterValue.type]);

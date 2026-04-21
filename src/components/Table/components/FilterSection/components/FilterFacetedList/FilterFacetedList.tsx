@@ -54,7 +54,6 @@ export const FilterFacetedList = <TData,>({ header: { column }, value: filterVal
   /**
    * Sorted Unique Options
    */
-  // eslint-disable-next-line react-hooks/preserve-manual-memoization
   const sortedUniqueOptions = useMemo(() => {
     /**
      * Get options from variable if query mode

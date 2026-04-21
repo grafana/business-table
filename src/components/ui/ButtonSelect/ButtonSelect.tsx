@@ -95,7 +95,6 @@ export const ButtonSelect = <T,>(props: Props<T>) => {
       {isOpen && (
         <div
           className={styles.menuWrapper}
-          // eslint-disable-next-line react-hooks/refs -- refs.setFloating is a callback ref from floating-ui
           ref={refs.setFloating}
           {...getFloatingProps()}
           style={floatingStyles}

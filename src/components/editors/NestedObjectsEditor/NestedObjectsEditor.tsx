@@ -64,7 +64,6 @@ export const NestedObjectsEditor: React.FC<Props> = ({ context: { data }, value,
   /**
    * Add New Item
    */
-  // eslint-disable-next-line react-hooks/preserve-manual-memoization
   const onAddNewItem = useCallback(() => {
     setNewItemName('');
     onChangeItems(

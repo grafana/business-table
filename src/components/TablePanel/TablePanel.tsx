@@ -321,7 +321,6 @@ export const TablePanel: React.FC<Props> = ({
     setError: showError,
   });
 
-  // eslint-disable-next-line react-hooks/preserve-manual-memoization
   const exportFormatsMenu = useMemo(() => {
     return (
       <Menu>
