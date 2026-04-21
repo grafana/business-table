@@ -56,15 +56,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added `AGENTS.md` with coding agent guidance, CI/CD, PR summary, lint
   rules, and `@volkovlabs/*` package prohibition.
 - Added CI/CD coverage report and PR file changes workflows.
-- Added `markdownlint-cli2` and `cspell` to devDependencies.
-- Added `.eslintcache` to `.gitignore`.
 - Optimized Dockerfiles: removed redundant playwright install in test
   Dockerfile; use `node:24-slim` and pin `pg@8` in timescale. Added
   `src/` and `tsconfig.json` to test Dockerfile for E2E helper imports.
-- Updated dependencies to latest patch/minor versions: `@grafana/data`,
-  `@grafana/runtime`, `@grafana/ui`, `@grafana/plugin-e2e`, `@swc/core`,
-  `@swc/helpers`, `@tanstack/react-virtual`, `handlebars`, `sass`.
-- Updated `@typescript-eslint/eslint-plugin` from 8.57.0 to 8.58.1.
 - E2E Docker build reuses layers and npm tarballs across CI runs via
   BuildKit's GitHub Actions cache backend.
 
