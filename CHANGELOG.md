@@ -59,8 +59,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Optimized Dockerfiles: removed redundant playwright install in test
   Dockerfile; use `node:24-slim` and pin `pg@8` in timescale. Added
   `src/` and `tsconfig.json` to test Dockerfile for E2E helper imports.
-- E2E Docker build reuses layers and npm tarballs across CI runs via
-  BuildKit's GitHub Actions cache backend.
+- Prepared the E2E Dockerfile for BuildKit caching (`--mount=type=cache`
+  for npm, `--prefer-offline`). The cross-run speedup itself requires
+  the reusable CI workflow to initialize buildx with the GHA cache
+  backend; that is being tracked upstream.
 
 ## [3.6.0] - 2025-10-28
 
