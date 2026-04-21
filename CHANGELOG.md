@@ -56,7 +56,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bumped `@grafana/scenes` from v6 to v7 for React 19 compatibility.
 - Updated CI/CD workflows from `plugin-ci-workflows` v6.1.1 to v7.0.0.
 - Updated Playwright Docker image from v1.54.1-noble to v1.59.1-noble.
-- Updated CI Playwright Grafana dependency range to `>=12.3 <=13.0` and
+- Updated CI Playwright Grafana dependency range to `>=12.3` and
   enabled dev and React 19 preview image testing.
 
 ### Project Updates
