@@ -71,10 +71,10 @@ test.describe('Business Table Panel', () => {
 
     const editPage = await dashboardPage.addPanel();
     await editPage.setVisualization('Business Table');
-    await editPage.setPanelTitle('Business Table Added');
+    await editPage.setPanelTitle('Business Table Test');
     await editPage.backToDashboard();
 
-    const panel = new PanelHelper(dashboardPage, 'Business Table Added');
+    const panel = new PanelHelper(dashboardPage, 'Business Table Test');
     await panel.checkIfNoErrors();
   });
 

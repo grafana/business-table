@@ -218,6 +218,17 @@ See `.prettierrc.js`. Print width 120, single quotes, 2-space indent.
   pin in `test/Dockerfile` to the same version — the base
   image ships with a specific browser build that has to
   match the `@playwright/test` library.
+- **`@grafana/data`, `@grafana/runtime`, and `@grafana/ui`
+  are pinned to exact versions** (no caret) in `package.json`.
+  `@grafana/ui` regularly lags the other two by a patch, so
+  caret ranges let npm resolve them to mismatched versions.
+  Bump all three together as a set when updating.
+- **`test-exclude` has a top-level override** to `^7.0.1`
+  in `package.json`. `babel-plugin-istanbul@7` pulls in
+  `test-exclude@6`, which calls `promisify(require('glob'))`
+  and breaks under the `glob@11` override used elsewhere in
+  this file. v7+ uses a destructured glob import and works
+  with any glob version. Keep the override in place.
 - Code owners: `@grafana/dataviz-squad`.
 
 ### Pre-commit Checklist
