@@ -55,6 +55,7 @@
     "dataviz",
     "autosize",
     "Dockerfiles",
-    "buildx"
+    "buildx",
+    "Locize"
   ]
 }
