@@ -213,6 +213,11 @@ See `.prettierrc.js`. Print width 120, single quotes, 2-space indent.
   <https://developers.grafana.com/ui/latest/index.html>
 - **Check `test/Dockerfile`** uses the latest versioned
   `noble` Playwright image from `mcr.microsoft.com/playwright`.
+  When bumping `@playwright/test` in `package.json`, also
+  update the `FROM mcr.microsoft.com/playwright:vX.Y.Z-noble`
+  pin in `test/Dockerfile` to the same version — the base
+  image ships with a specific browser build that has to
+  match the `@playwright/test` library.
 - Code owners: `@grafana/dataviz-squad`.
 
 ### Pre-commit Checklist
