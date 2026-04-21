@@ -23,6 +23,10 @@ services:
     build:
       context: .
       dockerfile: test/Dockerfile
+      cache_from:
+        - type=gha
+      cache_to:
+        - type=gha,mode=max
     environment:
       - GRAFANA_URL=http://grafana:3000
     volumes:

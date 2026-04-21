@@ -1,15 +1,16 @@
-# Get the latest version of Playwright (browsers are pre-installed)
+# syntax=docker/dockerfile:1.7
+
+# Browsers are pre-installed in this image. Keep the version in lockstep with
+# @playwright/test in package.json — see AGENTS.md.
 FROM mcr.microsoft.com/playwright:v1.59.1-noble
 
 # Set the work directory for the application
 WORKDIR /app
 
-# Install dependencies first for better layer caching
+# Install dependencies first for better layer caching. The BuildKit cache
+# mount reuses npm tarballs across builds when the layer itself misses.
 COPY package*.json ./
-RUN npm ci
-
-# Install browsers (they are pre-installed in the base image but may be outdated)
-RUN npx playwright install --with-deps chromium
+RUN --mount=type=cache,target=/root/.npm npm ci --prefer-offline
 
 # Copy test files, source (test helpers import from src/), config, and provisioning
 COPY test/ test/
