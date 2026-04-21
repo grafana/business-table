@@ -8,41 +8,33 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
-- Fixed React Compiler lint errors: replaced `useRef` with callback ref in
-  `TableHeaderCellFilter`, inlined `useSortState` `useCallback`, and added
-  targeted `eslint-disable` for intentional state-sync patterns.
-- Fixed markdownlint line-length violations in `CHANGELOG.md` and `README.md`.
+- Removed `volkovlabs.io` URLs from provisioning dashboards.
+- `useDatasourceRequest` catches `JSON.parse` errors from malformed
+  variable interpolation instead of bubbling an unhandled exception.
+- `useDashboardVariables`: fixed a conditional React hook call (replaced
+  `SceneObject.useState()` with manual `subscribeToState`), a stale
+  callback ref, and a timer leak that cleared only on unmount.
+- Fixed React Compiler lint errors: callback ref in `TableHeaderCellFilter`,
+  inlined `useSortState` `useCallback`, and `eslint-disable` comments for
+  intentional state-sync patterns.
+- Replaced `useState` with `useRef` in `useSyncedColumnFilters` to avoid
+  redundant serialization and re-renders.
+- Fixed duplicate height calculation in `AutosizeCodeEditor` and
+  unnecessary blur computation in `NumberInput`. `DatasourceResponseError`
+  now extends `Error`.
+- Replaced brittle runtime type narrowing in `AutosizeCodeEditor` with
+  `MonacoEditor`/`Monaco` types from `@grafana/ui`.
+- Replaced O(n) step-snapping loop with constant-time `Math.ceil` in
+  `NumberInput`; replaced deprecated `React.FormEvent` with
+  `React.ChangeEvent`.
+- Fixed E2E test resolution: relative import for `test-selectors` in
+  `constants.ts` and `.config/tsconfig.json` copied into the test
+  Dockerfile for `@/` path alias resolution.
 - Added `test-exclude` glob override to fix Jest coverage with glob v13.
+- Coverage workflow falls back to a PR-only report when the base
+  branch coverage run fails.
 - Filter test is stable on Grafana 13 via a direct click dispatch in
   `TableFilterHelper` until the header cell overlap is fixed upstream.
-- Fixed lint errors in inlined modules: `no-redeclare` on `createSelector`
-  overloads, unnecessary dep in `NumberInput` `useCallback`.
-- Removed `volkovlabs.io` URLs from provisioning dashboards.
-- Fixed `useDatasourceRequest` to catch `JSON.parse` errors from malformed
-  variable interpolation.
-- Replaced fragile inline window type cast in `useDashboardVariables` with
-  existing global declaration.
-- Fixed conditional React hook call in `useDashboardVariables` by replacing
-  `SceneObject.useState()` with manual `subscribeToState` subscription.
-- Fixed stale callback ref in `useDashboardVariables`, duplicate height
-  calculation in `AutosizeCodeEditor`, unnecessary blur computation in
-  `NumberInput`, and `DatasourceResponseError` now extends `Error`.
-- Fixed E2E test resolution: use relative import for `test-selectors` in
-  `constants.ts` and copy `.config/tsconfig.json` into test Dockerfile
-  for `@/` path alias resolution.
-- Replaced deprecated `React.FormEvent` with `React.ChangeEvent` in
-  `NumberInput`.
-- Coverage workflow: handle base branch coverage failure gracefully
-  with fallback to PR-only report.
-- Replaced O(n) step-snapping loop with constant-time `Math.ceil` in `NumberInput`.
-- Fixed potential timer leak in `useDashboardVariables` by clearing pending timeout
-  before setting a new one.
-- Separated `JSON.parse` into its own try/catch in `useDatasourceRequest` for clearer
-  error messages on invalid variable interpolation.
-- Replaced `useState` with `useRef` for default filter comparison in
-  `useSyncedColumnFilters` to avoid redundant serialization and re-renders.
-- Replaced brittle runtime type narrowing in `AutosizeCodeEditor` with proper
-  `MonacoEditor` and `Monaco` types from `@grafana/ui`.
 
 ### Changed
 
