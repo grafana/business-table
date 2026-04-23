@@ -193,7 +193,12 @@ export const ColumnsEditor: React.FC<Props> = ({ value: items, name, onChange, d
                     >
                       <Collapse
                         label={
-                          <Stack data-testid={testIds.itemHeader.selector(getFieldKey(item.field))} flex={1} alignItems="center" justifyContent="space-between">
+                          <Stack
+                            data-testid={testIds.itemHeader.selector(getFieldKey(item.field))}
+                            flex={1}
+                            alignItems="center"
+                            justifyContent="space-between"
+                          >
                             <CollapseTitle>
                               {item.field.name}
                               {item.group && <Tag name="Group" />}
@@ -229,12 +234,16 @@ export const ColumnsEditor: React.FC<Props> = ({ value: items, name, onChange, d
                                   event.stopPropagation();
                                   onChangeItems(
                                     items.filter((column) => getFieldKey(column.field) !== getFieldKey(item.field))
-                                  )
+                                  );
                                 }}
                                 aria-label="Remove"
                                 {...testIds.buttonRemove.apply()}
                               />
-                              <div onClick={(event) => event.stopPropagation()} className={styles.dragHandle} {...provided.dragHandleProps}>
+                              <div
+                                onClick={(event) => event.stopPropagation()}
+                                className={styles.dragHandle}
+                                {...provided.dragHandleProps}
+                              >
                                 <Icon
                                   title="Drag and drop to reorder"
                                   name="draggabledots"

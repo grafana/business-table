@@ -13,10 +13,11 @@ services:
       - ./dist:/var/lib/grafana/plugins/grafana-business-table-panel
       - ./provisioning:/etc/grafana/provisioning
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:3000/login"]
-      interval: 30s
+      test: ['CMD', 'wget', '--spider', '-q', 'http://localhost:3000/api/health']
+      interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 10
+      start_period: 30s
 
   playwright:
     build:
@@ -35,10 +36,12 @@ services:
 
   timescale:
     image: timescale/timescaledb:latest-pg14
-    restart: always
     environment:
       POSTGRES_PASSWORD: postgres
     ports:
       - 5432:5432
     volumes:
       - ./timescale:/docker-entrypoint-initdb.d
+    profiles:
+      - dev
+      - playwright

@@ -1,16 +1,27 @@
 # Business Table Panel for Grafana
 
+[![Marketplace](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgrafana.com%2Fapi%2Fplugins%2Fvolkovlabs-table-panel&label=Marketplace&query=%24.version&prefix=v&color=orange)](https://grafana.com/grafana/plugins/volkovlabs-table-panel/)
+[![Downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgrafana.com%2Fapi%2Fplugins%2Fvolkovlabs-table-panel&label=Downloads&query=%24.downloads&color=blue)](https://grafana.com/grafana/plugins/volkovlabs-table-panel/)
 [![CI](https://github.com/grafana/business-table/actions/workflows/push.yml/badge.svg)](https://github.com/grafana/business-table/actions/workflows/push.yml)
 [![CD](https://github.com/grafana/business-table/actions/workflows/publish.yml/badge.svg)](https://github.com/grafana/business-table/actions/workflows/publish.yml)
 [![License](https://img.shields.io/github/license/grafana/business-table)](https://github.com/grafana/business-table/blob/main/LICENSE)
 
-> This project was originally contributed by [Volkov Labs](https://github.com/volkovlabs/business-table) - thanks for all your great work!
+> This project was originally contributed by
+> [Volkov Labs](https://github.com/volkovlabs/business-table) —
+> thanks for all your great work!
 >
-> We have republished under the same plugin ID, keeping the community signature. This means you can simply update your plugin version. A new ID would have required manual updates to your dashboards. For additional information on the changes, see the [Notices](https://github.com/grafana/business-table/blob/main/NOTICES.md).
+> We have republished under the same plugin ID, keeping the community signature.
+> This means you can simply update your plugin version. A new ID would have
+> required manual updates to your dashboards. For additional information on the
+> changes, see the
+> [Notices](https://github.com/grafana/business-table/blob/main/NOTICES.md).
 
 ## 📋 Introduction
 
-The **Business Table Panel** is a powerful and flexible Grafana plugin designed to elevate data visualization in table format. Tailored for business analytics and reporting dashboards, it offers advanced features like tree views, custom cell rendering, data editing, and export capabilities.
+The **Business Table Panel** is a powerful and flexible Grafana plugin designed to elevate
+data visualization in table format. Tailored for business analytics and reporting dashboards,
+it offers advanced features like tree views, custom cell rendering, data editing, and export
+capabilities.
 
 ## 📋 Requirements
 
@@ -23,7 +34,9 @@ Choose one of the following methods to install the plugin:
 
 ### Grafana Plugins Catalog
 
-Visit the official plugin page at [grafana.com/plugins/volkovlabs-table-panel](https://grafana.com/grafana/plugins/volkovlabs-table-panel/) and follow the provided instructions.
+Visit the official plugin page at
+[grafana.com/plugins/volkovlabs-table-panel](https://grafana.com/grafana/plugins/volkovlabs-table-panel/)
+and follow the provided instructions.
 
 ### Grafana CLI
 

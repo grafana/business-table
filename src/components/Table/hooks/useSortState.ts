@@ -71,7 +71,12 @@ export const useSortState = <TData>({
   /**
    * Change state via table handler
    */
-  const onChangeSort = useCallback(setSorting, [setSorting]);
+  const onChangeSort = useCallback(
+    (value: SortingState | ((prev: SortingState) => SortingState)) => {
+      setSorting(value);
+    },
+    [setSorting]
+  );
 
   return useMemo(
     () => ({
