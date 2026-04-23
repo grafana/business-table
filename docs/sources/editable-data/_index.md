@@ -32,8 +32,6 @@ You can configure 7 data flows:
 - Nested objects > Edit Options
 - Nested objects > Delete Options
 
-{{< youtube id="tNa14EULUQo" >}}
-
 ## Highlights
 
 Some highlights of data editing in the Business Table panel:
