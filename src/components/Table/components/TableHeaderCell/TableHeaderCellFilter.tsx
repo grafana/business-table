@@ -1,6 +1,6 @@
 import { Icon, Popover, useStyles2, useTheme2 } from '@grafana/ui';
 import { Header } from '@tanstack/react-table';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { TEST_IDS } from '@/constants';
 import { ColumnFilterValue, ColumnHeaderFontSize } from '@/types';
@@ -69,15 +69,15 @@ export const TableHeaderCellFilter = <TData,>({
   }, []);
 
   /**
-   * Ref
+   * Reference Element
    */
-  const ref = useRef<HTMLButtonElement | null>(null);
+  const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null);
 
   return (
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        ref={ref}
+        ref={setReferenceElement}
         className={styles.filterButton}
         {...TEST_IDS.tableHeaderCellFilter.root.apply()}
       >
@@ -89,7 +89,7 @@ export const TableHeaderCellFilter = <TData,>({
           }}
         />
       </button>
-      {isOpen && ref.current && (
+      {isOpen && referenceElement && (
         <>
           <Popover
             show={true}
@@ -101,7 +101,7 @@ export const TableHeaderCellFilter = <TData,>({
                 updatePreferencesWithFilters={updatePreferencesWithFilters}
               />
             }
-            referenceElement={ref.current}
+            referenceElement={referenceElement}
             placement="bottom-start"
           />
         </>

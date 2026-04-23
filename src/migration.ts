@@ -37,8 +37,10 @@ import {
 /**
  * Outdated Column Config
  */
-interface OutdatedColumnConfig
-  extends Omit<ColumnConfig, 'filter' | 'sort' | 'appearance' | 'edit' | 'pin' | 'enabled' | 'newRowEdit'> {
+interface OutdatedColumnConfig extends Omit<
+  ColumnConfig,
+  'filter' | 'sort' | 'appearance' | 'edit' | 'pin' | 'enabled' | 'newRowEdit'
+> {
   /**
    * Filter
    *
@@ -92,8 +94,10 @@ interface OutdatedColumnConfig
 /**
  * Outdated Group
  */
-interface OutdatedGroup
-  extends Omit<TableConfig, 'items' | 'update' | 'pagination' | 'addRow' | 'deleteRow' | 'rowHighlight'> {
+interface OutdatedGroup extends Omit<
+  TableConfig,
+  'items' | 'update' | 'pagination' | 'addRow' | 'deleteRow' | 'rowHighlight'
+> {
   items: OutdatedColumnConfig[];
 
   /**

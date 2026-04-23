@@ -23,7 +23,11 @@ class TableFilterHelper {
   }
 
   public async open() {
-    return this.selectors.root().click();
+    // Dispatch the click directly on the filter button. On Grafana 13+
+    // an adjacent <th> overlaps its visual bounds so a synthesized mouse
+    // click hits the wrong element; dispatchEvent bypasses hit-testing
+    // entirely and invokes the button's handler.
+    return this.selectors.root().dispatchEvent('click');
   }
 
   public async applySearchValue(value: string) {

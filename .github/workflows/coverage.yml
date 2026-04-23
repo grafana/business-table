@@ -1,0 +1,71 @@
+name: Coverage Report
+
+on:
+  pull_request:
+
+permissions: {}
+
+jobs:
+  coverage:
+    name: Jest Coverage
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Setup Node
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests with coverage (PR)
+        run: npx jest --ci --coverage --coverageReporters=json-summary --coverageReporters=json --maxWorkers=4
+
+      - name: Save PR coverage
+        run: |
+          mkdir -p /tmp/pr-coverage
+          cp coverage/coverage-summary.json /tmp/pr-coverage/coverage-summary.json
+
+      - name: Checkout base branch
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          clean: false
+
+      - name: Install dependencies (base)
+        run: npm ci
+
+      - name: Run tests with coverage (base)
+        id: base-coverage
+        continue-on-error: true
+        run: npx jest --ci --coverage --coverageReporters=json-summary --coverageReporters=json --maxWorkers=4
+
+      - name: Save base coverage
+        if: steps.base-coverage.outcome == 'success'
+        run: |
+          mkdir -p /tmp/base-coverage
+          cp coverage/coverage-summary.json /tmp/base-coverage/coverage-summary.json
+
+      - name: Restore PR coverage
+        run: |
+          cp /tmp/pr-coverage/coverage-summary.json coverage/coverage-summary.json
+
+      - name: Coverage report (with comparison)
+        if: steps.base-coverage.outcome == 'success'
+        uses: davelosert/vitest-coverage-report-action@3c50566c523e04813df28de8f7c48dd97d663f1c # v2.11.2
+        with:
+          json-summary-compare-path: /tmp/base-coverage/coverage-summary.json
+          file-coverage-mode: all
+
+      - name: Coverage report (PR only)
+        if: steps.base-coverage.outcome != 'success'
+        uses: davelosert/vitest-coverage-report-action@3c50566c523e04813df28de8f7c48dd97d663f1c # v2.11.2
+        with:
+          file-coverage-mode: all

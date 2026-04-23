@@ -1,7 +1,7 @@
 import { EventBus } from '@grafana/data';
 import { RefreshEvent } from '@grafana/runtime';
 import { ColumnDef, ColumnFiltersState } from '@tanstack/react-table';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { getVariableColumnFilters, mergeColumnFilters } from '@/utils';
 
@@ -34,7 +34,7 @@ export const useSyncedColumnFilters = <TData>({
   /**
    * Initial Default filters
    */
-  const [initialDefaultFiltersState, setInitialDefaultFiltersState] = useState<ColumnFiltersState>(defaultFilters);
+  const prevDefaultFiltersRef = useRef<string>(JSON.stringify(defaultFilters));
 
   /**
    * Filtering
@@ -54,11 +54,12 @@ export const useSyncedColumnFilters = <TData>({
    * Use defaultFilters if the default filters are changed
    */
   useEffect(() => {
-    if (JSON.stringify(initialDefaultFiltersState) !== JSON.stringify(defaultFilters)) {
-      setInitialDefaultFiltersState(defaultFilters);
+    const serialized = JSON.stringify(defaultFilters);
+    if (prevDefaultFiltersRef.current !== serialized) {
+      prevDefaultFiltersRef.current = serialized;
       setColumnFilters(defaultFilters);
     }
-  }, [defaultFilters, initialDefaultFiltersState]);
+  }, [defaultFilters]);
 
   /**
    * Set initial filters from variables and update on variable change

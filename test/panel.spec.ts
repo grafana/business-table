@@ -62,25 +62,35 @@ test.describe('Business Table Panel', () => {
     await table.getRow(2).getCell('comment.info.name').checkText('');
   });
 
-  test('Should add an empty Business Table', async ({ gotoDashboardPage, readProvisionedDashboard }) => {
-    /**
-     * Go To Panels dashboard panels.json
-     * return dashboardPage
-     */
+  test('Should add a Business Table via the panel editor', async ({
+    gotoDashboardPage,
+    readProvisionedDashboard,
+  }) => {
     const dashboard = await readProvisionedDashboard({ fileName: 'panels.json' });
     const dashboardPage = await gotoDashboardPage({ uid: dashboard.uid });
 
-    /**
-     * Add new visualization
-     */
     const editPage = await dashboardPage.addPanel();
     await editPage.setVisualization('Business Table');
     await editPage.setPanelTitle('Business Table Test');
     await editPage.backToDashboard();
 
+    const panel = new PanelHelper(dashboardPage, 'Business Table Test');
+    await panel.checkIfNoErrors();
+  });
+
+  test('Should render a provisioned Business Table without errors', async ({
+    gotoDashboardPage,
+    readProvisionedDashboard,
+  }) => {
     /**
-     * Should add empty visualization without errors
+     * Load a minimal pre-provisioned Business Table dashboard.
+     * Complementary coverage to the add-panel test: this one verifies
+     * the plugin's initial render path directly from provisioned JSON,
+     * with no editor interaction.
      */
+    const dashboard = await readProvisionedDashboard({ fileName: 'minimal.json' });
+    const dashboardPage = await gotoDashboardPage({ uid: dashboard.uid });
+
     const panel = new PanelHelper(dashboardPage, 'Business Table Test');
     await panel.checkIfNoErrors();
   });
@@ -157,7 +167,11 @@ test.describe('Business Table Panel', () => {
     await header.getHeaderCell('A-series').checkText('A-series');
   });
 
-  test.skip('Should render only visible columns in table', async ({ gotoDashboardPage, page, readProvisionedDashboard }) => {
+  test.skip('Should render only visible columns in table', async ({
+    gotoDashboardPage,
+    page,
+    readProvisionedDashboard,
+  }) => {
     /**
      * Go To Panels dashboard panels.json
      * return dashboardPage

@@ -355,11 +355,7 @@ export const TablePanel: React.FC<Props> = ({
       <>
         {!!error && (
           <div ref={alertRef} {...TEST_IDS.panel.errorContainer.apply()}>
-            <Alert
-              title="Request error"
-              onRemove={() => setError('')}
-              {...TEST_IDS.panel.errorAlertElement.apply()}
-            >
+            <Alert title="Request error" onRemove={() => setError('')} {...TEST_IDS.panel.errorAlertElement.apply()}>
               {error}
             </Alert>
           </div>

@@ -97,7 +97,7 @@ export const HighlightDataEditor: React.FC<Props> = ({ onChange, value }) => {
             }
             isOpen={collapseState[item.name]}
             onToggle={(isOpen) => {
-              onToggleItemExpandedState(item.name)
+              onToggleItemExpandedState(item.name);
 
               if (isOpen) {
                 onChangeItem({
