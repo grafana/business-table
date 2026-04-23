@@ -78,7 +78,7 @@
     "@floating-ui/react": "^0.27.19",
     "@grafana/data": "12.4.2",
     "@grafana/runtime": "12.4.2",
-    "@grafana/scenes": "^6.57.2",
+    "@grafana/scenes": "^7.0.0",
     "@grafana/ui": "12.4.2",
     "@hello-pangea/dnd": "^18.0.1",
     "@react-aria/focus": "^3.22.0",
@@ -99,7 +99,7 @@
   },
   "overrides": {
     "@volkovlabs/components": {
-      "@grafana/scenes": "^6.57.2"
+      "@grafana/scenes": "^7.0.0"
     },
     "@jest/reporters@30.3.0": {
       "glob": "^11.1.0"
