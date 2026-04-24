@@ -2,7 +2,7 @@ import { CodeEditor, type Monaco, type MonacoEditor, useStyles2 } from '@grafana
 import { GrafanaTheme2 } from '@grafana/data';
 import { css } from '@emotion/css';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 /**
  * Line height in pixels
@@ -34,10 +34,7 @@ const calculateHeight = (value: string, minHeight?: number, maxHeight?: number):
   return contentHeight;
 };
 
-/**
- * Styles
- */
-const getStyles = (theme: GrafanaTheme2) => ({
+const getStyles = (_theme: GrafanaTheme2) => ({
   wrapper: css`
     width: 100%;
   `,
@@ -84,7 +81,10 @@ export const AutosizeCodeEditor: React.FC<Props> = ({
   ...rest
 }) => {
   const styles = useStyles2(getStyles);
-  const [computedHeight, setComputedHeight] = useState(calculateHeight(value, minHeight, maxHeight));
+  const computedHeight = useMemo(
+    () => calculateHeight(value, minHeight, maxHeight),
+    [value, minHeight, maxHeight]
+  );
 
   /**
    * Handle Editor Mount
@@ -123,13 +123,6 @@ export const AutosizeCodeEditor: React.FC<Props> = ({
     },
     [onBlur, isEscaping]
   );
-
-  /**
-   * Sync height on value change
-   */
-  useEffect(() => {
-    setComputedHeight(calculateHeight(value, minHeight, maxHeight));
-  }, [value, minHeight, maxHeight]);
 
   return (
     <div className={styles.wrapper}>
