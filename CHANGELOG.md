@@ -24,9 +24,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   now extends `Error`.
 - Replaced brittle runtime type narrowing in `AutosizeCodeEditor` with
   `MonacoEditor`/`Monaco` types from `@grafana/ui`.
-- Replaced O(n) step-snapping loop with constant-time `Math.ceil` in
+- Replaced O(n) step-snapping loop with constant-time `Math.round` in
   `NumberInput`; replaced deprecated `React.FormEvent` with
   `React.ChangeEvent`.
+- `NumberInput`: guard external `value` sync against mid-typing race so
+  parent re-renders don't clobber in-progress user input; unified
+  nullish handling (`??`) with state init to preserve empty-string values.
+- `AutosizeCodeEditor`: replaced `useState` + `useEffect` with `useMemo`
+  for derived `computedHeight`, removing a redundant re-render per
+  value change.
 - Fixed E2E test resolution: relative import for `test-selectors` in
   `constants.ts` and `.config/tsconfig.json` copied into the test
   Dockerfile for `@/` path alias resolution.
@@ -54,6 +60,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   component-hook-factories); set real-bug rules (set-state-in-effect, refs,
   preserve-manual-memoization, purity, immutability, use-memo,
   set-state-in-render) to `warn` to surface debt without blocking CI.
+- Removed test-only `test-selectors` re-export from `src/utils/index.ts`
+  barrel (tree-shaken already but makes intent explicit).
 - Updated CI/CD workflows from `plugin-ci-workflows` v6.1.1 to v7.0.0.
 - Updated Playwright Docker image from v1.54.1-noble to v1.59.1-noble.
 - Updated CI Playwright Grafana dependency range to `>=12.3` and
