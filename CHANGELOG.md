@@ -45,7 +45,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - `@volkovlabs/jest-selectors` — inlined as `src/utils/test-selectors.ts`.
   - `@volkovlabs/eslint-config` — replaced with direct `@grafana/eslint-config`
     usage and simplified `eslint.config.mjs`.
-- Bumped `@grafana/scenes` from v6 to v7 for React 19 compatibility.
+- Bumped `@grafana/scenes` from v6 to v7.4.2 for React 19 compatibility.
+- Bumped `uuid` from 13 to 14 (RFC9562 + security fix for v3/v5/v6).
+- Bumped `@typescript-eslint/eslint-plugin` to 8.59.0 and
+  `markdownlint-cli2` to 0.22.1.
+- `eslint.config.mjs`: restored React Compiler rule overrides — disabled
+  opt-in rules (gating, globals, config, error-boundaries, static-components,
+  component-hook-factories); set real-bug rules (set-state-in-effect, refs,
+  preserve-manual-memoization, purity, immutability, use-memo,
+  set-state-in-render) to `warn` to surface debt without blocking CI.
 - Updated CI/CD workflows from `plugin-ci-workflows` v6.1.1 to v7.0.0.
 - Updated Playwright Docker image from v1.54.1-noble to v1.59.1-noble.
 - Updated CI Playwright Grafana dependency range to `>=12.3` and
