@@ -8,28 +8,37 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+#### Panel editing
+
 - Number input fields no longer lose in-progress typing when the
   panel editor re-renders, and step values snap to the nearest
   increment instead of rounding up.
 - Code editor fields in panel options render more efficiently and
   use stable Monaco types from `@grafana/ui`.
+
+#### Data & variables
+
 - Data source queries surface a clear error when a dashboard
   variable resolves to invalid JSON instead of throwing an
   unhandled exception.
 - Dashboard variables work reliably inside scene contexts; fixed
   hook-ordering and timer cleanup issues that could cause stale
   or missing variable values.
+
+#### Table behavior
+
 - Column filters no longer trigger redundant re-renders when
   sort/filter state changes.
 - Filter test passes on Grafana 13 (workaround for an upstream
   header cell overlap).
+
+#### Content
+
 - Removed `volkovlabs.io` URLs from provisioning dashboards.
-- Internal: fixed Jest coverage under glob v13; coverage workflow
-  falls back to a PR-only report when the base branch run fails;
-  resolved E2E `@/` path alias resolution and React Compiler lint
-  errors.
 
 ### Changed
+
+#### Dependencies
 
 - Replaced all `@volkovlabs/*` packages with local implementations:
   - `@volkovlabs/components` → inlined `useDatasourceRequest`,
@@ -44,16 +53,30 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   this plugin only uses `v4`).
 - Bumped `@typescript-eslint/eslint-plugin` to 8.59.0 and
   `markdownlint-cli2` to 0.22.1.
+
+#### Build & lint
+
 - `eslint.config.mjs`: restored React Compiler rule overrides —
   opt-in rules disabled, real-bug rules set to `warn` to surface
   debt without blocking CI.
 - Removed test-only `test-selectors` re-export from `src/utils`
   barrel.
+
+#### CI & tooling
+
 - Updated CI/CD workflows to `plugin-ci-workflows` v7.3.1 and
   bumped `actions/github-script` to v9.0.0.
 - Updated Playwright Docker image to v1.59.1-noble.
 - CI now runs Playwright against Grafana `>=12.3`, including the
   dev and React 19 preview images.
+
+### Internal
+
+- Fixed Jest coverage under glob v13 via a `test-exclude` override.
+- Coverage workflow falls back to a PR-only report when the base
+  branch run fails.
+- Resolved E2E `@/` path alias resolution in the test Dockerfile.
+- Resolved React Compiler lint errors across the codebase.
 
 ### Project Updates
 
