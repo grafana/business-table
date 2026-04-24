@@ -8,66 +8,59 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
-- Removed `volkovlabs.io` URLs from provisioning dashboards.
-- `useDatasourceRequest` catches `JSON.parse` errors from malformed
-  variable interpolation instead of bubbling an unhandled exception.
-- `useDashboardVariables`: fixed a conditional React hook call (replaced
-  `SceneObject.useState()` with manual `subscribeToState`), a stale
-  callback ref, and a timer leak that cleared only on unmount.
-- Fixed React Compiler lint errors: callback ref in `TableHeaderCellFilter`,
-  inlined `useSortState` `useCallback`, and `eslint-disable` comments for
-  intentional state-sync patterns.
-- Replaced `useState` with `useRef` in `useSyncedColumnFilters` to avoid
-  redundant serialization and re-renders.
-- Fixed duplicate height calculation in `AutosizeCodeEditor` and
-  unnecessary blur computation in `NumberInput`. `DatasourceResponseError`
-  now extends `Error`.
-- Replaced brittle runtime type narrowing in `AutosizeCodeEditor` with
-  `MonacoEditor`/`Monaco` types from `@grafana/ui`.
-- Replaced O(n) step-snapping loop with constant-time `Math.round` in
-  `NumberInput`; replaced deprecated `React.FormEvent` with
-  `React.ChangeEvent`.
-- `NumberInput`: guard external `value` sync against mid-typing race so
-  parent re-renders don't clobber in-progress user input; unified
-  nullish handling (`??`) with state init to preserve empty-string values.
-- `AutosizeCodeEditor`: replaced `useState` + `useEffect` with `useMemo`
-  for derived `computedHeight`, removing a redundant re-render per
-  value change.
-- Fixed E2E test resolution: relative import for `test-selectors` in
-  `constants.ts` and `.config/tsconfig.json` copied into the test
-  Dockerfile for `@/` path alias resolution.
-- Added `test-exclude` glob override to fix Jest coverage with glob v13.
+- `NumberInput`: guarded external `value` sync against mid-typing so
+  parent re-renders no longer clobber in-progress input; step values
+  now snap to the nearest increment (was rounding up); constant-time
+  step snapping and `React.ChangeEvent` typing.
+- `AutosizeCodeEditor`: replaced `useState` + `useEffect` with
+  `useMemo` for height derivation, removing a redundant re-render;
+  adopted `MonacoEditor`/`Monaco` types from `@grafana/ui` instead
+  of runtime type narrowing.
+- `useDatasourceRequest`: catches `JSON.parse` errors from malformed
+  variable interpolation instead of throwing unhandled; now extends
+  `Error` properly.
+- `useDashboardVariables`: fixed a conditional React hook call,
+  a stale callback ref, and a timer that only cleared on unmount.
+- `useSyncedColumnFilters`: replaced `useState` with `useRef` to
+  avoid redundant serialization and re-renders.
+- Fixed React Compiler lint errors (callback ref in
+  `TableHeaderCellFilter`, inlined `useSortState` callback, and
+  disable comments for intentional state-sync patterns).
+- Fixed E2E test resolution: relative import for `test-selectors`
+  in `constants.ts`, and `.config/tsconfig.json` copied into the
+  test Dockerfile for `@/` path alias resolution.
+- Stable filter test on Grafana 13 via direct click dispatch in
+  `TableFilterHelper` (workaround for upstream header cell overlap).
+- Jest coverage works under glob v13 via a `test-exclude` override.
 - Coverage workflow falls back to a PR-only report when the base
   branch coverage run fails.
-- Filter test is stable on Grafana 13 via a direct click dispatch in
-  `TableFilterHelper` until the header cell overlap is fixed upstream.
+- Removed `volkovlabs.io` URLs from provisioning dashboards.
 
 ### Changed
 
 - Replaced all `@volkovlabs/*` packages with local implementations:
-  - `@volkovlabs/components` — inlined `useDatasourceRequest`,
+  - `@volkovlabs/components` → inlined `useDatasourceRequest`,
     `useDashboardVariables`, `NumberInput`, and `AutosizeCodeEditor`.
     Bundle size reduced from 2.05 MiB to 1.04 MiB.
-  - `@volkovlabs/jest-selectors` — inlined as `src/utils/test-selectors.ts`.
-  - `@volkovlabs/eslint-config` — replaced with direct `@grafana/eslint-config`
-    usage and simplified `eslint.config.mjs`.
-- Bumped `@grafana/scenes` from v6 to v7.4.2 for React 19 compatibility.
-- Bumped `uuid` from 13 to 14 (RFC9562 + security fix for v3/v5/v6).
+  - `@volkovlabs/jest-selectors` → inlined as
+    `src/utils/test-selectors.ts`.
+  - `@volkovlabs/eslint-config` → replaced with direct
+    `@grafana/eslint-config` and a simplified `eslint.config.mjs`.
+- Bumped `@grafana/scenes` to v7.4.2 (React 19 compatibility).
+- Bumped `uuid` to v14 (includes security fix for `v3`/`v5`/`v6`;
+  this plugin only uses `v4`).
 - Bumped `@typescript-eslint/eslint-plugin` to 8.59.0 and
   `markdownlint-cli2` to 0.22.1.
-- `eslint.config.mjs`: restored React Compiler rule overrides — disabled
-  opt-in rules (gating, globals, config, error-boundaries, static-components,
-  component-hook-factories); set real-bug rules (set-state-in-effect, refs,
-  preserve-manual-memoization, purity, immutability, use-memo,
-  set-state-in-render) to `warn` to surface debt without blocking CI.
-- Removed test-only `test-selectors` re-export from `src/utils/index.ts`
-  barrel (tree-shaken already but makes intent explicit).
-- Updated CI/CD workflows from `plugin-ci-workflows` v6.1.1 to v7.3.1.
-- Bumped `actions/github-script` v8.0.0 to v9.0.0 and corrected
-  `actions/checkout` pin comment to v6.0.2.
-- Updated Playwright Docker image from v1.54.1-noble to v1.59.1-noble.
-- Updated CI Playwright Grafana dependency range to `>=12.3` and
-  enabled dev and React 19 preview image testing.
+- `eslint.config.mjs`: restored React Compiler rule overrides —
+  opt-in rules disabled, real-bug rules set to `warn` to surface
+  debt without blocking CI.
+- Removed test-only `test-selectors` re-export from `src/utils`
+  barrel.
+- Updated CI/CD workflows to `plugin-ci-workflows` v7.3.1 and
+  bumped `actions/github-script` to v9.0.0.
+- Updated Playwright Docker image to v1.59.1-noble.
+- CI now runs Playwright against Grafana `>=12.3`, including the
+  dev and React 19 preview images.
 
 ### Project Updates
 
