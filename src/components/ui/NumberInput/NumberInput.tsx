@@ -134,11 +134,13 @@ export const NumberInput: React.FC<Props> = ({ value, onChange, min, max, step, 
   );
 
   /**
-   * Sync external value
+   * Sync external value — skip while user is typing to avoid clobbering input
    */
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- syncs external controlled value to local state
-    setLocalValue(value?.toString() || '0');
+    if (isDirty.current) {
+      return;
+    }
+    setLocalValue(value?.toString() ?? '0');
   }, [value]);
 
   return (
