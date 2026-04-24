@@ -8,48 +8,75 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+#### Panel editing
+
+- Number input fields no longer lose in-progress typing when the
+  panel editor re-renders, and step values snap to the nearest
+  increment instead of rounding up.
+- Code editor fields in panel options render more efficiently and
+  use stable Monaco types from `@grafana/ui`.
+
+#### Data & variables
+
+- Data source queries surface a clear error when a dashboard
+  variable resolves to invalid JSON instead of throwing an
+  unhandled exception.
+- Dashboard variables work reliably inside scene contexts; fixed
+  hook-ordering and timer cleanup issues that could cause stale
+  or missing variable values.
+
+#### Table behavior
+
+- Column filters no longer trigger redundant re-renders when
+  sort/filter state changes.
+- Filter test passes on Grafana 13 (workaround for an upstream
+  header cell overlap).
+
+#### Content
+
 - Removed `volkovlabs.io` URLs from provisioning dashboards.
-- `useDatasourceRequest` catches `JSON.parse` errors from malformed
-  variable interpolation instead of bubbling an unhandled exception.
-- `useDashboardVariables`: fixed a conditional React hook call (replaced
-  `SceneObject.useState()` with manual `subscribeToState`), a stale
-  callback ref, and a timer leak that cleared only on unmount.
-- Fixed React Compiler lint errors: callback ref in `TableHeaderCellFilter`,
-  inlined `useSortState` `useCallback`, and `eslint-disable` comments for
-  intentional state-sync patterns.
-- Replaced `useState` with `useRef` in `useSyncedColumnFilters` to avoid
-  redundant serialization and re-renders.
-- Fixed duplicate height calculation in `AutosizeCodeEditor` and
-  unnecessary blur computation in `NumberInput`. `DatasourceResponseError`
-  now extends `Error`.
-- Replaced brittle runtime type narrowing in `AutosizeCodeEditor` with
-  `MonacoEditor`/`Monaco` types from `@grafana/ui`.
-- Replaced O(n) step-snapping loop with constant-time `Math.ceil` in
-  `NumberInput`; replaced deprecated `React.FormEvent` with
-  `React.ChangeEvent`.
-- Fixed E2E test resolution: relative import for `test-selectors` in
-  `constants.ts` and `.config/tsconfig.json` copied into the test
-  Dockerfile for `@/` path alias resolution.
-- Added `test-exclude` glob override to fix Jest coverage with glob v13.
-- Coverage workflow falls back to a PR-only report when the base
-  branch coverage run fails.
-- Filter test is stable on Grafana 13 via a direct click dispatch in
-  `TableFilterHelper` until the header cell overlap is fixed upstream.
 
 ### Changed
 
+#### Dependencies
+
 - Replaced all `@volkovlabs/*` packages with local implementations:
-  - `@volkovlabs/components` — inlined `useDatasourceRequest`,
+  - `@volkovlabs/components` → inlined `useDatasourceRequest`,
     `useDashboardVariables`, `NumberInput`, and `AutosizeCodeEditor`.
     Bundle size reduced from 2.05 MiB to 1.04 MiB.
-  - `@volkovlabs/jest-selectors` — inlined as `src/utils/test-selectors.ts`.
-  - `@volkovlabs/eslint-config` — replaced with direct `@grafana/eslint-config`
-    usage and simplified `eslint.config.mjs`.
-- Bumped `@grafana/scenes` from v6 to v7 for React 19 compatibility.
-- Updated CI/CD workflows from `plugin-ci-workflows` v6.1.1 to v7.0.0.
-- Updated Playwright Docker image from v1.54.1-noble to v1.59.1-noble.
-- Updated CI Playwright Grafana dependency range to `>=12.3` and
-  enabled dev and React 19 preview image testing.
+  - `@volkovlabs/jest-selectors` → inlined as
+    `src/utils/test-selectors.ts`.
+  - `@volkovlabs/eslint-config` → replaced with direct
+    `@grafana/eslint-config` and a simplified `eslint.config.mjs`.
+- Bumped `@grafana/scenes` to v7.4.2 (React 19 compatibility).
+- Bumped `uuid` to v14 (includes security fix for `v3`/`v5`/`v6`;
+  this plugin only uses `v4`).
+- Bumped `@typescript-eslint/eslint-plugin` to 8.59.0 and
+  `markdownlint-cli2` to 0.22.1.
+
+#### Build & lint
+
+- `eslint.config.mjs`: restored React Compiler rule overrides —
+  opt-in rules disabled, real-bug rules set to `warn` to surface
+  debt without blocking CI.
+- Removed test-only `test-selectors` re-export from `src/utils`
+  barrel.
+
+#### CI & tooling
+
+- Updated CI/CD workflows to `plugin-ci-workflows` v7.3.1 and
+  bumped `actions/github-script` to v9.0.0.
+- Updated Playwright Docker image to v1.59.1-noble.
+- CI now runs Playwright against Grafana `>=12.3`, including the
+  dev and React 19 preview images.
+
+### Internal
+
+- Fixed Jest coverage under glob v13 via a `test-exclude` override.
+- Coverage workflow falls back to a PR-only report when the base
+  branch run fails.
+- Resolved E2E `@/` path alias resolution in the test Dockerfile.
+- Resolved React Compiler lint errors across the codebase.
 
 ### Project Updates
 

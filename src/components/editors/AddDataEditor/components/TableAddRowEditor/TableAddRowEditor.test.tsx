@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { createSelector, getJestSelectors } from '@volkovlabs/jest-selectors';
+import { createSelector, getJestSelectors } from '@/utils/test-selectors';
 import React from 'react';
 
 import { TEST_IDS } from '@/constants';
@@ -87,7 +87,7 @@ describe('TableAddRowEditor', () => {
 
   describe('Request', () => {
     const openSection = () => {
-      expect(screen.getByText("Add Request")).toBeInTheDocument();
+      expect(screen.getByText('Add Request')).toBeInTheDocument();
 
       fireEvent.click(screen.getByRole('button', { name: /Add Request/ }));
 

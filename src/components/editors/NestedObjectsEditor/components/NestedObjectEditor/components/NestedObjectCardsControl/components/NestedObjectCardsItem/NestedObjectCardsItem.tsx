@@ -1,6 +1,6 @@
 import { dateTimeFormat, InterpolateFunction } from '@grafana/data';
 import { Button, Card, ConfirmModal, Field, IconButton, Input, Stack } from '@grafana/ui';
-import { AutosizeCodeEditor } from '@volkovlabs/components';
+import { AutosizeCodeEditor } from '@/components/ui/AutosizeCodeEditor';
 import React, { useCallback, useState } from 'react';
 
 import { TEST_IDS } from '@/constants';

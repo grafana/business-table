@@ -13,7 +13,6 @@ const createCustomContext = <TValue>() => {
   const context = createContext<TValue>({} as never);
 
   return {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     Provider: context.Provider,
     useContext: () => {
       return useContext(context);

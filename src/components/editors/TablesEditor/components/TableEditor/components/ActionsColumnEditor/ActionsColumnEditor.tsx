@@ -1,5 +1,5 @@
 import { Collapse, InlineField, InlineFieldRow, InlineSwitch, Input, RadioButtonGroup, useTheme2 } from '@grafana/ui';
-import { NumberInput } from '@volkovlabs/components';
+import { NumberInput } from '@/components/ui/NumberInput';
 import React, { useState } from 'react';
 
 import { CollapseTitle, FieldsGroup } from '@/components/ui';

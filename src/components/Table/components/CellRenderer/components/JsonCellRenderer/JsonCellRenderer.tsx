@@ -1,6 +1,6 @@
 import { css, cx } from '@emotion/css';
 import { Drawer, Icon, Tooltip, useTheme2 } from '@grafana/ui';
-import { AutosizeCodeEditor } from '@volkovlabs/components';
+import { AutosizeCodeEditor } from '@/components/ui/AutosizeCodeEditor';
 import React, { useEffect, useState } from 'react';
 
 import { TEST_IDS } from '@/constants';

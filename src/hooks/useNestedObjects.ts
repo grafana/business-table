@@ -1,6 +1,6 @@
 import { AlertErrorPayload, AppEvents, InterpolateFunction } from '@grafana/data';
 import { getAppEvents } from '@grafana/runtime';
-import { useDatasourceRequest } from '@volkovlabs/components';
+import { useDatasourceRequest } from '@/hooks/useDatasourceRequest';
 import { useCallback, useMemo, useState } from 'react';
 
 import { ColumnConfig, NestedObjectConfig } from '@/types';

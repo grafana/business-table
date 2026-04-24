@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { createSelector, getJestSelectors } from '@volkovlabs/jest-selectors';
+import { createSelector, getJestSelectors } from '@/utils/test-selectors';
 import React from 'react';
 
 import { TEST_IDS } from '@/constants';
@@ -12,6 +12,20 @@ import {
 } from '@/utils';
 
 import { formatOperationLabel, NestedObjectEditor } from './NestedObjectEditor';
+
+/**
+ * Mock AutosizeCodeEditor
+ */
+jest.mock('@/components/ui/AutosizeCodeEditor', () => ({
+  AutosizeCodeEditor: ({ value, onChange, ...restProps }: any) => (
+    <input
+      aria-label={restProps['aria-label']}
+      data-testid={restProps['data-testid']}
+      value={value}
+      onChange={(event: any) => onChange(event.currentTarget.value)}
+    />
+  ),
+}));
 
 /**
  * Props

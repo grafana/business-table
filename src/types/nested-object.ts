@@ -1,5 +1,5 @@
 import { PanelData } from '@grafana/data';
-// eslint-disable-next-line @typescript-eslint/naming-convention
+
 import React from 'react';
 
 import { NestedObjectCardMapper } from '@/utils';

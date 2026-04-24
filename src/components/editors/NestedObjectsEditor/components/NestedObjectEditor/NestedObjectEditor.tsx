@@ -1,5 +1,5 @@
 import { Collapse, Field, InlineField, InlineSwitch, Select, useStyles2 } from '@grafana/ui';
-import { AutosizeCodeEditor } from '@volkovlabs/components';
+import { AutosizeCodeEditor } from '@/components/ui/AutosizeCodeEditor';
 import React, { useState } from 'react';
 
 import { CollapseTitle, FieldsGroup, RequestEditor } from '@/components';
@@ -150,7 +150,7 @@ export const NestedObjectEditor: React.FC<Props> = ({ value, onChange }) => {
                   setExpandedState({
                     ...expandedState,
                     [operation]: isOpen,
-                  })
+                  });
 
                   if (isOpen) {
                     onChange({

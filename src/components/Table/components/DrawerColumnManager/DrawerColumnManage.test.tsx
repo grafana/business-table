@@ -1,7 +1,7 @@
 import { DragDropContext, DropResult } from '@hello-pangea/dnd';
 import { ColumnDef, ColumnPinningState, ExpandedState, GroupingState } from '@tanstack/react-table';
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import { createSelector, getJestSelectors } from '@volkovlabs/jest-selectors';
+import { createSelector, getJestSelectors } from '@/utils/test-selectors';
 import React from 'react';
 
 import { TEST_IDS } from '@/constants';

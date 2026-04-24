@@ -1,7 +1,7 @@
 import { AlertPayload, AppEvents, LoadingState, ScopedVars } from '@grafana/data';
 import { getAppEvents } from '@grafana/runtime';
 import { Button, Drawer, EmptyState, Icon, useStyles2 } from '@grafana/ui';
-import { useDatasourceRequest } from '@volkovlabs/components';
+import { useDatasourceRequest } from '@/hooks/useDatasourceRequest';
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { TEST_IDS } from '@/constants';

@@ -1,7 +1,11 @@
 import { Field, FieldType, LoadingState, toDataFrame } from '@grafana/data';
 import { ColumnDef, createTable, getCoreRowModel, getFilteredRowModel } from '@tanstack/react-table';
 import { renderHook } from '@testing-library/react';
-import { useDatasourceRequest } from '@volkovlabs/components';
+import { useDatasourceRequest } from '@/hooks/useDatasourceRequest';
+
+jest.mock('@/hooks/useDatasourceRequest', () => ({
+  useDatasourceRequest: jest.fn(),
+}));
 
 import { createColumnAccessorFn, createColumnMeta, createExternalExportConfig, dataFrameToObjectArray } from '@/utils';
 
