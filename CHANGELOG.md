@@ -8,33 +8,26 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
-- `NumberInput`: guarded external `value` sync against mid-typing so
-  parent re-renders no longer clobber in-progress input; step values
-  now snap to the nearest increment (was rounding up); constant-time
-  step snapping and `React.ChangeEvent` typing.
-- `AutosizeCodeEditor`: replaced `useState` + `useEffect` with
-  `useMemo` for height derivation, removing a redundant re-render;
-  adopted `MonacoEditor`/`Monaco` types from `@grafana/ui` instead
-  of runtime type narrowing.
-- `useDatasourceRequest`: catches `JSON.parse` errors from malformed
-  variable interpolation instead of throwing unhandled; now extends
-  `Error` properly.
-- `useDashboardVariables`: fixed a conditional React hook call,
-  a stale callback ref, and a timer that only cleared on unmount.
-- `useSyncedColumnFilters`: replaced `useState` with `useRef` to
-  avoid redundant serialization and re-renders.
-- Fixed React Compiler lint errors (callback ref in
-  `TableHeaderCellFilter`, inlined `useSortState` callback, and
-  disable comments for intentional state-sync patterns).
-- Fixed E2E test resolution: relative import for `test-selectors`
-  in `constants.ts`, and `.config/tsconfig.json` copied into the
-  test Dockerfile for `@/` path alias resolution.
-- Stable filter test on Grafana 13 via direct click dispatch in
-  `TableFilterHelper` (workaround for upstream header cell overlap).
-- Jest coverage works under glob v13 via a `test-exclude` override.
-- Coverage workflow falls back to a PR-only report when the base
-  branch coverage run fails.
+- Number input fields no longer lose in-progress typing when the
+  panel editor re-renders, and step values snap to the nearest
+  increment instead of rounding up.
+- Code editor fields in panel options render more efficiently and
+  use stable Monaco types from `@grafana/ui`.
+- Data source queries surface a clear error when a dashboard
+  variable resolves to invalid JSON instead of throwing an
+  unhandled exception.
+- Dashboard variables work reliably inside scene contexts; fixed
+  hook-ordering and timer cleanup issues that could cause stale
+  or missing variable values.
+- Column filters no longer trigger redundant re-renders when
+  sort/filter state changes.
+- Filter test passes on Grafana 13 (workaround for an upstream
+  header cell overlap).
 - Removed `volkovlabs.io` URLs from provisioning dashboards.
+- Internal: fixed Jest coverage under glob v13; coverage workflow
+  falls back to a PR-only report when the base branch run fails;
+  resolved E2E `@/` path alias resolution and React Compiler lint
+  errors.
 
 ### Changed
 
