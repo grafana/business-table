@@ -78,7 +78,7 @@
     "@floating-ui/react": "^0.27.19",
     "@grafana/data": "12.4.2",
     "@grafana/runtime": "12.4.2",
-    "@grafana/scenes": "^7.1.8",
+    "@grafana/scenes": "^7.4.2",
     "@grafana/ui": "12.4.2",
     "@hello-pangea/dnd": "^18.0.1",
     "@react-aria/focus": "^3.22.0",
