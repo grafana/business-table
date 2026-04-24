@@ -419,6 +419,29 @@ test.describe('Business Table Panel', () => {
        */
       await table.checkBodyRowsCount(1);
     });
+
+    test('Should filter table by numeric value', async ({ gotoDashboardPage, readProvisionedDashboard }) => {
+      const dashboard = await readProvisionedDashboard({ fileName: 'panels.json' });
+      const dashboardPage = await gotoDashboardPage({ uid: dashboard.uid });
+
+      const panel = new PanelHelper(dashboardPage, 'Table');
+      const table = panel.getTable();
+
+      /**
+       * "value" column is numeric with values [10, 15, 20] and
+       * default operator ">". Typing 14 should leave rows where
+       * value > 14 (i.e. 15 and 20).
+       */
+      await table.getHeaderRow().getHeaderCell('value').checkPresence();
+      await table.getHeaderRow().getHeaderCell('value').checkIfFilterable();
+
+      await table.checkBodyRowsCount(3);
+
+      const filter = table.getHeaderRow().getHeaderCell('value').getFilter();
+      await filter.applyNumberValue(14);
+
+      await table.checkBodyRowsCount(2);
+    });
   });
 
   test.describe('Add/Delete row', () => {

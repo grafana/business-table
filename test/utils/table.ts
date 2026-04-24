@@ -35,6 +35,15 @@ class TableFilterHelper {
     await this.searchSelectors.root().fill(value);
     return this.popupSelectors.buttonSave().click();
   }
+
+  public async applyNumberValue(value: string | number) {
+    await this.open();
+    const numberSelectors = getLocatorSelectors(TEST_IDS.filterNumber)(this.popupSelectors.root());
+    const field = numberSelectors.fieldValue();
+    await field.fill(String(value));
+    await field.blur();
+    return this.popupSelectors.buttonSave().click();
+  }
 }
 
 /**
