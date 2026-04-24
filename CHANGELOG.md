@@ -62,7 +62,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   set-state-in-render) to `warn` to surface debt without blocking CI.
 - Removed test-only `test-selectors` re-export from `src/utils/index.ts`
   barrel (tree-shaken already but makes intent explicit).
-- Updated CI/CD workflows from `plugin-ci-workflows` v6.1.1 to v7.0.0.
+- Updated CI/CD workflows from `plugin-ci-workflows` v6.1.1 to v7.3.1.
+- Bumped `actions/github-script` v8.0.0 to v9.0.0 and corrected
+  `actions/checkout` pin comment to v6.0.2.
 - Updated Playwright Docker image from v1.54.1-noble to v1.59.1-noble.
 - Updated CI Playwright Grafana dependency range to `>=12.3` and
   enabled dev and React 19 preview image testing.
