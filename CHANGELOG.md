@@ -69,6 +69,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Updated Playwright Docker image to v1.59.1-noble.
 - CI now runs Playwright against Grafana `>=12.3`, including the
   dev and React 19 preview images.
+- CD workflow (`publish.yml`) now stamps `[Unreleased]` in `CHANGELOG.md`
+  with the version from `package.json` and today's UTC date before the
+  plugin is published.
 
 ### Internal
 
