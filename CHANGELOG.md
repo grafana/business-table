@@ -86,6 +86,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added `AGENTS.md` with coding agent guidance, CI/CD, PR summary, lint
   rules, and `@volkovlabs/*` package prohibition.
 - Added CI/CD coverage report and PR file changes workflows.
+- Added concurrency group and attestation permissions to CI workflow.
+- Upgraded stamp-changelog job to use GitHub App for authenticated pushes.
+- Renamed `.markdownlint.yaml` to `.markdownlint-cli2.yaml` for proper tool discovery.
+- Added `markdownlint` and `spellcheck` npm scripts.
 - Optimized Dockerfiles: removed redundant playwright install in test
   Dockerfile; use `node:24-slim` and pin `pg@8` in timescale. Added
   `src/` and `tsconfig.json` to test Dockerfile for E2E helper imports.

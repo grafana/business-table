@@ -40,7 +40,7 @@ jobs:
               { name: 'Config', test: (f) =>
                 f.startsWith('.config/') ||
                 f.startsWith('provisioning/') ||
-                ['.gitignore', '.markdownlint.yaml', '.nvmrc', '.prettierrc.js',
+                ['.gitignore', '.markdownlint-cli2.yaml', '.nvmrc', '.prettierrc.js',
                  'cspell.config.json', 'docker-compose.yaml', 'eslint.config.mjs',
                  'jest.config.js', 'jest-setup.js', 'mise.toml',
                  'package.json', 'package-lock.json',

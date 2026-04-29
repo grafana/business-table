@@ -8,12 +8,18 @@ on:
 
 permissions: {}
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   ci:
     name: CI
     uses: grafana/plugin-ci-workflows/.github/workflows/ci.yml@ci-cd-workflows/v7.3.1
     permissions:
       contents: read
+      pull-requests: read
+      attestations: write
       id-token: write
     with:
       plugin-version-suffix: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || '' }}
