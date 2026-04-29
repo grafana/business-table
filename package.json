@@ -1,7 +1,7 @@
 {
   "name": "volkovlabs-table-panel",
   "description": "Simplify data visualization in table format",
-  "version": "3.6.3",
+  "version": "3.6.4",
   "scripts": {
     "build": "webpack -c ./.config/webpack/webpack.config.ts --env production",
     "dev": "webpack -w -c ./.config/webpack/webpack.config.ts --env development",
