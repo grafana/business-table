@@ -16,6 +16,8 @@ npm run test:ci        # Jest full run (CI, 4 workers)
 npm run test:e2e       # Playwright E2E tests
 npm run test:e2e:dev   # Playwright interactive UI mode
 npm run test:e2e:docker # Full Docker Compose (Grafana + tests)
+npm run markdownlint  # markdownlint-cli2 on AGENTS.md, CHANGELOG.md, README.md
+npm run spellcheck   # cspell on all source files
 npm run start          # Docker compose: Grafana + plugin (dev profile)
 npm run stop           # Docker compose down
 ```
@@ -237,8 +239,8 @@ Run all of these before committing and fix any issues:
 
 1. `npm run typecheck` (when `src/` files changed)
 2. `npm run lint` (fix with `npm run lint:fix`)
-3. `npx cspell -c cspell.config.json "**/*.{ts,tsx,js,go,md,mdx,yml,yaml,json,scss,css}"`
-4. `npx markdownlint-cli2` on any changed `.md` files
+3. `npm run spellcheck`
+4. `npm run markdownlint` on any changed `.md` files
 
 ### Commit and Push Rules
 
@@ -283,8 +285,7 @@ Categorize under `### Added`, `### Changed`, `### Removed`, `### Fixed`,
 or `### Project Updates` as appropriate. Group related items together
 rather than listing one entry per commit — keep the changelog concise
 and scannable for reviewers. After each commit, update the changelog
-as needed, then run `npx markdownlint-cli2 CHANGELOG.md` and
-`npx cspell -c cspell.config.json CHANGELOG.md` before committing
+as needed, then run `npm run markdownlint` and `npm run spellcheck` before committing
 the changelog update.
 
 ## CI/CD
