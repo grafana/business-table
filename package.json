@@ -1,15 +1,17 @@
 {
   "name": "volkovlabs-table-panel",
   "description": "Simplify data visualization in table format",
-  "version": "3.6.3",
+  "version": "3.6.4",
   "scripts": {
     "build": "webpack -c ./.config/webpack/webpack.config.ts --env production",
     "dev": "webpack -w -c ./.config/webpack/webpack.config.ts --env development",
     "levitate": "npx @grafana/levitate@latest is-compatible --path src/module.ts --target @grafana/data,@grafana/runtime,@grafana/ui",
     "lint": "eslint --cache .",
     "lint:fix": "npm run lint -- --fix && prettier --write --list-different .",
+    "markdownlint": "markdownlint-cli2 AGENTS.md CHANGELOG.md README.md",
     "server": "docker compose up --build",
     "sign": "npx --yes @grafana/sign-plugin@latest",
+    "spellcheck": "cspell -c cspell.config.json \"**/*.{ts,tsx,js,go,md,mdx,yml,yaml,json,scss,css}\"",
     "start": "docker compose --profile dev up",
     "stop": "docker compose --profile dev --profile playwright down --remove-orphans --volumes",
     "test": "jest --watch --onlyChanged",

@@ -10,89 +10,32 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 #### Panel editing
 
-- Number input fields no longer lose in-progress typing when the
-  panel editor re-renders, and step values snap to the nearest
-  increment instead of rounding up.
-- Code editor fields in panel options render more efficiently and
-  use stable Monaco types from `@grafana/ui`.
+- Number input fields no longer lose in-progress typing when the panel editor re-renders, and step values snap
+  to the nearest increment instead of rounding up.
+- Code editor fields in panel options render more efficiently.
 
 #### Data & variables
 
-- Data source queries surface a clear error when a dashboard
-  variable resolves to invalid JSON instead of throwing an
-  unhandled exception.
-- Dashboard variables work reliably inside scene contexts; fixed
-  hook-ordering and timer cleanup issues that could cause stale
-  or missing variable values.
+- Data source queries surface a clear error when a dashboard variable resolves to invalid JSON instead of
+  throwing an unhandled exception.
+- Dashboard variables work reliably inside scene contexts; fixed hook-ordering and timer cleanup issues that
+  could cause stale or missing variable values.
 
 #### Table behavior
 
-- Column filters no longer trigger redundant re-renders when
-  sort/filter state changes.
-- Filter test passes on Grafana 13 (workaround for an upstream
-  header cell overlap).
-
-#### Content
-
-- Removed `volkovlabs.io` URLs from provisioning dashboards.
+- Column filters no longer trigger redundant re-renders when sort/filter state changes.
+- Column filters work correctly on Grafana 13.
 
 ### Changed
 
-#### Dependencies
-
-- Replaced all `@volkovlabs/*` packages with local implementations:
-  - `@volkovlabs/components` → inlined `useDatasourceRequest`,
-    `useDashboardVariables`, `NumberInput`, and `AutosizeCodeEditor`.
-    Bundle size reduced from 2.05 MiB to 1.04 MiB.
-  - `@volkovlabs/jest-selectors` → inlined as
-    `src/utils/test-selectors.ts`.
-  - `@volkovlabs/eslint-config` → replaced with direct
-    `@grafana/eslint-config` and a simplified `eslint.config.mjs`.
-- Bumped `@grafana/scenes` to v7.4.2 (React 19 compatibility).
-- Bumped `uuid` to v14 (includes security fix for `v3`/`v5`/`v6`;
-  this plugin only uses `v4`).
-- Bumped `@typescript-eslint/eslint-plugin` to 8.59.0 and
-  `markdownlint-cli2` to 0.22.1.
-
-#### Build & lint
-
-- `eslint.config.mjs`: restored React Compiler rule overrides —
-  opt-in rules disabled, real-bug rules set to `warn` to surface
-  debt without blocking CI.
-- Removed test-only `test-selectors` re-export from `src/utils`
-  barrel.
-
-#### CI & tooling
-
-- Updated CI/CD workflows to `plugin-ci-workflows` v7.3.1 and
-  bumped `actions/github-script` to v9.0.0.
-- Updated Playwright Docker image to v1.59.1-noble.
-- CI now runs Playwright against Grafana `>=12.3`, including the
-  dev and React 19 preview images.
-- CD workflow (`publish.yml`) now stamps `[Unreleased]` in `CHANGELOG.md`
-  with the version from `package.json` and today's UTC date before the
-  plugin is published.
-
-### Internal
-
-- Fixed Jest coverage under glob v13 via a `test-exclude` override.
-- Coverage workflow falls back to a PR-only report when the base
-  branch run fails.
-- Resolved E2E `@/` path alias resolution in the test Dockerfile.
-- Resolved React Compiler lint errors across the codebase.
+- Plugin bundle size reduced from 2.05 MiB to 1.04 MiB.
 
 ### Project Updates
 
-- Added `AGENTS.md` with coding agent guidance, CI/CD, PR summary, lint
-  rules, and `@volkovlabs/*` package prohibition.
-- Added CI/CD coverage report and PR file changes workflows.
-- Optimized Dockerfiles: removed redundant playwright install in test
-  Dockerfile; use `node:24-slim` and pin `pg@8` in timescale. Added
-  `src/` and `tsconfig.json` to test Dockerfile for E2E helper imports.
-- Prepared the E2E Dockerfile for BuildKit caching (`--mount=type=cache`
-  for npm, `--prefer-offline`). The cross-run speedup itself requires
-  the reusable CI workflow to initialize buildx with the GHA cache
-  backend; that is being tracked upstream.
+- Updated CI/CD workflows.
+- Added pull request coverage and file-changes summary reports.
+- Updated development documentation.
+- Updated development scripts and tooling.
 
 ## [3.6.0] - 2025-10-28
 
