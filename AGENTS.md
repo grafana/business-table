@@ -16,10 +16,10 @@ npm run test:ci        # Jest full run (CI, 4 workers)
 npm run test:e2e       # Playwright E2E tests
 npm run test:e2e:dev   # Playwright interactive UI mode
 npm run test:e2e:docker # Full Docker Compose (Grafana + tests)
-npm run start          # Docker compose: Grafana + plugin (dev profile)
-npm run stop           # Docker compose down
 npm run markdownlint  # markdownlint-cli2 on AGENTS.md, CHANGELOG.md, README.md
 npm run spellcheck   # cspell on all source files
+npm run start          # Docker compose: Grafana + plugin (dev profile)
+npm run stop           # Docker compose down
 ```
 
 ### Running a Single Test
