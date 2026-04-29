@@ -10,31 +10,21 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 #### Panel editing
 
-- Number input fields no longer lose in-progress typing when the
-  panel editor re-renders, and step values snap to the nearest
-  increment instead of rounding up.
-- Code editor fields in panel options render more efficiently and
-  use stable Monaco types from `@grafana/ui`.
+- Number input fields no longer lose in-progress typing when the panel editor re-renders, and step values snap
+  to the nearest increment instead of rounding up.
+- Code editor fields in panel options render more efficiently.
 
 #### Data & variables
 
-- Data source queries surface a clear error when a dashboard
-  variable resolves to invalid JSON instead of throwing an
-  unhandled exception.
-- Dashboard variables work reliably inside scene contexts; fixed
-  hook-ordering and timer cleanup issues that could cause stale
-  or missing variable values.
+- Data source queries surface a clear error when a dashboard variable resolves to invalid JSON instead of
+  throwing an unhandled exception.
+- Dashboard variables work reliably inside scene contexts; fixed hook-ordering and timer cleanup issues that
+  could cause stale or missing variable values.
 
 #### Table behavior
 
-- Column filters no longer trigger redundant re-renders when
-  sort/filter state changes.
-- Filter test passes on Grafana 13 (workaround for an upstream
-  header cell overlap).
-
-#### Content
-
-- Removed `volkovlabs.io` URLs from provisioning dashboards.
+- Column filters no longer trigger redundant re-renders when sort/filter state changes.
+- Column filters work correctly on Grafana 13.
 
 ### Changed
 
@@ -42,25 +32,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Project Updates
 
-- Added `AGENTS.md` with coding agent guidance, CI/CD, PR summary, lint
-  rules, and `@volkovlabs/*` package prohibition.
-- Added CI/CD coverage report and PR file changes workflows.
-- Added concurrency group and attestation permissions to CI workflow.
-- Upgraded stamp-changelog job to use GitHub App for authenticated pushes.
-- Renamed `.markdownlint.yaml` to `.markdownlint-cli2.yaml` for proper tool discovery.
-- Added `markdownlint` and `spellcheck` npm scripts.
-- Optimized Dockerfiles: removed redundant playwright install in test
-  Dockerfile; use `node:24-slim` and pin `pg@8` in timescale. Added
-  `src/` and `tsconfig.json` to test Dockerfile for E2E helper imports.
-- Prepared the E2E Dockerfile for BuildKit caching (`--mount=type=cache`
-  for npm, `--prefer-offline`). The cross-run speedup itself requires
-  the reusable CI workflow to initialize buildx with the GHA cache
-  backend; that is being tracked upstream.
-- Updated dependencies and development tooling.
-- Fixed Jest coverage under glob v13 via a `test-exclude` override.
-- Coverage workflow falls back to a PR-only report when the base branch run fails.
-- Resolved E2E `@/` path alias resolution in the test Dockerfile.
-- Resolved React Compiler lint errors across the codebase.
+- Updated CI/CD workflows.
+- Added pull request coverage and file-changes summary reports.
+- Updated development documentation.
+- Updated development scripts and tooling.
 
 ## [3.6.0] - 2025-10-28
 
