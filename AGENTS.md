@@ -18,6 +18,8 @@ npm run test:e2e:dev   # Playwright interactive UI mode
 npm run test:e2e:docker # Full Docker Compose (Grafana + tests)
 npm run start          # Docker compose: Grafana + plugin (dev profile)
 npm run stop           # Docker compose down
+npm run markdownlint  # markdownlint-cli2 on AGENTS.md, CHANGELOG.md, README.md
+npm run spellcheck   # cspell on all source files
 ```
 
 ### Running a Single Test
