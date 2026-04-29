@@ -38,48 +38,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-#### Dependencies
-
-- Replaced all `@volkovlabs/*` packages with local implementations:
-  - `@volkovlabs/components` → inlined `useDatasourceRequest`,
-    `useDashboardVariables`, `NumberInput`, and `AutosizeCodeEditor`.
-    Bundle size reduced from 2.05 MiB to 1.04 MiB.
-  - `@volkovlabs/jest-selectors` → inlined as
-    `src/utils/test-selectors.ts`.
-  - `@volkovlabs/eslint-config` → replaced with direct
-    `@grafana/eslint-config` and a simplified `eslint.config.mjs`.
-- Bumped `@grafana/scenes` to v7.4.2 (React 19 compatibility).
-- Bumped `uuid` to v14 (includes security fix for `v3`/`v5`/`v6`;
-  this plugin only uses `v4`).
-- Bumped `@typescript-eslint/eslint-plugin` to 8.59.0 and
-  `markdownlint-cli2` to 0.22.1.
-
-#### Build & lint
-
-- `eslint.config.mjs`: restored React Compiler rule overrides —
-  opt-in rules disabled, real-bug rules set to `warn` to surface
-  debt without blocking CI.
-- Removed test-only `test-selectors` re-export from `src/utils`
-  barrel.
-
-#### CI & tooling
-
-- Updated CI/CD workflows to `plugin-ci-workflows` v7.3.1 and
-  bumped `actions/github-script` to v9.0.0.
-- Updated Playwright Docker image to v1.59.1-noble.
-- CI now runs Playwright against Grafana `>=12.3`, including the
-  dev and React 19 preview images.
-- CD workflow (`publish.yml`) now stamps `[Unreleased]` in `CHANGELOG.md`
-  with the version from `package.json` and today's UTC date before the
-  plugin is published.
-
-### Internal
-
-- Fixed Jest coverage under glob v13 via a `test-exclude` override.
-- Coverage workflow falls back to a PR-only report when the base
-  branch run fails.
-- Resolved E2E `@/` path alias resolution in the test Dockerfile.
-- Resolved React Compiler lint errors across the codebase.
+- Plugin bundle size reduced from 2.05 MiB to 1.04 MiB.
 
 ### Project Updates
 
@@ -97,6 +56,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   for npm, `--prefer-offline`). The cross-run speedup itself requires
   the reusable CI workflow to initialize buildx with the GHA cache
   backend; that is being tracked upstream.
+- Updated dependencies and development tooling.
+- Fixed Jest coverage under glob v13 via a `test-exclude` override.
+- Coverage workflow falls back to a PR-only report when the base branch run fails.
+- Resolved E2E `@/` path alias resolution in the test Dockerfile.
+- Resolved React Compiler lint errors across the codebase.
 
 ## [3.6.0] - 2025-10-28
 
