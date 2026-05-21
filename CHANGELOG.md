@@ -4,11 +4,12 @@ All notable changes to the **Business Table Panel** plugin for Grafana are docum
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [3.6.4] - 2026-05-20
+## [Unreleased]
 
 ### Project Updates
 
-- Added `.npmrc` with `ignore-scripts=true` to disable lifecycle scripts and mitigate supply-chain attack risk.
+- Migrated publish workflow from auto-stamping changelog to pre-flight changelog validation.
+- Bumped `vitest-coverage-report-action` to v2.12.0.
 
 ## [3.6.4] - 2026-04-30
 
@@ -42,6 +43,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added pull request coverage and file-changes summary reports.
 - Updated development documentation.
 - Updated development scripts and tooling.
+- Added `.npmrc` with `ignore-scripts=true` to disable lifecycle scripts and mitigate supply-chain attack risk.
 
 ## [3.6.0] - 2025-10-28
 
