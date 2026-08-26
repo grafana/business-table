@@ -18,6 +18,9 @@ npm run test:e2e:dev   # Playwright interactive UI mode
 npm run test:e2e:docker # Full Docker Compose (Grafana + tests)
 npm run markdownlint  # markdownlint-cli2 on AGENTS.md, CHANGELOG.md, README.md
 npm run spellcheck   # cspell on all source files
+npm run preflight      # Resolve CI/CD reusable workflows; check inputs + action policy
+npm run changelog:check # Verify CHANGELOG.md is release-ready (matches the CD gate)
+npm run hooks:install  # Install lefthook git hooks (required once per clone)
 npm run start          # Docker compose: Grafana + plugin (dev profile)
 npm run stop           # Docker compose down
 ```
@@ -235,12 +238,16 @@ See `.prettierrc.js`. Print width 120, single quotes, 2-space indent.
 
 ### Pre-commit Checklist
 
-Run all of these before committing and fix any issues:
+`lefthook` runs `lint`, `typecheck`, `test:ci`, `changelog:check` and `preflight` automatically
+on commit, each scoped by which files are staged. **Run `npm run hooks:install` once per clone** -
+`.npmrc` sets `ignore-scripts=true`, so lefthook cannot install its own hooks during `npm ci`.
 
-1. `npm run typecheck` (when `src/` files changed)
-2. `npm run lint` (fix with `npm run lint:fix`)
-3. `npm run spellcheck`
-4. `npm run markdownlint` on any changed `.md` files
+Not covered by the hook, so run these yourself when relevant:
+
+1. `npm run spellcheck`
+2. `npm run markdownlint` on any changed `.md` files
+
+Use `git commit --no-verify` to bypass the hook when you genuinely need to.
 
 ### Commit and Push Rules
 
