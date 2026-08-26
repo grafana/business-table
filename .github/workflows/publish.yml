@@ -68,7 +68,7 @@ jobs:
       branch: ${{ github.event.inputs.branch }}
       environment: ${{ github.event.inputs.environment }}
       docs-only: ${{ fromJSON(github.event.inputs.docs-only) }}
-      # See plugin-ci-workflows#815.
+      # See https://github.com/grafana/plugin-ci-workflows/pull/815
       attestation: true
       signature-type: community
       run-playwright: false

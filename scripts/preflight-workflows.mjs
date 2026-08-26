@@ -242,16 +242,89 @@ if (permissions?.allowed_actions === 'selected') {
   notes.push(`policy: allowed_actions=${permissions?.allowed_actions ?? 'unreadable'} — action checks skipped`);
 }
 
+// --- upstream drift -----------------------------------------------------------
+
+/**
+ * How far behind the pinned reusable workflows are, and what is in the gap.
+ *
+ * Not every deploy break is decidable from our own config. When GCOM stopped accepting the
+ * `provenanceAttestation` parameter, the fix shipped upstream as an ordinary bug fix
+ * ("cd: stop sending provenance attestation to GCOM") — nothing in our repo changed, and the
+ * upstream changelog could not have flagged it as breaking because the break happened in a
+ * different system. The only warning available is the release delta itself, so put it in front
+ * of whoever is about to deploy rather than making them go look.
+ *
+ * Advisory: this never fails the run. Being a release behind is normal; being nine is a signal.
+ */
+const SEMVER_TAG = /^(?<prefix>.*?)\/?v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$/;
+const parseTag = (tag) => {
+  const m = tag.match(SEMVER_TAG);
+  return m ? { prefix: m.groups.prefix, num: [+m.groups.major, +m.groups.minor, +m.groups.patch] } : null;
+};
+const cmp = (a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2];
+
+const drift = [];
+const pinned = new Map();
+for (const key of seenWorkflows) {
+  const [repoPart, ref] = key.split('@');
+  const [wfOwner, wfRepo] = repoPart.split('/');
+  const slug = `${wfOwner}/${wfRepo}`;
+  if (!pinned.has(slug) || pinned.get(slug) !== ref) {
+    pinned.set(slug, ref);
+  }
+}
+
+for (const [slug, ref] of pinned) {
+  const current = parseTag(ref);
+  if (!current) {
+    notes.push(`drift: ${slug}@${ref} is not a semver tag — skipped`);
+    continue;
+  }
+  const tags = gh(`repos/${slug}/tags?per_page=100`, { allowFail: true }) ?? [];
+  const newer = tags
+    .map((t) => ({ name: t.name, parsed: parseTag(t.name) }))
+    .filter((t) => t.parsed && t.parsed.prefix === current.prefix && cmp(t.parsed.num, current.num) > 0)
+    .sort((a, b) => cmp(a.parsed.num, b.parsed.num));
+
+  if (!newer.length) {
+    notes.push(`drift: ${slug}@${ref} is current`);
+    continue;
+  }
+
+  const releases = newer.map(({ name }) => {
+    const rel = gh(`repos/${slug}/releases/tags/${encodeURIComponent(name)}`, { allowFail: true });
+    const body = rel?.body ?? '';
+    return {
+      version: name,
+      breaking: /BREAKING CHANGES/i.test(body),
+      // release-please repeats a breaking entry under both BREAKING CHANGES and Features
+      headlines: [...new Set([...body.matchAll(/^\* (.+?)\s*\(\[#\d+\]/gm)].map((m) => m[1]))].slice(0, 3),
+    };
+  });
+  drift.push({ slug, current: ref, behind: newer.length, releases });
+}
+
 // --- report -------------------------------------------------------------------
 
 if (asJson) {
-  console.log(JSON.stringify({ repo: repoSlug, problems, notes }, null, 2));
+  console.log(JSON.stringify({ repo: repoSlug, problems, drift, notes }, null, 2));
 } else {
   console.log(`Pre-flight: ${repoSlug}`);
   console.log(`  local workflows:   ${localWorkflows.length}`);
   console.log(`  reusable resolved: ${seenWorkflows.size}`);
   console.log(`  actions checked:   ${actionRefs.size}`);
   notes.forEach((n) => console.log(`  ${n}`));
+
+  for (const d of drift) {
+    console.log(`\n  ${d.slug} is ${d.behind} release(s) behind ${d.current}:`);
+    for (const r of d.releases) {
+      console.log(`    ${r.breaking ? '⚠ BREAKING' : '          '}  ${r.version}`);
+      r.headlines.forEach((h) => console.log(`                  - ${h}`));
+    }
+    console.log('    Read these before deploying — an upstream fix for a break elsewhere');
+    console.log('    (a changed API, a revoked action) shows up here as an ordinary bug fix.');
+  }
+
   console.log('');
   if (problems.length === 0) {
     console.log('PASS — no startup-blocking problems found.');
