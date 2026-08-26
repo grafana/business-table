@@ -25,6 +25,11 @@ services:
       dockerfile: test/Dockerfile
     environment:
       - GRAFANA_URL=http://grafana:3000
+      # playwright.config.ts sets `retries: process.env.CI ? 2 : 0`. Compose does not inherit
+      # host env, so without this the container never sees CI and the configured retries are
+      # silently disabled - turning any flaky test into a hard red build. Passed through rather
+      # than hardcoded so local runs keep 0 retries and surface flakes instead of hiding them.
+      - CI=${CI:-}
     volumes:
       - ./test:/app/test
       - ./playwright-report:/app/playwright-report
