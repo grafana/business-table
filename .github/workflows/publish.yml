@@ -65,6 +65,5 @@ jobs:
       branch: ${{ github.event.inputs.branch }}
       environment: ${{ github.event.inputs.environment }}
       docs-only: ${{ fromJSON(github.event.inputs.docs-only) }}
-      attestation: true
       signature-type: community
       run-playwright: false
