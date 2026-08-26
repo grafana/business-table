@@ -17,7 +17,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Project Updates
 
-- Bumped `plugin-ci-workflows` to `ci-cd-workflows/v8.0.1`.
+- Bumped `plugin-ci-workflows` to `ci-cd-workflows/v10.0.1`.
 - Disabled Renovate major-version bump pull requests.
 - Bumped `semver` to v7.8.4.
 
