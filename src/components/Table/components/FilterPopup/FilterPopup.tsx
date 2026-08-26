@@ -61,6 +61,11 @@ export const FilterPopup = <TData,>({
   );
 
   /**
+   * Popup Container
+   */
+  const [container, setContainer] = useState<HTMLDivElement | null>(null);
+
+  /**
    * Filter Mode
    */
   const filterMode = header.column.columnDef.meta?.filterMode || ColumnFilterMode.CLIENT;
@@ -149,6 +154,7 @@ export const FilterPopup = <TData,>({
   return (
     <ClickOutsideWrapper onClick={onClose} useCapture={true}>
       <div
+        ref={setContainer}
         className={styles.filterPopup}
         onClick={(event) => event.stopPropagation()}
         {...TEST_IDS.filterPopup.root.apply()}
@@ -162,6 +168,7 @@ export const FilterPopup = <TData,>({
           onChange={(value) => setFilter(value)}
           onSave={onSave}
           filterMode={filterMode}
+          menuRoot={container ?? undefined}
         />
         <div className={styles.filterPopupLine} />
         <div className={styles.filterPopupFooter}>
