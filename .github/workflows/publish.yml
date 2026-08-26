@@ -8,10 +8,13 @@ on:
         description: Branch to publish from. Can be used to deploy PRs to dev
         default: main
       environment:
-        description: Environment to publish to
+        description: Environment to publish to. Use 'none' for a dry run - builds, tests and
+          signs exactly as a real deploy would, but skips the catalog publish.
         required: true
+        default: 'none'
         type: choice
         options:
+          - 'none'
           - 'dev'
           - 'ops'
           - 'prod'

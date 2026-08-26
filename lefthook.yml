@@ -1,0 +1,38 @@
+# Git hooks. Install once with `npm run hooks:install`.
+#
+# This repo sets `ignore-scripts=true` in .npmrc as supply-chain hardening, which also blocks
+# lefthook's own postinstall - so hooks are NOT wired up automatically by `npm ci`. The install
+# step is explicit and must be run once per clone.
+#
+# Each job is scoped with `glob` so it only runs when its inputs are staged. Commits that touch
+# only docs skip the whole suite. Bypass in a pinch with `git commit --no-verify`.
+
+pre-commit:
+  parallel: true
+  jobs:
+    # Staged files only - the repo-wide `npm run lint` is left for CI.
+    - name: lint
+      glob: '*.{ts,tsx,js,jsx,mjs}'
+      run: npx eslint --cache {staged_files}
+
+    # Project-wide: a change in one file can break types in another.
+    - name: typecheck
+      glob: '*.{ts,tsx}'
+      run: npm run typecheck
+
+    - name: test
+      glob: '*.{ts,tsx}'
+      run: npm run test:ci
+
+    # Guards the CD changelog gate: no [Unreleased] heading, and the newest release matches
+    # package.json.
+    - name: changelog
+      glob: '{CHANGELOG.md,package.json}'
+      run: npm run changelog:check
+
+    # Resolves reusable workflows at their pinned refs and checks inputs and transitive action
+    # pins against the repo's allowed-actions policy. Catches `startup_failure` before dispatch.
+    # Skips itself when offline.
+    - name: preflight
+      glob: '.github/workflows/*.{yml,yaml}'
+      run: npm run preflight

@@ -57,6 +57,7 @@
     "Dockerfiles",
     "buildx",
     "Locize",
-    "menuitemradio"
+    "menuitemradio",
+    "lefthook"
   ]
 }
