@@ -54,6 +54,13 @@ interface Props<TData> {
    * @type {boolean}
    */
   autoFocus: boolean;
+
+  /**
+   * Menu Root
+   *
+   * @type {HTMLElement}
+   */
+  menuRoot?: HTMLElement;
 }
 
 /**
@@ -68,6 +75,7 @@ export const FilterSection = <TData,>({
   setFilter,
   filterMode,
   autoFocus,
+  menuRoot,
 }: Props<TData>) => {
   /**
    * Styles
@@ -151,7 +159,9 @@ export const FilterSection = <TData,>({
       {filter.type === ColumnFilterType.FACETED && (
         <FilterFacetedList value={filter} onChange={onChange} header={header} />
       )}
-      {filter.type === ColumnFilterType.NUMBER && <FilterNumber value={filter} onChange={onChange} />}
+      {filter.type === ColumnFilterType.NUMBER && (
+        <FilterNumber value={filter} onChange={onChange} menuRoot={menuRoot} />
+      )}
       {filter.type === ColumnFilterType.TIMESTAMP && <FilterTime value={filter} onChange={onChange} />}
     </div>
   );

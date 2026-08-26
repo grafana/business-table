@@ -22,12 +22,22 @@ interface Props {
    * Change
    */
   onChange: (value: Value) => void;
+
+  /**
+   * Menu Root
+   *
+   * Element the operator menu portals into. Keeps the menu inside the filter popup so
+   * clicking an option is not treated as a click outside.
+   *
+   * @type {HTMLElement}
+   */
+  menuRoot?: HTMLElement;
 }
 
 /**
  * Filter Number
  */
-export const FilterNumber: React.FC<Props> = ({ value: filterValue, onChange }) => {
+export const FilterNumber: React.FC<Props> = ({ value: filterValue, onChange, menuRoot }) => {
   return (
     <InlineFieldRow>
       <ButtonSelect
@@ -42,6 +52,7 @@ export const FilterNumber: React.FC<Props> = ({ value: filterValue, onChange }) 
           });
         }}
         value={{ value: filterValue.operator }}
+        root={menuRoot}
         {...TEST_IDS.filterNumber.fieldOperator.apply()}
       />
       <InlineField>
