@@ -4,6 +4,23 @@ All notable changes to the **Business Table Panel** plugin for Grafana are docum
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.6.6] - 2026-08-26
+
+### Fixed
+
+#### Table behavior
+
+- Column filter popups no longer close when choosing an operator in a number filter on Grafana 12.3 and later.
+  Grafana 12.3 began rendering the operator menu in a portal outside the popup, so selecting an operator was
+  treated as a click outside and dismissed the popup before the choice applied
+  ([#112](https://github.com/grafana/business-table/issues/112)).
+
+### Project Updates
+
+- Bumped `plugin-ci-workflows` to `ci-cd-workflows/v8.0.1`.
+- Disabled Renovate major-version bump pull requests.
+- Bumped `semver` to v7.8.4.
+
 ## [3.6.5] - 2026-05-21
 
 ### Project Updates
