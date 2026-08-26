@@ -103,6 +103,29 @@ describe('FilterPopup', () => {
     expect(selectors.root()).toBeInTheDocument();
   });
 
+  /**
+   * The popup element itself must reach FilterSection, so portaled menus render inside the ClickOutsideWrapper subtree.
+   */
+  it('Should pass the popup container down as menuRoot', () => {
+    render(
+      getComponent({
+        header: {
+          column: {
+            getFilterValue: () => undefined,
+            columnDef: {
+              meta: {},
+            },
+          },
+        } as any,
+      })
+    );
+
+    expect(jest.mocked(FilterSection)).toHaveBeenLastCalledWith(
+      expect.objectContaining({ menuRoot: selectors.root() }),
+      expect.anything()
+    );
+  });
+
   it('Should allow to reset filter', () => {
     const setFilterValue = jest.fn();
 

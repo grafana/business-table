@@ -159,7 +159,9 @@ export const FilterSection = <TData,>({
       {filter.type === ColumnFilterType.FACETED && (
         <FilterFacetedList value={filter} onChange={onChange} header={header} />
       )}
-      {filter.type === ColumnFilterType.NUMBER && <FilterNumber value={filter} onChange={onChange} menuRoot={menuRoot} />}
+      {filter.type === ColumnFilterType.NUMBER && (
+        <FilterNumber value={filter} onChange={onChange} menuRoot={menuRoot} />
+      )}
       {filter.type === ColumnFilterType.TIMESTAMP && <FilterTime value={filter} onChange={onChange} />}
     </div>
   );

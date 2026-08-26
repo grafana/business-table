@@ -56,6 +56,7 @@
     "autosize",
     "Dockerfiles",
     "buildx",
-    "Locize"
+    "Locize",
+    "menuitemradio"
   ]
 }

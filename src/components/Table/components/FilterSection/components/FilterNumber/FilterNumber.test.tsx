@@ -1,3 +1,4 @@
+import { ButtonSelect } from '@grafana/ui';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { getJestSelectors } from '@/utils/test-selectors';
 import React from 'react';
@@ -71,6 +72,22 @@ describe('FilterNumber', () => {
       ...value,
       value: [15, 0],
     });
+  });
+
+  /**
+   * Grafana 12.3+ renders the ButtonSelect menu through a Portal. Unless it is portaled into
+   * the filter popup, clicking an operator registers as a click outside and closes the popup
+   * before the selection applies.
+   */
+  it('Should portal the operator menu into menuRoot', () => {
+    const menuRoot = document.createElement('div');
+
+    render(getComponent({ menuRoot }));
+
+    expect(jest.mocked(ButtonSelect)).toHaveBeenLastCalledWith(
+      expect.objectContaining({ root: menuRoot }),
+      expect.anything()
+    );
   });
 
   it('Should hide additional value if not between operator', () => {

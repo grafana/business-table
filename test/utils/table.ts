@@ -36,13 +36,35 @@ class TableFilterHelper {
     return this.popupSelectors.buttonSave().click();
   }
 
-  public async applyNumberValue(value: string | number) {
-    await this.open();
+  /**
+   * Select an operator from the ButtonSelect and assert the popup survives it.
+   *
+   * Grafana 12.3+ portals the ButtonSelect menu out of the popup, so without the
+   * menuRoot wiring the click reads as a click outside and closes the popup before
+   * the operator applies.
+   */
+  public async selectNumberOperator(operator: string) {
+    const numberSelectors = getLocatorSelectors(TEST_IDS.filterNumber)(this.popupSelectors.root());
+    const page = this.popupSelectors.root().page();
+
+    await numberSelectors.fieldOperator().click();
+    await page.getByRole('menuitemradio', { name: operator, exact: true }).click();
+
+    await expect(this.popupSelectors.root()).toBeVisible();
+    return expect(numberSelectors.fieldOperator()).toHaveText(operator);
+  }
+
+  public async fillNumberValueAndSave(value: string | number) {
     const numberSelectors = getLocatorSelectors(TEST_IDS.filterNumber)(this.popupSelectors.root());
     const field = numberSelectors.fieldValue();
     await field.fill(String(value));
     await field.blur();
     return this.popupSelectors.buttonSave().click();
+  }
+
+  public async applyNumberValue(value: string | number) {
+    await this.open();
+    return this.fillNumberValueAndSave(value);
   }
 }
 

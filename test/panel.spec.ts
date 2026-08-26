@@ -1,5 +1,6 @@
 import { test, expect } from '@grafana/plugin-e2e';
 
+import { NumberFilterOperator } from '../src/types';
 import { PanelHelper } from './utils';
 
 test.describe('Business Table Panel', () => {
@@ -441,6 +442,31 @@ test.describe('Business Table Panel', () => {
       await filter.applyNumberValue(14);
 
       await table.checkBodyRowsCount(2);
+    });
+
+    test('Should keep the filter popup open when selecting a numeric operator', async ({
+      gotoDashboardPage,
+      readProvisionedDashboard,
+    }) => {
+      const dashboard = await readProvisionedDashboard({ fileName: 'panels.json' });
+      const dashboardPage = await gotoDashboardPage({ uid: dashboard.uid });
+
+      const panel = new PanelHelper(dashboardPage, 'Table');
+      const table = panel.getTable();
+
+      await table.getHeaderRow().getHeaderCell('value').checkIfFilterable();
+      await table.checkBodyRowsCount(3);
+
+      /**
+       * Switching the operator to "<" must not dismiss the popup, and the value typed
+       * afterwards must apply against that operator: value < 14 leaves only 10.
+       */
+      const filter = table.getHeaderRow().getHeaderCell('value').getFilter();
+      await filter.open();
+      await filter.selectNumberOperator(NumberFilterOperator.LESS);
+      await filter.fillNumberValueAndSave(14);
+
+      await table.checkBodyRowsCount(1);
     });
   });
 
