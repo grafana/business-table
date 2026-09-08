@@ -12,11 +12,19 @@ export class DatasourceResponseError extends Error {
   readonly query: string;
 
   constructor(error: unknown, query: string) {
-    super(error instanceof Error ? error.message : String(error));
+    const message =
+      error instanceof Error
+        ? error.message
+        : error && typeof error === 'object' && 'message' in error
+          ? String(error.message)
+          : String(error);
+
+    super(message);
     this.name = 'DatasourceResponseError';
     this.error = error;
     this.query = query;
   }
+
 }
 
 /**
@@ -54,6 +62,13 @@ export const useDatasourceRequest = () => {
           if (response.state && response.state === LoadingState.Error) {
             throw response?.errors?.[0] || response;
           }
+
+          // check for http status error in api call (using infinity ds)
+          const respError = response.error ?? response.errors?.[0];
+          if (response.state === LoadingState.Done && (respError?.status ?? 0) >= 400) {
+            throw respError;
+          }
+
           return response;
         };
 
