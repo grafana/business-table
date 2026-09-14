@@ -1,9 +1,9 @@
-import { locationService } from '@grafana/runtime';
+import { getTemplateSrv, locationService } from '@grafana/runtime';
 import { Button, ClickOutsideWrapper, useStyles2 } from '@grafana/ui';
 import { Header } from '@tanstack/react-table';
 import React, { useCallback, useState } from 'react';
 
-import { TEST_IDS } from '@/constants';
+import { ALL_VALUE_PARAMETER, TEST_IDS } from '@/constants';
 import { ColumnFilterMode, ColumnFilterType, ColumnFilterValue } from '@/types';
 import { saveWithCorrectFilters } from '@/utils';
 
@@ -85,6 +85,18 @@ export const FilterPopup = <TData,>({
 
         if (filterValue && 'value' in filterValue) {
           varValue = filterValue.value;
+        } else {
+          /**
+           * Persist the unrestricted state rather than restoring a saved selection on reload.
+           * Only multi-value variables with Include All can represent this state.
+           */
+          const variable = getTemplateSrv()
+            .getVariables()
+            .find((item) => item.name === header.column.columnDef.meta?.filterVariableName);
+
+          if (variable && 'multi' in variable && variable.multi && 'includeAll' in variable && variable.includeAll) {
+            varValue = [ALL_VALUE_PARAMETER];
+          }
         }
 
         locationService.partial(

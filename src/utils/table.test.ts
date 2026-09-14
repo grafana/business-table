@@ -64,6 +64,65 @@ describe('Table utils', () => {
   });
 
   describe('getVariableColumnFilters', () => {
+    it.each(['$__all', ['$__all'], ['$__all', 'a']])('Should treat native All as no query filter: %j', (value) => {
+      getVariablesMock.mockReturnValue([
+        createVariable({ name: 'category', type: 'query', multi: true, includeAll: true, current: { value } } as never),
+      ]);
+
+      expect(
+        getVariableColumnFilters([
+          {
+            id: 'category',
+            enableColumnFilter: true,
+            meta: createColumnMeta({ filterMode: ColumnFilterMode.QUERY, filterVariableName: 'category' }),
+          },
+        ])
+      ).toEqual([{ id: 'category', value: undefined }]);
+    });
+
+    it('Should not interpret All for a variable without Include All', () => {
+      getVariablesMock.mockReturnValue([
+        createVariable({
+          name: 'category',
+          type: 'custom',
+          multi: true,
+          includeAll: false,
+          current: { value: ['$__all'] },
+        } as never),
+      ]);
+      expect(
+        getVariableColumnFilters([
+          {
+            id: 'category',
+            enableColumnFilter: true,
+            meta: createColumnMeta({ filterMode: ColumnFilterMode.QUERY, filterVariableName: 'category' }),
+          },
+        ])
+      ).toEqual([{ id: 'category', value: { type: ColumnFilterType.FACETED, value: ['$__all'] } }]);
+    });
+
+    it('Should preserve an explicit selection of every loaded option', () => {
+      getVariablesMock.mockReturnValue([
+        createVariable({
+          name: 'category',
+          type: 'query',
+          multi: true,
+          includeAll: true,
+          options: [{ value: 'a' }, { value: 'b' }],
+          current: { value: ['a', 'b'] },
+        } as never),
+      ]);
+      expect(
+        getVariableColumnFilters([
+          {
+            id: 'category',
+            enableColumnFilter: true,
+            meta: createColumnMeta({ filterMode: ColumnFilterMode.QUERY, filterVariableName: 'category' }),
+          },
+        ])
+      ).toEqual([{ id: 'category', value: { type: ColumnFilterType.FACETED, value: ['a', 'b'] } }]);
+    });
+
     it('Should build filters for columns with variable', () => {
       const variable = createVariable({
         name: 'test',
