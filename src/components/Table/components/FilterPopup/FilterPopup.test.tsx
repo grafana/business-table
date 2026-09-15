@@ -1,5 +1,5 @@
 import { dateTime } from '@grafana/data';
-import { locationService } from '@grafana/runtime';
+import { getTemplateSrv, locationService } from '@grafana/runtime';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { createSelector, getJestSelectors } from '@/utils/test-selectors';
 import React from 'react';
@@ -84,6 +84,7 @@ describe('FilterPopup', () => {
 
   beforeEach(() => {
     jest.mocked(FilterSection).mockImplementation(FilterSectionMock);
+    jest.mocked(getTemplateSrv().getVariables).mockReturnValue([]);
   });
 
   it('Should render', () => {
@@ -293,6 +294,54 @@ describe('FilterPopup', () => {
   });
 
   describe('Faceted', () => {
+    it.each([
+      ['clear', ColumnFilterMode.QUERY, true, ['$__all']],
+      ['save empty', ColumnFilterMode.QUERY, true, ['$__all']],
+      ['save values', ColumnFilterMode.QUERY, true, ['a', 'b']],
+      ['clear', ColumnFilterMode.QUERY, false, null],
+      ['save empty', ColumnFilterMode.QUERY, false, null],
+      ['clear', ColumnFilterMode.CLIENT, true, null],
+    ])('Should synchronize %s in %s mode with includeAll=%s', (action, mode, includeAll, expected) => {
+      jest.mocked(getTemplateSrv).mockReturnValue({
+        getVariables: () => [{ name: 'category', type: 'query', multi: true, includeAll }],
+      } as never);
+      const setFilterValue = jest.fn();
+      render(
+        getComponent({
+          header: {
+            column: {
+              setFilterValue,
+              getFilterValue: () => createFilterValue({ type: ColumnFilterType.FACETED, value: ['a'] }),
+              columnDef: {
+                meta: {
+                  filterMode: mode,
+                  filterVariableName: 'category',
+                  availableFilterTypes: [ColumnFilterType.FACETED],
+                },
+              },
+            },
+          } as any,
+        })
+      );
+      if (action === 'clear') {
+        fireEvent.click(selectors.buttonClear());
+      } else {
+        triggerFilterChange(
+          selectors.filterSection(),
+          createFilterValue({ type: ColumnFilterType.FACETED, value: action === 'save values' ? ['a', 'b'] : [] })
+        );
+        fireEvent.click(selectors.buttonSave());
+      }
+      expect(setFilterValue).toHaveBeenLastCalledWith(
+        action === 'save values' ? createFilterValue({ type: ColumnFilterType.FACETED, value: ['a', 'b'] }) : undefined
+      );
+      if (mode === ColumnFilterMode.QUERY) {
+        expect(locationService.partial).toHaveBeenLastCalledWith({ 'var-category': expected }, true);
+      } else {
+        expect(locationService.partial).not.toHaveBeenCalled();
+      }
+    });
+
     it('Should allow to use client filter', async () => {
       const setFilterValue = jest.fn();
 

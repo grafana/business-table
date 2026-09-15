@@ -25,7 +25,7 @@ import {
 } from '@tanstack/react-table';
 import { get } from 'lodash';
 
-import { ROW_HIGHLIGHT_STATE_KEY } from '@/constants';
+import { ALL_VALUE_PARAMETER, ROW_HIGHLIGHT_STATE_KEY } from '@/constants';
 import {
   ColumnConfig,
   ColumnFilterMode,
@@ -324,12 +324,24 @@ export const getVariableColumnFilters = <TData>(
               break;
             }
             case ColumnFilterType.FACETED: {
+              /**
+               * Native All means no active column filter, not a selected option.
+               * Keep explicit selections distinct from this state, even when all loaded options are selected.
+               */
+              const isAll =
+                'includeAll' in variable &&
+                variable.includeAll &&
+                (Array.isArray(currentValue)
+                  ? currentValue.includes(ALL_VALUE_PARAMETER)
+                  : currentValue === ALL_VALUE_PARAMETER);
               columnFilters.push({
                 id: column.id!,
-                value: {
-                  type: ColumnFilterType.FACETED,
-                  value: currentValue as string[],
-                },
+                value: isAll
+                  ? undefined
+                  : {
+                      type: ColumnFilterType.FACETED,
+                      value: currentValue as string[],
+                    },
               });
               break;
             }
