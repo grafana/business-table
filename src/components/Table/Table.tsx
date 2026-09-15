@@ -459,6 +459,7 @@ export const Table = <TData,>({
    * React Table
    */
   const table = useReactTable({
+    meta: { pagination: currentTable?.pagination },
     state: {
       grouping,
       expanded,
