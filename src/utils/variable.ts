@@ -1,6 +1,25 @@
 import { TypedVariableModel } from '@grafana/data';
 import { locationService } from '@grafana/runtime';
 
+import { PaginationMode, TablePaginationConfig } from '@/types';
+
+/**
+ * Reset only configured query pagination coordinates, preserving page size.
+ */
+export const getQueryPaginationResetVariables = (pagination?: TablePaginationConfig): Record<string, number> => {
+  if (!pagination?.enabled || pagination.mode !== PaginationMode.QUERY) {
+    return {};
+  }
+
+  const variables: Record<string, number> = {};
+  for (const name of [pagination.query?.pageIndexVariable, pagination.query?.offsetVariable]) {
+    if (name) {
+      variables[getVariableKeyForLocation(name)] = 0;
+    }
+  }
+  return variables;
+};
+
 /**
  * Get Runtime Variable
  * @param variable
