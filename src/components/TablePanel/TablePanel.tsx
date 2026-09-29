@@ -558,23 +558,11 @@ export const TablePanel: React.FC<Props> = ({
             isFocused.current = true;
           }}
         >
-          {semver.lt(config.buildInfo.version, '11.5.0') ? (
-            <div
-              ref={scrollableContainerRef}
-              className={styles.content}
-              style={{
-                width,
-                height,
-              }}
-              {...TEST_IDS.panel.defaultScrollContainer.apply()}
-            >
-              {panelContent()}
-            </div>
-          ) : (
+          {
             <ScrollContainer height={height} ref={scrollableContainerRef} {...TEST_IDS.panel.scrollContainer.apply()}>
               {panelContent()}
             </ScrollContainer>
-          )}
+          }
         </div>
       </tablePanelContext.Provider>
     </ClickOutsideWrapper>
