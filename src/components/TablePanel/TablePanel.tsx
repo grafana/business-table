@@ -558,7 +558,7 @@ export const TablePanel: React.FC<Props> = ({
             isFocused.current = true;
           }}
         >
-          {semver.lt(config.buildInfo.version, '11.5.0') ? (
+          {semver.lt(semver.coerce(config?.buildInfo?.version) ?? '0.0.0', '11.5.0') ? (
             <div
               ref={scrollableContainerRef}
               className={styles.content}
