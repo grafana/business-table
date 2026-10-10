@@ -212,6 +212,53 @@ describe('useTable', () => {
     ]);
   });
 
+  it('Should show rows when a query variable renames the series', () => {
+    const renamed = toDataFrame({
+      refId,
+      fields: [
+        { name: 'Time', type: FieldType.time, values: [1, 2] },
+        { name: 'usage {host="web-2"}', type: FieldType.number, values: [20, 30] },
+      ],
+    });
+
+    const { result } = renderHook(() =>
+      useTable({
+        data: {
+          series: [renamed],
+        } as any,
+        columns: [
+          createColumnConfig({
+            field: {
+              source: refId,
+              name: 'Time',
+            },
+          }),
+          createColumnConfig({
+            field: {
+              source: refId,
+              name: 'usage {host="web-1"}',
+            },
+          }),
+        ],
+        objects: [],
+        replaceVariables,
+        actionsColumnConfig: actionsColumnConfigDefault,
+        eventBus,
+      })
+    );
+
+    expect(result.current.tableData).toEqual([
+      {
+        Time: 1,
+        'usage {host="web-2"}': 20,
+      },
+      {
+        Time: 2,
+        'usage {host="web-2"}': 30,
+      },
+    ]);
+  });
+
   it('Should work if no data frame', () => {
     const { result } = renderHook(() =>
       useTable({
