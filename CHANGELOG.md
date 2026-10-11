@@ -4,6 +4,19 @@ All notable changes to the **Business Table Panel** plugin for Grafana are docum
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+#### Table behavior
+
+- Columns keep showing query results when a dashboard variable changes the series name.
+  The table was bound to the field names from the value selected while configuring the panel, so an
+  Influx query that embeds the variable in the series name rendered an empty table for every other value.
+- Columns keep showing query results when a transformation refId changes with the number of series.
+  `seriesToRows` names its frame from every input series, so a column saved while All was selected
+  (`seriesToRows-A-A-A`) found nothing after the variable narrowed the result to one series.
+
 ## [3.6.8] - 2026-09-08
 
 ### Fixed
