@@ -159,7 +159,19 @@ export const resolveTableFields = (
     };
   }
 
-  const candidates = getCandidateFrames(series, fieldSources[0]);
+  let candidates = getCandidateFrames(series, fieldSources[0]);
+  const matchedSavedSource = candidates.length > 0;
+
+  /**
+   * seriesToRows builds its refId from every input series, for example
+   * `seriesToRows-A-A-A` while All is selected. A dashboard variable changes
+   * that count, so the saved source is gone. The column names are still on the
+   * new frame. Search every frame, and ignore the result when none of the
+   * configured names are there.
+   */
+  if (!candidates.length) {
+    candidates = series;
+  }
 
   if (!candidates.length) {
     return {
@@ -179,6 +191,13 @@ export const resolveTableFields = (
       bestScore = score;
     }
   });
+
+  if (!matchedSavedSource && bestScore <= 0) {
+    return {
+      frame: undefined,
+      fields: fieldSources.map(() => undefined),
+    };
+  }
 
   /**
    * Exact matches may be shared. Nested columns often read the same field twice.

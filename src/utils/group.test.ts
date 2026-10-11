@@ -97,6 +97,47 @@ describe('Group utils', () => {
       expect(resolved.fields[0]?.name).toEqual('time');
       expect(resolved.fields[1]).toBeUndefined();
     });
+
+    it('Should keep columns when seriesToRows changes its refId with the variable', () => {
+      const savedWhileAll = 'seriesToRows-A-A-A-A';
+      const oneSeries = toDataFrame({
+        refId: 'seriesToRows-A',
+        fields: [
+          { name: 'Time', type: FieldType.time, values: [1] },
+          { name: 'elementType', type: FieldType.string, values: ['vSBG'] },
+          { name: 'group', type: FieldType.string, values: ['unit-1'] },
+          { name: 'Value', type: FieldType.number, values: [42] },
+        ],
+      });
+
+      const resolved = resolveTableFields([oneSeries], [
+        { source: savedWhileAll, name: 'Time' },
+        { source: savedWhileAll, name: 'elementType' },
+        { source: savedWhileAll, name: 'group' },
+        { source: savedWhileAll, name: 'Value' },
+      ]);
+
+      expect(resolved.frame).toBe(oneSeries);
+      expect(resolved.fields.map((field) => field?.values[0])).toEqual([1, 'vSBG', 'unit-1', 42]);
+    });
+
+    it('Should leave the table empty when the saved source is gone and no column name matches', () => {
+      const other = toDataFrame({
+        refId: 'B',
+        fields: [
+          { name: 'alpha', type: FieldType.string, values: ['a'] },
+          { name: 'beta', type: FieldType.number, values: [1] },
+        ],
+      });
+
+      const resolved = resolveTableFields([other], [
+        { source: 'seriesToRows-A-A', name: 'Time' },
+        { source: 'seriesToRows-A-A', name: 'Value' },
+      ]);
+
+      expect(resolved.frame).toBeUndefined();
+      expect(resolved.fields).toEqual([undefined, undefined]);
+    });
   });
 
   describe('getFrameBySource', () => {
