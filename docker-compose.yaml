@@ -26,6 +26,8 @@ services:
       dockerfile: test/Dockerfile
     environment:
       - GRAFANA_URL=http://grafana:3000
+      # Pass the host CI flag through so playwright.config.ts applies its CI settings (workers, retries)
+      - CI
     volumes:
       - ./test:/app/test
       - ./playwright-report:/app/playwright-report
