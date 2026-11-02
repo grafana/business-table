@@ -544,6 +544,49 @@ class PanelEditorHelper {
 }
 
 /**
+ * Set Visualization
+ *
+ * Replaces `PanelEditPage.setVisualization()` from `@grafana/plugin-e2e` on Grafana 12.4 and later.
+ * No published plugin-e2e version works on both 12.4 and 13.3:
+ * - 3.11.2 to 3.15.4 click `toggle-viz-picker` whenever it is visible. On 12.4 the picker is
+ *   already open for a new panel, so that click closes it and the "All visualizations" tab never
+ *   comes back.
+ * - 3.11.0 checks the tab once, before 13.3 renders it, then clicks a toggle that 13.3 does not show.
+ *
+ * This version opens the picker only when the tab is not visible, and retries the whole sequence.
+ */
+export const setVisualization = async (editPage: PanelEditPage, visualization: string) => {
+  if (semver.lt(editPage.ctx.grafanaVersion, '12.4.0')) {
+    return editPage.setVisualization(visualization);
+  }
+
+  const { components, constants } = editPage.ctx.selectors;
+  const showOptionsPane = editPage.getByGrafanaSelector('Show options pane');
+  const allVisualizationsTab = editPage.getByGrafanaSelector(components.Tab.title(constants.Tab.title));
+  const toggleVizPicker = editPage.getByGrafanaSelector(components.PanelEditor.toggleVizPicker);
+  const vizItem = editPage.getByGrafanaSelector(components.PluginVisualization.item(visualization));
+  const currentViz = editPage.getByGrafanaSelector(components.PanelEditor.OptionsPane.header);
+
+  await expect(async () => {
+    if ((await showOptionsPane.count()) > 0) {
+      await showOptionsPane.click();
+    }
+
+    /**
+     * Wait for the picker or its toggle, then open the picker only if it is closed
+     */
+    await expect(allVisualizationsTab.or(toggleVizPicker).first()).toBeVisible();
+    if (!(await allVisualizationsTab.isVisible())) {
+      await toggleVizPicker.click();
+    }
+
+    await allVisualizationsTab.click();
+    await vizItem.click();
+    await expect(currentViz, `Could not set visualization to ${visualization}`).toHaveText(visualization);
+  }).toPass();
+};
+
+/**
  * Panel Helper
  */
 export class PanelHelper {

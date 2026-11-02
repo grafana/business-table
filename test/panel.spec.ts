@@ -1,7 +1,7 @@
 import { test, expect } from '@grafana/plugin-e2e';
 
 import { NumberFilterOperator } from '../src/types';
-import { PanelHelper } from './utils';
+import { PanelHelper, setVisualization } from './utils';
 
 test.describe('Business Table Panel', () => {
   test('Check grafana version', async ({ grafanaVersion }) => {
@@ -63,15 +63,12 @@ test.describe('Business Table Panel', () => {
     await table.getRow(2).getCell('comment.info.name').checkText('');
   });
 
-  test('Should add a Business Table via the panel editor', async ({
-    gotoDashboardPage,
-    readProvisionedDashboard,
-  }) => {
+  test('Should add a Business Table via the panel editor', async ({ gotoDashboardPage, readProvisionedDashboard }) => {
     const dashboard = await readProvisionedDashboard({ fileName: 'panels.json' });
     const dashboardPage = await gotoDashboardPage({ uid: dashboard.uid });
 
     const editPage = await dashboardPage.addPanel();
-    await editPage.setVisualization('Business Table');
+    await setVisualization(editPage, 'Business Table');
     await editPage.setPanelTitle('Business Table Test');
     await editPage.backToDashboard();
 
@@ -112,7 +109,7 @@ test.describe('Business Table Panel', () => {
      * Add new visualization
      */
     const editPage = await dashboardPage.addPanel();
-    await editPage.setVisualization('Business Table');
+    await setVisualization(editPage, 'Business Table');
     await editPage.setPanelTitle('Business Table Test');
 
     /**
@@ -184,7 +181,7 @@ test.describe('Business Table Panel', () => {
      * Add new visualization
      */
     const editPage = await dashboardPage.addPanel();
-    await editPage.setVisualization('Business Table');
+    await setVisualization(editPage, 'Business Table');
     await editPage.setPanelTitle('Business Table Test');
 
     /**
@@ -295,7 +292,7 @@ test.describe('Business Table Panel', () => {
        * Add new visualization
        */
       const editPage = await dashboardPage.addPanel();
-      await editPage.setVisualization('Business Table');
+      await setVisualization(editPage, 'Business Table');
       await editPage.setPanelTitle('Business Table Test');
 
       /**
