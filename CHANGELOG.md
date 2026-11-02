@@ -7,6 +7,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 ### Changed
+
 - The datasource payload editor now shows an error when the data source fails to load, instead of loading forever.
 
 ### Project Updates
