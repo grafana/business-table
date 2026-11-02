@@ -1,18 +1,19 @@
-import { getDataSourceSrv } from '@grafana/runtime';
+import { getDataSourceInstanceList } from '@grafana/plugin-compat/datasources';
+
 import { renderHook, waitFor } from '@testing-library/react';
 
 import { useDatasources } from './useDatasources';
 
 /**
- * Mock @grafana/runtime
+ * Mock @grafana/plugin-compat/datasources
  */
-jest.mock('@grafana/runtime', () => ({
-  getDataSourceSrv: jest.fn(),
+jest.mock('@grafana/plugin-compat/datasources', () => ({
+  getDataSourceInstanceList: jest.fn(),
 }));
 
 describe('Use Datasources', () => {
   it('Should return datasources', async () => {
-    const getDatasourcesMock = jest.fn(() => [
+    const getDatasourcesMock = jest.fn(async () => [
       {
         name: 'abc',
       },
@@ -20,12 +21,7 @@ describe('Use Datasources', () => {
         name: 'cba',
       },
     ]);
-    jest.mocked(getDataSourceSrv).mockImplementationOnce(
-      () =>
-        ({
-          getList: getDatasourcesMock,
-        }) as any
-    );
+    jest.mocked(getDataSourceInstanceList).mockImplementationOnce(getDatasourcesMock as any);
 
     const { result } = renderHook(() => useDatasources());
 
@@ -60,7 +56,7 @@ describe('Use Datasources', () => {
   });
 
   it('Should return datasources without grafana', async () => {
-    const getDatasourcesMock = jest.fn((props) => {
+    const getDatasourcesMock = jest.fn(async (props) => {
       const datasourceList = [
         {
           name: 'abc',
@@ -81,12 +77,7 @@ describe('Use Datasources', () => {
       return datasourceList;
     });
 
-    jest.mocked(getDataSourceSrv).mockImplementationOnce(
-      () =>
-        ({
-          getList: getDatasourcesMock,
-        }) as any
-    );
+    jest.mocked(getDataSourceInstanceList).mockImplementationOnce(getDatasourcesMock as any);
 
     const { result } = renderHook(() => useDatasources());
 

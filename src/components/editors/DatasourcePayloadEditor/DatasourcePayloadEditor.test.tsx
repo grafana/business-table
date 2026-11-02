@@ -1,4 +1,5 @@
-import { getDataSourceSrv, getTemplateSrv } from '@grafana/runtime';
+import { getDataSourceInstance } from '@grafana/plugin-compat/datasources';
+import { getTemplateSrv } from '@grafana/runtime';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { createSelector, getJestSelectors } from '@/utils/test-selectors';
 import React from 'react';
@@ -21,8 +22,14 @@ jest.useFakeTimers();
  * Mock @grafana/runtime
  */
 jest.mock('@grafana/runtime', () => ({
-  getDataSourceSrv: jest.fn(),
   getTemplateSrv: jest.fn(),
+}));
+
+/**
+ * Mock @grafana/plugin-compat/datasources
+ */
+jest.mock('@grafana/plugin-compat/datasources', () => ({
+  getDataSourceInstance: jest.fn(),
 }));
 
 /**
@@ -62,14 +69,12 @@ describe('DatasourcePayloadEditor', () => {
   });
 
   it('Should show error message', async () => {
-    const dataSourceSrv = {
-      get: jest.fn(() => ({
-        name: 'postgresName',
-        uid: 'postgres',
-        components: {},
-      })),
-    };
-    jest.mocked(getDataSourceSrv).mockReturnValue(dataSourceSrv as any);
+    const getDataSourceInstanceMock = jest.fn(async () => ({
+      name: 'postgresName',
+      uid: 'postgres',
+      components: {},
+    }));
+    jest.mocked(getDataSourceInstance).mockImplementation(getDataSourceInstanceMock as any);
 
     await act(async () =>
       render(
@@ -86,26 +91,24 @@ describe('DatasourcePayloadEditor', () => {
     /**
      * Data Source Mock
      */
-    const dataSourceSrv = {
-      get: jest.fn(() => ({
-        name: 'postgresName',
-        uid: 'postgres',
-        components: {
-          QueryEditor: jest.fn(({ onChange, query }) => (
-            <input
-              {...inTestIds.queryEditor.apply()}
-              value={query?.name || ''}
-              onChange={(event) =>
-                onChange({
-                  name: event.target.value,
-                })
-              }
-            />
-          )),
-        },
-      })),
-    };
-    jest.mocked(getDataSourceSrv).mockReturnValue(dataSourceSrv as any);
+    const getDataSourceInstanceMock = jest.fn(async () => ({
+      name: 'postgresName',
+      uid: 'postgres',
+      components: {
+        QueryEditor: jest.fn(({ onChange, query }) => (
+          <input
+            {...inTestIds.queryEditor.apply()}
+            value={query?.name || ''}
+            onChange={(event) =>
+              onChange({
+                name: event.target.value,
+              })
+            }
+          />
+        )),
+      },
+    }));
+    jest.mocked(getDataSourceInstance).mockImplementation(getDataSourceInstanceMock as any);
 
     /**
      * On Change
@@ -155,27 +158,25 @@ describe('DatasourcePayloadEditor', () => {
      * Data Source Mock
      */
 
-    const dataSourceSrv = {
-      get: jest.fn(() => ({
-        type: 'grafana-postgres',
-        name: 'postgresName',
-        uid: 'postgres',
-        components: {
-          QueryEditor: jest.fn(({ onChange, query }) => (
-            <input
-              {...inTestIds.queryEditor.apply()}
-              value={query?.name || ''}
-              onChange={(event) =>
-                onChange({
-                  name: event.target.value,
-                })
-              }
-            />
-          )),
-        },
-      })),
-    };
-    jest.mocked(getDataSourceSrv).mockReturnValue(dataSourceSrv as any);
+    const getDataSourceInstanceMock = jest.fn(async () => ({
+      type: 'grafana-postgres',
+      name: 'postgresName',
+      uid: 'postgres',
+      components: {
+        QueryEditor: jest.fn(({ onChange, query }) => (
+          <input
+            {...inTestIds.queryEditor.apply()}
+            value={query?.name || ''}
+            onChange={(event) =>
+              onChange({
+                name: event.target.value,
+              })
+            }
+          />
+        )),
+      },
+    }));
+    jest.mocked(getDataSourceInstance).mockImplementation(getDataSourceInstanceMock as any);
 
     /**
      * On Change
@@ -204,8 +205,8 @@ describe('DatasourcePayloadEditor', () => {
     /**
      * Data Source Mock
      */
-    jest.mocked(getDataSourceSrv).mockReturnValue({
-      get: jest.fn(() => ({
+    jest.mocked(getDataSourceInstance).mockImplementation(
+      jest.fn(async () => ({
         type: 'business-input',
         name: 'postgresName',
         uid: 'postgres1',
@@ -222,8 +223,8 @@ describe('DatasourcePayloadEditor', () => {
             />
           )),
         },
-      })),
-    } as any);
+      })) as any
+    );
 
     /**
      * Rerender with new datasource
@@ -261,27 +262,25 @@ describe('DatasourcePayloadEditor', () => {
      * Data Source Mock
      */
 
-    const dataSourceSrv = {
-      get: jest.fn(() => ({
-        type: 'grafana-postgres',
-        name: 'postgresName',
-        uid: 'postgres',
-        components: {
-          QueryEditor: jest.fn(({ onChange, query }) => (
-            <input
-              {...inTestIds.queryEditor.apply()}
-              value={query?.name || ''}
-              onChange={(event) =>
-                onChange({
-                  name: event.target.value,
-                })
-              }
-            />
-          )),
-        },
-      })),
-    };
-    jest.mocked(getDataSourceSrv).mockReturnValue(dataSourceSrv as any);
+    const getDataSourceInstanceMock = jest.fn(async () => ({
+      type: 'grafana-postgres',
+      name: 'postgresName',
+      uid: 'postgres',
+      components: {
+        QueryEditor: jest.fn(({ onChange, query }) => (
+          <input
+            {...inTestIds.queryEditor.apply()}
+            value={query?.name || ''}
+            onChange={(event) =>
+              onChange({
+                name: event.target.value,
+              })
+            }
+          />
+        )),
+      },
+    }));
+    jest.mocked(getDataSourceInstance).mockImplementation(getDataSourceInstanceMock as any);
 
     /**
      * On Change
@@ -310,8 +309,8 @@ describe('DatasourcePayloadEditor', () => {
     /**
      * Data Source Mock
      */
-    jest.mocked(getDataSourceSrv).mockReturnValue({
-      get: jest.fn(() => ({
+    jest.mocked(getDataSourceInstance).mockImplementation(
+      jest.fn(async () => ({
         type: 'grafana-postgres',
         name: 'postgresName',
         uid: 'postgres1',
@@ -328,8 +327,8 @@ describe('DatasourcePayloadEditor', () => {
             />
           )),
         },
-      })),
-    } as any);
+      })) as any
+    );
 
     /**
      * Rerender with new datasource
@@ -366,10 +365,8 @@ describe('DatasourcePayloadEditor', () => {
     /**
      * Data Source Mock
      */
-    const dataSourceSrv = {
-      get: jest.fn(() => null),
-    };
-    jest.mocked(getDataSourceSrv).mockReturnValue(dataSourceSrv as any);
+    const getDataSourceInstanceMock = jest.fn(async () => null);
+    jest.mocked(getDataSourceInstance).mockImplementation(getDataSourceInstanceMock as any);
 
     await act(async () =>
       render(
@@ -380,5 +377,21 @@ describe('DatasourcePayloadEditor', () => {
     );
 
     expect(selectors.errorMessage()).toBeInTheDocument();
+  });
+
+  it('Should show error if loading datasource fails', async () => {
+    jest.mocked(getDataSourceInstance).mockRejectedValue(new Error('Datasource not found'));
+
+    await act(async () =>
+      render(
+        getComponent({
+          datasourceUid: 'missing',
+        })
+      )
+    );
+
+    expect(selectors.loadingMessage(true)).not.toBeInTheDocument();
+    expect(selectors.errorMessage()).toBeInTheDocument();
+    expect(selectors.errorMessage()).toHaveTextContent('Datasource not found');
   });
 });

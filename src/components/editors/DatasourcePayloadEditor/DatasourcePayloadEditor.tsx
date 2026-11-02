@@ -1,5 +1,6 @@
 import { DataSourceApi } from '@grafana/data';
-import { getDataSourceSrv, getTemplateSrv } from '@grafana/runtime';
+import { getDataSourceInstance } from '@grafana/plugin-compat/datasources';
+import { getTemplateSrv } from '@grafana/runtime';
 import { DataQuery } from '@grafana/schema';
 import { Alert, LoadingPlaceholder } from '@grafana/ui';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -25,11 +26,6 @@ interface Props extends EditorProps<unknown> {
  */
 export const DatasourcePayloadEditor: React.FC<Props> = ({ value, onChange, datasourceUid }) => {
   /**
-   * Data Source Service
-   */
-  const dataSourceService = getDataSourceSrv();
-
-  /**
    * Template Service
    */
   const templateService = getTemplateSrv();
@@ -39,6 +35,7 @@ export const DatasourcePayloadEditor: React.FC<Props> = ({ value, onChange, data
    */
   const [datasource, setDatasource] = useState<DataSourceApi>();
   const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   /**
    * Query Auto Save
@@ -75,7 +72,7 @@ export const DatasourcePayloadEditor: React.FC<Props> = ({ value, onChange, data
     const getDataSource = async (datasourceUid: string) => {
       setIsLoading(true);
 
-      const ds = await dataSourceService.get(datasourceUid);
+      const ds = await getDataSourceInstance(datasourceUid);
 
       setIsLoading(false);
 
@@ -86,29 +83,38 @@ export const DatasourcePayloadEditor: React.FC<Props> = ({ value, onChange, data
       const loadedDatasource = datasource;
       const replacedDatasourceUid = templateService.replace(datasourceUid);
 
-      /**
-       * Reset query if new datasource type
-       */
-      if (loadedDatasource && loadedDatasource.uid !== replacedDatasourceUid) {
-        const currentDatasource = await getDataSource(replacedDatasourceUid);
+      try {
+        /**
+         * Reset query if new datasource type
+         */
+        if (loadedDatasource && loadedDatasource.uid !== replacedDatasourceUid) {
+          const currentDatasource = await getDataSource(replacedDatasourceUid);
 
-        if (loadedDatasource.type !== currentDatasource.type) {
-          onChangeQuery({});
+          if (loadedDatasource.type !== currentDatasource.type) {
+            onChangeQuery({});
+          }
+
+          setLoadError(null);
+          setDatasource(currentDatasource);
         }
 
-        setDatasource(currentDatasource);
-      }
+        /**
+         * Load data source
+         */
+        if (replacedDatasourceUid && !datasource) {
+          const currentDatasource = await getDataSource(replacedDatasourceUid);
 
-      /**
-       * Load data source
-       */
-      if (replacedDatasourceUid && !datasource) {
-        setDatasource(await getDataSource(replacedDatasourceUid));
+          setLoadError(null);
+          setDatasource(currentDatasource);
+        }
+      } catch (error) {
+        setLoadError(error instanceof Error ? error.message : `${error}`);
+        setIsLoading(false);
       }
     };
 
     checkDatasourceType();
-  }, [datasourceUid, dataSourceService, datasource, onChangeQuery, templateService]);
+  }, [datasourceUid, datasource, onChangeQuery, templateService]);
 
   /**
    * Auto Save Timer
@@ -129,6 +135,17 @@ export const DatasourcePayloadEditor: React.FC<Props> = ({ value, onChange, data
     return (
       <Alert severity="info" title="Please Wait" {...TEST_IDS.payloadEditor.loadingMessage.apply()}>
         <LoadingPlaceholder text="Loading..." />
+      </Alert>
+    );
+  }
+
+  /**
+   * Unable to load data source
+   */
+  if (loadError) {
+    return (
+      <Alert title="Unable to load data source" severity="error" {...TEST_IDS.payloadEditor.errorMessage.apply()}>
+        {loadError}
       </Alert>
     );
   }

@@ -6,10 +6,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-### Project Updates
+### Changed
 
-- ESLint now ignores the generated `playwright-report/` and `playwright/` folders,
-  so a local E2E run no longer breaks `npm run lint`
+- The datasource payload editor now shows an error when the data source fails to load, instead of loading forever.
 
 ## [3.6.8] - 2026-09-08
 
