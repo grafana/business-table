@@ -5,7 +5,7 @@ import React from 'react';
 
 import { TEST_IDS } from '@/constants';
 import { ColumnFilterMode, ColumnFilterType, ColumnFilterValue } from '@/types';
-import { createVariable, getFilterWithNewType } from '@/utils';
+import { createVariable, getFilterWithNewType, getVariableColumnFilters } from '@/utils';
 
 import { FilterFacetedList } from './FilterFacetedList';
 
@@ -178,6 +178,46 @@ describe('FilterFacetedList', () => {
   });
 
   describe('query mode', () => {
+    it('Should keep the client selection behavior when initialized from native All', () => {
+      jest.mocked(getTemplateSrv().getVariables).mockReturnValue([
+        createVariable({
+          name: 'var1',
+          type: 'query',
+          multi: true,
+          includeAll: true,
+          current: { value: ['$__all'] },
+          options: [
+            { value: '$__all', text: 'All' },
+            { value: 'active', text: 'Active' },
+            { value: 'pending', text: 'Pending' },
+          ],
+        } as never),
+      ]);
+      const columnDef = {
+        id: 'category',
+        enableColumnFilter: true,
+        meta: { filterMode: ColumnFilterMode.QUERY, filterVariableName: 'var1' },
+      };
+      const initialFilter = getVariableColumnFilters([columnDef as never])[0].value;
+      const header = { column: { columnDef } } as any;
+      const { rerender } = render(getComponent({ header, value: (initialFilter || createValue()) as never }));
+
+      expect(selectors.allOption()).not.toBeChecked();
+      expect(selectors.allOption()).not.toBePartiallyChecked();
+      expect(selectors.option(false, 'active')).not.toBeChecked();
+      fireEvent.click(selectors.allOption());
+      expect(onChange).toHaveBeenLastCalledWith(createValue({ value: ['active', 'pending'] }));
+      rerender(getComponent({ header, value: onChange.mock.lastCall![0] }));
+      expect(selectors.allOption()).toBeChecked();
+      fireEvent.click(selectors.option(false, 'active'));
+      expect(onChange).toHaveBeenLastCalledWith(createValue({ value: ['pending'] }));
+      rerender(getComponent({ header, value: onChange.mock.lastCall![0] }));
+      expect(selectors.allOption()).toBePartiallyChecked();
+      expect(selectors.option(false, 'pending')).toBeChecked();
+      fireEvent.click(selectors.option(false, 'pending'));
+      expect(onChange).toHaveBeenLastCalledWith(createValue());
+    });
+
     it('Should allow to select variable option', () => {
       jest.mocked(getTemplateSrv().getVariables).mockReturnValue([
         createVariable({

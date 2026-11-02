@@ -1,9 +1,10 @@
 import { EventBusSrv } from '@grafana/data';
-import { RefreshEvent } from '@grafana/runtime';
+import { getTemplateSrv, RefreshEvent } from '@grafana/runtime';
 import { act, renderHook } from '@testing-library/react';
 
-import { ColumnFilterType } from '@/types';
+import { ColumnFilterMode, ColumnFilterType } from '@/types';
 import { getVariableColumnFilters, mergeColumnFilters } from '@/utils';
+import { createColumnMeta, createVariable } from '@/utils/test';
 
 import { useSyncedColumnFilters } from './useSyncedColumnFilters';
 
@@ -20,6 +21,69 @@ describe('useSyncedColumnFilters', () => {
    * Event Bus
    */
   const eventBus = new EventBusSrv();
+
+  it.each(['query', 'custom'])(
+    'Should clear a %s All filter on refresh while preserving client filters',
+    async (type) => {
+      const actualUtils = jest.requireActual<typeof import('@/utils/table')>('@/utils/table');
+      jest.mocked(getVariableColumnFilters).mockImplementation(actualUtils.getVariableColumnFilters);
+      jest.mocked(mergeColumnFilters).mockImplementation(actualUtils.mergeColumnFilters);
+      const variable = createVariable({
+        name: 'category',
+        type,
+        multi: true,
+        includeAll: true,
+        current: { value: ['a'] },
+      } as never);
+      jest.mocked(getTemplateSrv().getVariables).mockReturnValue([variable]);
+      const columns = [
+        {
+          id: 'category',
+          enableColumnFilter: true,
+          meta: createColumnMeta({ filterMode: ColumnFilterMode.QUERY, filterVariableName: 'category' }),
+        },
+      ];
+      const clientFilter = {
+        id: 'client',
+        value: { type: ColumnFilterType.SEARCH, value: 'keep', caseSensitive: false },
+      };
+      const { result, unmount } = renderHook(() =>
+        useSyncedColumnFilters({
+          columns,
+          eventBus,
+          userFilterPreference: [],
+          defaultFilters: [clientFilter],
+        })
+      );
+      expect(result.current[0]).toContainEqual({
+        id: 'category',
+        value: { type: ColumnFilterType.FACETED, value: ['a'] },
+      });
+      jest
+        .mocked(getTemplateSrv().getVariables)
+        .mockReturnValue([
+          createVariable({
+            name: 'category',
+            type,
+            multi: true,
+            includeAll: true,
+            current: { value: ['$__all'] },
+          } as never),
+        ]);
+      await act(async () => eventBus.publish(new RefreshEvent()));
+      expect(result.current[0]).toEqual([clientFilter]);
+      unmount();
+      const reloaded = renderHook(() =>
+        useSyncedColumnFilters({
+          columns,
+          eventBus,
+          userFilterPreference: [],
+          defaultFilters: [],
+        })
+      );
+      expect(reloaded.result.current[0]).toEqual([]);
+    }
+  );
 
   it('Should set initial filter values', async () => {
     const filterFromVariable = {
