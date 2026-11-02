@@ -1,5 +1,5 @@
 import { DataQueryResponse, InterpolateFunction, LoadingState } from '@grafana/data';
-import { getDataSourceSrv } from '@grafana/runtime';
+import { getDataSourceInstance } from '@grafana/plugin-compat/datasources';
 
 import { useCallback } from 'react';
 import { lastValueFrom } from 'rxjs';
@@ -35,7 +35,7 @@ export const useDatasourceRequest = () => {
       replaceVariables: InterpolateFunction;
       payload: unknown;
     }): Promise<DataQueryResponse> => {
-      const ds = await getDataSourceSrv().get(datasource);
+      const ds = await getDataSourceInstance(datasource);
       const replaced = replaceVariables(JSON.stringify(query, null, 2), { payload: { value: payload } });
 
       let parsed: unknown;

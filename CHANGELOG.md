@@ -4,6 +4,15 @@ All notable changes to the **Business Table Panel** plugin for Grafana are docum
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- The datasource payload editor now shows an error when the data source fails to load, instead of loading forever.
+
+### Project Updates
+
+- Added `@grafana/plugin-compat` v0.6.0.
+
 ## [3.6.8] - 2026-09-08
 
 ### Fixed
