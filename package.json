@@ -76,6 +76,7 @@
     "node": ">=24"
   },
   "dependencies": {
+    "@e965/xlsx": "^0.20.3",
     "@emotion/css": "^11.13.5",
     "@floating-ui/react": "^0.27.19",
     "@grafana/data": "12.4.2",
@@ -95,8 +96,7 @@
     "react-dom": "^18.3.1",
     "semver": "^7.7.4",
     "tslib": "^2.8.0",
-    "uuid": "^14.0.0",
-    "@e965/xlsx": "^0.20.3"
+    "uuid": "^14.0.0"
   },
   "overrides": {
     "@jest/reporters@30.3.0": {
