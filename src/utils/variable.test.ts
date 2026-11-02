@@ -1,6 +1,10 @@
 import { locationService } from '@grafana/runtime';
 
+import { PaginationMode } from '@/types';
+import { createTablePaginationConfig } from './test';
+
 import {
+  getQueryPaginationResetVariables,
   getRuntimeVariable,
   getVariableKeyForLocation,
   getVariableNumberValue,
@@ -9,6 +13,46 @@ import {
 } from './variable';
 
 describe('Variable utils', () => {
+  describe('query pagination reset', () => {
+    it.each([
+      [
+        { pageIndexVariable: 'page', offsetVariable: 'offset', pageSizeVariable: 'size' },
+        { 'var-page': 0, 'var-offset': 0 },
+      ],
+      [{ pageIndexVariable: 'page' }, { 'var-page': 0 }],
+      [{ offsetVariable: 'offset' }, { 'var-offset': 0 }],
+      [{ pageSizeVariable: 'size' }, {}],
+      [{ pageIndexVariable: '', offsetVariable: '' }, {}],
+    ])('Should reset only configured coordinates for %j', (query, expected) => {
+      expect(
+        getQueryPaginationResetVariables(
+          createTablePaginationConfig({ enabled: true, mode: PaginationMode.QUERY, query })
+        )
+      ).toEqual(expected);
+    });
+
+    it('Should not reset disabled or client pagination', () => {
+      expect(getQueryPaginationResetVariables()).toEqual({});
+      expect(
+        getQueryPaginationResetVariables(
+          createTablePaginationConfig({
+            enabled: false,
+            mode: PaginationMode.QUERY,
+            query: { offsetVariable: 'offset' },
+          })
+        )
+      ).toEqual({});
+      expect(
+        getQueryPaginationResetVariables(
+          createTablePaginationConfig({
+            enabled: true,
+            mode: PaginationMode.CLIENT,
+            query: { offsetVariable: 'offset' },
+          })
+        )
+      ).toEqual({});
+    });
+  });
   describe('setVariablesValue', () => {
     it('Should update if payload contains values', () => {
       setVariablesValue({

@@ -5,7 +5,7 @@ import { createSelector, getJestSelectors } from '@/utils/test-selectors';
 import React from 'react';
 
 import { TEST_IDS } from '@/constants';
-import { ColumnFilterMode, ColumnFilterType, ColumnFilterValue } from '@/types';
+import { ColumnFilterMode, ColumnFilterType, ColumnFilterValue, PaginationMode } from '@/types';
 import { getFilterWithNewType } from '@/utils';
 
 import { FilterSection } from '../FilterSection';
@@ -196,6 +196,49 @@ describe('FilterPopup', () => {
       {
         'var-var1': 'abc',
       },
+      true
+    );
+  });
+
+  it.each(['save', 'clear'])('Should reset query pagination atomically on filter %s', (action) => {
+    render(
+      getComponent({
+        header: {
+          getContext: () => ({
+            table: {
+              options: {
+                meta: {
+                  pagination: {
+                    enabled: true,
+                    mode: PaginationMode.QUERY,
+                    query: { pageIndexVariable: 'page', offsetVariable: 'offset', pageSizeVariable: 'size' },
+                  },
+                },
+              },
+            },
+          }),
+          column: {
+            setFilterValue: jest.fn(),
+            getFilterValue: () => ({ type: ColumnFilterType.SEARCH, value: 'old', caseSensitive: false }),
+            columnDef: { meta: { filterMode: ColumnFilterMode.QUERY, filterVariableName: 'category' } },
+          },
+        } as any,
+      })
+    );
+
+    if (action === 'save') {
+      triggerFilterChange(
+        selectors.filterSection(),
+        createFilterValue({ type: ColumnFilterType.SEARCH, value: 'new' })
+      );
+      fireEvent.click(selectors.buttonSave());
+    } else {
+      fireEvent.click(selectors.buttonClear());
+    }
+
+    expect(locationService.partial).toHaveBeenCalledTimes(1);
+    expect(locationService.partial).toHaveBeenCalledWith(
+      { 'var-category': action === 'save' ? 'new' : null, 'var-page': 0, 'var-offset': 0 },
       true
     );
   });

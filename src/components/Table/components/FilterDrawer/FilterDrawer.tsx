@@ -5,7 +5,7 @@ import React, { useCallback, useState } from 'react';
 
 import { TEST_IDS } from '@/constants';
 import { ColumnFilterMode, ColumnFilterValue } from '@/types';
-import { getVariableKeyForLocation, saveWithCorrectFilters } from '@/utils';
+import { getQueryPaginationResetVariables, getVariableKeyForLocation, saveWithCorrectFilters } from '@/utils';
 
 import { FilterSection } from '../FilterSection';
 import { getStyles } from './FilterDrawer.styles';
@@ -67,13 +67,14 @@ export const FilterDrawer = <TData,>({ header, updatePreferencesWithFilters }: P
 
         locationService.partial(
           {
+            ...getQueryPaginationResetVariables(header.getContext?.().table.options.meta?.pagination),
             [getVariableKeyForLocation(header?.column.columnDef.meta?.filterVariableName ?? '')]: varValue,
           },
           true
         );
       }
     },
-    [filterMode, header.column]
+    [filterMode, header]
   );
 
   /**

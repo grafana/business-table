@@ -5,7 +5,7 @@ import React, { useCallback, useState } from 'react';
 
 import { TEST_IDS } from '@/constants';
 import { ColumnFilterMode, ColumnFilterType, ColumnFilterValue } from '@/types';
-import { saveWithCorrectFilters } from '@/utils';
+import { getQueryPaginationResetVariables, saveWithCorrectFilters } from '@/utils';
 
 import { FilterSection } from '../FilterSection';
 import { getStyles } from './FilterPopup.styles';
@@ -89,13 +89,14 @@ export const FilterPopup = <TData,>({
 
         locationService.partial(
           {
+            ...getQueryPaginationResetVariables(header.getContext?.().table.options.meta?.pagination),
             [`var-${header.column.columnDef.meta?.filterVariableName}`]: varValue,
           },
           true
         );
       }
     },
-    [filterMode, header.column]
+    [filterMode, header]
   );
 
   /**
