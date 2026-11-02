@@ -27,23 +27,60 @@ const REUSABLE_RE = /^([\w.-]+)\/([\w.-]+)\/(\.github\/workflows\/[\w.-]+\.ya?ml
 
 const args = process.argv.slice(2);
 const asJson = args.includes('--json');
-const repoArg = args[args.indexOf('--repo') + 1];
+const repoIdx = args.indexOf('--repo');
+const repoArg = repoIdx === -1 ? undefined : args[repoIdx + 1];
 
 const problems = [];
 const notes = [];
 
 /**
+ * Network failures seen while talking to the API (timeouts, 5xx, rate limits). A commit must
+ * not be blocked on a verdict we could not reach, so these end the run as INCOMPLETE, not FAIL.
+ */
+const unreachable = [];
+
+/**
  * `gh api` wrapper. Returns null rather than throwing so one unreachable ref does not mask
- * every other finding in the report.
+ * every other finding in the report. A 404 is a real answer (bad ref, renamed workflow, no
+ * access). Any other failure is recorded in `unreachable`.
  */
 const gh = (path, { allowFail = false } = {}) => {
   try {
-    return JSON.parse(execFileSync('gh', ['api', path], { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }));
+    return JSON.parse(
+      execFileSync('gh', ['api', path], {
+        encoding: 'utf8',
+        maxBuffer: 32 * 1024 * 1024,
+        stdio: ['ignore', 'pipe', 'pipe'],
+      })
+    );
   } catch (error) {
+    const stderr = `${error.stderr ?? ''}`;
+    if (!/HTTP 404/.test(stderr)) {
+      unreachable.push(`${path}: ${stderr.trim().split('\n').pop() || error.message}`);
+    }
     if (allowFail) {
       return null;
     }
     throw new Error(`gh api ${path} failed: ${error.message}`);
+  }
+};
+
+/**
+ * `gh api --paginate --slurp` wrapper for list endpoints. Returns a flat array, or null on failure.
+ */
+const ghList = (path) => {
+  try {
+    const pages = JSON.parse(
+      execFileSync('gh', ['api', '--paginate', '--slurp', path], {
+        encoding: 'utf8',
+        maxBuffer: 64 * 1024 * 1024,
+        stdio: ['ignore', 'pipe', 'pipe'],
+      })
+    );
+    return pages.flat();
+  } catch (error) {
+    unreachable.push(`${path}: ${`${error.stderr ?? ''}`.trim().split('\n').pop() || error.message}`);
+    return null;
   }
 };
 
@@ -154,8 +191,13 @@ const walk = (usesRef, passedInputs, origin) => {
   const [, wfOwner, wfRepo, wfPath, wfRef] = match;
   const key = `${wfOwner}/${wfRepo}/${wfPath}@${wfRef}`;
 
+  const failuresBefore = unreachable.length;
   const src = fetchWorkflow(wfOwner, wfRepo, wfPath, wfRef);
   if (src === null) {
+    if (unreachable.length > failuresBefore) {
+      // Transport failure, not a verdict on the ref. Reported as SKIPPED at the end.
+      return;
+    }
     problems.push({
       kind: 'unresolvable-ref',
       where: origin,
@@ -228,7 +270,7 @@ if (permissions?.allowed_actions === 'selected') {
       });
       continue;
     }
-    const isGitHubOwned = permissions.github_owned_allowed && ref.startsWith('actions/');
+    const isGitHubOwned = permissions.github_owned_allowed && /^(actions|github)\//.test(ref);
     if (!isGitHubOwned && allow.length && !allow.some((a) => a.re.test(ref))) {
       problems.push({
         kind: 'action-not-allowlisted',
@@ -280,7 +322,7 @@ for (const [slug, ref] of pinned) {
     notes.push(`drift: ${slug}@${ref} is not a semver tag — skipped`);
     continue;
   }
-  const tags = gh(`repos/${slug}/tags?per_page=100`, { allowFail: true }) ?? [];
+  const tags = ghList(`repos/${slug}/tags?per_page=100`) ?? [];
   const newer = tags
     .map((t) => ({ name: t.name, parsed: parseTag(t.name) }))
     .filter((t) => t.parsed && t.parsed.prefix === current.prefix && cmp(t.parsed.num, current.num) > 0)
@@ -307,7 +349,7 @@ for (const [slug, ref] of pinned) {
 // --- report -------------------------------------------------------------------
 
 if (asJson) {
-  console.log(JSON.stringify({ repo: repoSlug, problems, drift, notes }, null, 2));
+  console.log(JSON.stringify({ repo: repoSlug, problems, drift, notes, unreachable }, null, 2));
 } else {
   console.log(`Pre-flight: ${repoSlug}`);
   console.log(`  local workflows:   ${localWorkflows.length}`);
@@ -326,7 +368,14 @@ if (asJson) {
   }
 
   console.log('');
-  if (problems.length === 0) {
+  if (unreachable.length) {
+    console.log(`Network: ${unreachable.length} API call(s) failed, results may be incomplete:`);
+    unreachable.slice(0, 5).forEach((u) => console.log(`  ${u}`));
+    console.log('');
+  }
+  if (problems.length === 0 && unreachable.length) {
+    console.log('INCOMPLETE — no problems in what could be checked. Rerun when the API is reachable.');
+  } else if (problems.length === 0) {
     console.log('PASS — no startup-blocking problems found.');
   } else {
     console.log(`FAIL — ${problems.length} problem(s):\n`);

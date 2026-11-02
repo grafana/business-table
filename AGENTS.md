@@ -19,7 +19,7 @@ npm run test:e2e:docker # Full Docker Compose (Grafana + tests)
 npm run markdownlint  # markdownlint-cli2 on AGENTS.md, CHANGELOG.md, README.md
 npm run spellcheck   # cspell on all source files
 npm run preflight      # Resolve CI/CD reusable workflows; check inputs + action policy
-npm run changelog:check # Verify CHANGELOG.md is release-ready (matches the CD gate)
+npm run changelog:check # Verify CHANGELOG.md is release-ready (run on release PRs)
 npm run hooks:install  # Install lefthook git hooks (required once per clone)
 npm run start          # Docker compose: Grafana + plugin (dev profile)
 npm run stop           # Docker compose down
@@ -238,14 +238,16 @@ See `.prettierrc.js`. Print width 120, single quotes, 2-space indent.
 
 ### Pre-commit Checklist
 
-`lefthook` runs `lint`, `typecheck`, `test:ci`, `changelog:check` and `preflight` automatically
-on commit, each scoped by which files are staged. **Run `npm run hooks:install` once per clone** -
+`lefthook` runs `lint`, `typecheck`, `test:ci` and `preflight` automatically on every commit,
+whatever files are staged. **Run `npm run hooks:install` once per clone** -
 `.npmrc` sets `ignore-scripts=true`, so lefthook cannot install its own hooks during `npm ci`.
 
 Not covered by the hook, so run these yourself when relevant:
 
 1. `npm run spellcheck`
 2. `npm run markdownlint` on any changed `.md` files
+3. `npm run changelog:check` on release PRs only. It fails while an `[Unreleased]` section exists,
+   which is the normal state on feature branches.
 
 Use `git commit --no-verify` to bypass the hook when you genuinely need to.
 

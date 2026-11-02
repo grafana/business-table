@@ -3,7 +3,7 @@
  * Changelog release-readiness check.
  *
  * Mirrors the `check-changelog` gate in .github/workflows/publish.yml so the failure shows up
- * at commit time rather than after a CD dispatch:
+ * on the release PR rather than after a CD dispatch:
  *
  *   1. No `[Unreleased]` heading above the newest released version.
  *   2. That newest released version matches package.json.
@@ -11,6 +11,10 @@
  * The publish workflow's error message promises (2) but only actually tests (1), so this is
  * slightly stricter than CD by design - version/changelog drift is exactly the kind of thing
  * that is cheap to fix now and expensive to discover mid-release.
+ *
+ * Run it on release PRs only. Feature branches carry an `[Unreleased]` section by policy
+ * (AGENTS.md, Changelog Policy), so this check fails there by design. That is also why it is
+ * not a pre-commit hook.
  *
  * Usage: node scripts/check-changelog.mjs
  */

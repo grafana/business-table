@@ -23,11 +23,6 @@ pre-commit:
     - name: test
       run: npm run test:ci
 
-    # Guards the CD changelog gate: no [Unreleased] heading, and the newest release matches
-    # package.json.
-    - name: changelog
-      run: npm run changelog:check
-
     # Resolves reusable workflows at their pinned refs and checks inputs and transitive action
     # pins against the repo's allowed-actions policy. Catches `startup_failure` before dispatch.
     # Skips itself when offline.
