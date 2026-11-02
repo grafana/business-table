@@ -31,11 +31,10 @@ import {
   checkIfOperationEnabled,
   columnFilter,
   createColumnAccessorFn,
-  filterFieldBySource,
   getFieldKey,
   getFooterCell,
-  getFrameBySource,
   getSupportedFilterTypesForVariable,
+  resolveTableFields,
 } from '@/utils';
 
 import { useNestedObjects } from './useNestedObjects';
@@ -86,12 +85,15 @@ export const useTable = ({
       };
     }
 
-    const frame = getFrameBySource(data.series, columnsConfig?.[0].field);
+    const resolved = resolveTableFields(
+      data.series,
+      columnsConfig.map((config) => config.field)
+    );
 
     /**
      * No Frame
      */
-    if (!frame) {
+    if (!resolved.frame) {
       return {
         frame: null,
         items: [],
@@ -99,14 +101,14 @@ export const useTable = ({
     }
 
     const items = columnsConfig
-      .map((config) => ({
+      .map((config, index) => ({
         config,
-        field: frame.fields.find((field) => filterFieldBySource(field, config.field)),
+        field: resolved.fields[index],
       }))
       .filter((item) => !!item.field) as Array<{ config: ColumnConfig; field: Field }>;
 
     return {
-      frame,
+      frame: resolved.frame,
       items,
     };
   }, [columnsConfig, data.series]);
