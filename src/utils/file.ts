@@ -1,6 +1,6 @@
 import { DataFrame } from '@grafana/data';
 import { saveAs } from 'file-saver';
-import { utils, write } from 'xlsx';
+import { utils, write } from '@e965/xlsx';
 
 import { BASE64_MEDIA_HEADER_REGEX, MEDIA_TYPES_SYMBOLS } from '@/constants';
 import { SupportedFileType } from '@/types';
