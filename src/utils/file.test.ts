@@ -14,7 +14,7 @@ jest.mock('file-saver', () => ({
 /**
  * xlsx mock
  */
-jest.mock('xlsx', () => ({
+jest.mock('@e965/xlsx', () => ({
   utils: {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     aoa_to_sheet: jest.fn(),

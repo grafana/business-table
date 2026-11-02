@@ -30,7 +30,7 @@
   "devDependencies": {
     "@grafana/eslint-config": "^9.0.0",
     "@grafana/plugin-e2e": "^3.15.4",
-    "@grafana/tsconfig": "^2.0.1",
+    "@grafana/tsconfig": "^2.2.0",
     "@playwright/test": "^1.59.1",
     "@stylistic/eslint-plugin-ts": "^4.4.0",
     "@swc/core": "^1.15.30",
@@ -62,7 +62,7 @@
     "jest-environment-jsdom": "^30.3.0",
     "js-yaml": "4.3.1",
     "lefthook": "^2.1.10",
-    "markdownlint-cli2": "^0.22.1",
+    "markdownlint-cli2": "^0.24.0",
     "prettier": "^3.8.3",
     "replace-in-file-webpack-plugin": "^1.0.6",
     "sass": "^1.99.0",
@@ -81,10 +81,11 @@
     "node": ">=24"
   },
   "dependencies": {
+    "@e965/xlsx": "^0.20.3",
     "@emotion/css": "^11.13.5",
     "@floating-ui/react": "^0.27.19",
-    "@grafana/data": "12.4.2",
-    "@grafana/runtime": "12.4.2",
+    "@grafana/data": "12.4.14",
+    "@grafana/runtime": "12.4.14",
     "@grafana/scenes": "^7.4.2",
     "@grafana/ui": "12.4.14",
     "@hello-pangea/dnd": "^18.0.1",
@@ -100,8 +101,7 @@
     "react-dom": "^18.3.1",
     "semver": "^7.7.4",
     "tslib": "^2.8.0",
-    "uuid": "^14.0.0",
-    "xlsx": "^0.18.5"
+    "uuid": "^14.0.0"
   },
   "overrides": {
     "@jest/reporters@30.3.0": {
