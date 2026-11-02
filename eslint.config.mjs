@@ -45,6 +45,8 @@ export default defineConfig([
       '.config/*',
       '.prettierrc.js',
       'coverage/*',
+      'playwright-report/**',
+      'playwright/**',
       'dist/*',
       'eslint.config.mjs',
       'jest*.js',
