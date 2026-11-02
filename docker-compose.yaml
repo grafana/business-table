@@ -3,8 +3,9 @@ services:
     extends:
       file: .config/docker-compose-base.yaml
       service: grafana
-    ports:
-      - 3000:3000/tcp
+    # !override replaces the base 3000:3000 mapping instead of merging with it
+    ports: !override
+      - ${GRAFANA_PORT:-3000}:3000/tcp
     environment:
       - GF_DEFAULT_APP_MODE=development
       - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/panels.json
@@ -25,6 +26,8 @@ services:
       dockerfile: test/Dockerfile
     environment:
       - GRAFANA_URL=http://grafana:3000
+      # Pass the host CI flag through so playwright.config.ts applies its CI settings (workers, retries)
+      - CI
     volumes:
       - ./test:/app/test
       - ./playwright-report:/app/playwright-report
