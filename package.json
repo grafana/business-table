@@ -43,7 +43,7 @@
     "@types/lodash": "^4.17.24",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.12.2",
-    "@types/semver": "^7.7.1",
+    "@types/semver": "^7.8.0",
     "@typescript-eslint/eslint-plugin": "^8.59.0",
     "copy-webpack-plugin": "^14.0.0",
     "cspell": "^10.0.0",
