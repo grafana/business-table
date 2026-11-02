@@ -10,10 +10,6 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - The datasource payload editor now shows an error when the data source fails to load, instead of loading forever.
 
-### Project Updates
-
-- Added `@grafana/plugin-compat` v0.6.0.
-
 ## [3.6.8] - 2026-09-08
 
 ### Fixed
