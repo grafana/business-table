@@ -14,6 +14,7 @@ import {
 import { ACTIONS_COLUMN_ID, ROW_HIGHLIGHT_STATE_KEY } from '@/constants';
 import {
   ActionsColumnConfig,
+  ActionsColumnPosition,
   CellAggregation,
   CellType,
   ColumnConfig,
@@ -509,8 +510,14 @@ export const useTable = ({
 
       const header = actionsColumnConfig?.label ? replaceVariables(actionsColumnConfig?.label) : '';
 
+      /**
+       * Keep left actions before every data column and visible while scrolling.
+       */
+      const isActionsOnLeft = actionsColumnConfig?.position === ActionsColumnPosition.LEFT;
+
       const currentMeta = {
         config: {
+          pin: isActionsOnLeft ? ColumnPinDirection.LEFT : ColumnPinDirection.RIGHT,
           appearance: {
             header: {
               fontSize: actionsColumnConfig?.fontSize ?? ColumnHeaderFontSize.LG,
@@ -520,16 +527,25 @@ export const useTable = ({
         },
       } as ColumnMeta<unknown, unknown>;
 
-      columns.push({
+      /**
+       * Actions column definition
+       */
+      const actionsColumn: ColumnDef<unknown> = {
         id: ACTIONS_COLUMN_ID,
         header: header,
         cell: TableActionsCell,
         meta: currentMeta,
-        enablePinning: columns.some(
-          (column) => column.enablePinning && column.meta?.config.pin === ColumnPinDirection.RIGHT
-        ),
+        enablePinning:
+          isActionsOnLeft ||
+          columns.some((column) => column.enablePinning && column.meta?.config.pin === ColumnPinDirection.RIGHT),
         ...actionColumnSize,
-      });
+      };
+
+      if (isActionsOnLeft) {
+        columns.unshift(actionsColumn);
+      } else {
+        columns.push(actionsColumn);
+      }
     }
 
     return columns;
@@ -552,6 +568,7 @@ export const useTable = ({
     actionsColumnConfig?.label,
     actionsColumnConfig?.fontSize,
     actionsColumnConfig?.alignment,
+    actionsColumnConfig?.position,
   ]);
 
   return useMemo(
