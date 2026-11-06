@@ -3,7 +3,7 @@ import { getJestSelectors } from '@/utils/test-selectors';
 import React from 'react';
 
 import { TEST_IDS } from '@/constants';
-import { ColumnAlignment, ColumnHeaderFontSize } from '@/types';
+import { ActionsColumnPosition, ColumnAlignment, ColumnHeaderFontSize } from '@/types';
 import { createActionsColumnConfig } from '@/utils';
 
 import { ActionsColumnEditor } from './ActionsColumnEditor';
@@ -78,6 +78,20 @@ describe('ActionsColumnEditor', () => {
         label: 'hello',
       })
     );
+  });
+
+  it('Should default existing tables to right and preserve options when changing position', () => {
+    const { rerender } = render(getComponent({ onChange, value: defaultValue }));
+    openSection();
+
+    expect(selectors.fieldPositionOption(false, ActionsColumnPosition.RIGHT)).toBeChecked();
+    fireEvent.click(selectors.fieldPositionOption(false, ActionsColumnPosition.LEFT));
+    expect(onChange).toHaveBeenCalledWith({ ...defaultValue, position: ActionsColumnPosition.LEFT });
+
+    rerender(getComponent({ onChange, value: { ...defaultValue, position: ActionsColumnPosition.LEFT } }));
+    expect(selectors.fieldPositionOption(false, ActionsColumnPosition.LEFT)).toBeChecked();
+    fireEvent.click(selectors.fieldPositionOption(false, ActionsColumnPosition.RIGHT));
+    expect(onChange).toHaveBeenLastCalledWith({ ...defaultValue, position: ActionsColumnPosition.RIGHT });
   });
 
   it('Should change fontSize', () => {

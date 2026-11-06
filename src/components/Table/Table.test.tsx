@@ -399,6 +399,52 @@ describe('Table', () => {
     expect(selectors.footerCell(false, 'value2')).toHaveStyle({ position: 'sticky', right: 0 });
   });
 
+  it('Should keep left actions before other pinned columns with the correct sticky offsets', async () => {
+    await act(async () =>
+      render(
+        getComponent({
+          showHeader: true,
+          columns: [
+            {
+              id: ACTIONS_COLUMN_ID,
+              size: 65,
+              enablePinning: true,
+              meta: createColumnMeta({ config: createColumnConfig({ pin: ColumnPinDirection.LEFT }) }),
+            },
+            {
+              id: 'device',
+              size: 120,
+              accessorFn: createColumnAccessorFn('device'),
+              enablePinning: true,
+              meta: createColumnMeta({ config: createColumnConfig({ pin: ColumnPinDirection.LEFT }) }),
+            },
+            {
+              id: 'value',
+              accessorFn: createColumnAccessorFn('value'),
+              enablePinning: false,
+            },
+            {
+              id: 'updated',
+              accessorFn: createColumnAccessorFn('updated'),
+              enablePinning: true,
+              meta: createColumnMeta({ config: createColumnConfig({ pin: ColumnPinDirection.RIGHT }) }),
+            },
+          ],
+          data: [{ device: 'device1', value: 10, updated: 'today' }],
+        })
+      )
+    );
+
+    expect(selectors.headerRow(false, '0').firstChild).toBe(selectors.headerCell(false, ACTIONS_COLUMN_ID));
+    expect(selectors.headerCell(false, ACTIONS_COLUMN_ID)).toHaveStyle({ position: 'sticky', left: 0 });
+    expect(selectors.headerCell(false, 'device')).toHaveStyle({ position: 'sticky', left: '65px' });
+    expect(selectors.headerCell(false, 'updated')).toHaveStyle({ position: 'sticky', right: 0 });
+    expect(selectors.bodyRow(false, '0').firstChild).toBe(selectors.bodyCell(false, `0_${ACTIONS_COLUMN_ID}`));
+    expect(selectors.bodyCell(false, `0_${ACTIONS_COLUMN_ID}`)).toHaveStyle({ position: 'sticky', left: 0 });
+    expect(selectors.bodyCell(false, '0_device')).toHaveStyle({ position: 'sticky', left: '65px' });
+    expect(selectors.bodyCell(false, '0_updated')).toHaveStyle({ position: 'sticky', right: 0 });
+  });
+
   it('Should not show header if disabled', async () => {
     await act(async () =>
       render(

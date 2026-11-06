@@ -587,9 +587,24 @@ export interface TableOperationConfig {
 }
 
 /**
+ * Actions Column Position
+ */
+export enum ActionsColumnPosition {
+  LEFT = 'left',
+  RIGHT = 'right',
+}
+
+/**
  * Actions Column Config
  */
 export interface ActionsColumnConfig {
+  /**
+   * Position. Existing tables default to the right.
+   *
+   * @type {ActionsColumnPosition}
+   */
+  position?: ActionsColumnPosition;
+
   /**
    * Label
    *

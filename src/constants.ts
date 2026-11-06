@@ -121,6 +121,8 @@ export const TEST_IDS = {
   },
   actionColumnsEditor: {
     root: createSelector('data-testid action-columns-editor'),
+    fieldPosition: createSelector('data-testid action-columns-editor field-position'),
+    fieldPositionOption: createSelector((name: unknown) => `action-columns-editor field-position-${name}`),
     fieldLabel: createSelector('data-testid action-columns-editor field-label'),
     fieldHeaderFontSize: createSelector('data-testid action-columns-editor field-font-size'),
     fieldHeaderFontSizeOption: createSelector((name: unknown) => `action-columns-editor field-font-size-${name}`),

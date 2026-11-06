@@ -3,6 +3,7 @@ import { act, renderHook } from '@testing-library/react';
 
 import { ACTIONS_COLUMN_ID, ROW_HIGHLIGHT_STATE_KEY } from '@/constants';
 import {
+  ActionsColumnPosition,
   CellAggregation,
   CellType,
   ColumnEditorType,
@@ -691,6 +692,54 @@ describe('useTable', () => {
   });
 
   describe('editable', () => {
+    it.each([ColumnPinDirection.NONE, ColumnPinDirection.LEFT, ColumnPinDirection.RIGHT])(
+      'Should place left actions first and pin them when data columns are pinned %s',
+      (pin) => {
+        const columns = [
+          createColumnConfig({
+            field: { source: refId, name: 'device' },
+            pin,
+            edit: createColumnEditConfig({ enabled: true }),
+          }),
+          createColumnConfig({ field: { source: refId, name: 'value' }, pin: ColumnPinDirection.LEFT }),
+        ];
+        const { result, rerender } = renderHook(
+          ({ position }: { position?: ActionsColumnPosition }) =>
+            useTable({
+              data: { series: [frame] } as any,
+              columns,
+              objects: [],
+              replaceVariables,
+              actionsColumnConfig: createActionsColumnConfig({ position }),
+              eventBus,
+            }),
+          { initialProps: { position: undefined } as { position?: ActionsColumnPosition } }
+        );
+
+        /**
+         * Existing dashboards preserve right positioning and automatic right pinning.
+         */
+        const originalOrder = result.current.columns.map((column) => column.id);
+        expect(originalOrder[2]).toEqual(ACTIONS_COLUMN_ID);
+        expect(result.current.columns[2].enablePinning).toBe(pin === ColumnPinDirection.RIGHT);
+
+        rerender({ position: ActionsColumnPosition.LEFT });
+        expect(result.current.columns.map((column) => column.id)).toEqual([
+          ACTIONS_COLUMN_ID,
+          ...originalOrder.slice(0, 2),
+        ]);
+        expect(result.current.columns[0].enablePinning).toBe(true);
+        expect(result.current.columns[0].meta?.config.pin).toEqual(ColumnPinDirection.LEFT);
+
+        /**
+         * Position changes update the memoized columns without changing edit controls.
+         */
+        rerender({ position: ActionsColumnPosition.RIGHT });
+        expect(result.current.columns.map((column) => column.id)).toEqual(originalOrder);
+        expect(result.current.columns[2].enablePinning).toBe(pin === ColumnPinDirection.RIGHT);
+      }
+    );
+
     it('Should enable editor if edit enabled', () => {
       const deviceColumn = createColumnConfig({
         label: 'Device',

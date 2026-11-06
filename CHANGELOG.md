@@ -4,6 +4,13 @@ All notable changes to the **Business Table Panel** plugin for Grafana are docum
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Actions column position setting: place edit, save, and delete controls at the far left and keep them visible while
+  scrolling. Existing tables retain their actions on the right.
+
 ## [3.6.9] - 2026-11-02
 
 ### Changed

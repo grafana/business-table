@@ -4,7 +4,13 @@ import React, { useState } from 'react';
 
 import { CollapseTitle, FieldsGroup } from '@/components/ui';
 import { TEST_IDS } from '@/constants';
-import { ActionsColumnConfig, ColumnAlignment, ColumnHeaderFontSize, EditorProps } from '@/types';
+import {
+  ActionsColumnConfig,
+  ActionsColumnPosition,
+  ColumnAlignment,
+  ColumnHeaderFontSize,
+  EditorProps,
+} from '@/types';
 
 import { getStyles } from './ActionsColumnEditor.styles';
 
@@ -43,6 +49,28 @@ export const ActionsColumnEditor: React.FC<Props> = ({ value, onChange }) => {
         onToggle={() => setIsOpen(!isOpen)}
       >
         <div data-testid={testIds.itemContent.selector()}>
+          <InlineField
+            label="Position"
+            tooltip="Left places actions first and keeps them visible while scrolling."
+            {...testIds.fieldPosition.apply()}
+          >
+            <RadioButtonGroup
+              value={value.position ?? ActionsColumnPosition.RIGHT}
+              onChange={(position) => onChange({ ...value, position })}
+              options={[
+                {
+                  value: ActionsColumnPosition.LEFT,
+                  label: 'Left',
+                  ariaLabel: testIds.fieldPositionOption.selector(ActionsColumnPosition.LEFT),
+                },
+                {
+                  value: ActionsColumnPosition.RIGHT,
+                  label: 'Right',
+                  ariaLabel: testIds.fieldPositionOption.selector(ActionsColumnPosition.RIGHT),
+                },
+              ]}
+            />
+          </InlineField>
           <FieldsGroup label="Header">
             <InlineField label="Label" grow={true}>
               <Input
