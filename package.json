@@ -106,19 +106,19 @@
   },
   "overrides": {
     "@jest/reporters@30.3.0": {
-      "glob": "^11.1.0"
+      "glob": "^14.0.3"
     },
     "jest-config@30.3.0": {
-      "glob": "^11.1.0"
+      "glob": "^14.0.3"
     },
     "jest-runtime@30.3.0": {
-      "glob": "^11.1.0"
+      "glob": "^14.0.3"
     },
     "rimraf@5.0.10": {
-      "glob": "^11.1.0"
+      "glob": "^14.0.3"
     },
     "test-exclude": {
-      "glob": "^7.2.3"
+      "glob": "^14.0.3"
     }
   }
 }
